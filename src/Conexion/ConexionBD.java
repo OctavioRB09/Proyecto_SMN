@@ -8,8 +8,8 @@ public class ConexionBD {
 	private static String url="jdbc:mysql://localhost:3306/pruebacdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=flase&serverTimezone=UTC";
 	private static String user="root", pass="pass";
 	
-	static {
-
+	static {//hola octavio
+System.out.println("hola");
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
