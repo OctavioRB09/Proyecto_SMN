@@ -9,7 +9,7 @@ public class ConexionBD {
 	private static String user="root", pass="pass";
 	
 	static {
-		
+		System.out.println("SYSO");
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
