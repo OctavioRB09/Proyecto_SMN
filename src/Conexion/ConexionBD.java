@@ -18,6 +18,7 @@ public class ConexionBD {
 		}
 
 	}
+	///prueba 1 
 
 	public Connection conectar() {
 
