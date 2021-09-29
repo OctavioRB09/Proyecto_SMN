@@ -4,7 +4,7 @@ import Conexion.*;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-//INICIO DE LA PRUEBA
+//INICIO DE LA PRUEBA1
 public class Instructor_Querys {
 	
 	//CLASE DE INSTRUCTOR
