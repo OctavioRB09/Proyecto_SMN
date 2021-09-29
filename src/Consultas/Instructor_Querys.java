@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class Instructor_Querys {
 	
+	//CLASE DE INSTRUCTOR
 	ConexionBD conexion = new ConexionBD();
 	Connection cn = null;
 	Statement stm = null;
