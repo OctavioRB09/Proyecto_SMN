@@ -6,7 +6,7 @@ import javax.swing.*;
 public class ConexionBD {
 	
 	private static String url="jdbc:mysql://localhost:3306/pruebacdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=flase&serverTimezone=UTC";
-	private static String user="root", pass="pass";
+	public static String user="root", pass="pass";
 	
 	static {
 		System.out.println("SYSO");
@@ -19,6 +19,17 @@ public class ConexionBD {
 
 	}
 
+	public ConexionBD()
+	{
+		
+	}
+	
+	public ConexionBD(String user, String pass)
+	{
+		this.user = user;
+		this.pass = pass;
+	}
+	
 	public Connection conectar() {
 
 		try {

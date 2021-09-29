@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Conexion.ConexionBD;
 
-public class Instructor_Querys 
+public class Participa_res_Querys 
 {
 	ConexionBD conexion = new ConexionBD();
 	Connection cn = null;
@@ -20,60 +20,42 @@ public class Instructor_Querys
 	ResultSet rs = null;
 	PreparedStatement ps = null;
 	
-	public void ingresar_instructor(String Placa, String Nombre, String ApellidoP, String ApellidoM, String Rango, String Sueldo) throws IOException
+	public void ingresar_ParR(String Matricula, String Ed, String Resultado) throws IOException
 	{
 		try 
 		{
 			//cn = conexion.conectar(1);
-			String Q_Placa, Q_Nombre, Q_ApellidoP, Q_ApellidoM, Q_Rango, Q_Sueldo;
-			if(Placa.equals("")) 
+			String Q_Matricula, Q_Ed, Q_Resultado;
+			if(Matricula.equals("")) 
 			{
-				Placa=null;
-				Q_Placa=""+Placa+", ";
+				Matricula=null;
+				Q_Matricula=""+Matricula+", ";
 			}
-			else Q_Placa="'"+Placa+"', ";
+			else Q_Matricula="'"+Matricula+"', ";
 				
-			if(Nombre.equals(""))
+			if(Ed.equals(""))
 			{
-				Nombre=null;
-				Q_Nombre=""+Nombre+", ";
+				Ed=null;
+				Q_Ed=""+Ed;
 			}
-			else Q_Nombre="'"+Nombre+"', ";
-				
-			if(ApellidoP.equals(""))
+			else
 			{
-				ApellidoP=null;
-				Q_ApellidoP=""+ApellidoP+", ";
-			}
-			else Q_ApellidoP="'"+ApellidoP+"', ";
-				
-			if(ApellidoM.equals(""))
-			{
-				ApellidoM=null;
-				Q_ApellidoM=""+ApellidoM+", ";
-			}
-			else Q_ApellidoM="'"+ApellidoM+"', ";
-				
-			if(Rango.equals("")) 
-			{
-				Rango=null;
-				Q_Rango=""+Rango+", ";
-			}
-			else Q_Rango="'"+Rango+"', ";
-				
-			if(Sueldo.equals("")) 
-			{
-				Sueldo=null;
-				Q_Sueldo=""+Sueldo+"";
-			}
-			else 
-			{
-				Q_Sueldo=""+Sueldo+"";
+				Q_Ed="'"+Ed+"', ";
 			}
 			
-			String query = "insert into instructor(Num_Placa, Nombre_Ins, ApellidoPat_Ins, ApellidoMat_Ins, Rango, Sueldo_Ins) VALUES("+Q_Placa+Q_Nombre+Q_ApellidoP+Q_ApellidoM+Q_Rango+Q_Sueldo+")";
+			if(Resultado.equals(""))
+			{
+				Resultado=null;
+				Q_Resultado=""+Resultado;
+			}
+			else
+			{
+				Q_Resultado="'"+Resultado+"'";
+			}
+			
+			String query = "INSERT INTO participa_res(Matricula_Res, Ed_Sorteo, Resultado) VALUES("+Q_Matricula+Q_Ed+Q_Resultado+")";
 			stm.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, "Instructor agregado correctamente");
+			JOptionPane.showMessageDialog(null, "Participante reserva agregado correctamente");
 		}
 		catch (SQLException e)
 		{
@@ -94,16 +76,16 @@ public class Instructor_Querys
 		}*/
 	}
 	
-	public void modificar_instructor(String Placa, String Nombre, String ApellidoP, String ApellidoM, String Rango, String Sueldo) throws IOException 
+	public void modificar_ParR(String Matricula, String Ed, String Resultado) throws IOException 
 	{
 		try 
 		{
 			cn = conexion.conectar();
 			stm = cn.createStatement();
 
-			String query = "UPDATE instructor SET Nombre_Ins = '"+Nombre+"', ApellidoPat_Ins = '"+ApellidoP+"', ApellidoMat_Ins = '"+ApellidoM+"', Rango = '"+Rango+"', Sueldo_Ins = "+Sueldo+" WHERE Num_Placa = '"+Placa+"'";
+			String query = "UPDATE participa_res SET Ed_Sorteo = '"+Ed+"', Resultado = '"+Resultado+"' WHERE Matricula_Res = '"+Matricula+"'";
 			stm.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, "Registro modificado correctamente");
+			JOptionPane.showMessageDialog(null, "Participa reserva modificado correctamente");
 		}
 		catch (SQLException e) 
 		{
@@ -124,16 +106,16 @@ public class Instructor_Querys
 		}*/
 	}
 	
-	public void eliminar_instructor(String Placa) throws IOException 
+	public void eliminar_ParR(String Matricula) throws IOException 
 	{
 		try 
 		{
 			cn = conexion.conectar();
 			stm = cn.createStatement();
 
-			String query = "DELETE FROM instructor WHERE Num_Placa = '"+Placa+"'";
+			String query = "DELETE FROM participa_res WHERE Matricula_Res = '"+Matricula+"'";
 			stm.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, "Registro eliminado correctamente");
+			JOptionPane.showMessageDialog(null, "Participa reserva eliminado correctamente");
 			
 		}
 		catch (SQLException e) 
@@ -155,10 +137,10 @@ public class Instructor_Querys
 		}*/
 	}
 	
-	public DefaultTableModel mostrarRegistrosIns(String query) 
+	public DefaultTableModel mostrarRegistrosNumT(String query) 
 	{
-		String[] cabecera = {"Placa", "Nombre", "Apellido Paterno", "Apellido Materno", "Rango", "Sueldo"};
-		String[] datos = new String[6];
+		String[] cabecera = {"Matricula_Res", "Ed_Sorteo", "Resultado"};
+		String[] datos = new String[3];
 		
 		DefaultTableModel modelo = new DefaultTableModel(null, cabecera);
 
@@ -175,9 +157,6 @@ public class Instructor_Querys
 					datos[0] = rs.getString(1);
 					datos[1] = rs.getString(2);	
 					datos[2] = rs.getString(3);
-					datos[3] = rs.getString(4);
-					datos[4] = rs.getString(5);
-					datos[5] = rs.getString(6);
 					modelo.addRow(datos);
 				}
 				while(rs.next());
