@@ -16,7 +16,7 @@ public class ConexionBD {
 			JOptionPane.showMessageDialog(null, "Error de conector: "+e.getMessage());
 			e.printStackTrace();
 		}
-System.out.println("alaaa");
+
 	}
 
 	public Connection conectar() {
