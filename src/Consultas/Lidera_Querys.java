@@ -4,7 +4,7 @@ import Conexion.*;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-//INICIO DE LA PRUEBA
+
 public class Lidera_Querys {
 	
 	ConexionBD conexion = new ConexionBD();
