@@ -2,9 +2,9 @@ package Conexion;
 
 import java.sql.*;
 import javax.swing.*;
-
+//otraprueba
 public class ConexionBD {
-
+	
 	private static String url="jdbc:mysql://localhost:3306/pruebacdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=flase&serverTimezone=UTC";
 	private static String user="root", pass="pass";
 	
