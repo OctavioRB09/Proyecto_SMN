@@ -3,7 +3,7 @@ package Ventanas_M;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-
+//INICIO DE LA PRUEBA
 public class Formulario {
 
 	private JFrame frame;
