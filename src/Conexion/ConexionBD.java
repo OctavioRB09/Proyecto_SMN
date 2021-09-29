@@ -10,6 +10,7 @@ public class ConexionBD {
 	
 	static {//hola octavio
 System.out.println("hola");
+System.out.println("owo");
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
