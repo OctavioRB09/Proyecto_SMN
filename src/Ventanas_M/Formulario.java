@@ -31,6 +31,7 @@ import Consultas.*;
 
 import java.awt.Font;
 
+@SuppressWarnings({ "unused", "serial" })
 public class Formulario extends JFrame {
 
 	private JPanel contentPane;
@@ -169,6 +170,7 @@ public class Formulario extends JFrame {
 		txtRPR.setText(null);
 	}
 	
+	@SuppressWarnings("static-access")
 	public Formulario() 
 	{
 		cn = conexion.conectar();

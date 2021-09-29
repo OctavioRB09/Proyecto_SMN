@@ -19,17 +19,17 @@ public class ConexionBD {
 
 	}
 
-	public ConexionBD()
-	{
+	//CONSTRUCTORES DE LA CLASE
+	public ConexionBD() {
 		
 	}
-	
-	public ConexionBD(String user, String pass)
-	{
+	@SuppressWarnings("static-access")
+	public ConexionBD(String user, String pass) {
 		this.user = user;
 		this.pass = pass;
 	}
-	
+
+	//SE ESTABLECE LA CONEXION
 	public Connection conectar() {
 
 		try {

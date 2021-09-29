@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
 
+@SuppressWarnings({ "unused", "serial" })
 public class Loggin extends JFrame 
 {
 
