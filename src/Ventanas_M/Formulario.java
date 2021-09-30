@@ -24,12 +24,14 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Conexion.*;
 import Consultas.*;
 
 import java.awt.Font;
+import javax.swing.JLabel;
 
 @SuppressWarnings({ "unused", "serial" })
 public class Formulario extends JFrame {
@@ -46,11 +48,11 @@ public class Formulario extends JFrame {
 	NumTel_Institucion_Querys objNumT = new NumTel_Institucion_Querys();
 	Escuadron_Querys objEsc = new Escuadron_Querys();
 	Participa_res_Querys objParR = new Participa_res_Querys();
+	Obtiene_Querys objObt=new Obtiene_Querys();
+	
 	ConexionBD conexion = new ConexionBD();
-	Random r1 = new Random();
 	PreparedStatement ps = null;
 	ResultSet rs = null;
-	String[] a = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
 	Connection cn = null;
 	Statement stm = null; 
 	
@@ -108,6 +110,11 @@ public class Formulario extends JFrame {
 	private JTextField txtEDPR;
 	private JTextField txtRPR;
 	private JTable table_5;
+	private JTextField etMatReserva;
+	private JTextField etNumLiberacion;
+	private JTextField etPrecioCart;
+	private JTextField etMesRecepcion;
+	private JTable tablaObtiene;
 	
 	public static void main(String[] args) 
 	{
@@ -176,7 +183,7 @@ public class Formulario extends JFrame {
 		cn = conexion.conectar();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 614, 431);
+		setBounds(100, 100, 877, 496);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setTitle(conexion.user);
@@ -188,6 +195,8 @@ public class Formulario extends JFrame {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(0, 0, 598, 392);
 		getContentPane().add(tabbedPane);
+		
+//-->> INICIO DEL PANEL DE INSTRUCTOR		
 		
 		JPanel Instructor = new JPanel();
 		Instructor.setBackground(SystemColor.menu);
@@ -380,7 +389,7 @@ public class Formulario extends JFrame {
 		Instructor.add(txtR);
 		txtR.setColumns(10);
 		
-		// Institución
+//-->> INICIO DEL PANEL DE INSTITUCION
 		
 		JPanel Institucion = new JPanel();
 		tabbedPane.addTab("Instituci\u00F3n", null, Institucion, null);
@@ -580,7 +589,7 @@ public class Formulario extends JFrame {
 		bMostrarDatosI.setBounds(462, 127, 111, 23);
 		Institucion.add(bMostrarDatosI);
 	
-		//Actividad
+//-->> INICIO DEL PANEL DE ACTIVIDAD
 	
 		JPanel Actividad = new JPanel();
 		tabbedPane.addTab("Actividad", null, Actividad, null);
@@ -604,7 +613,7 @@ public class Formulario extends JFrame {
 		txtpnMatriculaenc.setText("MATRICULA_E:");
 		txtpnMatriculaenc.setEditable(false);
 		txtpnMatriculaenc.setBackground(SystemColor.menu);
-		txtpnMatriculaenc.setBounds(0, 40, 82, 20);
+		txtpnMatriculaenc.setBounds(0, 40, 89, 20);
 		Actividad.add(txtpnMatriculaenc);
 		
 		JTextPane txtpnNs = new JTextPane();
@@ -806,7 +815,7 @@ public class Formulario extends JFrame {
 		bLA.setBounds(462, 161, 111, 23);
 		Actividad.add(bLA);
 		
-		//NumTel_Institucion
+//-->> INICIO DEL PANEL DEL NUMERO DEL TELEFONO DE INSTITUCION
 		
 		JPanel NumTel = new JPanel();
 		tabbedPane.addTab("numtel_institucion", null, NumTel, null);
@@ -956,7 +965,7 @@ public class Formulario extends JFrame {
 		txtpnNumtelefonomod.setBounds(10, 83, 123, 20);
 		NumTel.add(txtpnNumtelefonomod);
 		
-		// Escuadron 
+//-->> INICIO DEL PANEL DE ESCUADRON
 		
 		JPanel Escuadron = new JPanel();
 		tabbedPane.addTab("Escuadron", null, Escuadron, null);
@@ -1092,7 +1101,7 @@ public class Formulario extends JFrame {
 		table_4.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
 		scrollPane_4.setViewportView(table_4);
 		
-		//Participa_Res
+//-->> INICIO DEL PANEL DE PARTICIPANTE RESERVA (participa_res)
 		
 		JPanel ParticipaRes = new JPanel();
 		tabbedPane.addTab("Participa_res", null, ParticipaRes, null);
@@ -1239,5 +1248,187 @@ public class Formulario extends JFrame {
 		
 		table_5 = new JTable();
 		scrollPane_5.setViewportView(table_5);
+		
+//-->> INICIA PANEL DE OBTIENE
+		DefaultTableModel modeloIns = null;
+		
+		JPanel Obtiene = new JPanel();
+		tabbedPane.addTab("Obtiene", null, Obtiene, null);
+		Obtiene.setLayout(null);
+		
+		JLabel lblMatReserva = new JLabel("MATRICULA DEL RESERVA");
+		lblMatReserva.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblMatReserva.setBounds(34, 31, 151, 14);
+		Obtiene.add(lblMatReserva);
+		
+		JLabel lblNumLiberacion = new JLabel("N\u00DAMERO DE LIBERACI\u00D3N");
+		lblNumLiberacion.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblNumLiberacion.setBounds(34, 62, 148, 14);
+		Obtiene.add(lblNumLiberacion);
+		
+		JLabel lblPrecioCart = new JLabel("PRECIO DE CARTILLA");
+		lblPrecioCart.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblPrecioCart.setBounds(34, 93, 123, 14);
+		Obtiene.add(lblPrecioCart);
+		
+		JLabel lblRecepcion = new JLabel("MES DE RECEPCI\u00D3N");
+		lblRecepcion.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblRecepcion.setBounds(34, 124, 116, 14);
+		Obtiene.add(lblRecepcion);
+		
+		etMatReserva = new JTextField();
+		etMatReserva.setBounds(197, 29, 86, 20);
+		Obtiene.add(etMatReserva);
+		etMatReserva.setColumns(10);
+		
+		etNumLiberacion = new JTextField();
+		etNumLiberacion.setBounds(197, 60, 86, 20);
+		Obtiene.add(etNumLiberacion);
+		etNumLiberacion.setColumns(10);
+		
+		etPrecioCart = new JTextField();
+		etPrecioCart.setBounds(197, 91, 86, 20);
+		Obtiene.add(etPrecioCart);
+		etPrecioCart.setColumns(10);
+		
+		etMesRecepcion = new JTextField();
+		etMesRecepcion.setBounds(197, 122, 86, 20);
+		Obtiene.add(etMesRecepcion);
+		etMesRecepcion.setColumns(10);
+		
+		
+		
+		JButton btnAgregar = new JButton("AGREGAR");
+		btnAgregar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String Matricula="", NumeroLib="", Precio="", Mes="";
+				
+				Matricula = etMatReserva.getText();
+				NumeroLib = etNumLiberacion.getText();
+				Precio = etPrecioCart.getText();
+				Mes = etMesRecepcion.getText();
+				
+				objObt.ingresar_obtiene(Matricula, NumeroLib, Precio, Mes);
+				
+				DefaultTableModel modeloIns = objObt.mostrarRegistrosObtiene("SELECT * FROM obtiene");
+				tablaObtiene.setModel(modeloIns);
+				
+			}
+		});
+		btnAgregar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnAgregar.setBounds(409, 28, 108, 23);
+		Obtiene.add(btnAgregar);
+		
+		JButton btnEliminar = new JButton("ELIMINAR");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String Matricula="";
+				
+				Matricula = etMatReserva.getText();
+				
+				objObt.eliminar_obtiene(Matricula);
+				
+				DefaultTableModel modeloIns = objObt.mostrarRegistrosObtiene("SELECT * FROM obtiene");
+				tablaObtiene.setModel(modeloIns);
+				
+			}
+		});
+		btnEliminar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnEliminar.setBounds(409, 59, 108, 23);
+		Obtiene.add(btnEliminar);
+		
+		JButton btnModificar = new JButton("MODIFICAR");
+		btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String Matricula="", NumeroLib="", Precio="", Mes="";
+				
+				Matricula = etMatReserva.getText();
+				NumeroLib = etNumLiberacion.getText();
+				Precio = etPrecioCart.getText();
+				Mes = etMesRecepcion.getText();
+				
+				objObt.modificar_obtiene(Matricula, NumeroLib, Precio, Mes);
+				
+				DefaultTableModel modeloIns = objObt.mostrarRegistrosObtiene("SELECT * FROM obtiene WHERE Matricula_Res = '"+Matricula+"'");
+				tablaObtiene.setModel(modeloIns);
+				
+			}
+		});
+		btnModificar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnModificar.setBounds(409, 90, 108, 23);
+		Obtiene.add(btnModificar);
+		
+		JButton btnLimpiar = new JButton("LIMPIAR");
+		btnLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				etMatReserva.setText("");
+				etNumLiberacion.setText("");
+				etPrecioCart.setText("");
+				etMesRecepcion.setText("");
+				
+				DefaultTableModel modelo = objObt.mostrarRegistrosObtiene("SELECT * FROM obtiene");
+				tablaObtiene.setModel(modelo);
+				
+			}
+		});
+		btnLimpiar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnLimpiar.setBounds(409, 155, 108, 23);
+		Obtiene.add(btnLimpiar);
+		
+		//-->> INICIA EL PANEL CONTENEDOR DE LA TABLA
+		JPanel pnlTabla = new JPanel();
+		pnlTabla.setBounds(34, 189, 478, 154);
+		Obtiene.add(pnlTabla);
+		pnlTabla.setLayout(null);
+		
+		JScrollPane spTabla = new JScrollPane();
+		spTabla.setBounds(0, 0, 478, 154);
+		pnlTabla.add(spTabla);
+		
+		tablaObtiene = new JTable();
+		tablaObtiene.setShowVerticalLines(false);
+		spTabla.setViewportView(tablaObtiene);
+		
+		tablaObtiene.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		tablaObtiene.setFont(new Font("Tahoma", Font.BOLD, 12));
+		tablaObtiene.setForeground(Color.BLACK);
+		tablaObtiene.setCellSelectionEnabled(true);
+		
+		JButton btnConsultar = new JButton("CONSULTAR");
+		btnConsultar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String[] datos=new String[4];
+				String Matricula = etMatReserva.getText();
+				
+				DefaultTableModel modelo = objObt.mostrarRegistrosObtiene("SELECT * FROM obtiene WHERE Matricula_Res = '"+Matricula+"'");
+				tablaObtiene.setModel(modelo);
+				
+				datos=objObt.vector_edits(datos);
+				
+				etNumLiberacion.setText(datos[1]);
+				etPrecioCart.setText(datos[2]);
+				etMesRecepcion.setText(datos[3]);
+				
+				for(int i=0; i<datos.length; i++) {
+					datos[i]=null;
+				}
+				
+				objObt.vector_edits(datos);
+				
+			}
+		});
+		btnConsultar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnConsultar.setBounds(409, 121, 108, 23);
+		Obtiene.add(btnConsultar);
+		
+//-->> INICIO DE PANEL DE OBTIENE
+		
+		
+		
 	}
 }

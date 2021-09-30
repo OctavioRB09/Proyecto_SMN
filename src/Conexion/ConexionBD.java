@@ -5,11 +5,11 @@ import javax.swing.*;
 
 public class ConexionBD {
 	
-	private static String url="jdbc:mysql://localhost:3306/pruebacdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=flase&serverTimezone=UTC";
+	private static String url="jdbc:mysql://localhost:3306/proyecto_smn?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=flase&serverTimezone=UTC";
 	public static String user="root", pass="pass";
 	
 	static {
-		System.out.println("SYSO");
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
