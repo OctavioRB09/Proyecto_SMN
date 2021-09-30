@@ -183,7 +183,7 @@ public class Formulario extends JFrame {
 		cn = conexion.conectar();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 877, 496);
+		setBounds(100, 100, 678, 467);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setTitle(conexion.user);
@@ -206,45 +206,45 @@ public class Formulario extends JFrame {
 		
 		JTextPane txtpnMatricula = new JTextPane();
 		txtpnMatricula.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnMatricula.setText("NUM_PLACA:");
+		txtpnMatricula.setText("NUMERO DE PLACA:");
 		txtpnMatricula.setForeground(Color.BLACK);
 		txtpnMatricula.setEditable(false);
 		txtpnMatricula.setBackground(SystemColor.menu);
-		txtpnMatricula.setBounds(10, 11, 95, 20);
+		txtpnMatricula.setBounds(10, 11, 123, 20);
 		Instructor.add(txtpnMatricula);
 		
 		txtNumP = new JTextField();
 		txtNumP.setColumns(10);
-		txtNumP.setBounds(115, 11, 86, 20);
+		txtNumP.setBounds(167, 11, 86, 20);
 		Instructor.add(txtNumP);
 		
 		JTextPane txtpnNombre = new JTextPane();
 		txtpnNombre.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnNombre.setText("NOMBRE_INS:");
+		txtpnNombre.setText("NOMBRE INSTRUCTOR:");
 		txtpnNombre.setEditable(false);
 		txtpnNombre.setBackground(SystemColor.menu);
-		txtpnNombre.setBounds(10, 42, 95, 20);
+		txtpnNombre.setBounds(10, 42, 144, 20);
 		Instructor.add(txtpnNombre);
 		
 		txtNomI = new JTextField();
 		txtNomI.setColumns(10);
-		txtNomI.setBounds(115, 42, 86, 20);
+		txtNomI.setBounds(167, 42, 86, 20);
 		Instructor.add(txtNomI);
 		
 		JTextPane txtpnNombre_1 = new JTextPane();
 		txtpnNombre_1.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnNombre_1.setText("APELLIDO_P:");
+		txtpnNombre_1.setText("APELLIDO PATERNO:");
 		txtpnNombre_1.setEditable(false);
 		txtpnNombre_1.setBackground(SystemColor.menu);
-		txtpnNombre_1.setBounds(10, 73, 95, 20);
+		txtpnNombre_1.setBounds(10, 73, 127, 20);
 		Instructor.add(txtpnNombre_1);
 		
 		JTextPane txtpnNombre_2 = new JTextPane();
 		txtpnNombre_2.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnNombre_2.setText("APELLIDO_M:");
+		txtpnNombre_2.setText("APELLIDO MATERNO:");
 		txtpnNombre_2.setEditable(false);
 		txtpnNombre_2.setBackground(SystemColor.menu);
-		txtpnNombre_2.setBounds(10, 104, 95, 20);
+		txtpnNombre_2.setBounds(10, 104, 132, 20);
 		Instructor.add(txtpnNombre_2);
 		
 		JTextPane txtpnNombre_3 = new JTextPane();
@@ -257,17 +257,17 @@ public class Formulario extends JFrame {
 		
 		txtAP = new JTextField();
 		txtAP.setColumns(10);
-		txtAP.setBounds(115, 73, 86, 20);
+		txtAP.setBounds(167, 73, 86, 20);
 		Instructor.add(txtAP);
 		
 		txtAM = new JTextField();
 		txtAM.setColumns(10);
-		txtAM.setBounds(115, 104, 86, 20);
+		txtAM.setBounds(167, 104, 86, 20);
 		Instructor.add(txtAM);
 		
 		txtSueldo = new JTextField();
 		txtSueldo.setColumns(10);
-		txtSueldo.setBounds(115, 166, 86, 20);
+		txtSueldo.setBounds(167, 166, 86, 20);
 		Instructor.add(txtSueldo);
 		
 		JTextPane txtpnNombre_3_1 = new JTextPane();
@@ -360,7 +360,7 @@ public class Formulario extends JFrame {
 		Instructor.add(bBuscar);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 211, 573, 142);
+		panel.setBounds(10, 231, 573, 142);
 		Instructor.add(panel);
 		panel.setLayout(null);
 		
@@ -385,7 +385,7 @@ public class Formulario extends JFrame {
 		Instructor.add(bMostrarDatos);
 		
 		txtR = new JTextField();
-		txtR.setBounds(115, 135, 86, 20);
+		txtR.setBounds(167, 135, 86, 20);
 		Instructor.add(txtR);
 		txtR.setColumns(10);
 		
@@ -397,14 +397,14 @@ public class Formulario extends JFrame {
 		
 		JTextPane txtpnIdintsi = new JTextPane();
 		txtpnIdintsi.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnIdintsi.setText("ID_INST:");
+		txtpnIdintsi.setText("ID INSTITUCION:");
 		txtpnIdintsi.setEditable(false);
 		txtpnIdintsi.setBackground(SystemColor.menu);
-		txtpnIdintsi.setBounds(10, 11, 77, 20);
+		txtpnIdintsi.setBounds(10, 11, 125, 20);
 		Institucion.add(txtpnIdintsi);
 		
 		txtIdI = new JTextField();
-		txtIdI.setBounds(97, 11, 86, 20);
+		txtIdI.setBounds(140, 11, 86, 20);
 		Institucion.add(txtIdI);
 		txtIdI.setColumns(10);
 		
@@ -418,31 +418,31 @@ public class Formulario extends JFrame {
 		
 		txtNI = new JTextField();
 		txtNI.setColumns(10);
-		txtNI.setBounds(97, 40, 86, 20);
+		txtNI.setBounds(140, 40, 86, 20);
 		Institucion.add(txtNI);
 		
 		JTextPane txtpnNumExte = new JTextPane();
 		txtpnNumExte.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnNumExte.setText("NUM EXT:");
+		txtpnNumExte.setText("NUM EXTERIOR:");
 		txtpnNumExte.setEditable(false);
 		txtpnNumExte.setBackground(SystemColor.menu);
-		txtpnNumExte.setBounds(10, 130, 77, 20);
+		txtpnNumExte.setBounds(10, 130, 104, 20);
 		Institucion.add(txtpnNumExte);
 		
 		JTextPane txtpnNumInt = new JTextPane();
 		txtpnNumInt.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnNumInt.setText("NUM INT:");
+		txtpnNumInt.setText("NUM INTERIOR:");
 		txtpnNumInt.setEditable(false);
 		txtpnNumInt.setBackground(SystemColor.menu);
-		txtpnNumInt.setBounds(207, 11, 77, 20);
+		txtpnNumInt.setBounds(10, 159, 104, 20);
 		Institucion.add(txtpnNumInt);
 		
 		JTextPane txtpnNomCalle = new JTextPane();
 		txtpnNomCalle.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnNomCalle.setText("NOM CALLE:");
+		txtpnNomCalle.setText("NOMBRE CALLE:");
 		txtpnNomCalle.setEditable(false);
 		txtpnNomCalle.setBackground(SystemColor.menu);
-		txtpnNomCalle.setBounds(207, 37, 81, 20);
+		txtpnNomCalle.setBounds(10, 185, 104, 20);
 		Institucion.add(txtpnNomCalle);
 		
 		JTextPane txtpnColonia = new JTextPane();
@@ -455,22 +455,22 @@ public class Formulario extends JFrame {
 		
 		txtCI = new JTextField();
 		txtCI.setColumns(10);
-		txtCI.setBounds(97, 68, 86, 20);
+		txtCI.setBounds(140, 68, 86, 20);
 		Institucion.add(txtCI);
 		
 		txtNEI = new JTextField();
 		txtNEI.setColumns(10);
-		txtNEI.setBounds(97, 130, 86, 20);
+		txtNEI.setBounds(140, 130, 86, 20);
 		Institucion.add(txtNEI);
 		
 		txtNII = new JTextField();
 		txtNII.setColumns(10);
-		txtNII.setBounds(294, 11, 86, 20);
+		txtNII.setBounds(140, 159, 86, 20);
 		Institucion.add(txtNII);
 		
 		txtNCI = new JTextField();
 		txtNCI.setColumns(10);
-		txtNCI.setBounds(294, 40, 86, 20);
+		txtNCI.setBounds(140, 188, 86, 20);
 		Institucion.add(txtNCI);
 		
 		JTextPane txtpnMunicipio = new JTextPane();
@@ -483,7 +483,7 @@ public class Formulario extends JFrame {
 		
 		txtMI = new JTextField();
 		txtMI.setColumns(10);
-		txtMI.setBounds(97, 99, 86, 20);
+		txtMI.setBounds(140, 99, 86, 20);
 		Institucion.add(txtMI);
 		
 		JButton bAgregarI = new JButton("AGREGAR");
@@ -566,12 +566,12 @@ public class Formulario extends JFrame {
 		Institucion.add(bBuscarI);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 164, 573, 189);
+		panel_1.setBounds(10, 219, 573, 160);
 		Institucion.add(panel_1);
 		panel_1.setLayout(null);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(0, 0, 573, 189);
+		scrollPane_1.setBounds(0, 0, 573, 159);
 		panel_1.add(scrollPane_1);
 		
 		table_1 = new JTable();
@@ -597,75 +597,75 @@ public class Formulario extends JFrame {
 		
 		JTextPane txtpnNumplaca = new JTextPane();
 		txtpnNumplaca.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnNumplaca.setText("NUM_PLACA:");
+		txtpnNumplaca.setText("NUMERO PLACA:");
 		txtpnNumplaca.setBackground(SystemColor.menu);
 		txtpnNumplaca.setEditable(false);
-		txtpnNumplaca.setBounds(0, 11, 82, 20);
+		txtpnNumplaca.setBounds(0, 11, 112, 20);
 		Actividad.add(txtpnNumplaca);
 		
 		txtNPA = new JTextField();
-		txtNPA.setBounds(92, 11, 86, 20);
+		txtNPA.setBounds(122, 11, 86, 20);
 		Actividad.add(txtNPA);
 		txtNPA.setColumns(10);
 		
 		JTextPane txtpnMatriculaenc = new JTextPane();
 		txtpnMatriculaenc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnMatriculaenc.setText("MATRICULA_E:");
+		txtpnMatriculaenc.setText("MATRICULA ENC:");
 		txtpnMatriculaenc.setEditable(false);
 		txtpnMatriculaenc.setBackground(SystemColor.menu);
-		txtpnMatriculaenc.setBounds(0, 40, 89, 20);
+		txtpnMatriculaenc.setBounds(0, 40, 112, 20);
 		Actividad.add(txtpnMatriculaenc);
 		
 		JTextPane txtpnNs = new JTextPane();
 		txtpnNs.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnNs.setText("N_SECCI\u00D3N:");
+		txtpnNs.setText("NUM SECCI\u00D3N:");
 		txtpnNs.setEditable(false);
 		txtpnNs.setBackground(SystemColor.menu);
-		txtpnNs.setBounds(0, 71, 82, 20);
+		txtpnNs.setBounds(0, 71, 112, 20);
 		Actividad.add(txtpnNs);
 		
 		JTextPane txtpnIdinst = new JTextPane();
 		txtpnIdinst.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnIdinst.setText("ID_INST:");
+		txtpnIdinst.setText("ID INSTITUCION:");
 		txtpnIdinst.setEditable(false);
 		txtpnIdinst.setBackground(SystemColor.menu);
-		txtpnIdinst.setBounds(0, 102, 82, 20);
+		txtpnIdinst.setBounds(0, 102, 122, 20);
 		Actividad.add(txtpnIdinst);
 		
 		JTextPane txtpnHora = new JTextPane();
 		txtpnHora.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnHora.setText("HORAINICIO:");
+		txtpnHora.setText("HORA INICIO:");
 		txtpnHora.setEditable(false);
 		txtpnHora.setBackground(SystemColor.menu);
-		txtpnHora.setBounds(0, 133, 82, 20);
+		txtpnHora.setBounds(0, 133, 92, 20);
 		Actividad.add(txtpnHora);
 		
 		txtMEA = new JTextField();
 		txtMEA.setColumns(10);
-		txtMEA.setBounds(92, 40, 86, 20);
+		txtMEA.setBounds(122, 40, 86, 20);
 		Actividad.add(txtMEA);
 		
 		txtNSA = new JTextField();
 		txtNSA.setColumns(10);
-		txtNSA.setBounds(92, 71, 86, 20);
+		txtNSA.setBounds(122, 71, 86, 20);
 		Actividad.add(txtNSA);
 		
 		txtIIA = new JTextField();
 		txtIIA.setColumns(10);
-		txtIIA.setBounds(92, 102, 86, 20);
+		txtIIA.setBounds(122, 102, 86, 20);
 		Actividad.add(txtIIA);
 		
 		txtHIA = new JTextField();
 		txtHIA.setColumns(10);
-		txtHIA.setBounds(92, 133, 86, 20);
+		txtHIA.setBounds(122, 133, 86, 20);
 		Actividad.add(txtHIA);
 		
 		JTextPane txtpnHorafin = new JTextPane();
 		txtpnHorafin.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnHorafin.setText("HORAFIN:");
+		txtpnHorafin.setText("HORA FIN:");
 		txtpnHorafin.setEditable(false);
 		txtpnHorafin.setBackground(SystemColor.menu);
-		txtpnHorafin.setBounds(0, 164, 70, 20);
+		txtpnHorafin.setBounds(0, 164, 86, 20);
 		Actividad.add(txtpnHorafin);
 		
 		JTextPane txtpnFecha = new JTextPane();
@@ -673,43 +673,43 @@ public class Formulario extends JFrame {
 		txtpnFecha.setText("FECHA:");
 		txtpnFecha.setEditable(false);
 		txtpnFecha.setBackground(SystemColor.menu);
-		txtpnFecha.setBounds(188, 11, 70, 20);
+		txtpnFecha.setBounds(224, 11, 70, 20);
 		Actividad.add(txtpnFecha);
 		
 		txtHFA = new JTextField();
 		txtHFA.setColumns(10);
-		txtHFA.setBounds(92, 164, 86, 20);
+		txtHFA.setBounds(122, 164, 86, 20);
 		Actividad.add(txtHFA);
 		
 		txtFA = new JTextField();
 		txtFA.setColumns(10);
-		txtFA.setBounds(287, 11, 86, 20);
+		txtFA.setBounds(346, 11, 86, 20);
 		Actividad.add(txtFA);
 		
 		JTextPane txtpnTactividad = new JTextPane();
 		txtpnTactividad.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnTactividad.setText("T_ACTIVIDAD:");
+		txtpnTactividad.setText("TIPO ACTIVIDAD:");
 		txtpnTactividad.setEditable(false);
 		txtpnTactividad.setBackground(SystemColor.menu);
-		txtpnTactividad.setBounds(188, 40, 89, 20);
+		txtpnTactividad.setBounds(224, 40, 112, 20);
 		Actividad.add(txtpnTactividad);
 		
 		JTextPane txtpnCosteact = new JTextPane();
 		txtpnCosteact.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnCosteact.setText("COSTE_ACT:");
+		txtpnCosteact.setText("COSTE ACT:");
 		txtpnCosteact.setEditable(false);
 		txtpnCosteact.setBackground(SystemColor.menu);
-		txtpnCosteact.setBounds(188, 71, 89, 20);
+		txtpnCosteact.setBounds(224, 71, 89, 20);
 		Actividad.add(txtpnCosteact);
 		
 		txtTAA = new JTextField();
 		txtTAA.setColumns(10);
-		txtTAA.setBounds(287, 40, 86, 20);
+		txtTAA.setBounds(346, 40, 86, 20);
 		Actividad.add(txtTAA);
 		
 		txtCAA = new JTextField();
 		txtCAA.setColumns(10);
-		txtCAA.setBounds(287, 71, 86, 20);
+		txtCAA.setBounds(346, 71, 86, 20);
 		Actividad.add(txtCAA);
 		
 		JButton bAA = new JButton("AGREGAR");
@@ -792,12 +792,12 @@ public class Formulario extends JFrame {
 		Actividad.add(bCA);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(10, 195, 573, 158);
+		panel_2.setBounds(10, 218, 573, 158);
 		Actividad.add(panel_2);
 		panel_2.setLayout(null);
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(0, 0, 573, 189);
+		scrollPane_2.setBounds(0, 0, 573, 158);
 		panel_2.add(scrollPane_2);
 		
 		table_2 = new JTable();
@@ -824,32 +824,32 @@ public class Formulario extends JFrame {
 		JTextPane txtpnIdinstitucin = new JTextPane();
 		txtpnIdinstitucin.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		txtpnIdinstitucin.setBackground(SystemColor.menu);
-		txtpnIdinstitucin.setText("ID_INSTITUCI\u00D3N:");
+		txtpnIdinstitucin.setText("ID INSTITUCI\u00D3N:");
 		txtpnIdinstitucin.setEditable(false);
 		txtpnIdinstitucin.setBounds(10, 11, 123, 20);
 		NumTel.add(txtpnIdinstitucin);
 		
 		txtIINT = new JTextField();
-		txtIINT.setBounds(143, 11, 123, 20);
+		txtIINT.setBounds(161, 11, 123, 20);
 		NumTel.add(txtIINT);
 		txtIINT.setColumns(10);
 		
 		JTextPane txtpnN = new JTextPane();
-		txtpnN.setText("NUMTELEFONO:");
+		txtpnN.setText("NUMERO TELEFONO:");
 		txtpnN.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		txtpnN.setEditable(false);
 		txtpnN.setBackground(SystemColor.menu);
-		txtpnN.setBounds(10, 42, 123, 20);
+		txtpnN.setBounds(10, 42, 141, 20);
 		NumTel.add(txtpnN);
 		
 		txtNTNT = new JTextField();
 		txtNTNT.setColumns(10);
-		txtNTNT.setBounds(143, 42, 123, 20);
+		txtNTNT.setBounds(161, 42, 123, 20);
 		NumTel.add(txtNTNT);
 		
 		txtNTMNT = new JTextField();
 		txtNTMNT.setColumns(10);
-		txtNTMNT.setBounds(143, 81, 123, 20);
+		txtNTMNT.setBounds(161, 81, 123, 20);
 		NumTel.add(txtNTMNT);
 		
 		JButton bANT = new JButton("AGREGAR");
@@ -941,16 +941,16 @@ public class Formulario extends JFrame {
 			}
 		});
 		bLNT.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bLNT.setBounds(10, 114, 114, 23);
+		bLNT.setBounds(10, 137, 114, 23);
 		NumTel.add(bLNT);
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(10, 171, 573, 182);
+		panel_3.setBounds(10, 171, 573, 208);
 		NumTel.add(panel_3);
 		panel_3.setLayout(null);
 		
 		JScrollPane scrollPane_3 = new JScrollPane();
-		scrollPane_3.setBounds(0, 0, 574, 185);
+		scrollPane_3.setBounds(0, 0, 574, 208);
 		panel_3.add(scrollPane_3);
 		
 		table_3 = new JTable();
@@ -958,43 +958,44 @@ public class Formulario extends JFrame {
 		scrollPane_3.setViewportView(table_3);
 		
 		JTextPane txtpnNumtelefonomod = new JTextPane();
-		txtpnNumtelefonomod.setText("NUMTELEFONOMOD:");
+		txtpnNumtelefonomod.setText("NUMTELEFONO (MOD):");
 		txtpnNumtelefonomod.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		txtpnNumtelefonomod.setEditable(false);
 		txtpnNumtelefonomod.setBackground(SystemColor.menu);
-		txtpnNumtelefonomod.setBounds(10, 83, 123, 20);
+		txtpnNumtelefonomod.setBounds(10, 81, 152, 20);
 		NumTel.add(txtpnNumtelefonomod);
 		
 //-->> INICIO DEL PANEL DE ESCUADRON
 		
 		JPanel Escuadron = new JPanel();
 		tabbedPane.addTab("Escuadron", null, Escuadron, null);
+		tabbedPane.setEnabledAt(4, false);
 		Escuadron.setLayout(null);
 		
 		JTextPane txtpnNseccin = new JTextPane();
-		txtpnNseccin.setText("N_SECCI\u00D3N:");
+		txtpnNseccin.setText("NUMERO SECCI\u00D3N:");
 		txtpnNseccin.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		txtpnNseccin.setEditable(false);
 		txtpnNseccin.setBackground(SystemColor.menu);
-		txtpnNseccin.setBounds(10, 11, 86, 20);
+		txtpnNseccin.setBounds(10, 11, 137, 20);
 		Escuadron.add(txtpnNseccin);
 		
 		txtNSE = new JTextField();
-		txtNSE.setBounds(106, 11, 123, 20);
+		txtNSE.setBounds(157, 11, 123, 20);
 		Escuadron.add(txtNSE);
 		txtNSE.setColumns(10);
 		
 		JTextPane txtpnNum = new JTextPane();
-		txtpnNum.setText("NUM_INTE:");
+		txtpnNum.setText("NUM INTEGRANTES:");
 		txtpnNum.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		txtpnNum.setEditable(false);
 		txtpnNum.setBackground(SystemColor.menu);
-		txtpnNum.setBounds(10, 42, 86, 20);
+		txtpnNum.setBounds(10, 42, 137, 20);
 		Escuadron.add(txtpnNum);
 		
 		txtNIE = new JTextField();
 		txtNIE.setColumns(10);
-		txtNIE.setBounds(106, 42, 123, 20);
+		txtNIE.setBounds(157, 42, 123, 20);
 		Escuadron.add(txtNIE);
 		
 		JButton bAE = new JButton("AGREGAR");
@@ -1104,7 +1105,7 @@ public class Formulario extends JFrame {
 //-->> INICIO DEL PANEL DE PARTICIPANTE RESERVA (participa_res)
 		
 		JPanel ParticipaRes = new JPanel();
-		tabbedPane.addTab("Participa_res", null, ParticipaRes, null);
+		tabbedPane.addTab("Participa_Res", null, ParticipaRes, null);
 		ParticipaRes.setLayout(null);
 		
 		JTextPane txtpnMatriculares = new JTextPane();
@@ -1238,12 +1239,12 @@ public class Formulario extends JFrame {
 		ParticipaRes.add(bLPR);
 		
 		JPanel panel_5 = new JPanel();
-		panel_5.setBounds(10, 170, 563, 173);
+		panel_5.setBounds(10, 182, 577, 197);
 		ParticipaRes.add(panel_5);
 		panel_5.setLayout(null);
 		
 		JScrollPane scrollPane_5 = new JScrollPane();
-		scrollPane_5.setBounds(0, 0, 563, 173);
+		scrollPane_5.setBounds(0, 0, 577, 197);
 		panel_5.add(scrollPane_5);
 		
 		table_5 = new JTable();
@@ -1317,7 +1318,7 @@ public class Formulario extends JFrame {
 			}
 		});
 		btnAgregar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnAgregar.setBounds(409, 28, 108, 23);
+		btnAgregar.setBounds(470, 28, 108, 23);
 		Obtiene.add(btnAgregar);
 		
 		JButton btnEliminar = new JButton("ELIMINAR");
@@ -1336,7 +1337,7 @@ public class Formulario extends JFrame {
 			}
 		});
 		btnEliminar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnEliminar.setBounds(409, 59, 108, 23);
+		btnEliminar.setBounds(470, 59, 108, 23);
 		Obtiene.add(btnEliminar);
 		
 		JButton btnModificar = new JButton("MODIFICAR");
@@ -1358,7 +1359,7 @@ public class Formulario extends JFrame {
 			}
 		});
 		btnModificar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnModificar.setBounds(409, 90, 108, 23);
+		btnModificar.setBounds(470, 90, 108, 23);
 		Obtiene.add(btnModificar);
 		
 		JButton btnLimpiar = new JButton("LIMPIAR");
@@ -1376,17 +1377,17 @@ public class Formulario extends JFrame {
 			}
 		});
 		btnLimpiar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnLimpiar.setBounds(409, 155, 108, 23);
+		btnLimpiar.setBounds(470, 155, 108, 23);
 		Obtiene.add(btnLimpiar);
 		
 		//-->> INICIA EL PANEL CONTENEDOR DE LA TABLA
 		JPanel pnlTabla = new JPanel();
-		pnlTabla.setBounds(34, 189, 478, 154);
+		pnlTabla.setBounds(34, 205, 544, 172);
 		Obtiene.add(pnlTabla);
 		pnlTabla.setLayout(null);
 		
 		JScrollPane spTabla = new JScrollPane();
-		spTabla.setBounds(0, 0, 478, 154);
+		spTabla.setBounds(0, 0, 544, 172);
 		pnlTabla.add(spTabla);
 		
 		tablaObtiene = new JTable();
@@ -1423,7 +1424,7 @@ public class Formulario extends JFrame {
 			}
 		});
 		btnConsultar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnConsultar.setBounds(409, 121, 108, 23);
+		btnConsultar.setBounds(470, 121, 108, 23);
 		Obtiene.add(btnConsultar);
 		
 //-->> INICIO DE PANEL DE OBTIENE

@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -23,6 +24,9 @@ import java.awt.Font;
 public class Loggin extends JFrame 
 {
 
+	ConexionBD objConect=new ConexionBD();
+	Formulario form = new Formulario();
+	static int flag=0;
 	private JPanel contentPane;
 	private JTextField txtU;
 	private JTextField txtC;
@@ -30,23 +34,19 @@ public class Loggin extends JFrame
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args)
-	{
-		EventQueue.invokeLater(new Runnable() 
-		{
-			public void run() 
-			{
-				try 
-				{
+	public static void main(String[] args) {
+		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
 					Loggin frame = new Loggin();
 					frame.setVisible(true);
-				} 
-				catch (Exception e) 
-				{
+				}catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
+		
 	}
 
 	/**
@@ -89,22 +89,38 @@ public class Loggin extends JFrame
 		
 		JButton bE = new JButton("ENTRAR");
 		bE.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bE.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
+		bE.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				/*ConexionBD conexion = new ConexionBD(txtU.getText(), txtC.getText());
+				flag=objConect.error(flag);
+				//System.out.println(flag);
+				
+				if(flag==0) {
+					System.out.println(flag);
+					JOptionPane.showMessageDialog(null, "Si");
+					//form.setVisible(true);
+					
+				}else {
+					JOptionPane.showMessageDialog(null, "No");
+				}*/
+				
 				ConexionBD conexion = new ConexionBD(txtU.getText(), txtC.getText());
 				Formulario form = new Formulario();
 				form.setVisible(true);
 				cerrar();
+				
 			}
+			
 		});
+		
 		bE.setBounds(155, 137, 89, 23);
 		contentPane.add(bE);
+		
 	}
 	
-	public void cerrar()
-	{
+	public void cerrar() {
 		this.dispose();
 	}
 
