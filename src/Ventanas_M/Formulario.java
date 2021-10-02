@@ -1751,7 +1751,7 @@ public void actionPerformed(ActionEvent e) {
 		btnAgregarCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try
-				{
+				{System.out.println("->"+txtNum_LiberacionCartilla.getText()+ txtZona_Militar.getText()+ txtRegimiento.getText());
 					objCar.ingresar_Car(txtNum_LiberacionCartilla.getText(), txtZona_Militar.getText(), txtRegimiento.getText());
 					limpiarEntradas();
 				}

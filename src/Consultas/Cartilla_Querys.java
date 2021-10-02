@@ -40,7 +40,7 @@ public class Cartilla_Querys
 			}
 			else
 			{
-				Q_ZonaMilitar="'"+ZonaMilitar+"'";
+				Q_ZonaMilitar="'"+ZonaMilitar+"', ";
 			}
 			
 			if(Regimiento.equals(""))
