@@ -50,6 +50,7 @@ public class Formulario extends JFrame {
 	Participa_res_Querys objParR = new Participa_res_Querys();
 	Obtiene_Querys objObt=new Obtiene_Querys();
 	Valida_Querys objVal=new Valida_Querys();
+	Sorteo_Querys objsor=new Sorteo_Querys();
 	Cartilla_Querys objCar=new Cartilla_Querys();
 	Encuadrado_Querys objEnc=new Encuadrado_Querys();
 	ConexionBD conexion = new ConexionBD();
@@ -117,8 +118,8 @@ public class Formulario extends JFrame {
 	private JTextField etPrecioCart;
 	private JTextField etMesRecepcion;
 	private JTable tablaObtiene;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField etsorteo;
+	private JTextField etfechas;
 	private JTextField etNumplaca;
 	private JTextField etMatenc;
 	private JTextField etNumlib;
@@ -169,6 +170,7 @@ public class Formulario extends JFrame {
 	private JTextField txtMatriculaEnc;
 	private JTextField txtEstadoCivil;
 	private JTextField txtTipoSangreEnc;
+	private JTable tablasorteo;
 
 	
 	public static void main(String[] args) 
@@ -1623,35 +1625,73 @@ public class Formulario extends JFrame {
 		tabbedPane.addTab("Sorteo", null, Sorteo, null);
 		Sorteo.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(223, 31, 86, 20);
-		Sorteo.add(textField);
+		etsorteo = new JTextField();
+		etsorteo.setColumns(10);
+		etsorteo.setBounds(223, 31, 86, 20);
+		Sorteo.add(etsorteo);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(223, 62, 86, 20);
-		Sorteo.add(textField_1);
+		etfechas = new JTextField();
+		etfechas.setColumns(10);
+		etfechas.setBounds(223, 62, 86, 20);
+		Sorteo.add(etfechas);
 		
 		JButton btnAgregar_S = new JButton("AGREGAR");
+		btnAgregar_S.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+						
+						String edsorteo="",fecha="";
+						edsorteo=etsorteo.getText();
+						fecha = etfechas.getText();
+						
+						
+						
+						objsor.ingresar_sorteo(edsorteo,fecha);
+						
+						DefaultTableModel modelos = objsor.mostrarRegistrosSorteo("SELECT * FROM sorteo");
+						tablasorteo.setModel(modelos);
+						
+					}
+				});
 		btnAgregar_S.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnAgregar_S.setBounds(496, 30, 108, 23);
 		Sorteo.add(btnAgregar_S);
 		
 		
-		JButton btnEliminar_S = new JButton("ELIMINAR");
-		btnEliminar_S.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnEliminar_S.setBounds(496, 61, 108, 23);
-		Sorteo.add(btnEliminar_S);
-		
 		JButton btnModificar_S = new JButton("MODIFICAR");
+		btnModificar_S.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String edsorteo="",fecha="";
+				edsorteo=etsorteo.getText();
+				fecha = etfechas.getText();
+				
+				
+				
+				objsor.ingresar_sorteo(edsorteo,fecha);
+				
+				DefaultTableModel modelos = objsor.mostrarRegistrosSorteo("SELECT * FROM sorteo WHERE Ed_Sorteo = '"+edsorteo+"'");
+				tablaValida.setModel(modelos);
+				
+			}
+		});
 		btnModificar_S.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnModificar_S.setBounds(496, 92, 108, 23);
+		btnModificar_S.setBounds(496, 60, 108, 23);
 		Sorteo.add(btnModificar_S);
 		
 		JButton btnLimpiar_S = new JButton("LIMPIAR");
+		btnLimpiar_S.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				etsorteo.setText("");
+				etfechas.setText("");
+				
+				DefaultTableModel modelos = objsor.mostrarRegistrosSorteo("SELECT * FROM sorteo");
+				tablasorteo.setModel(modelos);
+				
+			}
+		});
 		btnLimpiar_S.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnLimpiar_S.setBounds(496, 157, 108, 23);
+		btnLimpiar_S.setBounds(496, 128, 108, 23);
 		Sorteo.add(btnLimpiar_S);
 		
 		JPanel pnlTabla_1 = new JPanel();
@@ -1663,9 +1703,37 @@ public class Formulario extends JFrame {
 		spTabla_1.setBounds(0, 0, 544, 172);
 		pnlTabla_1.add(spTabla_1);
 		
+		tablasorteo = new JTable();
+		tablasorteo.setBounds(0, 0, 1, 1);
+		pnlTabla_1.add(tablasorteo);
+		
 		JButton btnConsultar_S = new JButton("CONSULTAR");
+		btnConsultar_S.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String[] datos=new String[2];
+				String edsorteo=etsorteo.getText();
+				
+				DefaultTableModel modelos = objsor.mostrarRegistrosSorteo("SELECT * FROM sorteo WHERE Ed_Sorteo = '"+edsorteo+"'");
+				tablaValida.setModel(modelos);
+				
+				
+				datos=objsor.vector_edits(datos);
+				
+				etsorteo.setText(datos[1]);
+				etfechas.setText(datos[2]);
+				
+				
+				for(int i=0; i<datos.length; i++) {
+					datos[i]=null;
+				}
+				
+				objVal.vector_edits(datos);
+				
+			}
+		});
 		btnConsultar_S.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnConsultar_S.setBounds(496, 123, 108, 23);
+		btnConsultar_S.setBounds(496, 94, 108, 23);
 		Sorteo.add(btnConsultar_S);
 		
 		JLabel lblEdicionDelSorteo = new JLabel("EDICION DEL SORTEO");
@@ -1767,10 +1835,13 @@ public void actionPerformed(ActionEvent e) {
 		btnLimpiar_V.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+
+				etNumplaca.setText("");
 				etMatReserva.setText("");
 				etNumLiberacion.setText("");
 				etPrecioCart.setText("");
 				etMesRecepcion.setText("");
+				
 				
 				DefaultTableModel modelo = objVal.mostrarRegistrosValida("SELECT * FROM valida");
 				tablaValida.setModel(modelo);
@@ -1819,11 +1890,14 @@ public void actionPerformed(ActionEvent e) {
 				DefaultTableModel modelo = objVal.mostrarRegistrosValida("SELECT * FROM valida WHERE Num_Placa = '"+Placa+"'");
 				tablaValida.setModel(modelo);
 				
+				
 				datos=objVal.vector_edits(datos);
 				
-				etNumLiberacion.setText(datos[1]);
-				etPrecioCart.setText(datos[2]);
-				etMesRecepcion.setText(datos[3]);
+				etNumplaca.setText(datos[1]);
+				etMatReserva.setText(datos[2]);
+				etNumLiberacion.setText(datos[3]);
+				etPrecioCart.setText(datos[4]);
+				etMesRecepcion.setText(datos[5]);
 				
 				for(int i=0; i<datos.length; i++) {
 					datos[i]=null;

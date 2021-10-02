@@ -135,7 +135,7 @@ public class Valida_Querys {
 				Q_Precio=""+Precio_Cart+", ";
 			}else Q_Precio="'"+Precio_Cart+"', ";
 			
-			query = "UPDATE obtiene SET Matricula_Enc"+Q_Matricula+",Num_Liberacion = "+Q_NumLiberacion+",Horas_Trabajadas="+Q_Htrabajadas +", Precio_Cart = "+Q_Precio+" WHERE Num_Placa = "+Q_Numplaca;
+			query = "UPDATE valida SET Matricula_Enc"+Q_Matricula+",Num_Liberacion = "+Q_NumLiberacion+",Horas_Trabajadas="+Q_Htrabajadas +", Precio_Cart = "+Q_Precio+" WHERE Num_Placa = "+Q_Numplaca;
 			stm.executeUpdate(query);
 
 		} catch (SQLException e) {
@@ -160,7 +160,7 @@ public class Valida_Querys {
 	
 	public DefaultTableModel mostrarRegistrosValida(String query) {
 		
-		String[] cabecera = {"Num_Placa","Matricula_Res", "Num_Liberacion","Horas_Trabajadas", "Precio_Cart"};
+		String[] cabecera = {"Num_Placa","Matricula_Enc", "Num_Liberacion","Horas_Trabajadas", "Precio_Cart"};
 		
 		DefaultTableModel modelo = new DefaultTableModel(null, cabecera);
 
