@@ -157,17 +157,17 @@ public class Formulario extends JFrame {
 	private JTextField txtNumInteriorEnc;
 	private JTextField txtNumExtEnc;
 	private JTextField txtCiudadEnc;
-	private JTextField textField_12;
-	private JTextField textField_13;
-	private JTextField textField_14;
-	private JTextField textField_15;
-	private JTextField textField_16;
+	private JTextField txtEstadoCivilEnc;
+	private JTextField txtClaseEnc;
+	private JTextField txtHabilidadEnc;
+	private JTextField txtPesoEnc;
+	private JTextField txtAlturaEnc;
 	private JTextField txtSexoEnc;
 	private JTextField txtEdadEnc;
 	private JTextField txtNumCelularEnc;
 	private JTextField txtMatriculaEnc;
 	private JTextField txtEstadoCivil;
-	private JTextField textField_22;
+	private JTextField txtTipoSangreEnc;
 
 	
 	public static void main(String[] args) 
@@ -1876,9 +1876,10 @@ public void actionPerformed(ActionEvent e) {
 		lblPreciocartilla.setBounds(26, 162, 148, 14);
 		Valida.add(lblPreciocartilla);
 		
+		//============================================PANEL ENCUADRADO=====================================//
 		JPanel panel_7 = new JPanel();
 		panel_7.setLayout(null);
-		tabbedPane.addTab("New tab", null, panel_7, null);
+		tabbedPane.addTab("Encuadrado", null, panel_7, null);
 		
 		JLabel lblNombreEnc = new JLabel("NOMBRE");
 		lblNombreEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -1995,60 +1996,60 @@ public void actionPerformed(ActionEvent e) {
 		lblEstadoCivilEnc.setBounds(10, 213, 106, 14);
 		panel_7.add(lblEstadoCivilEnc);
 		
-		JLabel G = new JLabel("Discapacidad");
-		G.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		G.setBounds(126, 213, 78, 14);
-		panel_7.add(G);
+		JLabel lblDiscapacidad = new JLabel("DISCAPACIDAD");
+		lblDiscapacidad.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblDiscapacidad.setBounds(118, 213, 106, 14);
+		panel_7.add(lblDiscapacidad);
 		
-		textField_12 = new JTextField();
-		textField_12.setColumns(10);
-		textField_12.setBounds(126, 239, 86, 20);
-		panel_7.add(textField_12);
+		txtEstadoCivilEnc = new JTextField();
+		txtEstadoCivilEnc.setColumns(10);
+		txtEstadoCivilEnc.setBounds(126, 239, 86, 20);
+		panel_7.add(txtEstadoCivilEnc);
 		
-		JLabel lblNewLabel_11 = new JLabel("Clase");
-		lblNewLabel_11.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblNewLabel_11.setBounds(222, 213, 46, 14);
-		panel_7.add(lblNewLabel_11);
+		JLabel lblClaseEnc = new JLabel("CLASE");
+		lblClaseEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblClaseEnc.setBounds(222, 213, 46, 14);
+		panel_7.add(lblClaseEnc);
 		
-		textField_13 = new JTextField();
-		textField_13.setColumns(10);
-		textField_13.setBounds(222, 239, 86, 20);
-		panel_7.add(textField_13);
+		txtClaseEnc = new JTextField();
+		txtClaseEnc.setColumns(10);
+		txtClaseEnc.setBounds(222, 239, 86, 20);
+		panel_7.add(txtClaseEnc);
 		
-		JLabel lblNewLabel_12 = new JLabel("Habilidad");
-		lblNewLabel_12.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblNewLabel_12.setBounds(318, 213, 46, 14);
-		panel_7.add(lblNewLabel_12);
+		JLabel lblHablilidadEnc = new JLabel("HABILIDAD\r\n");
+		lblHablilidadEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblHablilidadEnc.setBounds(318, 213, 86, 14);
+		panel_7.add(lblHablilidadEnc);
 		
-		textField_14 = new JTextField();
-		textField_14.setColumns(10);
-		textField_14.setBounds(318, 239, 86, 20);
-		panel_7.add(textField_14);
+		txtHabilidadEnc = new JTextField();
+		txtHabilidadEnc.setColumns(10);
+		txtHabilidadEnc.setBounds(318, 239, 86, 20);
+		panel_7.add(txtHabilidadEnc);
 		
-		JLabel lblNewLabel_13 = new JLabel("Tipo de sangre");
-		lblNewLabel_13.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblNewLabel_13.setBounds(414, 213, 78, 14);
-		panel_7.add(lblNewLabel_13);
+		JLabel lblTipoSangreEnc = new JLabel("TIPO SANGRE");
+		lblTipoSangreEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblTipoSangreEnc.setBounds(414, 213, 93, 14);
+		panel_7.add(lblTipoSangreEnc);
 		
-		JLabel lblNewLabel_14 = new JLabel("Peso (Kg)");
-		lblNewLabel_14.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblNewLabel_14.setBounds(10, 270, 46, 14);
-		panel_7.add(lblNewLabel_14);
+		JLabel lblPesoEnc = new JLabel("PESO (KG)");
+		lblPesoEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblPesoEnc.setBounds(10, 270, 83, 14);
+		panel_7.add(lblPesoEnc);
 		
-		textField_15 = new JTextField();
-		textField_15.setColumns(10);
-		textField_15.setBounds(10, 295, 106, 20);
-		panel_7.add(textField_15);
+		txtPesoEnc = new JTextField();
+		txtPesoEnc.setColumns(10);
+		txtPesoEnc.setBounds(10, 295, 106, 20);
+		panel_7.add(txtPesoEnc);
 		
-		JLabel lblNewLabel_15 = new JLabel("Altura (Mts)");
-		lblNewLabel_15.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblNewLabel_15.setBounds(126, 270, 69, 14);
-		panel_7.add(lblNewLabel_15);
+		JLabel lblAlturaEnc = new JLabel("ALTURA (MTS)");
+		lblAlturaEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblAlturaEnc.setBounds(126, 270, 86, 14);
+		panel_7.add(lblAlturaEnc);
 		
-		textField_16 = new JTextField();
-		textField_16.setColumns(10);
-		textField_16.setBounds(126, 295, 86, 20);
-		panel_7.add(textField_16);
+		txtAlturaEnc = new JTextField();
+		txtAlturaEnc.setColumns(10);
+		txtAlturaEnc.setBounds(126, 295, 86, 20);
+		panel_7.add(txtAlturaEnc);
 		
 		txtSexoEnc = new JTextField();
 		txtSexoEnc.setColumns(10);
@@ -2085,10 +2086,39 @@ public void actionPerformed(ActionEvent e) {
 		txtEstadoCivil.setBounds(10, 238, 106, 20);
 		panel_7.add(txtEstadoCivil);
 		
-		textField_22 = new JTextField();
-		textField_22.setColumns(10);
-		textField_22.setBounds(414, 239, 86, 20);
-		panel_7.add(textField_22);
+		txtTipoSangreEnc = new JTextField();
+		txtTipoSangreEnc.setColumns(10);
+		txtTipoSangreEnc.setBounds(414, 239, 86, 20);
+		panel_7.add(txtTipoSangreEnc);
+		
+		JButton btnAgregarEnc = new JButton("AGREGAR");
+		btnAgregarEnc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnAgregarEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnAgregarEnc.setBounds(519, 26, 118, 23);
+		panel_7.add(btnAgregarEnc);
+		
+		JButton btnEliminarEnc = new JButton("ELIMINAR");
+		btnEliminarEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnEliminarEnc.setBounds(519, 60, 118, 23);
+		panel_7.add(btnEliminarEnc);
+		
+		JButton btnModificarEnc = new JButton("MODIFICAR\r\n");
+		btnModificarEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnModificarEnc.setBounds(519, 94, 118, 23);
+		panel_7.add(btnModificarEnc);
+		
+		JButton btnConsultarEnc = new JButton("CONSULTAR");
+		btnConsultarEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnConsultarEnc.setBounds(519, 128, 118, 23);
+		panel_7.add(btnConsultarEnc);
+		
+		JButton btnLimpiarEnc = new JButton("LIMPIAR");
+		btnLimpiarEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnLimpiarEnc.setBounds(519, 237, 118, 23);
+		panel_7.add(btnLimpiarEnc);
 		
 
 		
