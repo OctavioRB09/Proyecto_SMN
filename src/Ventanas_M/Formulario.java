@@ -124,12 +124,13 @@ public class Formulario extends JFrame {
 	private JTextField etHoras;
 	private JTextField etPreciocart;
 	private JTable tablaValida;
-	private JTextField txtNum_Liberacion;
+	
+	//cartilla
+	private JTextField txtNum_LiberacionCartilla;
 	private JTextField txtZona_Militar;
 	private JTextField txtRegimiento;
 	
-	//Cartilla
-	private JTextField txtNum_LiberacionCar;
+
 	
 	public static void main(String[] args) 
 	{
@@ -1716,10 +1717,10 @@ public void actionPerformed(ActionEvent e) {
 		lblNum_Liberación.setBounds(21, 106, 118, 14);
 		Cartilla.add(lblNum_Liberación);
 		
-		txtNum_Liberacion = new JTextField();
-		txtNum_Liberacion.setBounds(21, 131, 118, 20);
-		Cartilla.add(txtNum_Liberacion);
-		txtNum_Liberacion.setColumns(10);
+		txtNum_LiberacionCartilla = new JTextField();
+		txtNum_LiberacionCartilla.setBounds(21, 131, 118, 20);
+		Cartilla.add(txtNum_LiberacionCartilla);
+		txtNum_LiberacionCartilla.setColumns(10);
 		
 		JLabel lblZona_Militar = new JLabel("ZONA_MILITAR");
 		lblZona_Militar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
