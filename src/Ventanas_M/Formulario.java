@@ -1678,7 +1678,7 @@ public void actionPerformed(ActionEvent e) {
 		etPreciocart = new JTextField();
 		etPreciocart.setColumns(10);
 		etPreciocart.setBounds(223, 159, 86, 20);
-		Valida.add(etPreciocart);
+		Valida.add(etPreciocart); 
 		
 		JLabel lblNumeroliberacion = new JLabel("NUMERO DE LIBERACI\u00D3N");
 		lblNumeroliberacion.setFont(new Font("Comic Sans MS", Font.BOLD, 11));

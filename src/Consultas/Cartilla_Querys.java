@@ -95,7 +95,7 @@ public class Cartilla_Querys
 			String query = "DELETE FROM cartilla WHERE Num_liberación = '"+Num_Liberación+"'";
 			stm.executeUpdate(query);
 			JOptionPane.showMessageDialog(null, "Cartilla eliminada correctamente");
-			
+			 
 		}
 		catch (SQLException e) 
 		{		
