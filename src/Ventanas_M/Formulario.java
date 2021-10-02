@@ -51,6 +51,7 @@ public class Formulario extends JFrame {
 	Obtiene_Querys objObt=new Obtiene_Querys();
 	Valida_Querys objVal=new Valida_Querys();
 	Cartilla_Querys objCar=new Cartilla_Querys();
+	Encuadrado_Querys objEnc=new Encuadrado_Querys();
 	ConexionBD conexion = new ConexionBD();
 	PreparedStatement ps = null;
 	ResultSet rs = null;
@@ -2094,6 +2095,18 @@ public void actionPerformed(ActionEvent e) {
 		JButton btnAgregarEnc = new JButton("AGREGAR");
 		btnAgregarEnc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			try
+				{
+					
+					objEnc.ingresar_Enc(txtMatriculaEnc.getText(), txtNombreEnc.getText(), txtApellidoPaternoEnc.getText(),txtApellidoMaternoEnc.getText(),txtCurpEnc.getText(),txtEdadEnc.getText(),txtProfesionEnc.getText(),txtNumExtEnc.getText(),txtNumInteriorEnc.getText(),txtCalleEnc.getText(),txtColoniaEnc.getText(),txtCiudadEnc.getText(),txtSexoEnc.getText(),txtEstadoCivil.getText(),TxtDiscapacidad.getText(),txtClaseEnc.getText(),txtHabilidadEnc.getText(),txtTipoSangreEnc.getText(),txtPesoEnc.getText(),txtAlturaEnc.getText());
+				}
+				catch(IOException ex)
+				{
+					JOptionPane.showMessageDialog(null, "Ocurrio un error con el acceso de la base de datos \n"+ex.getMessage());
+					System.out.println(ex.getMessage());
+				}
+				DefaultTableModel modeloEnc = objParR.mostrarRegistrosNumT("SELECT * FROM encuadrado");
+				table_6.setModel(modeloEnc);
 			}
 		});
 		btnAgregarEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
