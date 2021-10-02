@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Conexion.ConexionBD;
 
-public class Encuadrado_Querys 
+public class Encuadrado_Querys  
 {
 	ConexionBD conexion = new ConexionBD();
 	Connection cn = null;

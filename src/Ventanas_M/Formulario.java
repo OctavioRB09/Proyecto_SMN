@@ -1783,7 +1783,7 @@ public void actionPerformed(ActionEvent e) {
 		btnAgregar_V.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnAgregar_V.setBounds(496, 30, 108, 23);
 		Valida.add(btnAgregar_V);
-
+ 
 		
 		JButton btnEliminar_V = new JButton("ELIMINAR");
 		btnEliminar_V.addActionListener(new ActionListener() {
