@@ -1716,7 +1716,7 @@ public void actionPerformed(ActionEvent e) {
 		lblNum_Liberación.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		lblNum_Liberación.setBounds(21, 106, 118, 14);
 		Cartilla.add(lblNum_Liberación);
-		
+		 
 		txtNum_LiberacionCartilla = new JTextField();
 		txtNum_LiberacionCartilla.setBounds(21, 131, 118, 20);
 		Cartilla.add(txtNum_LiberacionCartilla);

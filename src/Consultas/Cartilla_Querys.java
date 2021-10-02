@@ -96,7 +96,7 @@ public class Cartilla_Querys
 			stm.executeUpdate(query);
 			JOptionPane.showMessageDialog(null, "Cartilla eliminada correctamente");
 			 
-		}
+		} 
 		catch (SQLException e) 
 		{		
 			JOptionPane.showMessageDialog(null, e.getMessage());
