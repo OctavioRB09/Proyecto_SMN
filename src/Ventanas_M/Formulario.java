@@ -1695,6 +1695,11 @@ public void actionPerformed(ActionEvent e) {
 		lblPreciocartilla.setBounds(26, 162, 148, 14);
 		Valida.add(lblPreciocartilla);
 		
+		//--------------------------------------inicia panel Cartilla ---------------------------//
+		JPanel Cartilla = new JPanel();
+		tabbedPane.addTab("Cartilla", null, Cartilla, null);
+		Cartilla.setLayout(null);
+		
 
 		
 		
