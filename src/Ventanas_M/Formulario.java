@@ -1750,6 +1750,17 @@ public void actionPerformed(ActionEvent e) {
 		JButton btnAgregarCar = new JButton("AGREGAR");
 		btnAgregarCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try
+				{
+					objCar.ingresar_Car(txtNum_LiberacionCartilla.getText(), txtZona_Militar.getText(), txtRegimiento.getText());
+					limpiarEntradas();
+				}
+				catch(IOException e1)
+				{
+					e1.printStackTrace();
+				}
+				DefaultTableModel modeloCar = objCar.mostrarRegistrosCar("SELECT * FROM cartilla");
+				table.setModel(modeloCar);
 				
 			}
 		});
