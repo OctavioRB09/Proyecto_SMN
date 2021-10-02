@@ -37,7 +37,7 @@ public class Encuadrado_Querys
 			if(Nombres_Enc.equals(""))
 			{
 				Nombres_Enc=null;
-				Q_Nombres_Enc=""+Nombres_Enc;
+				Q_Nombres_Enc=""+Nombres_Enc+", ";
 			}
 			else
 			{
@@ -47,7 +47,7 @@ public class Encuadrado_Querys
 			if(ApellidoPat_Enc.equals(""))
 			{
 				ApellidoPat_Enc=null;
-				Q_ApellidoPat_Enc=""+ApellidoPat_Enc;
+				Q_ApellidoPat_Enc=""+ApellidoPat_Enc+", ";
 			}
 			else
 			{
@@ -57,7 +57,7 @@ public class Encuadrado_Querys
 			if(ApellidoMat_Enc.equals(""))
 			{
 				ApellidoMat_Enc=null;
-				Q_ApellidoMat_Enc=""+ApellidoMat_Enc;
+				Q_ApellidoMat_Enc=""+ApellidoMat_Enc+", ";
 			}
 			else
 			{
@@ -67,7 +67,7 @@ public class Encuadrado_Querys
 			if(CURP_Enc.equals(""))
 			{
 				CURP_Enc=null;
-				Q_CURP_Enc=""+CURP_Enc;
+				Q_CURP_Enc=""+CURP_Enc+", ";
 			}
 			else
 			{
@@ -77,7 +77,7 @@ public class Encuadrado_Querys
 			if(Edad_Enc.equals(""))
 			{
 				Edad_Enc=null;
-				Q_Edad_Enc=""+Edad_Enc;
+				Q_Edad_Enc=""+Edad_Enc+", ";
 			}
 			else
 			{
@@ -87,7 +87,7 @@ public class Encuadrado_Querys
 			if(Profesion_Enc.equals(""))
 			{
 				Profesion_Enc=null;
-				Q_Profesion_Enc=""+Profesion_Enc;
+				Q_Profesion_Enc=""+Profesion_Enc+", ";
 			}
 			else
 			{
@@ -97,7 +97,7 @@ public class Encuadrado_Querys
 			if(Num_Exterior.equals(""))
 			{
 				Num_Exterior=null;
-				Q_Num_Exterior=""+Num_Exterior;
+				Q_Num_Exterior=""+Num_Exterior+", ";
 			}
 			else
 			{
@@ -107,7 +107,7 @@ public class Encuadrado_Querys
 			if(Num_Interior.equals(""))
 			{
 				Num_Interior=null;
-				Q_Num_Interior=""+Num_Interior;
+				Q_Num_Interior=""+Num_Interior+", ";
 			}
 			else
 			{
@@ -117,7 +117,7 @@ public class Encuadrado_Querys
 			if(Nom_Calle.equals(""))
 			{
 				Nom_Calle=null;
-				Q_Nom_Calle=""+Nom_Calle;
+				Q_Nom_Calle=""+Nom_Calle+", ";
 			}
 			else
 			{
@@ -127,7 +127,7 @@ public class Encuadrado_Querys
 			if(Colonia.equals(""))
 			{
 				Colonia=null;
-				Q_Colonia=""+Colonia;
+				Q_Colonia=""+Colonia+", ";
 			}
 			else
 			{
@@ -137,7 +137,7 @@ public class Encuadrado_Querys
 			if(Ciudad.equals(""))
 			{
 				Ciudad=null;
-				Q_Ciudad=""+Ciudad;
+				Q_Ciudad=""+Ciudad+", ";
 			}
 			else
 			{
@@ -147,7 +147,7 @@ public class Encuadrado_Querys
 			if(Sexo_Enc.equals(""))
 			{
 				Sexo_Enc=null;
-				Q_Sexo_Enc=""+Sexo_Enc;
+				Q_Sexo_Enc=""+Sexo_Enc+", ";
 			}
 			else
 			{
@@ -157,7 +157,7 @@ public class Encuadrado_Querys
 			if(EstadoCivil_Enc.equals(""))
 			{
 				EstadoCivil_Enc=null;
-				Q_EstadoCivil_Enc=""+EstadoCivil_Enc;
+				Q_EstadoCivil_Enc=""+EstadoCivil_Enc+", ";
 			}
 			else
 			{
@@ -167,7 +167,7 @@ public class Encuadrado_Querys
 			if(Discapacidad_Enc.equals(""))
 			{
 				Discapacidad_Enc=null;
-				Q_Discapacidad_Enc=""+Discapacidad_Enc;
+				Q_Discapacidad_Enc=""+Discapacidad_Enc+", ";
 			}
 			else
 			{
@@ -177,7 +177,7 @@ public class Encuadrado_Querys
 			if(Clase.equals(""))
 			{
 				Clase=null;
-				Q_Clase=""+Clase;
+				Q_Clase=""+Clase+", ";
 			}
 			else
 			{
@@ -187,7 +187,7 @@ public class Encuadrado_Querys
 			if(Habilidad.equals(""))
 			{
 				Habilidad=null;
-				Q_Habilidad=""+Habilidad;
+				Q_Habilidad=""+Habilidad+", ";
 			}
 			else
 			{
@@ -197,7 +197,7 @@ public class Encuadrado_Querys
 			if(TipoSangre.equals(""))
 			{
 				TipoSangre=null;
-				Q_TipoSangre=""+TipoSangre;
+				Q_TipoSangre=""+TipoSangre+", ";
 			}
 			else
 			{
@@ -207,7 +207,7 @@ public class Encuadrado_Querys
 			if(Peso.equals(""))
 			{
 				Peso=null;
-				Q_Peso=""+Peso;
+				Q_Peso=""+Peso+", ";
 			}
 			else
 			{
@@ -217,7 +217,7 @@ public class Encuadrado_Querys
 			if(Altura.equals(""))
 			{
 				Altura=null;
-				Q_Altura=""+Altura;
+				Q_Altura=""+Altura+"";
 			}
 			else
 			{

@@ -36,7 +36,7 @@ public class Cartilla_Querys
 			if(ZonaMilitar.equals(""))
 			{
 				ZonaMilitar=null;
-				Q_ZonaMilitar=""+ZonaMilitar;
+				Q_ZonaMilitar=""+ZonaMilitar+", ";
 			}
 			else
 			{
@@ -46,7 +46,7 @@ public class Cartilla_Querys
 			if(Regimiento.equals(""))
 			{
 				Regimiento=null;
-				Q_Regimiento=""+Regimiento;
+				Q_Regimiento=""+Regimiento+"";
 			}
 			else
 			{
