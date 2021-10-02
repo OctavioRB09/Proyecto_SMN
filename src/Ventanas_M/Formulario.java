@@ -1674,7 +1674,7 @@ public class Formulario extends JFrame {
 			}
 		});
 		btnModificar_S.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnModificar_S.setBounds(496, 92, 108, 23);
+		btnModificar_S.setBounds(496, 60, 108, 23);
 		Sorteo.add(btnModificar_S);
 		
 		JButton btnLimpiar_S = new JButton("LIMPIAR");
@@ -1690,7 +1690,7 @@ public class Formulario extends JFrame {
 			}
 		});
 		btnLimpiar_S.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnLimpiar_S.setBounds(496, 157, 108, 23);
+		btnLimpiar_S.setBounds(496, 128, 108, 23);
 		Sorteo.add(btnLimpiar_S);
 		
 		JPanel pnlTabla_1 = new JPanel();
@@ -1732,7 +1732,7 @@ public class Formulario extends JFrame {
 			}
 		});
 		btnConsultar_S.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnConsultar_S.setBounds(496, 123, 108, 23);
+		btnConsultar_S.setBounds(496, 94, 108, 23);
 		Sorteo.add(btnConsultar_S);
 		
 		JLabel lblEdicionDelSorteo = new JLabel("EDICION DEL SORTEO");
