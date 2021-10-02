@@ -1520,7 +1520,7 @@ public class Formulario extends JFrame {
 		Valida.add(etMatenc);
 		
 		JButton btnAgregar_V = new JButton("AGREGAR");
-		btnAgregar.addActionListener(new ActionListener() {
+		btnAgregar_V.addActionListener(new ActionListener() {
 public void actionPerformed(ActionEvent e) {
 			
 			String Placa="",Matricula="", NumeroLib="",horas="", Precio="";
@@ -1544,7 +1544,7 @@ public void actionPerformed(ActionEvent e) {
 
 		
 		JButton btnEliminar_V = new JButton("ELIMINAR");
-		btnEliminar.addActionListener(new ActionListener() {
+		btnEliminar_V.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				String Matricula="";
@@ -1564,7 +1564,7 @@ public void actionPerformed(ActionEvent e) {
 		
 		
 		JButton btnModificar_V = new JButton("MODIFICAR");
-		btnModificar.addActionListener(new ActionListener() {
+		btnModificar_V.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				String Placa="",Matricula="", NumeroLib="",Horas="", Precio="";
@@ -1590,7 +1590,7 @@ public void actionPerformed(ActionEvent e) {
 		
 		
 		JButton btnLimpiar_V = new JButton("LIMPIAR");
-		btnLimpiar.addActionListener(new ActionListener() {
+		btnLimpiar_V.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				etMatReserva.setText("");
@@ -1636,7 +1636,7 @@ public void actionPerformed(ActionEvent e) {
 		
 		
 		JButton btnConsultar_V = new JButton("CONSULTAR");
-		btnConsultar.addActionListener(new ActionListener() {
+		btnConsultar_V.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				String[] datos=new String[5];
