@@ -26,7 +26,7 @@ public class Instructor_Querys
 		{
 			//cn = conexion.conectar(1);
 			String Q_Placa, Q_Nombre, Q_ApellidoP, Q_ApellidoM, Q_Rango, Q_Sueldo;
-			if(Placa.equals("")) 
+			if(Placa.equals(""))  
 			{
 				Placa=null;
 				Q_Placa=""+Placa+", ";

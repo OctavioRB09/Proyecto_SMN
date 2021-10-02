@@ -52,10 +52,10 @@ public class Cartilla_Querys
 			{
 				Q_Regimiento="'"+Regimiento+"'";
 			}
-			
+			System.out.println("->"+Q_Liberacion+Q_ZonaMilitar+Q_Regimiento);
 			String query = "INSERT INTO cartilla(Num_liberación, Zona_Mil, Regimiento) VALUES("+Q_Liberacion+Q_ZonaMilitar+Q_Regimiento+")";
 			stm.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, "Cartilla agregada correctamente");
+				JOptionPane.showMessageDialog(null, "Cartilla agregada correctamente");
 		}
 		catch (SQLException e)
 		{

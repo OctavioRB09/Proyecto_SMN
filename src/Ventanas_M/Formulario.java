@@ -129,7 +129,45 @@ public class Formulario extends JFrame {
 	private JTextField txtNum_LiberacionCartilla;
 	private JTextField txtZona_Militar;
 	private JTextField txtRegimiento;
+	private JTable table_6;
 	
+	//Encuadrado
+	private JTextField Txtnombre;
+	private JTextField TxtApaterno;
+	private JTextField TxtAmaterno;
+	private JTextField TxtCurp;
+	private JTextField TxtProfesion;
+	private JTextField TxtCalle;
+	private JTextField TxtColonia;
+	private JTextField TxtNumInterior;
+	private JTextField TxtNumExterior;
+	private JTextField TxtCiudad;
+	private JTextField TxtDiscapacidad;
+	private JTextField TxtClase;
+	private JTextField TxtHabilidad;
+	private JTextField TxtPeso;
+	private JTextField TxtAltura;
+	private JTextField txtNombreEnc;
+	private JTextField txtApellidoPaternoEnc;
+	private JTextField txtApellidoMaternoEnc;
+	private JTextField txtCurpEnc;
+	private JTextField txtProfesionEnc;
+	private JTextField txtCalleEnc;
+	private JTextField txtColoniaEnc;
+	private JTextField txtNumInteriorEnc;
+	private JTextField txtNumExtEnc;
+	private JTextField txtCiudadEnc;
+	private JTextField textField_12;
+	private JTextField textField_13;
+	private JTextField textField_14;
+	private JTextField textField_15;
+	private JTextField textField_16;
+	private JTextField txtSexoEnc;
+	private JTextField txtEdadEnc;
+	private JTextField txtNumCelularEnc;
+	private JTextField txtMatriculaEnc;
+	private JTextField txtEstadoCivil;
+	private JTextField textField_22;
 
 	
 	public static void main(String[] args) 
@@ -191,6 +229,10 @@ public class Formulario extends JFrame {
 		txtMRPR.setText(null);
 		txtEDPR.setText(null);
 		txtRPR.setText(null);
+		
+		txtNum_LiberacionCartilla.setText(null);
+		txtZona_Militar.setText(null);
+		txtRegimiento.setText(null);
 	}
 	
 	@SuppressWarnings("static-access")
@@ -981,11 +1023,142 @@ public class Formulario extends JFrame {
 		txtpnNumtelefonomod.setBounds(10, 81, 152, 20);
 		NumTel.add(txtpnNumtelefonomod);
 		
+		//--------------------------------------inicia panel Cartilla ---------------------------//
+		JPanel Cartilla = new JPanel();
+		tabbedPane.addTab("Cartilla", null, Cartilla, null);
+		Cartilla.setLayout(null);
+		
+		JLabel lblNum_Liberación = new JLabel("NUM_LIBERACI\u00D3N");
+		lblNum_Liberación.setBounds(21, 106, 118, 14);
+		lblNum_Liberación.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		Cartilla.add(lblNum_Liberación);
+		
+		txtNum_LiberacionCartilla = new JTextField();
+		txtNum_LiberacionCartilla.setBounds(21, 131, 118, 20);
+		Cartilla.add(txtNum_LiberacionCartilla);
+		txtNum_LiberacionCartilla.setColumns(10);
+		
+		JLabel lblZona_Militar = new JLabel("ZONA_MILITAR");
+		lblZona_Militar.setBounds(176, 106, 118, 14);
+		lblZona_Militar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		Cartilla.add(lblZona_Militar);
+		
+		txtZona_Militar = new JTextField();
+		txtZona_Militar.setBounds(176, 131, 118, 20);
+		txtZona_Militar.setColumns(10);
+		Cartilla.add(txtZona_Militar);
+		
+		JLabel lblRegimiento = new JLabel("REGIMIENTO");
+		lblRegimiento.setBounds(331, 106, 118, 14);
+		lblRegimiento.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		Cartilla.add(lblRegimiento);
+		
+		txtRegimiento = new JTextField();
+		txtRegimiento.setBounds(331, 131, 118, 20);
+		txtRegimiento.setColumns(10);
+		Cartilla.add(txtRegimiento);
+		
+		JButton btnEliminarCar = new JButton("ELIMINAR");
+		btnEliminarCar.setBounds(476, 57, 118, 23);
+		btnEliminarCar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try
+				{System.out.println("->"+txtNum_LiberacionCartilla.getText()+ txtZona_Militar.getText()+ txtRegimiento.getText());
+					objCar.eliminar_Car(txtNum_LiberacionCartilla.getText());
+					limpiarEntradas();
+				}
+				catch(IOException e1)
+				{
+					e1.printStackTrace();
+				}
+				DefaultTableModel modeloCar = objCar.mostrarRegistrosCar("SELECT * FROM cartilla");
+				table.setModel(modeloCar);
+				
+			}
+		});
+		btnEliminarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		Cartilla.add(btnEliminarCar);
+		
+		JButton btnAgregarCar = new JButton("AGREGAR");
+		btnAgregarCar.setBounds(476, 23, 118, 23);
+		btnAgregarCar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try
+				{System.out.println("->"+txtNum_LiberacionCartilla.getText()+ txtZona_Militar.getText()+ txtRegimiento.getText());
+					objCar.ingresar_Car(txtNum_LiberacionCartilla.getText(), txtZona_Militar.getText(), txtRegimiento.getText());
+					limpiarEntradas();
+				}
+				catch(IOException e1)
+				{
+					e1.printStackTrace();
+				}
+				DefaultTableModel modeloCar = objCar.mostrarRegistrosCar("SELECT * FROM cartilla");
+				table.setModel(modeloCar);
+				
+			}
+		});
+		btnAgregarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		Cartilla.add(btnAgregarCar);
+		
+		JButton btnModificarCar = new JButton("MODIFICAR\r\n");
+		btnModificarCar.setBounds(476, 91, 118, 23);
+		btnModificarCar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try
+				{System.out.println("->"+txtNum_LiberacionCartilla.getText()+ txtZona_Militar.getText()+ txtRegimiento.getText());
+					objCar.modificar_Car(txtNum_LiberacionCartilla.getText(), txtZona_Militar.getText(), txtRegimiento.getText());
+					limpiarEntradas();
+				}
+				catch(IOException e1)
+				{
+					e1.printStackTrace();
+				}
+				DefaultTableModel modeloCar = objCar.mostrarRegistrosCar("SELECT * FROM cartilla");
+				table.setModel(modeloCar);
+			}
+		});
+		btnModificarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		Cartilla.add(btnModificarCar);
+		
+		JButton btnConsultarCar = new JButton("CONSULTAR");
+		btnConsultarCar.setBounds(476, 125, 118, 23);
+		btnConsultarCar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DefaultTableModel modeloCar = objParR.mostrarRegistrosNumT("SELECT * FROM cartilla");
+				table_6.setModel(modeloCar);
+			}
+		});
+		btnConsultarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		Cartilla.add(btnConsultarCar);
+		
+		JButton btnLimpiarCar = new JButton("LIMPIAR");
+		btnLimpiarCar.setBounds(476, 203, 118, 23);
+		btnLimpiarCar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpiarEntradas();
+			}
+		});
+		btnLimpiarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		Cartilla.add(btnLimpiarCar);
+		
+		JPanel panel_6 = new JPanel();
+		panel_6.setLayout(null);
+		panel_6.setBounds(21, 237, 573, 142);
+		Cartilla.add(panel_6);
+		
+		JScrollPane scrollPane_6 = new JScrollPane();
+		scrollPane_6.setBounds(0, 78, 573, 142);
+		panel_6.add(scrollPane_6);
+		
+		table_6 = new JTable();
+		table_6.setBounds(0, 11, 571, 0);
+		panel_6.add(table_6);
+		
 //-->> INICIO DEL PANEL DE ESCUADRON
 		
 		JPanel Escuadron = new JPanel();
 		tabbedPane.addTab("Escuadron", null, Escuadron, null);
-		tabbedPane.setEnabledAt(4, false);
+		tabbedPane.setEnabledAt(5, false);
 		Escuadron.setLayout(null);
 		
 		JTextPane txtpnNseccin = new JTextPane();
@@ -1703,85 +1876,219 @@ public void actionPerformed(ActionEvent e) {
 		lblPreciocartilla.setBounds(26, 162, 148, 14);
 		Valida.add(lblPreciocartilla);
 		
-		//--------------------------------------inicia panel Cartilla ---------------------------//
-		JPanel Cartilla = new JPanel();
-		tabbedPane.addTab("Cartilla", null, Cartilla, null);
-		Cartilla.setLayout(null);
+		JPanel panel_7 = new JPanel();
+		panel_7.setLayout(null);
+		tabbedPane.addTab("New tab", null, panel_7, null);
 		
-		JScrollPane Muestra_Cartilla = new JScrollPane();
-		Muestra_Cartilla.setBounds(21, 237, 573, 142);
-		Cartilla.add(Muestra_Cartilla);
+		JLabel lblNombreEnc = new JLabel("NOMBRE");
+		lblNombreEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblNombreEnc.setBounds(126, 26, 86, 14);
+		panel_7.add(lblNombreEnc);
 		
-		JLabel lblNum_Liberación = new JLabel("NUM_LIBERACI\u00D3N");
-		lblNum_Liberación.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblNum_Liberación.setBounds(21, 106, 118, 14);
-		Cartilla.add(lblNum_Liberación);
-		 
-		txtNum_LiberacionCartilla = new JTextField();
-		txtNum_LiberacionCartilla.setBounds(21, 131, 118, 20);
-		Cartilla.add(txtNum_LiberacionCartilla);
-		txtNum_LiberacionCartilla.setColumns(10);
+		txtNombreEnc = new JTextField();
+		txtNombreEnc.setColumns(10);
+		txtNombreEnc.setBounds(126, 51, 86, 20);
+		panel_7.add(txtNombreEnc);
 		
-		JLabel lblZona_Militar = new JLabel("ZONA_MILITAR");
-		lblZona_Militar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblZona_Militar.setBounds(176, 106, 118, 14);
-		Cartilla.add(lblZona_Militar);
+		JLabel lblApellidoPat = new JLabel("A. PATERNO");
+		lblApellidoPat.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblApellidoPat.setBounds(222, 26, 93, 14);
+		panel_7.add(lblApellidoPat);
 		
-		txtZona_Militar = new JTextField();
-		txtZona_Militar.setColumns(10);
-		txtZona_Militar.setBounds(176, 131, 118, 20);
-		Cartilla.add(txtZona_Militar);
+		JLabel lblApellidoMaternoEnc = new JLabel("A. MATERNO");
+		lblApellidoMaternoEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblApellidoMaternoEnc.setBounds(318, 26, 93, 14);
+		panel_7.add(lblApellidoMaternoEnc);
 		
-		JLabel lblRegimiento = new JLabel("REGIMIENTO");
-		lblRegimiento.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblRegimiento.setBounds(331, 106, 118, 14);
-		Cartilla.add(lblRegimiento);
+		txtApellidoPaternoEnc = new JTextField();
+		txtApellidoPaternoEnc.setColumns(10);
+		txtApellidoPaternoEnc.setBounds(222, 51, 86, 20);
+		panel_7.add(txtApellidoPaternoEnc);
 		
-		txtRegimiento = new JTextField();
-		txtRegimiento.setColumns(10);
-		txtRegimiento.setBounds(331, 131, 118, 20);
-		Cartilla.add(txtRegimiento);
+		txtApellidoMaternoEnc = new JTextField();
+		txtApellidoMaternoEnc.setColumns(10);
+		txtApellidoMaternoEnc.setBounds(318, 51, 86, 20);
+		panel_7.add(txtApellidoMaternoEnc);
 		
-		JButton btnEliminarCar = new JButton("ELIMINAR");
-		btnEliminarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnEliminarCar.setBounds(476, 57, 118, 23);
-		Cartilla.add(btnEliminarCar);
+		JLabel lblCurpEnc = new JLabel("CURP\r\n");
+		lblCurpEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblCurpEnc.setBounds(10, 89, 93, 14);
+		panel_7.add(lblCurpEnc);
 		
-		JButton btnAgregarCar = new JButton("AGREGAR");
-		btnAgregarCar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try
-				{System.out.println("->"+txtNum_LiberacionCartilla.getText()+ txtZona_Militar.getText()+ txtRegimiento.getText());
-					objCar.ingresar_Car(txtNum_LiberacionCartilla.getText(), txtZona_Militar.getText(), txtRegimiento.getText());
-					limpiarEntradas();
-				}
-				catch(IOException e1)
-				{
-					e1.printStackTrace();
-				}
-				DefaultTableModel modeloCar = objCar.mostrarRegistrosCar("SELECT * FROM cartilla");
-				table.setModel(modeloCar);
-				
-			}
-		});
-		btnAgregarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnAgregarCar.setBounds(476, 23, 118, 23);
-		Cartilla.add(btnAgregarCar);
+		txtCurpEnc = new JTextField();
+		txtCurpEnc.setColumns(10);
+		txtCurpEnc.setBounds(10, 107, 106, 20);
+		panel_7.add(txtCurpEnc);
 		
-		JButton btnModificarCar = new JButton("MODIFICAR\r\n");
-		btnModificarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnModificarCar.setBounds(476, 91, 118, 23);
-		Cartilla.add(btnModificarCar);
+		JLabel lblEdadEnc = new JLabel("EDAD");
+		lblEdadEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblEdadEnc.setBounds(126, 89, 46, 14);
+		panel_7.add(lblEdadEnc);
 		
-		JButton btnConsultarCar = new JButton("CONSULTAR");
-		btnConsultarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnConsultarCar.setBounds(476, 125, 118, 23);
-		Cartilla.add(btnConsultarCar);
+		JLabel lblProfesionEnc = new JLabel("PROFESI\u00D3N");
+		lblProfesionEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblProfesionEnc.setBounds(318, 89, 86, 14);
+		panel_7.add(lblProfesionEnc);
 		
-		JButton btnLimpiarCar = new JButton("LIMPIAR");
-		btnLimpiarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnLimpiarCar.setBounds(476, 203, 118, 23);
-		Cartilla.add(btnLimpiarCar);
+		txtProfesionEnc = new JTextField();
+		txtProfesionEnc.setColumns(10);
+		txtProfesionEnc.setBounds(318, 107, 86, 20);
+		panel_7.add(txtProfesionEnc);
+		
+		JLabel lblSexoEnc = new JLabel("SEXO");
+		lblSexoEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblSexoEnc.setBounds(414, 89, 46, 14);
+		panel_7.add(lblSexoEnc);
+		
+		JLabel lblCalleEnc = new JLabel("CALLE");
+		lblCalleEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblCalleEnc.setBounds(10, 145, 46, 14);
+		panel_7.add(lblCalleEnc);
+		
+		txtCalleEnc = new JTextField();
+		txtCalleEnc.setColumns(10);
+		txtCalleEnc.setBounds(10, 170, 106, 20);
+		panel_7.add(txtCalleEnc);
+		
+		JLabel lblColoniaEnc = new JLabel("COLONIA");
+		lblColoniaEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblColoniaEnc.setBounds(126, 145, 86, 14);
+		panel_7.add(lblColoniaEnc);
+		
+		txtColoniaEnc = new JTextField();
+		txtColoniaEnc.setColumns(10);
+		txtColoniaEnc.setBounds(126, 170, 86, 20);
+		panel_7.add(txtColoniaEnc);
+		
+		JLabel lblNumInteriorEnc = new JLabel("NUM INTER");
+		lblNumInteriorEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblNumInteriorEnc.setBounds(222, 145, 86, 14);
+		panel_7.add(lblNumInteriorEnc);
+		
+		txtNumInteriorEnc = new JTextField();
+		txtNumInteriorEnc.setColumns(10);
+		txtNumInteriorEnc.setBounds(222, 170, 86, 20);
+		panel_7.add(txtNumInteriorEnc);
+		
+		JLabel lblNumExteriorEnc = new JLabel("NUM EXT");
+		lblNumExteriorEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblNumExteriorEnc.setBounds(318, 145, 83, 14);
+		panel_7.add(lblNumExteriorEnc);
+		
+		txtNumExtEnc = new JTextField();
+		txtNumExtEnc.setColumns(10);
+		txtNumExtEnc.setBounds(318, 170, 86, 20);
+		panel_7.add(txtNumExtEnc);
+		
+		JLabel lblCiudadEnc = new JLabel("CIUDAD");
+		lblCiudadEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblCiudadEnc.setBounds(415, 145, 56, 14);
+		panel_7.add(lblCiudadEnc);
+		
+		txtCiudadEnc = new JTextField();
+		txtCiudadEnc.setColumns(10);
+		txtCiudadEnc.setBounds(414, 170, 86, 20);
+		panel_7.add(txtCiudadEnc);
+		
+		JLabel lblEstadoCivilEnc = new JLabel("ESTADO CIVIL");
+		lblEstadoCivilEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblEstadoCivilEnc.setBounds(10, 213, 106, 14);
+		panel_7.add(lblEstadoCivilEnc);
+		
+		JLabel G = new JLabel("Discapacidad");
+		G.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		G.setBounds(126, 213, 78, 14);
+		panel_7.add(G);
+		
+		textField_12 = new JTextField();
+		textField_12.setColumns(10);
+		textField_12.setBounds(126, 239, 86, 20);
+		panel_7.add(textField_12);
+		
+		JLabel lblNewLabel_11 = new JLabel("Clase");
+		lblNewLabel_11.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblNewLabel_11.setBounds(222, 213, 46, 14);
+		panel_7.add(lblNewLabel_11);
+		
+		textField_13 = new JTextField();
+		textField_13.setColumns(10);
+		textField_13.setBounds(222, 239, 86, 20);
+		panel_7.add(textField_13);
+		
+		JLabel lblNewLabel_12 = new JLabel("Habilidad");
+		lblNewLabel_12.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblNewLabel_12.setBounds(318, 213, 46, 14);
+		panel_7.add(lblNewLabel_12);
+		
+		textField_14 = new JTextField();
+		textField_14.setColumns(10);
+		textField_14.setBounds(318, 239, 86, 20);
+		panel_7.add(textField_14);
+		
+		JLabel lblNewLabel_13 = new JLabel("Tipo de sangre");
+		lblNewLabel_13.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblNewLabel_13.setBounds(414, 213, 78, 14);
+		panel_7.add(lblNewLabel_13);
+		
+		JLabel lblNewLabel_14 = new JLabel("Peso (Kg)");
+		lblNewLabel_14.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblNewLabel_14.setBounds(10, 270, 46, 14);
+		panel_7.add(lblNewLabel_14);
+		
+		textField_15 = new JTextField();
+		textField_15.setColumns(10);
+		textField_15.setBounds(10, 295, 106, 20);
+		panel_7.add(textField_15);
+		
+		JLabel lblNewLabel_15 = new JLabel("Altura (Mts)");
+		lblNewLabel_15.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblNewLabel_15.setBounds(126, 270, 69, 14);
+		panel_7.add(lblNewLabel_15);
+		
+		textField_16 = new JTextField();
+		textField_16.setColumns(10);
+		textField_16.setBounds(126, 295, 86, 20);
+		panel_7.add(textField_16);
+		
+		txtSexoEnc = new JTextField();
+		txtSexoEnc.setColumns(10);
+		txtSexoEnc.setBounds(414, 107, 86, 20);
+		panel_7.add(txtSexoEnc);
+		
+		txtEdadEnc = new JTextField();
+		txtEdadEnc.setColumns(10);
+		txtEdadEnc.setBounds(126, 107, 86, 20);
+		panel_7.add(txtEdadEnc);
+		
+		txtNumCelularEnc = new JTextField();
+		txtNumCelularEnc.setColumns(10);
+		txtNumCelularEnc.setBounds(222, 107, 86, 20);
+		panel_7.add(txtNumCelularEnc);
+		
+		JLabel lblNumCelularEnc = new JLabel("NUM CELULAR");
+		lblNumCelularEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblNumCelularEnc.setBounds(222, 89, 98, 14);
+		panel_7.add(lblNumCelularEnc);
+		
+		JLabel lblMatriculaEnc = new JLabel("MATRICULA ENC");
+		lblMatriculaEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblMatriculaEnc.setBounds(10, 26, 116, 14);
+		panel_7.add(lblMatriculaEnc);
+		
+		txtMatriculaEnc = new JTextField();
+		txtMatriculaEnc.setColumns(10);
+		txtMatriculaEnc.setBounds(10, 51, 106, 20);
+		panel_7.add(txtMatriculaEnc);
+		
+		txtEstadoCivil = new JTextField();
+		txtEstadoCivil.setColumns(10);
+		txtEstadoCivil.setBounds(10, 238, 106, 20);
+		panel_7.add(txtEstadoCivil);
+		
+		textField_22 = new JTextField();
+		textField_22.setColumns(10);
+		textField_22.setBounds(414, 239, 86, 20);
+		panel_7.add(textField_22);
 		
 
 		
