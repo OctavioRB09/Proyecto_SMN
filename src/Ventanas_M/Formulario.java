@@ -1525,7 +1525,7 @@ public void actionPerformed(ActionEvent e) {
 			
 			objVal.ingresar_valida(Placa,Matricula, NumeroLib,horas, Precio);
 			
-			DefaultTableModel modelos = objVal.mostrarRegistrosValida("SELECT * FROM obtiene");
+			DefaultTableModel modelos = objVal.mostrarRegistrosValida("SELECT * FROM valida");
 			tablaValida.setModel(modelos);
 			
 		}
@@ -1545,7 +1545,7 @@ public void actionPerformed(ActionEvent e) {
 				
 				objVal.eliminar_valida(Matricula);
 				
-				DefaultTableModel modelos = objVal.mostrarRegistrosValida("SELECT * FROM obtiene");
+				DefaultTableModel modelos = objVal.mostrarRegistrosValida("SELECT * FROM valida");
 				tablaValida.setModel(modelos);
 				
 			}
@@ -1590,7 +1590,7 @@ public void actionPerformed(ActionEvent e) {
 				etPrecioCart.setText("");
 				etMesRecepcion.setText("");
 				
-				DefaultTableModel modelo = objVal.mostrarRegistrosValida("SELECT * FROM obtiene");
+				DefaultTableModel modelo = objVal.mostrarRegistrosValida("SELECT * FROM valida");
 				tablaValida.setModel(modelo);
 				
 			}
