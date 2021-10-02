@@ -49,7 +49,7 @@ public class Formulario extends JFrame {
 	Escuadron_Querys objEsc = new Escuadron_Querys();
 	Participa_res_Querys objParR = new Participa_res_Querys();
 	Obtiene_Querys objObt=new Obtiene_Querys();
-	
+	Valida_Querys objVal=new Valida_Querys();
 	ConexionBD conexion = new ConexionBD();
 	PreparedStatement ps = null;
 	ResultSet rs = null;
@@ -115,6 +115,14 @@ public class Formulario extends JFrame {
 	private JTextField etPrecioCart;
 	private JTextField etMesRecepcion;
 	private JTable tablaObtiene;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField etNumplaca;
+	private JTextField etMatenc;
+	private JTextField etNumlib;
+	private JTextField etHoras;
+	private JTextField etPreciocart;
+	private JTable tablaValida;
 	
 	public static void main(String[] args) 
 	{
@@ -1427,7 +1435,267 @@ public class Formulario extends JFrame {
 		btnConsultar.setBounds(470, 121, 108, 23);
 		Obtiene.add(btnConsultar);
 		
-//-->> INICIO DE PANEL DE OBTIENE
+		//-------------------------------------Inicia panel de sorteo-----------------//
+		
+		JPanel Sorteo = new JPanel();
+		tabbedPane.addTab("Sorteo", null, Sorteo, null);
+		Sorteo.setLayout(null);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(223, 31, 86, 20);
+		Sorteo.add(textField);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(223, 62, 86, 20);
+		Sorteo.add(textField_1);
+		
+		JButton btnAgregar_S = new JButton("AGREGAR");
+		btnAgregar_S.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnAgregar_S.setBounds(496, 30, 108, 23);
+		Sorteo.add(btnAgregar_S);
+		
+		
+		JButton btnEliminar_S = new JButton("ELIMINAR");
+		btnEliminar_S.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnEliminar_S.setBounds(496, 61, 108, 23);
+		Sorteo.add(btnEliminar_S);
+		
+		JButton btnModificar_S = new JButton("MODIFICAR");
+		btnModificar_S.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnModificar_S.setBounds(496, 92, 108, 23);
+		Sorteo.add(btnModificar_S);
+		
+		JButton btnLimpiar_S = new JButton("LIMPIAR");
+		btnLimpiar_S.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnLimpiar_S.setBounds(496, 157, 108, 23);
+		Sorteo.add(btnLimpiar_S);
+		
+		JPanel pnlTabla_1 = new JPanel();
+		pnlTabla_1.setLayout(null);
+		pnlTabla_1.setBounds(60, 207, 544, 172);
+		Sorteo.add(pnlTabla_1);
+		
+		JScrollPane spTabla_1 = new JScrollPane();
+		spTabla_1.setBounds(0, 0, 544, 172);
+		pnlTabla_1.add(spTabla_1);
+		
+		JButton btnConsultar_S = new JButton("CONSULTAR");
+		btnConsultar_S.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnConsultar_S.setBounds(496, 123, 108, 23);
+		Sorteo.add(btnConsultar_S);
+		
+		JLabel lblEdicionDelSorteo = new JLabel("EDICION DEL SORTEO");
+		lblEdicionDelSorteo.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblEdicionDelSorteo.setBounds(23, 31, 151, 14);
+		Sorteo.add(lblEdicionDelSorteo);
+		
+		JLabel lblFecha = new JLabel("FECHA");
+		lblFecha.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblFecha.setBounds(23, 62, 148, 14);
+		Sorteo.add(lblFecha);
+		//--------------------------------------inicia panel valida ---------------------------//
+		DefaultTableModel modelos = null;
+		JPanel Valida = new JPanel();
+		Valida.setLayout(null);
+		tabbedPane.addTab("Valida", null, Valida, null);
+		
+		etNumplaca = new JTextField();
+		etNumplaca.setColumns(10);
+		etNumplaca.setBounds(223, 31, 86, 20);
+		Valida.add(etNumplaca);
+		
+		etMatenc = new JTextField();
+		etMatenc.setColumns(10);
+		etMatenc.setBounds(223, 62, 86, 20);
+		Valida.add(etMatenc);
+		
+		JButton btnAgregar_V = new JButton("AGREGAR");
+		btnAgregar.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+			
+			String Placa="",Matricula="", NumeroLib="",horas="", Precio="";
+			Placa=etNumplaca.getText();
+			Matricula = etMatenc.getText();
+			NumeroLib = etNumlib.getText();
+			horas=etHoras.getText();
+			Precio = etPreciocart.getText();
+			
+			
+			objVal.ingresar_valida(Placa,Matricula, NumeroLib,horas, Precio);
+			
+			DefaultTableModel modelos = objVal.mostrarRegistrosValida("SELECT * FROM obtiene");
+			tablaValida.setModel(modelos);
+			
+		}
+	});
+		btnAgregar_V.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnAgregar_V.setBounds(496, 30, 108, 23);
+		Valida.add(btnAgregar_V);
+
+		
+		JButton btnEliminar_V = new JButton("ELIMINAR");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String Matricula="";
+				
+				Matricula = etMatenc.getText();
+				
+				objVal.eliminar_valida(Matricula);
+				
+				DefaultTableModel modelos = objVal.mostrarRegistrosValida("SELECT * FROM obtiene");
+				tablaValida.setModel(modelos);
+				
+			}
+		});
+		btnEliminar_V.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnEliminar_V.setBounds(496, 61, 108, 23);
+		Valida.add(btnEliminar_V);
+		
+		
+		JButton btnModificar_V = new JButton("MODIFICAR");
+		btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String Placa="",Matricula="", NumeroLib="",Horas="", Precio="";
+				
+				Placa=etNumplaca.getText();
+				Matricula = etMatenc.getText();
+				NumeroLib = etNumlib.getText();
+				Horas=etHoras.getText();
+				Precio = etPreciocart.getText();
+				
+				
+				objVal.modificar_val(Placa,Matricula, NumeroLib,Horas, Precio);
+				
+				DefaultTableModel modelos = objVal.mostrarRegistrosValida("SELECT * FROM valida WHERE Num_Placa = '"+Placa+"'");
+				tablaValida.setModel(modelos);
+				
+			}
+		});
+		btnModificar_V.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnModificar_V.setBounds(496, 92, 108, 23);
+		Valida.add(btnModificar_V);
+		
+		
+		
+		JButton btnLimpiar_V = new JButton("LIMPIAR");
+		btnLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				etMatReserva.setText("");
+				etNumLiberacion.setText("");
+				etPrecioCart.setText("");
+				etMesRecepcion.setText("");
+				
+				DefaultTableModel modelo = objVal.mostrarRegistrosValida("SELECT * FROM obtiene");
+				tablaValida.setModel(modelo);
+				
+			}
+		});
+		btnLimpiar_V.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnLimpiar_V.setBounds(496, 157, 108, 23);
+		Valida.add(btnLimpiar_V);
+		
+		JPanel pnlTabla_V = new JPanel();
+		pnlTabla_V.setLayout(null);
+		pnlTabla_V.setBounds(60, 207, 544, 172);
+		Valida.add(pnlTabla_V);
+		
+		JScrollPane sptablav = new JScrollPane();
+		sptablav.setBounds(0, 0, 544, 172);
+		pnlTabla_V.add(sptablav);
+		
+		tablaValida = new JTable();
+		tablaValida.setShowVerticalLines(false);
+		tablaValida.setForeground(Color.BLACK);
+		tablaValida.setFont(new Font("Tahoma", Font.BOLD, 12));
+		tablaValida.setCellSelectionEnabled(true);
+		tablaValida.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		tablaValida.setBounds(0, 0, 1, 1);
+		pnlTabla_V.add(tablaValida);
+		
+		tablaValida = new JTable();
+		tablaValida.setShowVerticalLines(false);
+		spTabla.setViewportView(tablaValida);
+		
+		tablaValida.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		tablaValida.setFont(new Font("Tahoma", Font.BOLD, 12));
+		tablaValida.setForeground(Color.BLACK);
+		tablaValida.setCellSelectionEnabled(true);
+		
+		
+		JButton btnConsultar_V = new JButton("CONSULTAR");
+		btnConsultar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String[] datos=new String[5];
+				String Placa=etNumplaca.getText();
+				
+				DefaultTableModel modelo = objVal.mostrarRegistrosValida("SELECT * FROM valida WHERE Num_Placa = '"+Placa+"'");
+				tablaValida.setModel(modelo);
+				
+				datos=objVal.vector_edits(datos);
+				
+				etNumLiberacion.setText(datos[1]);
+				etPrecioCart.setText(datos[2]);
+				etMesRecepcion.setText(datos[3]);
+				
+				for(int i=0; i<datos.length; i++) {
+					datos[i]=null;
+				}
+				
+				objVal.vector_edits(datos);
+				
+			}
+		});
+		btnConsultar_V.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnConsultar_V.setBounds(496, 123, 108, 23);
+		Valida.add(btnConsultar_V);
+		
+		JLabel lblNumeroDePlaca = new JLabel("NUMERO DE PLACA");
+		lblNumeroDePlaca.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblNumeroDePlaca.setBounds(23, 31, 151, 14);
+		Valida.add(lblNumeroDePlaca);
+		
+		JLabel lblMatriculaEncuadrado = new JLabel("MATRICULA DEL  ENCUADRADO");
+		lblMatriculaEncuadrado.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblMatriculaEncuadrado.setBounds(23, 62, 190, 14);
+		Valida.add(lblMatriculaEncuadrado);
+		
+		etNumlib = new JTextField();
+		etNumlib.setColumns(10);
+		etNumlib.setBounds(223, 95, 86, 20);
+		Valida.add(etNumlib);
+		
+		etHoras = new JTextField();
+		etHoras.setColumns(10);
+		etHoras.setBounds(223, 126, 86, 20);
+		Valida.add(etHoras);
+		
+		etPreciocart = new JTextField();
+		etPreciocart.setColumns(10);
+		etPreciocart.setBounds(223, 159, 86, 20);
+		Valida.add(etPreciocart);
+		
+		JLabel lblNumeroliberacion = new JLabel("NUMERO DE LIBERACI\u00D3N");
+		lblNumeroliberacion.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblNumeroliberacion.setBounds(23, 97, 148, 14);
+		Valida.add(lblNumeroliberacion);
+		
+		JLabel lblHorastrabajadas = new JLabel("HORAS TRABAJADAS");
+		lblHorastrabajadas.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblHorastrabajadas.setBounds(23, 128, 148, 14);
+		Valida.add(lblHorastrabajadas);
+		
+		JLabel lblPreciocartilla = new JLabel("PRECIO CARTILLA");
+		lblPreciocartilla.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblPreciocartilla.setBounds(26, 162, 148, 14);
+		Valida.add(lblPreciocartilla);
+		
+
 		
 		
 		
