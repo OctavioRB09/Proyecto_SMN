@@ -50,6 +50,7 @@ public class Formulario extends JFrame {
 	Participa_res_Querys objParR = new Participa_res_Querys();
 	Obtiene_Querys objObt=new Obtiene_Querys();
 	Valida_Querys objVal=new Valida_Querys();
+	Cartilla_Querys objCar=new Cartilla_Querys();
 	ConexionBD conexion = new ConexionBD();
 	PreparedStatement ps = null;
 	ResultSet rs = null;
@@ -123,6 +124,12 @@ public class Formulario extends JFrame {
 	private JTextField etHoras;
 	private JTextField etPreciocart;
 	private JTable tablaValida;
+	private JTextField txtNum_Liberacion;
+	private JTextField txtZona_Militar;
+	private JTextField txtRegimiento;
+	
+	//Cartilla
+	private JTextField txtNum_LiberacionCar;
 	
 	public static void main(String[] args) 
 	{
@@ -1699,6 +1706,70 @@ public void actionPerformed(ActionEvent e) {
 		JPanel Cartilla = new JPanel();
 		tabbedPane.addTab("Cartilla", null, Cartilla, null);
 		Cartilla.setLayout(null);
+		
+		JScrollPane Muestra_Cartilla = new JScrollPane();
+		Muestra_Cartilla.setBounds(21, 237, 573, 142);
+		Cartilla.add(Muestra_Cartilla);
+		
+		JLabel lblNum_Liberación = new JLabel("NUM_LIBERACI\u00D3N");
+		lblNum_Liberación.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblNum_Liberación.setBounds(21, 106, 118, 14);
+		Cartilla.add(lblNum_Liberación);
+		
+		txtNum_Liberacion = new JTextField();
+		txtNum_Liberacion.setBounds(21, 131, 118, 20);
+		Cartilla.add(txtNum_Liberacion);
+		txtNum_Liberacion.setColumns(10);
+		
+		JLabel lblZona_Militar = new JLabel("ZONA_MILITAR");
+		lblZona_Militar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblZona_Militar.setBounds(176, 106, 118, 14);
+		Cartilla.add(lblZona_Militar);
+		
+		txtZona_Militar = new JTextField();
+		txtZona_Militar.setColumns(10);
+		txtZona_Militar.setBounds(176, 131, 118, 20);
+		Cartilla.add(txtZona_Militar);
+		
+		JLabel lblRegimiento = new JLabel("REGIMIENTO");
+		lblRegimiento.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblRegimiento.setBounds(331, 106, 118, 14);
+		Cartilla.add(lblRegimiento);
+		
+		txtRegimiento = new JTextField();
+		txtRegimiento.setColumns(10);
+		txtRegimiento.setBounds(331, 131, 118, 20);
+		Cartilla.add(txtRegimiento);
+		
+		JButton btnEliminarCar = new JButton("ELIMINAR");
+		btnEliminarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnEliminarCar.setBounds(476, 57, 118, 23);
+		Cartilla.add(btnEliminarCar);
+		
+		JButton btnAgregarCar = new JButton("AGREGAR");
+		btnAgregarCar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnAgregarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnAgregarCar.setBounds(476, 23, 118, 23);
+		Cartilla.add(btnAgregarCar);
+		
+		JButton btnModificarCar = new JButton("MODIFICAR\r\n");
+		btnModificarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnModificarCar.setBounds(476, 91, 118, 23);
+		Cartilla.add(btnModificarCar);
+		
+		JButton btnConsultarCar = new JButton("CONSULTAR");
+		btnConsultarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnConsultarCar.setBounds(476, 125, 118, 23);
+		Cartilla.add(btnConsultarCar);
+		
+		JButton btnLimpiarCar = new JButton("LIMPIAR");
+		btnLimpiarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnLimpiarCar.setBounds(476, 203, 118, 23);
+		Cartilla.add(btnLimpiarCar);
 		
 
 		
