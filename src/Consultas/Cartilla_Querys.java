@@ -18,12 +18,12 @@ public class Cartilla_Querys
 	Connection cn = null;
 	Statement stm = null;
 	ResultSet rs = null;
-	PreparedStatement ps = null;
 	
-	public void ingresar_Car(String Num_Liberacion, String ZonaMilitar, String Regimiento) throws IOException
-	{
+	public void ingresar_Car(String Num_Liberacion, String ZonaMilitar, String Regimiento) {
 		try 
 		{
+			cn = conexion.conectar();
+			stm = cn.createStatement();
 
 			String Q_Liberacion, Q_ZonaMilitar,Q_Regimiento;
 			if(Num_Liberacion.equals("")) 
@@ -52,7 +52,7 @@ public class Cartilla_Querys
 			{
 				Q_Regimiento="'"+Regimiento+"'";
 			}
-			System.out.println("->"+Q_Liberacion+Q_ZonaMilitar+Q_Regimiento);
+
 			String query = "INSERT INTO cartilla(Num_liberación, Zona_Mil, Regimiento) VALUES("+Q_Liberacion+Q_ZonaMilitar+Q_Regimiento+")";
 			stm.executeUpdate(query);
 				JOptionPane.showMessageDialog(null, "Cartilla agregada correctamente");
