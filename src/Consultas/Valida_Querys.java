@@ -11,7 +11,6 @@ public class Valida_Querys {
 	Connection cn = null;
 	Statement stm = null;
 	ResultSet rs = null;
-	PreparedStatement ps = null;
 	String[] datos=new String[5];
 	
 	String query="",Q_Numplaca="", Q_Matricula="", Q_NumLiberacion="",Q_Htrabajadas="", Q_Precio="";
@@ -23,33 +22,36 @@ public class Valida_Querys {
 			cn = conexion.conectar();
 			stm = cn.createStatement();
 			
-			if(Placa.equals("")) {
-				Matricula=null;
-				Q_Numplaca=""+Placa+", ";
-			}else Q_Numplaca="'"+Placa+"', ";
-			
-			if(Matricula.equals("")) {
-				Matricula=null;
-				Q_Matricula=""+Matricula+", ";
-			}else Q_Matricula="'"+Matricula+"', ";
-				
-			if(horas.equals("")) {
-				horas=null;
-				Q_Htrabajadas=""+horas+", ";
-			}else Q_Htrabajadas="'"+horas+"', ";
-			
-			if(Num_Liberacion.equals("")) {
-				Num_Liberacion=null;
-				Q_NumLiberacion=""+Num_Liberacion+", ";
-			}else Q_NumLiberacion="'"+Num_Liberacion+"', ";
-				
-			if(Precio_Cart.equals("")) {
-				Precio_Cart=null;
-				Q_Precio=""+Precio_Cart+", ";
-			}else Q_Precio="'"+Precio_Cart+"', ";
-				
-			
-			
+			if (Placa.equals("")) {
+				Matricula = null;
+				Q_Numplaca = "" + Placa + ", ";
+			} else
+				Q_Numplaca = "'" + Placa + "', ";
+
+			if (Matricula.equals("")) {
+				Matricula = null;
+				Q_Matricula = "" + Matricula + ", ";
+			} else
+				Q_Matricula = "'" + Matricula + "', ";
+
+			if (horas.equals("")) {
+				horas = null;
+				Q_Htrabajadas = "" + horas + ", ";
+			} else
+				Q_Htrabajadas = "'" + horas + "', ";
+
+			if (Num_Liberacion.equals("")) {
+				Num_Liberacion = null;
+				Q_NumLiberacion = "" + Num_Liberacion + ", ";
+			} else
+				Q_NumLiberacion = "'" + Num_Liberacion + "', ";
+
+			if (Precio_Cart.equals("")) {
+				Precio_Cart = null;
+				Q_Precio = "" + Precio_Cart + "";
+			} else
+				Q_Precio = "'" + Precio_Cart + "'";
+							
 			query="INSERT INTO valida (Num_Placa,Matricula_Enc, Num_Liberacion,Horas_Trabajadas, Precio_Cart) VALUES ("+Q_Numplaca+Q_Matricula+Q_NumLiberacion+Q_Htrabajadas+Q_Precio+")";
 			stm.executeUpdate(query);
 
@@ -57,17 +59,6 @@ public class Valida_Querys {
 
 			JOptionPane.showMessageDialog(null, e.getErrorCode()+": "+e.getMessage());
 			e.printStackTrace();
-
-		} finally { //CERRANDO LOS OBJETOS DE CONSULTA
-
-			try {
-
-				if(cn!=null) cn.close();
-				if(stm!=null) stm.close();
-
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
 
 		}
 		
@@ -88,17 +79,6 @@ public class Valida_Querys {
 			JOptionPane.showMessageDialog(null, e.getErrorCode()+": "+e.getMessage());
 			e.printStackTrace();
 			
-		} finally { //CERRANDO LOS OBJETOS DE CONSULTA
-			
-			try {
-				
-				if(cn!=null) cn.close();
-				if(stm!=null) stm.close();
-				
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-			
 		}
 		
 	}
@@ -110,49 +90,43 @@ public class Valida_Querys {
 			cn = conexion.conectar();
 			stm = cn.createStatement();
 			
-			if(Placa.equals("")) {
-				Matricula=null;
-				Q_Numplaca=""+Placa+", ";
-			}else Q_Numplaca="'"+Placa+"', ";
+			if (Placa.equals("")) {
+				Matricula = null;
+				Q_Numplaca = "" + Placa + "";
+			} else
+				Q_Numplaca = "'" + Placa + "'";
+
+			if (Matricula.equals("")) {
+				Matricula = null;
+				Q_Matricula = "" + Matricula + ", ";
+			} else
+				Q_Matricula = "'" + Matricula + "', ";
+
+			if (horas.equals("")) {
+				horas = null;
+				Q_Htrabajadas = "" + horas + ", ";
+			} else
+				Q_Htrabajadas = "'" + horas + "', ";
+
+			if (Num_Liberacion.equals("")) {
+				Num_Liberacion = null;
+				Q_NumLiberacion = "" + Num_Liberacion + ", ";
+			} else
+				Q_NumLiberacion = "'" + Num_Liberacion + "', ";
+
+			if (Precio_Cart.equals("")) {
+				Precio_Cart = null;
+				Q_Precio = "" + Precio_Cart + ", ";
+			} else
+				Q_Precio = "'" + Precio_Cart + "', ";
 			
-			if(Matricula.equals("")) {
-				Matricula=null;
-				Q_Matricula=""+Matricula+", ";
-			}else Q_Matricula="'"+Matricula+"', ";
-				
-			if(horas.equals("")) {
-				horas=null;
-				Q_Htrabajadas=""+horas+", ";
-			}else Q_Htrabajadas="'"+horas+"', ";
-			
-			if(Num_Liberacion.equals("")) {
-				Num_Liberacion=null;
-				Q_NumLiberacion=""+Num_Liberacion+", ";
-			}else Q_NumLiberacion="'"+Num_Liberacion+"', ";
-				
-			if(Precio_Cart.equals("")) {
-				Precio_Cart=null;
-				Q_Precio=""+Precio_Cart+", ";
-			}else Q_Precio="'"+Precio_Cart+"', ";
-			
-			query = "UPDATE valida SET Matricula_Enc"+Q_Matricula+",Num_Liberacion = "+Q_NumLiberacion+",Horas_Trabajadas="+Q_Htrabajadas +", Precio_Cart = "+Q_Precio+" WHERE Num_Placa = "+Q_Numplaca;
+			query = "UPDATE valida SET Matricula_Enc = " + Q_Matricula + ", Num_Liberacion = " + Q_NumLiberacion + ", Horas_Trabajadas = " + Q_Htrabajadas + ", Precio_Cart = " + Q_Precio + " WHERE Num_Placa = "	+ Q_Numplaca;
 			stm.executeUpdate(query);
 
 		} catch (SQLException e) {
 
 			JOptionPane.showMessageDialog(null, e.getErrorCode()+": "+e.getMessage());
 			e.printStackTrace();
-			
-		} finally { //CERRANDO LOS OBJETOS DE CONSULTA
-			
-			try {
-				
-				if(cn!=null) cn.close();
-				if(stm!=null) stm.close();
-				
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
 			
 		}
 		
@@ -191,16 +165,6 @@ public class Valida_Querys {
 
 			JOptionPane.showMessageDialog(null, e.getErrorCode()+": "+e.getMessage());
 			e.printStackTrace();
-
-		} finally { //CERRANDO LOS OBJETOS DE CONSULTA
-
-			try {
-				if(rs!=null) rs.close();
-				if(stm!=null) stm.close();
-				if(cn!=null) cn.close();				
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
 
 		}
 		

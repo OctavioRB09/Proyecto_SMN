@@ -11,10 +11,8 @@ public class Sorteo_Querys {
 	Connection cn = null;
 	Statement stm = null;
 	ResultSet rs = null;
-	PreparedStatement ps = null;
 	String[] datos=new String[2];
-	
-	String query="",Q_Edsorteo="", Q_fecha="";
+	String query="", Q_Edsorteo="", Q_fecha="";
 	
 	public void ingresar_sorteo(String edsorteo,String fecha) {
 		
@@ -23,18 +21,17 @@ public class Sorteo_Querys {
 			cn = conexion.conectar();
 			stm = cn.createStatement();
 			
-			if(edsorteo.equals("")) {
-				edsorteo=null;
-				Q_Edsorteo=""+edsorteo+", ";
-			}else Q_Edsorteo="'"+edsorteo+"', ";
-			
-			if(fecha.equals("")) {
-				fecha=null;
-				Q_fecha=""+fecha+", ";
-			}else Q_fecha="'"+fecha+"', ";
-				
-			
-			
+			if (edsorteo.equals("")) {
+				edsorteo = null;
+				Q_Edsorteo = "" + edsorteo + ", ";
+			} else
+				Q_Edsorteo = "'" + edsorteo + "', ";
+
+			if (fecha.equals("")) {
+				fecha = null;
+				Q_fecha = "" + fecha + ", ";
+			} else
+				Q_fecha = "'" + fecha + "', ";		
 			
 			query="INSERT INTO sorteo (Ed_sorteo,Fecha) VALUES ("+Q_Edsorteo+ Q_fecha+")";
 			stm.executeUpdate(query);
@@ -43,17 +40,6 @@ public class Sorteo_Querys {
 
 			JOptionPane.showMessageDialog(null, e.getErrorCode()+": "+e.getMessage());
 			e.printStackTrace();
-
-		} finally { //CERRANDO LOS OBJETOS DE CONSULTA
-
-			try {
-
-				if(cn!=null) cn.close();
-				if(stm!=null) stm.close();
-
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
 
 		}
 		
@@ -68,11 +54,11 @@ public class Sorteo_Querys {
 			cn = conexion.conectar();
 			stm = cn.createStatement();
 			
-			
-			if(fecha.equals("")) {
-				fecha=null;
-				Q_fecha=""+fecha+", ";
-			}else Q_fecha="'"+fecha+"', ";
+			if (fecha.equals("")) {
+				fecha = null;
+				Q_fecha = "" + fecha + ", ";
+			} else
+				Q_fecha = "'" + fecha + "', ";
 			
 			query = "UPDATE sorteo SET Fecha"+Q_fecha+" WHERE Ed_Sorteo = "+edsorteo;
 			stm.executeUpdate(query);
@@ -82,24 +68,13 @@ public class Sorteo_Querys {
 			JOptionPane.showMessageDialog(null, e.getErrorCode()+": "+e.getMessage());
 			e.printStackTrace();
 			
-		} finally { //CERRANDO LOS OBJETOS DE CONSULTA
-			
-			try {
-				
-				if(cn!=null) cn.close();
-				if(stm!=null) stm.close();
-				
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-			
 		}
 		
 	}
 	
 	public DefaultTableModel mostrarRegistrosSorteo(String query) {
 		
-		String[] cabecera = {"Ed_Sorteo","Fecha "};
+		String[] cabecera = {"Ed_Sorteo", "Fecha"};
 		
 		DefaultTableModel modelo = new DefaultTableModel(null, cabecera);
 
@@ -128,16 +103,6 @@ public class Sorteo_Querys {
 
 			JOptionPane.showMessageDialog(null, e.getErrorCode()+": "+e.getMessage());
 			e.printStackTrace();
-
-		} finally { //CERRANDO LOS OBJETOS DE CONSULTA
-
-			try {
-				if(rs!=null) rs.close();
-				if(stm!=null) stm.close();
-				if(cn!=null) cn.close();				
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
 
 		}
 		

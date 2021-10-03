@@ -38,10 +38,6 @@ public class Formulario extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-
 	Instructor_Querys objIns = new Instructor_Querys();
 	Instituto_Querys objInst = new Instituto_Querys();
 	Actividad_Querys objAct = new Actividad_Querys();
@@ -54,13 +50,13 @@ public class Formulario extends JFrame {
 	Cartilla_Querys objCar=new Cartilla_Querys();
 	Encuadrado_Querys objEnc=new Encuadrado_Querys();
 	ConexionBD conexion = new ConexionBD();
+	
 	PreparedStatement ps = null;
 	ResultSet rs = null;
 	Connection cn = null;
 	Statement stm = null; 
 
 	//Instructor
-
 	private JTextField txtNum;
 	private JTextField txtNumP;
 	private JTextField txtNomI;
@@ -71,7 +67,6 @@ public class Formulario extends JFrame {
 	private JTextField txtR;
 
 	//Institución
-
 	private JTextField txtIdI;
 	private JTextField txtNI;
 	private JTextField txtCI;
@@ -82,7 +77,6 @@ public class Formulario extends JFrame {
 	private JTable table_1;
 
 	//Actividad
-
 	private JTextField txtNPA;
 	private JTextField txtMEA;
 	private JTextField txtNSA;
@@ -95,20 +89,17 @@ public class Formulario extends JFrame {
 	private JTable table_2;
 
 	//NumTel_Institucion
-
 	private JTextField txtIINT;
 	private JTextField txtNTNT;
 	private JTable table_3;
 	private JTextField txtNTMNT;
 
 	//Escuadron
-
 	private JTextField txtNSE;
 	private JTextField txtNIE;
 	private JTable table_4;
 
 	//Participa_Res
-
 	private JTextField txtMRPR;
 	private JTextField txtEDPR;
 	private JTextField txtRPR;
@@ -174,31 +165,21 @@ public class Formulario extends JFrame {
 	private JTable table_7;
 
 
-	public static void main(String[] args) 
-	{
-		EventQueue.invokeLater(new Runnable() 
-		{
-			public void run() 
-			{
-				try 
-				{
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
 					Formulario frame = new Formulario();
 					frame.setVisible(true);
-				} 
-				catch (Exception e) 
-				{
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
-
-	public void limpiarEntradas()
-	{
+	public void limpiarEntradas() {
+		
 		txtNumP.setText(null);
 		txtNomI.setText(null);
 		txtAP.setText(null);
@@ -237,11 +218,12 @@ public class Formulario extends JFrame {
 		txtNum_LiberacionCartilla.setText(null);
 		txtZona_Militar.setText(null);
 		txtRegimiento.setText(null);
+		
 	}
 
 	@SuppressWarnings("static-access")
-	public Formulario() 
-	{
+	public Formulario() {
+		
 		cn = conexion.conectar();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -258,8 +240,7 @@ public class Formulario extends JFrame {
 		tabbedPane.setBounds(0, 0, 598, 392);
 		getContentPane().add(tabbedPane);
 
-		//-->> INICIO DEL PANEL DE INSTRUCTOR		
-
+//-->> INICIO DEL PANEL DE INSTRUCTOR		
 		JPanel Instructor = new JPanel();
 		Instructor.setBackground(SystemColor.menu);
 		Instructor.setToolTipText("");
@@ -340,23 +321,18 @@ public class Formulario extends JFrame {
 		txtpnNombre_3_1.setBounds(10, 166, 95, 20);
 		Instructor.add(txtpnNombre_3_1);
 
+		//-->> INICIO DE LOS BOTONES
 		JButton bAgregar = new JButton("AGREGAR");
 		bAgregar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bAgregar.addActionListener((ActionListener) new ActionListener()
-		{
-			public void actionPerformed(ActionEvent Arg0)
-			{
-				try
-				{
-					objIns.ingresar_instructor(txtNumP.getText(), txtNomI.getText(), txtAP.getText(), txtAM.getText(), txtR.getText(), txtSueldo.getText());
-					limpiarEntradas();
-				}
-				catch(IOException e1)
-				{
-					e1.printStackTrace();
-				}
+		bAgregar.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objIns.ingresar_instructor(txtNumP.getText(), txtNomI.getText(), txtAP.getText(), txtAM.getText(), txtR.getText(), txtSueldo.getText());
+				limpiarEntradas();
+
 				DefaultTableModel modeloIns = objIns.mostrarRegistrosIns("SELECT * FROM instructor");
 				table.setModel(modeloIns);
+				
 			}
 		});
 		bAgregar.setBounds(462, 11, 111, 23);
@@ -364,22 +340,15 @@ public class Formulario extends JFrame {
 
 		JButton bModificar = new JButton("MODIFICAR");
 		bModificar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bModificar.addActionListener((ActionListener) new ActionListener()
-		{
-			public void actionPerformed(ActionEvent Arg0)
-			{
-				//conexion = Conexion.conectar(1);
-				try
-				{
-					objIns.modificar_instructor(txtNumP.getText(), txtNomI.getText(), txtAP.getText(), txtAM.getText(), txtR.getText(), txtSueldo.getText());
-					limpiarEntradas();
-				}
-				catch(IOException e)
-				{
-					e.printStackTrace();
-				}
+		bModificar.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objIns.modificar_instructor(txtNumP.getText(), txtNomI.getText(), txtAP.getText(), txtAM.getText(), txtR.getText(), txtSueldo.getText());
+				limpiarEntradas();
+
 				DefaultTableModel modeloIns = objIns.mostrarRegistrosIns("SELECT * FROM instructor");
 				table.setModel(modeloIns);
+				
 			}
 		});
 		bModificar.setBounds(462, 73, 111, 23);
@@ -387,22 +356,15 @@ public class Formulario extends JFrame {
 
 		JButton bEliminar = new JButton("ELIMINAR");
 		bEliminar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bEliminar.addActionListener((ActionListener) new ActionListener()
-		{
-			public void actionPerformed(ActionEvent Arg0)
-			{
-				//conexion = Conexion.conectar();
-				try
-				{
-					objIns.eliminar_instructor(txtNumP.getText());
-					limpiarEntradas();
-				}
-				catch(IOException e)
-				{
-					e.printStackTrace();
-				}
+		bEliminar.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objIns.eliminar_instructor(txtNumP.getText());
+				limpiarEntradas();
+
 				DefaultTableModel modeloIns = objIns.mostrarRegistrosIns("SELECT * FROM instructor");
 				table.setModel(modeloIns);
+				
 			}
 		});
 		bEliminar.setBounds(462, 42, 111, 23);
@@ -410,36 +372,35 @@ public class Formulario extends JFrame {
 
 		JButton bBuscar = new JButton("CONSULTAR");
 		bBuscar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bBuscar.addActionListener((ActionListener) new ActionListener()
-		{
-			public void actionPerformed(ActionEvent Arg0)
-			{
+		bBuscar.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+				
 				DefaultTableModel modeloIns = objIns.mostrarRegistrosIns("SELECT * FROM instructor");
 				table.setModel(modeloIns);
+				
 			}
 		});
 		bBuscar.setBounds(462, 104, 111, 23);
 		Instructor.add(bBuscar);
 
+		//-->> INICIO DEL PANEL DE LA TABLA
 		JPanel panel = new JPanel();
 		panel.setBounds(10, 231, 573, 142);
 		Instructor.add(panel);
 		panel.setLayout(null);
 
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 0, 573, 142);
-		panel.add(scrollPane);
-
-		table = new JTable();
-		table.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
-		scrollPane.setViewportView(table);
+			JScrollPane scrollPane = new JScrollPane();
+			scrollPane.setBounds(0, 0, 573, 142);
+			panel.add(scrollPane);
+	
+			table = new JTable();
+			table.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
+			scrollPane.setViewportView(table);
 
 		JButton bMostrarDatos = new JButton("LIMPIAR");
 		bMostrarDatos.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bMostrarDatos.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
+		bMostrarDatos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				limpiarEntradas();
 			}
 		});
@@ -451,8 +412,7 @@ public class Formulario extends JFrame {
 		Instructor.add(txtR);
 		txtR.setColumns(10);
 
-		//-->> INICIO DEL PANEL DE INSTITUCION
-
+//-->> INICIO DEL PANEL DE INSTITUCION
 		JPanel Institucion = new JPanel();
 		tabbedPane.addTab("Instituci\u00F3n", null, Institucion, null);
 		Institucion.setLayout(null);
@@ -548,23 +508,18 @@ public class Formulario extends JFrame {
 		txtMI.setBounds(140, 99, 86, 20);
 		Institucion.add(txtMI);
 
+		//-->> INICIO DE LOS BOTONES
 		JButton bAgregarI = new JButton("AGREGAR");
 		bAgregarI.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bAgregarI.addActionListener((ActionListener) new ActionListener()
-		{
-			public void actionPerformed(ActionEvent Arg0)
-			{
-				try
-				{	
-					objInst.ingresarInst(txtIdI.getText(), txtNI.getText(), txtNEI.getText(), txtNII.getText(), txtNCI.getText(), txtCI.getText(), txtMI.getText());
-					limpiarEntradas();
-				}
-				catch(IOException e)
-				{
-					e.printStackTrace();
-				}
+		bAgregarI.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+				
+				objInst.ingresarInst(txtIdI.getText(), txtNI.getText(), txtNEI.getText(), txtNII.getText(),	txtNCI.getText(), txtCI.getText(), txtMI.getText());
+				limpiarEntradas();
+
 				DefaultTableModel modeloInsti = objInst.mostrarRegistrosIns("SELECT * FROM institucion");
 				table_1.setModel(modeloInsti);
+				
 			}
 		});
 		bAgregarI.setBounds(462, 8, 111, 23);
@@ -572,21 +527,15 @@ public class Formulario extends JFrame {
 
 		JButton bEliminarI = new JButton("ELIMINAR");
 		bEliminarI.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bEliminarI.addActionListener((ActionListener) new ActionListener()
-		{
-			public void actionPerformed(ActionEvent Arg0)
-			{
-				try
-				{
-					objInst.eliminarInst(txtIdI.getText());
-					limpiarEntradas();
-				}
-				catch(IOException e)
-				{
-					e.printStackTrace();
-				}
+		bEliminarI.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+				
+				objInst.eliminarInst(txtIdI.getText());
+				limpiarEntradas();
+
 				DefaultTableModel modeloInsti = objInst.mostrarRegistrosIns("SELECT * FROM institucion");
 				table_1.setModel(modeloInsti);
+				
 			}
 		});
 		bEliminarI.setBounds(462, 37, 111, 23);
@@ -594,21 +543,15 @@ public class Formulario extends JFrame {
 
 		JButton bModificarI = new JButton("MODIFICAR");
 		bModificarI.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bModificarI.addActionListener((ActionListener) new ActionListener()
-		{
-			public void actionPerformed(ActionEvent Arg0)
-			{
-				try
-				{
-					objInst.modificarInst(txtIdI.getText(), txtNI.getText(), txtNEI.getText(), txtNII.getText(), txtNCI.getText(), txtCI.getText(), txtMI.getText());
-					limpiarEntradas();
-				}
-				catch(IOException e)
-				{
-					e.printStackTrace();
-				}
+		bModificarI.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objInst.modificarInst(txtIdI.getText(), txtNI.getText(), txtNEI.getText(), txtNII.getText(), txtNCI.getText(), txtCI.getText(), txtMI.getText());
+				limpiarEntradas();
+
 				DefaultTableModel modeloInsti = objInst.mostrarRegistrosIns("SELECT * FROM institucion");
 				table_1.setModel(modeloInsti);
+				
 			}
 		});
 		bModificarI.setBounds(462, 68, 111, 23);
@@ -616,43 +559,41 @@ public class Formulario extends JFrame {
 
 		JButton bBuscarI = new JButton("CONSULTAR");
 		bBuscarI.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bBuscarI.addActionListener((ActionListener) new ActionListener()
-		{
-			public void actionPerformed(ActionEvent Arg0)
-			{
+		bBuscarI.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+				
 				DefaultTableModel modeloInsti = objInst.mostrarRegistrosIns("SELECT * FROM institucion");
-				table_1.setModel(modeloInsti);	
+				table_1.setModel(modeloInsti);
+				
 			}
 		});
 		bBuscarI.setBounds(462, 96, 111, 23);
 		Institucion.add(bBuscarI);
 
+		//-->> INICIO DEL PANEL DE LA TABLA
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(10, 219, 573, 160);
 		Institucion.add(panel_1);
 		panel_1.setLayout(null);
 
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(0, 0, 573, 159);
-		panel_1.add(scrollPane_1);
-
-		table_1 = new JTable();
-		scrollPane_1.setViewportView(table_1);
+			JScrollPane scrollPane_1 = new JScrollPane();
+			scrollPane_1.setBounds(0, 0, 573, 159);
+			panel_1.add(scrollPane_1);
+	
+			table_1 = new JTable();
+			scrollPane_1.setViewportView(table_1);
 
 		JButton bMostrarDatosI = new JButton("LIMPAR");
 		bMostrarDatosI.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bMostrarDatosI.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
+		bMostrarDatosI.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				limpiarEntradas();
 			}
 		});
 		bMostrarDatosI.setBounds(462, 127, 111, 23);
 		Institucion.add(bMostrarDatosI);
 
-		//-->> INICIO DEL PANEL DE ACTIVIDAD
-
+//-->> INICIO DEL PANEL DE ACTIVIDAD
 		JPanel Actividad = new JPanel();
 		tabbedPane.addTab("Actividad", null, Actividad, null);
 		Actividad.setLayout(null);
@@ -774,23 +715,17 @@ public class Formulario extends JFrame {
 		txtCAA.setBounds(346, 71, 86, 20);
 		Actividad.add(txtCAA);
 
+		//-->> INICIO DE LOS BOTONES
 		JButton bAA = new JButton("AGREGAR");
 		bAA.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bAA.addActionListener((ActionListener) new ActionListener()
-		{
-			public void actionPerformed(ActionEvent Arg0)
-			{
-				try
-				{
-					objAct.ingresar_actividad(txtNPA.getText(), txtMEA.getText(), txtNSA.getText(), txtIIA.getText(), txtHIA.getText(), txtHFA.getText(), txtFA.getText(), txtTAA.getText(), txtCAA.getText());
-				}
-				catch(IOException e)
-				{
-					JOptionPane.showMessageDialog(null, "Ocurrio un error con el acceso de la base de datos \n"+e.getMessage());
-					System.out.println(e.getMessage());
-				}
+		bAA.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objAct.ingresar_actividad(txtNPA.getText(), txtMEA.getText(), txtNSA.getText(), txtIIA.getText(), txtHIA.getText(), txtHFA.getText(), txtFA.getText(), txtTAA.getText(), txtCAA.getText());
+
 				DefaultTableModel modeloAct = objAct.mostrarRegistrosAct("SELECT * FROM actividad");
 				table_2.setModel(modeloAct);
+				
 			}
 		});
 		bAA.setBounds(462, 8, 111, 23);
@@ -798,21 +733,14 @@ public class Formulario extends JFrame {
 
 		JButton bEA = new JButton("ELIMINAR");
 		bEA.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bEA.addActionListener((ActionListener) new ActionListener()
-		{
-			public void actionPerformed(ActionEvent Arg0)
-			{
-				try
-				{
-					objAct.eliminar_actividad(txtNPA.getText(), txtMEA.getText(), txtNSA.getText(), txtIIA.getText());
-				}
-				catch(IOException e)
-				{
-					JOptionPane.showMessageDialog(null, "Ocurrio un error con el acceso de la base de datos \n"+e.getMessage());
-					System.out.println(e.getMessage());
-				}
+		bEA.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objAct.eliminar_actividad(txtNPA.getText(), txtMEA.getText(), txtNSA.getText(), txtIIA.getText());
+
 				DefaultTableModel modeloAct = objAct.mostrarRegistrosAct("SELECT * FROM actividad");
 				table_2.setModel(modeloAct);
+
 			}
 		});
 		bEA.setBounds(462, 40, 111, 23);
@@ -820,21 +748,14 @@ public class Formulario extends JFrame {
 
 		JButton bMA = new JButton("MODIFICAR");
 		bMA.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bMA.addActionListener((ActionListener) new ActionListener()
-		{
-			public void actionPerformed(ActionEvent Arg0)
-			{
-				try
-				{
-					objAct.modificar_actividad(txtNPA.getText(), txtMEA.getText(), txtNSA.getText(), txtIIA.getText(), txtHIA.getText(), txtHFA.getText(), txtFA.getText(), txtTAA.getText(), txtCAA.getText());
-				}
-				catch(IOException e)
-				{
-					JOptionPane.showMessageDialog(null, "Ocurrio un error con el acceso de la base de datos \n"+ e.getMessage());
-					System.out.println(e.getMessage());
-				}
+		bMA.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objAct.modificar_actividad(txtNPA.getText(), txtMEA.getText(), txtNSA.getText(), txtIIA.getText(), txtHIA.getText(), txtHFA.getText(), txtFA.getText(), txtTAA.getText(), txtCAA.getText());
+
 				DefaultTableModel modeloAct = objAct.mostrarRegistrosAct("SELECT * FROM actividad");
 				table_2.setModel(modeloAct);
+				
 			}
 		});
 		bMA.setBounds(462, 71, 111, 23);
@@ -842,43 +763,41 @@ public class Formulario extends JFrame {
 
 		JButton bCA = new JButton("CONSULTAR");
 		bCA.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bCA.addActionListener((ActionListener) new ActionListener()
-		{
-			public void actionPerformed(ActionEvent Arg0)
-			{
+		bCA.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+				
 				DefaultTableModel modeloAct = objAct.mostrarRegistrosAct("SELECT * FROM actividad");
 				table_2.setModel(modeloAct);
+				
 			}
 		});
 		bCA.setBounds(462, 102, 111, 23);
 		Actividad.add(bCA);
 
+		//-->> INICIO DEL PANEL DE LA TABLA
 		JPanel panel_2 = new JPanel();
 		panel_2.setBounds(10, 218, 573, 158);
 		Actividad.add(panel_2);
 		panel_2.setLayout(null);
 
-		JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(0, 0, 573, 158);
-		panel_2.add(scrollPane_2);
-
-		table_2 = new JTable();
-		scrollPane_2.setViewportView(table_2);
+			JScrollPane scrollPane_2 = new JScrollPane();
+			scrollPane_2.setBounds(0, 0, 573, 158);
+			panel_2.add(scrollPane_2);
+	
+			table_2 = new JTable();
+			scrollPane_2.setViewportView(table_2);
 
 		JButton bLA = new JButton("LIMPIAR");
 		bLA.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bLA.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
+		bLA.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				limpiarEntradas();
 			}
 		});
 		bLA.setBounds(462, 161, 111, 23);
 		Actividad.add(bLA);
 
-		//-->> INICIO DEL PANEL DEL NUMERO DEL TELEFONO DE INSTITUCION
-
+//-->> INICIO DEL PANEL DEL NUMERO DEL TELEFONO DE INSTITUCION
 		JPanel NumTel = new JPanel();
 		tabbedPane.addTab("numtel_institucion", null, NumTel, null);
 		NumTel.setLayout(null);
@@ -914,45 +833,31 @@ public class Formulario extends JFrame {
 		txtNTMNT.setBounds(161, 81, 123, 20);
 		NumTel.add(txtNTMNT);
 
+		//-->> INICIO DE LOS BOTONES
 		JButton bANT = new JButton("AGREGAR");
-		bANT.addActionListener((ActionListener) new ActionListener()
-		{
-			public void actionPerformed(ActionEvent Arg0)
-			{
-				try
-				{
-					objNumT.ingresar_NumTel(txtIINT.getText(), txtNTNT.getText());
-				}
-				catch(IOException e)
-				{
-					JOptionPane.showMessageDialog(null, "Ocurrio un error con el acceso de la base de datos \n"+e.getMessage());
-					System.out.println(e.getMessage());
-				}
+		bANT.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objNumT.ingresar_NumTel(txtIINT.getText(), txtNTNT.getText());
+
 				DefaultTableModel modeloNumT = objNumT.mostrarRegistrosNumT("SELECT * FROM NumTel_Institucion");
 				table_3.setModel(modeloNumT);
+				
 			}
 		});
-
 		bANT.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		bANT.setBounds(469, 11, 114, 23);
 		NumTel.add(bANT);
 
 		JButton bENT = new JButton("ELIMINAR");
-		bENT.addActionListener((ActionListener) new ActionListener()
-		{
-			public void actionPerformed(ActionEvent Arg0)
-			{
-				try
-				{
-					objNumT.eliminar_NumTel(txtNTNT.getText());
-				}
-				catch(IOException e)
-				{
-					JOptionPane.showMessageDialog(null, "Ocurrio un error con el acceso de la base de datos \n"+e.getMessage());
-					System.out.println(e.getMessage());
-				}
+		bENT.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objNumT.eliminar_NumTel(txtNTNT.getText());
+
 				DefaultTableModel modeloNumT = objNumT.mostrarRegistrosNumT("SELECT * FROM NumTel_Institucion");
 				table_3.setModel(modeloNumT);
+
 			}
 		});
 		bENT.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -960,21 +865,14 @@ public class Formulario extends JFrame {
 		NumTel.add(bENT);
 
 		JButton bMNT = new JButton("MODIFICAR");
-		bMNT.addActionListener((ActionListener) new ActionListener()
-		{
-			public void actionPerformed(ActionEvent Arg0)
-			{
-				try
-				{
-					objNumT.modificar_NumTel(txtIINT.getText(), txtNTNT.getText(), txtNTMNT.getText());
-				}
-				catch(IOException e)
-				{
-					JOptionPane.showMessageDialog(null, "Ocurrio un error con el acceso de la base de datos \n"+ e.getMessage());
-					System.out.println(e.getMessage());
-				}
+		bMNT.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objNumT.modificar_NumTel(txtIINT.getText(), txtNTNT.getText(), txtNTMNT.getText());
+
 				DefaultTableModel modeloNumT = objNumT.mostrarRegistrosNumT("SELECT * FROM NumTel_Institucion");
 				table_3.setModel(modeloNumT);
+				
 			}
 		});
 		bMNT.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -982,12 +880,12 @@ public class Formulario extends JFrame {
 		NumTel.add(bMNT);
 
 		JButton bCNT = new JButton("CONSULTAR");
-		bCNT.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
+		bCNT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
 				DefaultTableModel modeloNumT = objNumT.mostrarRegistrosNumT("SELECT * FROM NumTel_Institucion");
 				table_3.setModel(modeloNumT);
+				
 			}
 		});
 		bCNT.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -995,10 +893,8 @@ public class Formulario extends JFrame {
 		NumTel.add(bCNT);
 
 		JButton bLNT = new JButton("LIMPIAR");
-		bLNT.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
+		bLNT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				limpiarEntradas();
 			}
 		});
@@ -1006,18 +902,19 @@ public class Formulario extends JFrame {
 		bLNT.setBounds(10, 137, 114, 23);
 		NumTel.add(bLNT);
 
+		//-->> INICIO DEL PANEL CONTENEDOR DE LA TABLA
 		JPanel panel_3 = new JPanel();
 		panel_3.setBounds(10, 171, 573, 208);
 		NumTel.add(panel_3);
 		panel_3.setLayout(null);
 
-		JScrollPane scrollPane_3 = new JScrollPane();
-		scrollPane_3.setBounds(0, 0, 574, 208);
-		panel_3.add(scrollPane_3);
-
-		table_3 = new JTable();
-		table_3.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
-		scrollPane_3.setViewportView(table_3);
+			JScrollPane scrollPane_3 = new JScrollPane();
+			scrollPane_3.setBounds(0, 0, 574, 208);
+			panel_3.add(scrollPane_3);
+	
+			table_3 = new JTable();
+			table_3.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
+			scrollPane_3.setViewportView(table_3);
 
 		JTextPane txtpnNumtelefonomod = new JTextPane();
 		txtpnNumtelefonomod.setText("NUMTELEFONO (MOD):");
@@ -1027,7 +924,7 @@ public class Formulario extends JFrame {
 		txtpnNumtelefonomod.setBounds(10, 81, 152, 20);
 		NumTel.add(txtpnNumtelefonomod);
 
-		//--------------------------------------inicia panel Cartilla ---------------------------//
+//-->> INICIO DEL PANEL DE CARTILLA
 		JPanel Cartilla = new JPanel();
 		tabbedPane.addTab("Cartilla", null, Cartilla, null);
 		Cartilla.setLayout(null);
@@ -1062,19 +959,15 @@ public class Formulario extends JFrame {
 		txtRegimiento.setColumns(10);
 		Cartilla.add(txtRegimiento);
 
+		//-->>INICIO DE LOS BOTONES
 		JButton btnEliminarCar = new JButton("ELIMINAR");
 		btnEliminarCar.setBounds(476, 57, 118, 23);
 		btnEliminarCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try
-				{System.out.println("->"+txtNum_LiberacionCartilla.getText()+ txtZona_Militar.getText()+ txtRegimiento.getText());
+				
 				objCar.eliminar_Car(txtNum_LiberacionCartilla.getText());
 				limpiarEntradas();
-				}
-				catch(IOException e1)
-				{
-					e1.printStackTrace();
-				}
+
 				DefaultTableModel modeloCar = objCar.mostrarRegistrosCar("SELECT * FROM cartilla");
 				table_6.setModel(modeloCar);
 
@@ -1088,8 +981,7 @@ public class Formulario extends JFrame {
 		btnAgregarCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-
-				objCar.ingresar_Car(txtNum_LiberacionCartilla.getText(), txtZona_Militar.getText(), txtRegimiento.getText());
+				objCar.ingresar_Car(txtNum_LiberacionCartilla.getText(), txtZona_Militar.getText(),	txtRegimiento.getText());
 				limpiarEntradas();
 
 				DefaultTableModel modeloCar = objCar.mostrarRegistrosCar("SELECT * FROM cartilla");
@@ -1104,17 +996,13 @@ public class Formulario extends JFrame {
 		btnModificarCar.setBounds(476, 91, 118, 23);
 		btnModificarCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try
-				{
-					objCar.modificar_Car(txtNum_LiberacionCartilla.getText(), txtZona_Militar.getText(), txtRegimiento.getText());
-					limpiarEntradas();
-				}
-				catch(IOException e1)
-				{
-					e1.printStackTrace();
-				}
+
+				objCar.modificar_Car(txtNum_LiberacionCartilla.getText(), txtZona_Militar.getText(), txtRegimiento.getText());
+				limpiarEntradas();
+
 				DefaultTableModel modeloCar = objCar.mostrarRegistrosCar("SELECT * FROM cartilla");
 				table_6.setModel(modeloCar);
+				
 			}
 		});
 		btnModificarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -1124,8 +1012,10 @@ public class Formulario extends JFrame {
 		btnConsultarCar.setBounds(476, 125, 118, 23);
 		btnConsultarCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				DefaultTableModel modeloCar = objParR.mostrarRegistrosNumT("SELECT * FROM cartilla");
 				table_6.setModel(modeloCar);
+				
 			}
 		});
 		btnConsultarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -1141,20 +1031,20 @@ public class Formulario extends JFrame {
 		btnLimpiarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		Cartilla.add(btnLimpiarCar);
 
+		//-->> INICIO DEL PANEL CONTENEDOR DE LA TABLA
 		JPanel panel_6 = new JPanel();
 		panel_6.setBounds(10, 182, 577, 197);
 		Cartilla.add(panel_6);
 		panel_6.setLayout(null);
 
-		JScrollPane scrollPane_6 = new JScrollPane();
-		scrollPane_6.setBounds(0, 0, 577, 197);
-		panel_6.add(scrollPane_6);
+			JScrollPane scrollPane_6 = new JScrollPane();
+			scrollPane_6.setBounds(0, 0, 577, 197);
+			panel_6.add(scrollPane_6);
+	
+			table_6 = new JTable();
+			scrollPane_6.setViewportView(table_6);
 
-		table_6 = new JTable();
-		scrollPane_6.setViewportView(table_6);
-
-		//-->> INICIO DEL PANEL DE ESCUADRON
-
+//-->> INICIO DEL PANEL DE ESCUADRON
 		JPanel Escuadron = new JPanel();
 		tabbedPane.addTab("Escuadron", null, Escuadron, null);
 		tabbedPane.setEnabledAt(5, false);
@@ -1186,22 +1076,16 @@ public class Formulario extends JFrame {
 		txtNIE.setBounds(157, 42, 123, 20);
 		Escuadron.add(txtNIE);
 
+		//-->> INICIO DE LOS BOTONES
 		JButton bAE = new JButton("AGREGAR");
-		bAE.addActionListener((ActionListener) new ActionListener()
-		{
-			public void actionPerformed(ActionEvent Arg0)
-			{
-				try
-				{
-					objEsc.ingresar_Esc(txtNSE.getText(), txtNIE.getText());
-				}
-				catch(IOException e)
-				{
-					JOptionPane.showMessageDialog(null, "Ocurrio un error con el acceso de la base de datos \n"+e.getMessage());
-					System.out.println(e.getMessage());
-				}
+		bAE.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+				
+				objEsc.ingresar_Esc(txtNSE.getText(), txtNIE.getText());
+
 				DefaultTableModel modeloEsc = objEsc.mostrarRegistrosNumT("SELECT * FROM escuadron");
 				table_4.setModel(modeloEsc);
+				
 			}
 		});
 		bAE.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -1209,21 +1093,14 @@ public class Formulario extends JFrame {
 		Escuadron.add(bAE);
 
 		JButton bEE = new JButton("ELIMINAR");
-		bEE.addActionListener((ActionListener) new ActionListener()
-		{
-			public void actionPerformed(ActionEvent Arg0)
-			{
-				try
-				{
-					objEsc.eliminar_Esc(txtNSE.getText());
-				}
-				catch(IOException e)
-				{
-					JOptionPane.showMessageDialog(null, "Ocurrio un error con el acceso de la base de datos \n"+e.getMessage());
-					System.out.println(e.getMessage());
-				}
+		bEE.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objEsc.eliminar_Esc(txtNSE.getText());
+
 				DefaultTableModel modeloEsc = objEsc.mostrarRegistrosNumT("SELECT * FROM escuadron");
 				table_4.setModel(modeloEsc);
+				
 			}
 		});
 		bEE.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -1231,21 +1108,14 @@ public class Formulario extends JFrame {
 		Escuadron.add(bEE);
 
 		JButton bME = new JButton("MODIFICAR");
-		bME.addActionListener((ActionListener) new ActionListener()
-		{
-			public void actionPerformed(ActionEvent Arg0)
-			{
-				try
-				{
-					objEsc.modificar_Esc(txtNSE.getText(), txtNIE.getText());
-				}
-				catch(IOException e)
-				{
-					JOptionPane.showMessageDialog(null, "Ocurrio un error con el acceso de la base de datos \n"+ e.getMessage());
-					System.out.println(e.getMessage());
-				}
+		bME.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objEsc.modificar_Esc(txtNSE.getText(), txtNIE.getText());
+
 				DefaultTableModel modeloEsc = objEsc.mostrarRegistrosNumT("SELECT * FROM escuadron");
 				table_4.setModel(modeloEsc);
+				
 			}
 		});
 		bME.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -1253,12 +1123,12 @@ public class Formulario extends JFrame {
 		Escuadron.add(bME);
 
 		JButton bCE = new JButton("CONSULTAR");
-		bCE.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
+		bCE.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
 				DefaultTableModel modeloEsc = objEsc.mostrarRegistrosNumT("SELECT * FROM escuadron");
 				table_4.setModel(modeloEsc);
+				
 			}
 		});
 		bCE.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -1266,10 +1136,8 @@ public class Formulario extends JFrame {
 		Escuadron.add(bCE);
 
 		JButton bLE = new JButton("LIMPIAR");
-		bLE.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
+		bLE.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				limpiarEntradas();
 			}
 		});
@@ -1277,21 +1145,21 @@ public class Formulario extends JFrame {
 		bLE.setBounds(10, 110, 114, 23);
 		Escuadron.add(bLE);
 
+		//-->> INICIO DEL PANEL CONTENEDOR DE LA TABLA
 		JPanel panel_4 = new JPanel();
 		panel_4.setBounds(10, 155, 563, 188);
 		Escuadron.add(panel_4);
 		panel_4.setLayout(null);
 
-		JScrollPane scrollPane_4 = new JScrollPane();
-		scrollPane_4.setBounds(0, 0, 563, 188);
-		panel_4.add(scrollPane_4);
+			JScrollPane scrollPane_4 = new JScrollPane();
+			scrollPane_4.setBounds(0, 0, 563, 188);
+			panel_4.add(scrollPane_4);
+	
+			table_4 = new JTable();
+			table_4.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
+			scrollPane_4.setViewportView(table_4);
 
-		table_4 = new JTable();
-		table_4.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
-		scrollPane_4.setViewportView(table_4);
-
-		//-->> INICIO DEL PANEL DE PARTICIPANTE RESERVA (participa_res)
-
+//-->> INICIO DEL PANEL DE PARTICIPANTE RESERVA
 		JPanel ParticipaRes = new JPanel();
 		tabbedPane.addTab("Participa_Res", null, ParticipaRes, null);
 		ParticipaRes.setLayout(null);
@@ -1336,21 +1204,14 @@ public class Formulario extends JFrame {
 		ParticipaRes.add(txtRPR);
 
 		JButton bAPR = new JButton("AGREGAR");
-		bAPR.addActionListener((ActionListener) new ActionListener()
-		{
-			public void actionPerformed(ActionEvent Arg0)
-			{
-				try
-				{
-					objParR.ingresar_ParR(txtMRPR.getText(), txtEDPR.getText(), txtRPR.getText());
-				}
-				catch(IOException e)
-				{
-					JOptionPane.showMessageDialog(null, "Ocurrio un error con el acceso de la base de datos \n"+e.getMessage());
-					System.out.println(e.getMessage());
-				}
+		bAPR.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objParR.ingresar_ParR(txtMRPR.getText(), txtEDPR.getText(), txtRPR.getText());
+
 				DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT("SELECT * FROM participa_res");
 				table_5.setModel(modeloParR);
+				
 			}
 		});
 		bAPR.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -1358,21 +1219,14 @@ public class Formulario extends JFrame {
 		ParticipaRes.add(bAPR);
 
 		JButton bEPR = new JButton("ELIMINAR");
-		bEPR.addActionListener((ActionListener) new ActionListener()
-		{
-			public void actionPerformed(ActionEvent Arg0)
-			{
-				try
-				{
-					objParR.eliminar_ParR(txtMRPR.getText());
-				}
-				catch(IOException e)
-				{
-					JOptionPane.showMessageDialog(null, "Ocurrio un error con el acceso de la base de datos \n"+e.getMessage());
-					System.out.println(e.getMessage());
-				}
+		bEPR.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objParR.eliminar_ParR(txtMRPR.getText());
+
 				DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT("SELECT * FROM participa_res");
 				table_5.setModel(modeloParR);
+				
 			}
 		});
 		bEPR.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -1380,21 +1234,14 @@ public class Formulario extends JFrame {
 		ParticipaRes.add(bEPR);
 
 		JButton bMPR = new JButton("MODIFICAR");
-		bMPR.addActionListener((ActionListener) new ActionListener()
-		{
-			public void actionPerformed(ActionEvent Arg0)
-			{
-				try
-				{
-					objParR.modificar_ParR(txtMRPR.getText(), txtEDPR.getText(), txtRPR.getText());
-				}
-				catch(IOException e)
-				{
-					JOptionPane.showMessageDialog(null, "Ocurrio un error con el acceso de la base de datos \n"+ e.getMessage());
-					System.out.println(e.getMessage());
-				}
+		bMPR.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objParR.modificar_ParR(txtMRPR.getText(), txtEDPR.getText(), txtRPR.getText());
+
 				DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT("SELECT * FROM participa_res");
 				table_5.setModel(modeloParR);
+				
 			}
 		});
 		bMPR.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -1402,12 +1249,12 @@ public class Formulario extends JFrame {
 		ParticipaRes.add(bMPR);
 
 		JButton bCPR = new JButton("CONSULTAR");
-		bCPR.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
+		bCPR.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
 				DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT("SELECT * FROM participa_res");
 				table_5.setModel(modeloParR);
+				
 			}
 		});
 		bCPR.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -1415,10 +1262,8 @@ public class Formulario extends JFrame {
 		ParticipaRes.add(bCPR);
 
 		JButton bLPR = new JButton("LIMPIAR");
-		bLPR.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
+		bLPR.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				limpiarEntradas();
 			}
 		});
@@ -1426,19 +1271,20 @@ public class Formulario extends JFrame {
 		bLPR.setBounds(463, 136, 110, 23);
 		ParticipaRes.add(bLPR);
 
+		//-->> INICIO DEL PANEL CONTENEDOR DE LA TABLA
 		JPanel panel_5 = new JPanel();
 		panel_5.setBounds(10, 182, 577, 197);
 		ParticipaRes.add(panel_5);
 		panel_5.setLayout(null);
 
-		JScrollPane scrollPane_5 = new JScrollPane();
-		scrollPane_5.setBounds(0, 0, 577, 197);
-		panel_5.add(scrollPane_5);
+			JScrollPane scrollPane_5 = new JScrollPane();
+			scrollPane_5.setBounds(0, 0, 577, 197);
+			panel_5.add(scrollPane_5);
+	
+			table_5 = new JTable();
+			scrollPane_5.setViewportView(table_5);
 
-		table_5 = new JTable();
-		scrollPane_5.setViewportView(table_5);
-
-		//-->> INICIA PANEL DE OBTIENE
+//-->> INICIA PANEL DE OBTIENE
 		DefaultTableModel modeloIns = null;
 
 		JPanel Obtiene = new JPanel();
@@ -1485,20 +1331,12 @@ public class Formulario extends JFrame {
 		Obtiene.add(etMesRecepcion);
 		etMesRecepcion.setColumns(10);
 
-
-
+		//-->> INICIO DE LOS BOTONES
 		JButton btnAgregar = new JButton("AGREGAR");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				String Matricula="", NumeroLib="", Precio="", Mes="";
-
-				Matricula = etMatReserva.getText();
-				NumeroLib = etNumLiberacion.getText();
-				Precio = etPrecioCart.getText();
-				Mes = etMesRecepcion.getText();
-
-				objObt.ingresar_obtiene(Matricula, NumeroLib, Precio, Mes);
+				objObt.ingresar_obtiene(etMatReserva.getText(), etNumLiberacion.getText(), etPrecioCart.getText(), etMesRecepcion.getText());
 
 				DefaultTableModel modeloIns = objObt.mostrarRegistrosObtiene("SELECT * FROM obtiene");
 				tablaObtiene.setModel(modeloIns);
@@ -1513,11 +1351,7 @@ public class Formulario extends JFrame {
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				String Matricula="";
-
-				Matricula = etMatReserva.getText();
-
-				objObt.eliminar_obtiene(Matricula);
+				objObt.eliminar_obtiene(etMatReserva.getText());
 
 				DefaultTableModel modeloIns = objObt.mostrarRegistrosObtiene("SELECT * FROM obtiene");
 				tablaObtiene.setModel(modeloIns);
@@ -1532,16 +1366,9 @@ public class Formulario extends JFrame {
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				String Matricula="", NumeroLib="", Precio="", Mes="";
+				objObt.modificar_obtiene(etMatReserva.getText(), etNumLiberacion.getText(), etPrecioCart.getText(), etMesRecepcion.getText());
 
-				Matricula = etMatReserva.getText();
-				NumeroLib = etNumLiberacion.getText();
-				Precio = etPrecioCart.getText();
-				Mes = etMesRecepcion.getText();
-
-				objObt.modificar_obtiene(Matricula, NumeroLib, Precio, Mes);
-
-				DefaultTableModel modeloIns = objObt.mostrarRegistrosObtiene("SELECT * FROM obtiene WHERE Matricula_Res = '"+Matricula+"'");
+				DefaultTableModel modeloIns = objObt.mostrarRegistrosObtiene("SELECT * FROM obtiene WHERE Matricula_Res = '"+ etMatReserva.getText() +"'");
 				tablaObtiene.setModel(modeloIns);
 
 			}
@@ -1578,14 +1405,14 @@ public class Formulario extends JFrame {
 		spTabla.setBounds(0, 0, 544, 172);
 		pnlTabla.add(spTabla);
 
-		tablaObtiene = new JTable();
-		tablaObtiene.setShowVerticalLines(false);
-		spTabla.setViewportView(tablaObtiene);
-
-		tablaObtiene.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		tablaObtiene.setFont(new Font("Tahoma", Font.BOLD, 12));
-		tablaObtiene.setForeground(Color.BLACK);
-		tablaObtiene.setCellSelectionEnabled(true);
+			tablaObtiene = new JTable();
+			tablaObtiene.setShowVerticalLines(false);
+			spTabla.setViewportView(tablaObtiene);
+	
+			tablaObtiene.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+			tablaObtiene.setFont(new Font("Tahoma", Font.BOLD, 12));
+			tablaObtiene.setForeground(Color.BLACK);
+			tablaObtiene.setCellSelectionEnabled(true);
 
 		JButton btnConsultar = new JButton("CONSULTAR");
 		btnConsultar.addActionListener(new ActionListener() {
@@ -1615,8 +1442,7 @@ public class Formulario extends JFrame {
 		btnConsultar.setBounds(470, 121, 108, 23);
 		Obtiene.add(btnConsultar);
 
-		//-------------------------------------Inicia panel de sorteo-----------------//
-
+//-->> INICIA PANEL DE SORTEO
 		JPanel Sorteo = new JPanel();
 		tabbedPane.addTab("Sorteo", null, Sorteo, null);
 		Sorteo.setLayout(null);
@@ -1631,17 +1457,12 @@ public class Formulario extends JFrame {
 		etfechas.setBounds(223, 62, 86, 20);
 		Sorteo.add(etfechas);
 
+		//-->> INICIO DE LOS BOTONES
 		JButton btnAgregar_S = new JButton("AGREGAR");
 		btnAgregar_S.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				String edsorteo="",fecha="";
-				edsorteo=etsorteo.getText();
-				fecha = etfechas.getText();
-
-
-
-				objsor.ingresar_sorteo(edsorteo,fecha);
+				objsor.ingresar_sorteo(etsorteo.getText(), etfechas.getText());
 
 				DefaultTableModel modelos = objsor.mostrarRegistrosSorteo("SELECT * FROM sorteo");
 				tablasorteo.setModel(modelos);
@@ -1652,20 +1473,13 @@ public class Formulario extends JFrame {
 		btnAgregar_S.setBounds(496, 30, 108, 23);
 		Sorteo.add(btnAgregar_S);
 
-
 		JButton btnModificar_S = new JButton("MODIFICAR");
 		btnModificar_S.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				String edsorteo="",fecha="";
-				edsorteo=etsorteo.getText();
-				fecha = etfechas.getText();
+				objsor.ingresar_sorteo(etsorteo.getText(), etfechas.getText());
 
-
-
-				objsor.ingresar_sorteo(edsorteo,fecha);
-
-				DefaultTableModel modelos = objsor.mostrarRegistrosSorteo("SELECT * FROM sorteo WHERE Ed_Sorteo = '"+edsorteo+"'");
+				DefaultTableModel modelos = objsor.mostrarRegistrosSorteo("SELECT * FROM sorteo WHERE Ed_Sorteo = '"+etsorteo.getText()+"'");
 				tablaValida.setModel(modelos);
 
 			}
@@ -1689,36 +1503,34 @@ public class Formulario extends JFrame {
 		btnLimpiar_S.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnLimpiar_S.setBounds(496, 128, 108, 23);
 		Sorteo.add(btnLimpiar_S);
-
+		
+		//-->> INICIA EL PANEL CONTENEDOR DE LA TABLA
 		JPanel pnlTabla_1 = new JPanel();
 		pnlTabla_1.setLayout(null);
 		pnlTabla_1.setBounds(60, 207, 544, 172);
 		Sorteo.add(pnlTabla_1);
 
-		JScrollPane spTabla_1 = new JScrollPane();
-		spTabla_1.setBounds(0, 0, 544, 172);
-		pnlTabla_1.add(spTabla_1);
-
-		tablasorteo = new JTable();
-		tablasorteo.setBounds(0, 0, 1, 1);
-		pnlTabla_1.add(tablasorteo);
+			JScrollPane spTabla_1 = new JScrollPane();
+			spTabla_1.setBounds(0, 0, 544, 172);
+			pnlTabla_1.add(spTabla_1);
+	
+			tablasorteo = new JTable();
+			tablasorteo.setBounds(0, 0, 1, 1);
+			pnlTabla_1.add(tablasorteo);
 
 		JButton btnConsultar_S = new JButton("CONSULTAR");
 		btnConsultar_S.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				String[] datos=new String[2];
-				String edsorteo=etsorteo.getText();
 
-				DefaultTableModel modelos = objsor.mostrarRegistrosSorteo("SELECT * FROM sorteo WHERE Ed_Sorteo = '"+edsorteo+"'");
+				DefaultTableModel modelos = objsor.mostrarRegistrosSorteo("SELECT * FROM sorteo WHERE Ed_Sorteo = '"+etsorteo.getText()+"'");
 				tablaValida.setModel(modelos);
-
 
 				datos=objsor.vector_edits(datos);
 
 				etsorteo.setText(datos[1]);
 				etfechas.setText(datos[2]);
-
 
 				for(int i=0; i<datos.length; i++) {
 					datos[i]=null;
@@ -1741,7 +1553,8 @@ public class Formulario extends JFrame {
 		lblFecha.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		lblFecha.setBounds(23, 62, 148, 14);
 		Sorteo.add(lblFecha);
-		//--------------------------------------inicia panel valida ---------------------------//
+		
+//-->> INICIA EL PANEL CONTENEDOR DE VALIDA
 		DefaultTableModel modelos = null;
 		JPanel Valida = new JPanel();
 		Valida.setLayout(null);
@@ -1757,19 +1570,12 @@ public class Formulario extends JFrame {
 		etMatenc.setBounds(223, 62, 86, 20);
 		Valida.add(etMatenc);
 
+		//-->> INICIAN LOS BOTONES
 		JButton btnAgregar_V = new JButton("AGREGAR");
 		btnAgregar_V.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				String Placa="",Matricula="", NumeroLib="",horas="", Precio="";
-				Placa=etNumplaca.getText();
-				Matricula = etMatenc.getText();
-				NumeroLib = etNumlib.getText();
-				horas=etHoras.getText();
-				Precio = etPreciocart.getText();
-
-
-				objVal.ingresar_valida(Placa,Matricula, NumeroLib,horas, Precio);
+				objVal.ingresar_valida(etNumplaca.getText(), etMatenc.getText(), etNumlib.getText(), etHoras.getText(), etPreciocart.getText());
 
 				DefaultTableModel modelos = objVal.mostrarRegistrosValida("SELECT * FROM valida");
 				tablaValida.setModel(modelos);
@@ -1780,16 +1586,11 @@ public class Formulario extends JFrame {
 		btnAgregar_V.setBounds(496, 30, 108, 23);
 		Valida.add(btnAgregar_V);
 
-
 		JButton btnEliminar_V = new JButton("ELIMINAR");
 		btnEliminar_V.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				String Matricula="";
-
-				Matricula = etMatenc.getText();
-
-				objVal.eliminar_valida(Matricula);
+				objVal.eliminar_valida(etMatenc.getText());
 
 				DefaultTableModel modelos = objVal.mostrarRegistrosValida("SELECT * FROM valida");
 				tablaValida.setModel(modelos);
@@ -1800,23 +1601,13 @@ public class Formulario extends JFrame {
 		btnEliminar_V.setBounds(496, 61, 108, 23);
 		Valida.add(btnEliminar_V);
 
-
 		JButton btnModificar_V = new JButton("MODIFICAR");
 		btnModificar_V.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				String Placa="",Matricula="", NumeroLib="",Horas="", Precio="";
+				objVal.modificar_val(etNumplaca.getText(), etMatenc.getText(), etNumlib.getText(), etHoras.getText(), etPreciocart.getText());
 
-				Placa=etNumplaca.getText();
-				Matricula = etMatenc.getText();
-				NumeroLib = etNumlib.getText();
-				Horas=etHoras.getText();
-				Precio = etPreciocart.getText();
-
-
-				objVal.modificar_val(Placa,Matricula, NumeroLib,Horas, Precio);
-
-				DefaultTableModel modelos = objVal.mostrarRegistrosValida("SELECT * FROM valida WHERE Num_Placa = '"+Placa+"'");
+				DefaultTableModel modelos = objVal.mostrarRegistrosValida("SELECT * FROM valida WHERE Num_Placa = '"+etNumplaca.getText()+"'");
 				tablaValida.setModel(modelos);
 
 			}
@@ -1825,19 +1616,15 @@ public class Formulario extends JFrame {
 		btnModificar_V.setBounds(496, 92, 108, 23);
 		Valida.add(btnModificar_V);
 
-
-
 		JButton btnLimpiar_V = new JButton("LIMPIAR");
 		btnLimpiar_V.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 
 				etNumplaca.setText("");
 				etMatReserva.setText("");
 				etNumLiberacion.setText("");
 				etPrecioCart.setText("");
 				etMesRecepcion.setText("");
-
 
 				DefaultTableModel modelo = objVal.mostrarRegistrosValida("SELECT * FROM valida");
 				tablaValida.setModel(modelo);
@@ -1857,24 +1644,23 @@ public class Formulario extends JFrame {
 		sptablav.setBounds(0, 0, 544, 172);
 		pnlTabla_V.add(sptablav);
 
-		tablaValida = new JTable();
-		tablaValida.setShowVerticalLines(false);
-		tablaValida.setForeground(Color.BLACK);
-		tablaValida.setFont(new Font("Tahoma", Font.BOLD, 12));
-		tablaValida.setCellSelectionEnabled(true);
+			tablaValida = new JTable();
+			tablaValida.setShowVerticalLines(false);
+			tablaValida.setForeground(Color.BLACK);
+			tablaValida.setFont(new Font("Tahoma", Font.BOLD, 12));
+			tablaValida.setCellSelectionEnabled(true);
+			tablaValida.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+			tablaValida.setBounds(0, 0, 1, 1);
+			pnlTabla_V.add(tablaValida);
+	
+			tablaValida = new JTable();
+			tablaValida.setShowVerticalLines(false);
+			spTabla.setViewportView(tablaValida);
+
 		tablaValida.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		tablaValida.setBounds(0, 0, 1, 1);
-		pnlTabla_V.add(tablaValida);
-
-		tablaValida = new JTable();
-		tablaValida.setShowVerticalLines(false);
-		spTabla.setViewportView(tablaValida);
-
-		tablaValida.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		tablaValida.setFont(new Font("Tahoma", Font.BOLD, 12));
 		tablaValida.setForeground(Color.BLACK);
 		tablaValida.setCellSelectionEnabled(true);
-
 
 		JButton btnConsultar_V = new JButton("CONSULTAR");
 		btnConsultar_V.addActionListener(new ActionListener() {
@@ -1947,7 +1733,7 @@ public class Formulario extends JFrame {
 		lblPreciocartilla.setBounds(26, 162, 148, 14);
 		Valida.add(lblPreciocartilla);
 
-		//============================================PANEL ENCUADRADO=====================================//
+//-->> INICIA EL PANEL DE ENCUADRADO
 		JPanel Encuadrado = new JPanel();
 		Encuadrado.setLayout(null);
 		tabbedPane.addTab("Encuadrado", null, Encuadrado, null);
@@ -2165,17 +1951,12 @@ public class Formulario extends JFrame {
 		JButton btnAgregarEnc = new JButton("AGREGAR");
 		btnAgregarEnc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try{
 
-					objEnc.ingresar_Enc(txtMatriculaEnc.getText(), txtNombreEnc.getText(), txtApellidoPaternoEnc.getText(),txtApellidoMaternoEnc.getText(),txtCurpEnc.getText(),txtEdadEnc.getText(),txtProfesionEnc.getText(),txtNumExtEnc.getText(),txtNumInteriorEnc.getText(),txtCalleEnc.getText(),txtColoniaEnc.getText(),txtCiudadEnc.getText(),txtSexoEnc.getText(),txtEstadoCivil.getText(),TxtDiscapacidad.getText(),txtClaseEnc.getText(),txtHabilidadEnc.getText(),txtTipoSangreEnc.getText(),txtPesoEnc.getText(),txtAlturaEnc.getText());
-				}
-				catch(IOException ex)
-				{
-					JOptionPane.showMessageDialog(null, "Ocurrio un error con el acceso de la base de datos \n"+ex.getMessage());
-					System.out.println(ex.getMessage());
-				}
+				objEnc.ingresar_Enc(txtMatriculaEnc.getText(), txtNombreEnc.getText(), txtApellidoPaternoEnc.getText(), txtApellidoMaternoEnc.getText(), txtCurpEnc.getText(), txtEdadEnc.getText(), txtProfesionEnc.getText(), txtNumExtEnc.getText(),	txtNumInteriorEnc.getText(), txtCalleEnc.getText(), txtColoniaEnc.getText(), txtCiudadEnc.getText(), txtSexoEnc.getText(), txtEstadoCivil.getText(), TxtDiscapacidad.getText(), txtClaseEnc.getText(), txtHabilidadEnc.getText(), txtTipoSangreEnc.getText(), txtPesoEnc.getText(), txtAlturaEnc.getText());
+
 				DefaultTableModel modeloEnc = objParR.mostrarRegistrosNumT("SELECT * FROM encuadrado");
 				table_7.setModel(modeloEnc);
+
 			}
 		});
 		btnAgregarEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -2185,17 +1966,12 @@ public class Formulario extends JFrame {
 		JButton btnEliminarEnc = new JButton("ELIMINAR");
 		btnEliminarEnc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try{
 
-					objEnc.eliminar_Enc(txtMatriculaEnc.getText());
-				}
-				catch(IOException ex)
-				{
-					JOptionPane.showMessageDialog(null, "Ocurrio un error con el acceso de la base de datos \n"+ex.getMessage());
-					System.out.println(ex.getMessage());
-				}
+				objEnc.eliminar_Enc(txtMatriculaEnc.getText());
+
 				DefaultTableModel modeloEnc = objParR.mostrarRegistrosNumT("SELECT * FROM encuadrado");
 				table_7.setModel(modeloEnc);
+
 			}
 		});
 		btnEliminarEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -2205,17 +1981,12 @@ public class Formulario extends JFrame {
 		JButton btnModificarEnc = new JButton("MODIFICAR\r\n");
 		btnModificarEnc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-try{
-					
-					objEnc.modificar_Enc(txtMatriculaEnc.getText(), txtNombreEnc.getText(), txtApellidoPaternoEnc.getText(),txtApellidoMaternoEnc.getText(),txtCurpEnc.getText(),txtEdadEnc.getText(),txtProfesionEnc.getText(),txtNumExtEnc.getText(),txtNumInteriorEnc.getText(),txtCalleEnc.getText(),txtColoniaEnc.getText(),txtCiudadEnc.getText(),txtSexoEnc.getText(),txtEstadoCivil.getText(),TxtDiscapacidad.getText(),txtClaseEnc.getText(),txtHabilidadEnc.getText(),txtTipoSangreEnc.getText(),txtPesoEnc.getText(),txtAlturaEnc.getText());
-				}
-				catch(IOException ex)
-				{
-					JOptionPane.showMessageDialog(null, "Ocurrio un error con el acceso de la base de datos \n"+ex.getMessage());
-					System.out.println(ex.getMessage());
-				}
+				
+				objEnc.modificar_Enc(txtMatriculaEnc.getText(), txtNombreEnc.getText(),	txtApellidoPaternoEnc.getText(), txtApellidoMaternoEnc.getText(), txtCurpEnc.getText(),	txtEdadEnc.getText(), txtProfesionEnc.getText(), txtNumExtEnc.getText(), txtNumInteriorEnc.getText(), txtCalleEnc.getText(), txtColoniaEnc.getText(), txtCiudadEnc.getText(), txtSexoEnc.getText(), txtEstadoCivil.getText(), TxtDiscapacidad.getText(), txtClaseEnc.getText(), txtHabilidadEnc.getText(), txtTipoSangreEnc.getText(), txtPesoEnc.getText(), txtAlturaEnc.getText());
+
 				DefaultTableModel modeloEnc = objParR.mostrarRegistrosNumT("SELECT * FROM encuadrado");
 				table_7.setModel(modeloEnc);
+
 			}
 		});
 		btnModificarEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -2228,6 +1999,7 @@ try{
 				
 				DefaultTableModel modeloEnc = objParR.mostrarRegistrosNumT("SELECT * FROM encuadrado");
 				table_7.setModel(modeloEnc);
+				
 			}
 		});
 		btnConsultarEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -2244,7 +2016,6 @@ try{
 		btnLimpiarEnc.setBounds(519, 237, 118, 23);
 		Encuadrado.add(btnLimpiarEnc);
 
-
 		JPanel panel_7 = new JPanel();
 		panel_7.setBounds(222, 270, 415, 109);
 		Encuadrado.add(panel_7);
@@ -2257,18 +2028,6 @@ try{
 		table_7 = new JTable();
 		scrollPane_7.add(table_7);
 
-
-		/*JPanel panel_6 = new JPanel();
-		panel_6.setBounds(10, 182, 577, 197);
-		Cartilla.add(panel_6);
-		panel_6.setLayout(null);
-
-		JScrollPane scrollPane_6 = new JScrollPane();
-		scrollPane_6.setBounds(0, 0, 577, 197);
-		panel_6.add(scrollPane_6);
-
-		table_6 = new JTable();
-		scrollPane_6.setViewportView(table_6);*/
-
 	}
+	
 }

@@ -21,8 +21,7 @@ import javax.swing.JButton;
 import java.awt.Font;
 
 @SuppressWarnings({ "unused", "serial" })
-public class Loggin extends JFrame 
-{
+public class Loggin extends JFrame {
 
 	ConexionBD objConect=new ConexionBD();
 	Formulario form = new Formulario();
@@ -31,29 +30,23 @@ public class Loggin extends JFrame
 	private JTextField txtU;
 	private JTextField txtC;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
-		
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Loggin frame = new Loggin();
 					frame.setVisible(true);
-				}catch (Exception e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-		
+
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public Loggin() 
-	{
+	public Loggin() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -92,19 +85,6 @@ public class Loggin extends JFrame
 		bE.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				
-				/*ConexionBD conexion = new ConexionBD(txtU.getText(), txtC.getText());
-				flag=objConect.error(flag);
-				//System.out.println(flag);
-				
-				if(flag==0) {
-					System.out.println(flag);
-					JOptionPane.showMessageDialog(null, "Si");
-					//form.setVisible(true);
-					
-				}else {
-					JOptionPane.showMessageDialog(null, "No");
-				}*/
 				
 				ConexionBD conexion = new ConexionBD(txtU.getText(), txtC.getText());
 				Formulario form = new Formulario();
