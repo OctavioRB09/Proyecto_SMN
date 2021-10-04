@@ -26,8 +26,6 @@ import Consultas.*;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 
 //@SuppressWarnings({ "unused", "serial" })
 public class Formulario extends JFrame {
