@@ -15,9 +15,8 @@ public class Reserva_Querys {
 	ResultSet rs = null;
 	
 	String query="", Q_MatRes="", Q_Nombre="", Q_ApellidoP="", Q_ApellidoM="", Q_Curp="", Q_Edad="", Q_Profesion="", Q_Ciudad="", Q_Colonia="", Q_Calle="", Q_NumInt="", Q_NumExt="", Q_Sexo="", Q_ECivil="", Q_Discapacidad="", Q_Clase="", Q_Telefono="";
-	String[] datos = new String[17];
 	
-	public void ingresar_reserva(String MatRes, String Nombre, String ApellidoP, String ApellidoM, String Curp, String Edad, String Profesion, String Ciudad, String Colonia, String Calle , String NumInt, String NumExt, String Sexo, String ECivil, String Discapacidad, String Clase, String Telefono) {
+	public void ingresar_reserva(String MatRes, String Nombre, String ApellidoP, String ApellidoM, String Curp, String Edad, String Profesion, String NumExt, String NumInt, String Calle, String Colonia, String Ciudad, String Sexo, String ECivil, String Discapacidad, String Clase, String Telefono) {
 		
 		try {
 			
@@ -157,7 +156,7 @@ public class Reserva_Querys {
 		
 	}
 	
-	public void modificar_reserva(String MatRes, String Nombre, String ApellidoP, String ApellidoM, String Curp, String Edad, String Profesion, String Ciudad, String Colonia, String Calle , String NumInt, String NumExt, String Sexo, String ECivil, String Discapacidad, String Clase, String Telefono) {
+	public void modificar_reserva(String MatRes, String Nombre, String ApellidoP, String ApellidoM, String Curp, String Edad, String Profesion, String NumExt, String NumInt, String Calle, String Colonia, String Ciudad, String Sexo, String ECivil, String Discapacidad, String Clase, String Telefono) {
 		
 		try {
 			
@@ -281,6 +280,7 @@ public class Reserva_Querys {
 	public DefaultTableModel mostrarRegistrosRes (String query) {
 		
 		String[] cabecera = {"Matricula", "Nombre", "A. Paterno", "A. Materno", "CURP", "Edad", "Profesión", "NumExt", "NumInt", "Calle", "Colonia", "Ciudad", "Sexo", "E. Civil", "Discapacidad", "Clase", "NumTel", "Tipo A."};
+		String[] datos = new String[17];
 		
 		DefaultTableModel modelo = new DefaultTableModel(null, cabecera);
 
@@ -311,13 +311,11 @@ public class Reserva_Querys {
 					datos[14] = rs.getString(15);
 					datos[15] = rs.getString(16);
 					datos[16] = rs.getString(17);
-					datos[17] = rs.getString(18);
 					modelo.addRow(datos);
 					
 				} while(rs.next());
 				
-			}else
-				for(int i=0; i<datos.length; i++) datos[i]="";
+			}
 
 		} catch (SQLException e) {
 

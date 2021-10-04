@@ -133,8 +133,7 @@ public class Participa_enc_Querys {
 					
 				} while(rs.next());
 				
-			}else
-				for(int i=0; i<datos.length; i++) datos[i]="";
+			}
 
 		} catch (SQLException e) {
 
@@ -144,15 +143,6 @@ public class Participa_enc_Querys {
 		}
 		
 		return modelo;
-		
-	}
-	
-	public String[] vector_edits(String[] datos_salida) {
-		
-		for(int i=0; i<datos.length; i++)
-			datos_salida[i]=datos[i];
-		
-		return datos_salida;
 		
 	}
 

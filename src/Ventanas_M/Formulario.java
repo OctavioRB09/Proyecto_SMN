@@ -46,6 +46,8 @@ public class Formulario extends JFrame {
 	Cartilla_Querys objCar=new Cartilla_Querys();
 	Encuadrado_Querys objEnc=new Encuadrado_Querys();
 	Lidera_Querys objTC=new Lidera_Querys();
+	Reserva_Querys objRQ=new Reserva_Querys();
+	Participa_enc_Querys objPEQ=new Participa_enc_Querys();
 	
 	ConexionBD conexion = new ConexionBD();
 	PreparedStatement ps = null;
@@ -157,8 +159,8 @@ public class Formulario extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Formulario frame = new Formulario();
-					frame.setVisible(true);
+					Formulario window = new Formulario();
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -400,6 +402,133 @@ public class Formulario extends JFrame {
 			tablaInstructor = new JTable();
 			tablaInstructor.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
 			spTablaInstructor.setViewportView(tablaInstructor);
+		
+//-->> INICIO DEL PANEL DEL NUMERO DEL TELEFONO DE INSTITUCION
+		JPanel NumTel = new JPanel();
+		tabbedPane.addTab("NumTel_Institucion", null, NumTel, null);
+		NumTel.setLayout(null);
+
+		JTextPane txtpnIdinstitucin = new JTextPane();
+		txtpnIdinstitucin.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		txtpnIdinstitucin.setBackground(SystemColor.menu);
+		txtpnIdinstitucin.setText("ID INSTITUCI\u00D3N");
+		txtpnIdinstitucin.setEditable(false);
+		txtpnIdinstitucin.setBounds(101, 70, 110, 20);
+		NumTel.add(txtpnIdinstitucin);
+
+		JTextPane txtpnN = new JTextPane();
+		txtpnN.setText("NUMERO TELEFONO");
+		txtpnN.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		txtpnN.setEditable(false);
+		txtpnN.setBackground(SystemColor.menu);
+		txtpnN.setBounds(312, 70, 125, 20);
+		NumTel.add(txtpnN);
+
+		JTextPane txtpnNumtelefonomod = new JTextPane();
+		txtpnNumtelefonomod.setText("NUMTELEFONO (MOD)");
+		txtpnNumtelefonomod.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		txtpnNumtelefonomod.setEditable(false);
+		txtpnNumtelefonomod.setBackground(SystemColor.menu);
+		txtpnNumtelefonomod.setBounds(523, 70, 138, 20);
+		NumTel.add(txtpnNumtelefonomod);
+
+		etIdInstitucion1 = new JTextField();
+		etIdInstitucion1.setBounds(95, 101, 123, 20);
+		NumTel.add(etIdInstitucion1);
+		etIdInstitucion1.setColumns(10);
+
+		etNumTelInst = new JTextField();
+		etNumTelInst.setColumns(10);
+		etNumTelInst.setBounds(313, 101, 123, 20);
+		NumTel.add(etNumTelInst);
+
+		etNumTelNuevo = new JTextField();
+		etNumTelNuevo.setColumns(10);
+		etNumTelNuevo.setBounds(531, 101, 123, 20);
+		NumTel.add(etNumTelNuevo);
+
+		//-->> INICIO DE LOS BOTONES
+		JButton btnAgregarNumTel = new JButton("AGREGAR");
+		btnAgregarNumTel.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objNumT.ingresar_NumTel(etIdInstitucion1.getText(), etNumTelInst.getText());
+
+				DefaultTableModel modeloNumT = objNumT.mostrarRegistrosNumT("SELECT * FROM NumTel_Institucion");
+				tablaNumTel.setModel(modeloNumT);
+
+			}
+		});
+		btnAgregarNumTel.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnAgregarNumTel.setBounds(30, 193, 114, 23);
+		NumTel.add(btnAgregarNumTel);
+
+		JButton btnEliminarNumTel = new JButton("ELIMINAR");
+		btnEliminarNumTel.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objNumT.eliminar_NumTel(etNumTelInst.getText());
+
+				DefaultTableModel modeloNumT = objNumT.mostrarRegistrosNumT("SELECT * FROM NumTel_Institucion");
+				tablaNumTel.setModel(modeloNumT);
+
+			}
+		});
+		btnEliminarNumTel.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnEliminarNumTel.setBounds(174, 193, 114, 23);
+		NumTel.add(btnEliminarNumTel);
+
+		JButton btnModificarNumTel = new JButton("MODIFICAR");
+		btnModificarNumTel.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objNumT.modificar_NumTel(etIdInstitucion1.getText(), etNumTelInst.getText(), etNumTelNuevo.getText());
+
+				DefaultTableModel modeloNumT = objNumT.mostrarRegistrosNumT("SELECT * FROM NumTel_Institucion");
+				tablaNumTel.setModel(modeloNumT);
+
+			}
+		});
+		btnModificarNumTel.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnModificarNumTel.setBounds(318, 193, 114, 23);
+		NumTel.add(btnModificarNumTel);
+
+		JButton btnConsultarNumTel = new JButton("CONSULTAR");
+		btnConsultarNumTel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				DefaultTableModel modeloNumT = objNumT.mostrarRegistrosNumT("SELECT * FROM NumTel_Institucion");
+				tablaNumTel.setModel(modeloNumT);
+
+			}
+		});
+		btnConsultarNumTel.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnConsultarNumTel.setBounds(462, 193, 114, 23);
+		NumTel.add(btnConsultarNumTel);
+
+		JButton btnLimpiarNumTel = new JButton("LIMPIAR");
+		btnLimpiarNumTel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpiarEntradas();
+			}
+		});
+		btnLimpiarNumTel.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnLimpiarNumTel.setBounds(606, 193, 114, 23);
+		NumTel.add(btnLimpiarNumTel);
+
+		//-->> INICIO DEL PANEL CONTENEDOR DE LA TABLA
+		JPanel pnlTablaNumTel = new JPanel();
+		pnlTablaNumTel.setBounds(179, 267, 392, 208);
+		NumTel.add(pnlTablaNumTel);
+		pnlTablaNumTel.setLayout(null);
+
+			JScrollPane spTablaNumTel = new JScrollPane();
+			spTablaNumTel.setBounds(0, 0, 392, 208);
+			pnlTablaNumTel.add(spTablaNumTel);
+		
+			tablaNumTel = new JTable();
+			tablaNumTel.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
+			spTablaNumTel.setViewportView(tablaNumTel);
 
 //-->> INICIO DEL PANEL DE INSTITUCION
 		JPanel Institucion = new JPanel();
@@ -587,17 +716,17 @@ public class Formulario extends JFrame {
 		tabbedPane.addTab("Cartilla", null, Cartilla, null);
 		Cartilla.setLayout(null);
 		
-				JLabel lblNum_Liberación = new JLabel("NUM_LIBERACI\u00D3N");
+		JLabel lblNum_Liberación = new JLabel("NUM_LIBERACI\u00D3N");
 		lblNum_Liberación.setBounds(118, 70, 107, 14);
 		lblNum_Liberación.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		Cartilla.add(lblNum_Liberación);
-		
-				JLabel lblZona_Militar = new JLabel("ZONA_MILITAR");
+
+		JLabel lblZona_Militar = new JLabel("ZONA_MILITAR");
 		lblZona_Militar.setBounds(343, 70, 93, 14);
 		lblZona_Militar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		Cartilla.add(lblZona_Militar);	
-		
-				JLabel lblRegimiento = new JLabel("REGIMIENTO");
+
+		JLabel lblRegimiento = new JLabel("REGIMIENTO");
 		lblRegimiento.setBounds(554, 70, 77, 14);
 		lblRegimiento.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		Cartilla.add(lblRegimiento);
@@ -617,34 +746,34 @@ public class Formulario extends JFrame {
 		etRegimiento.setColumns(10);
 		Cartilla.add(etRegimiento);
 				
-						//-->>INICIO DE LOS BOTONES
+		//-->>INICIO DE LOS BOTONES
 		JButton btnEliminarCar = new JButton("ELIMINAR");
 		btnEliminarCar.setBounds(170, 192, 118, 23);
 		btnEliminarCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				objCar.eliminar_Car(etNum_LiberacionCartilla.getText());
 				limpiarEntradas();
-		
+
 				DefaultTableModel modeloCar = objCar.mostrarRegistrosCar("SELECT * FROM cartilla");
 				tablaCartilla.setModel(modeloCar);
-		
+
 			}
 		});
 		btnEliminarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		Cartilla.add(btnEliminarCar);
-		
-				JButton btnAgregarCar = new JButton("AGREGAR");
+
+		JButton btnAgregarCar = new JButton("AGREGAR");
 		btnAgregarCar.setBounds(26, 192, 118, 23);
 		btnAgregarCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		
+
 				objCar.ingresar_Car(etNum_LiberacionCartilla.getText(), etZona_Militar.getText(),	etRegimiento.getText());
 				limpiarEntradas();
-		
+
 				DefaultTableModel modeloCar = objCar.mostrarRegistrosCar("SELECT * FROM cartilla");
 				tablaCartilla.setModel(modeloCar);
-		
+
 			}
 		});
 		btnAgregarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -1175,263 +1304,10 @@ public class Formulario extends JFrame {
 		btnLimpiarLidera.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnLimpiarLidera.setBounds(622, 197, 113, 23);
 		Lidera.add(btnLimpiarLidera);
-		
-//-->> INICIO DEL PANEL DE PARTICIPANTE RESERVA
-		JPanel ParticipaRes = new JPanel();
-		tabbedPane.addTab("Participa_Res", null, ParticipaRes, null);
-		ParticipaRes.setLayout(null);
-
-		JTextPane txtpnMatriculares = new JTextPane();
-		txtpnMatriculares.setEditable(false);
-		txtpnMatriculares.setBackground(SystemColor.menu);
-		txtpnMatriculares.setText("MATRICULA RES");
-		txtpnMatriculares.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnMatriculares.setBounds(107, 69, 105, 20);
-		ParticipaRes.add(txtpnMatriculares);
-
-		JTextPane txtpnEdsorteo = new JTextPane();
-		txtpnEdsorteo.setEditable(false);
-		txtpnEdsorteo.setText("ED SORTEO");
-		txtpnEdsorteo.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnEdsorteo.setBackground(SystemColor.menu);
-		txtpnEdsorteo.setBounds(337, 69, 77, 20);
-		ParticipaRes.add(txtpnEdsorteo);
-
-		JTextPane txtpnResultado = new JTextPane();
-		txtpnResultado.setEditable(false);
-		txtpnResultado.setText("RESULTADO");
-		txtpnResultado.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnResultado.setBackground(SystemColor.menu);
-		txtpnResultado.setBounds(551, 69, 77, 20);
-		ParticipaRes.add(txtpnResultado);
-
-		etMatriculaPRes = new JTextField();
-		etMatriculaPRes.setBounds(104, 100, 110, 20);
-		ParticipaRes.add(etMatriculaPRes);
-		etMatriculaPRes.setColumns(10);
-		
-		etEdSorteoP = new JTextField();
-		etEdSorteoP.setColumns(10);
-		etEdSorteoP.setBounds(320, 100, 110, 20);
-		ParticipaRes.add(etEdSorteoP);
-		
-		etResultadoP = new JTextField();
-		etResultadoP.setColumns(10);
-		etResultadoP.setBounds(534, 100, 110, 20);
-		ParticipaRes.add(etResultadoP);
-						
-		JButton btnAgregarPRes = new JButton("AGREGAR");
-		btnAgregarPRes.addActionListener((ActionListener) new ActionListener() {
-			public void actionPerformed(ActionEvent Arg0) {
-		
-				objParR.ingresar_ParR(etMatriculaPRes.getText(), etEdSorteoP.getText(), etResultadoP.getText());
-		
-				DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT("SELECT * FROM participa_res");
-				tablaPRes.setModel(modeloParR);
-				
-			}
-		});
-		btnAgregarPRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnAgregarPRes.setBounds(33, 212, 110, 23);
-		ParticipaRes.add(btnAgregarPRes);
-	
-		JButton btnEliminarPRes = new JButton("ELIMINAR");
-		btnEliminarPRes.addActionListener((ActionListener) new ActionListener() {
-			public void actionPerformed(ActionEvent Arg0) {
-	
-				objParR.eliminar_ParR(etMatriculaPRes.getText());
-	
-				DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT("SELECT * FROM participa_res");
-				tablaPRes.setModel(modeloParR);
-				
-			}
-		});
-		btnEliminarPRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnEliminarPRes.setBounds(176, 212, 110, 23);
-		ParticipaRes.add(btnEliminarPRes);
-			
-		JButton btnModificarPRes = new JButton("MODIFICAR");
-		btnModificarPRes.addActionListener((ActionListener) new ActionListener() {
-			public void actionPerformed(ActionEvent Arg0) {
-
-				objParR.modificar_ParR(etMatriculaPRes.getText(), etEdSorteoP.getText(), etResultadoP.getText());
-
-				DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT("SELECT * FROM participa_res");
-				tablaPRes.setModel(modeloParR);
-				
-			}
-		});
-		btnModificarPRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnModificarPRes.setBounds(319, 212, 110, 23);
-		ParticipaRes.add(btnModificarPRes);
-					
-		JButton btnConsultarPRes = new JButton("CONSULTAR");
-		btnConsultarPRes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT("SELECT * FROM participa_res");
-				tablaPRes.setModel(modeloParR);
-				
-			}
-		});
-		btnConsultarPRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnConsultarPRes.setBounds(462, 212, 110, 23);
-		ParticipaRes.add(btnConsultarPRes);
-							
-		JButton btnLimpiarPRes = new JButton("LIMPIAR");
-		btnLimpiarPRes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				limpiarEntradas();
-			}
-		});
-		btnLimpiarPRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnLimpiarPRes.setBounds(605, 212, 110, 23);
-		ParticipaRes.add(btnLimpiarPRes);
-									
-		//-->> INICIO DEL PANEL CONTENEDOR DE LA TABLA
-		JPanel pnlTablaPRes = new JPanel();
-		pnlTablaPRes.setBounds(230, 278, 289, 197);
-		ParticipaRes.add(pnlTablaPRes);
-		pnlTablaPRes.setLayout(null);
-		
-			JScrollPane spTablaPRes = new JScrollPane();
-			spTablaPRes.setBounds(0, 0, 289, 197);
-			pnlTablaPRes.add(spTablaPRes);
-	
-			tablaPRes = new JTable();
-			spTablaPRes.setViewportView(tablaPRes);
-
-//-->> INICIO DEL PANEL DEL NUMERO DEL TELEFONO DE INSTITUCION
-		JPanel NumTel = new JPanel();
-		tabbedPane.addTab("NumTel_Institucion", null, NumTel, null);
-		NumTel.setLayout(null);
-
-		JTextPane txtpnIdinstitucin = new JTextPane();
-		txtpnIdinstitucin.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnIdinstitucin.setBackground(SystemColor.menu);
-		txtpnIdinstitucin.setText("ID INSTITUCI\u00D3N");
-		txtpnIdinstitucin.setEditable(false);
-		txtpnIdinstitucin.setBounds(101, 70, 110, 20);
-		NumTel.add(txtpnIdinstitucin);
-
-		JTextPane txtpnN = new JTextPane();
-		txtpnN.setText("NUMERO TELEFONO");
-		txtpnN.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnN.setEditable(false);
-		txtpnN.setBackground(SystemColor.menu);
-		txtpnN.setBounds(312, 70, 125, 20);
-		NumTel.add(txtpnN);
-		
-		JTextPane txtpnNumtelefonomod = new JTextPane();
-		txtpnNumtelefonomod.setText("NUMTELEFONO (MOD)");
-		txtpnNumtelefonomod.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnNumtelefonomod.setEditable(false);
-		txtpnNumtelefonomod.setBackground(SystemColor.menu);
-		txtpnNumtelefonomod.setBounds(523, 70, 138, 20);
-		NumTel.add(txtpnNumtelefonomod);
-
-		etIdInstitucion1 = new JTextField();
-		etIdInstitucion1.setBounds(95, 101, 123, 20);
-		NumTel.add(etIdInstitucion1);
-		etIdInstitucion1.setColumns(10);
-		
-		etNumTelInst = new JTextField();
-		etNumTelInst.setColumns(10);
-		etNumTelInst.setBounds(313, 101, 123, 20);
-		NumTel.add(etNumTelInst);
-
-		etNumTelNuevo = new JTextField();
-		etNumTelNuevo.setColumns(10);
-		etNumTelNuevo.setBounds(531, 101, 123, 20);
-		NumTel.add(etNumTelNuevo);
-
-		//-->> INICIO DE LOS BOTONES
-		JButton btnAgregarNumTel = new JButton("AGREGAR");
-		btnAgregarNumTel.addActionListener((ActionListener) new ActionListener() {
-			public void actionPerformed(ActionEvent Arg0) {
-
-				objNumT.ingresar_NumTel(etIdInstitucion1.getText(), etNumTelInst.getText());
-
-				DefaultTableModel modeloNumT = objNumT.mostrarRegistrosNumT("SELECT * FROM NumTel_Institucion");
-				tablaNumTel.setModel(modeloNumT);
-				
-			}
-		});
-		btnAgregarNumTel.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnAgregarNumTel.setBounds(30, 193, 114, 23);
-		NumTel.add(btnAgregarNumTel);
-
-		JButton btnEliminarNumTel = new JButton("ELIMINAR");
-		btnEliminarNumTel.addActionListener((ActionListener) new ActionListener() {
-			public void actionPerformed(ActionEvent Arg0) {
-
-				objNumT.eliminar_NumTel(etNumTelInst.getText());
-
-				DefaultTableModel modeloNumT = objNumT.mostrarRegistrosNumT("SELECT * FROM NumTel_Institucion");
-				tablaNumTel.setModel(modeloNumT);
-
-			}
-		});
-		btnEliminarNumTel.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnEliminarNumTel.setBounds(174, 193, 114, 23);
-		NumTel.add(btnEliminarNumTel);
-
-		JButton btnModificarNumTel = new JButton("MODIFICAR");
-		btnModificarNumTel.addActionListener((ActionListener) new ActionListener() {
-			public void actionPerformed(ActionEvent Arg0) {
-
-				objNumT.modificar_NumTel(etIdInstitucion1.getText(), etNumTelInst.getText(), etNumTelNuevo.getText());
-
-				DefaultTableModel modeloNumT = objNumT.mostrarRegistrosNumT("SELECT * FROM NumTel_Institucion");
-				tablaNumTel.setModel(modeloNumT);
-				
-			}
-		});
-		btnModificarNumTel.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnModificarNumTel.setBounds(318, 193, 114, 23);
-		NumTel.add(btnModificarNumTel);
-
-		JButton btnConsultarNumTel = new JButton("CONSULTAR");
-		btnConsultarNumTel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				DefaultTableModel modeloNumT = objNumT.mostrarRegistrosNumT("SELECT * FROM NumTel_Institucion");
-				tablaNumTel.setModel(modeloNumT);
-				
-			}
-		});
-		btnConsultarNumTel.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnConsultarNumTel.setBounds(462, 193, 114, 23);
-		NumTel.add(btnConsultarNumTel);
-
-		JButton btnLimpiarNumTel = new JButton("LIMPIAR");
-		btnLimpiarNumTel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				limpiarEntradas();
-			}
-		});
-		btnLimpiarNumTel.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnLimpiarNumTel.setBounds(606, 193, 114, 23);
-		NumTel.add(btnLimpiarNumTel);
-
-		//-->> INICIO DEL PANEL CONTENEDOR DE LA TABLA
-		JPanel pnlTablaNumTel = new JPanel();
-		pnlTablaNumTel.setBounds(179, 267, 392, 208);
-		NumTel.add(pnlTablaNumTel);
-		pnlTablaNumTel.setLayout(null);
-
-			JScrollPane spTablaNumTel = new JScrollPane();
-			spTablaNumTel.setBounds(0, 0, 392, 208);
-			pnlTablaNumTel.add(spTablaNumTel);
-	
-			tablaNumTel = new JTable();
-			tablaNumTel.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
-			spTablaNumTel.setViewportView(tablaNumTel);
 
 //-->> INICIO DEL PANEL DE ESCUADRON
 		JPanel Escuadron = new JPanel();
 		tabbedPane.addTab("Escuadron", null, Escuadron, null);
-		tabbedPane.setEnabledAt(111, true);
 		Escuadron.setLayout(null);
 
 		JTextPane txtpnNseccin = new JTextPane();
@@ -1662,7 +1538,6 @@ public class Formulario extends JFrame {
 
 		
 //-->> INICIA EL PANEL CONTENEDOR DE VALIDA
-		//DefaultTableModel modelos = null;
 		
 		JPanel Valida = new JPanel();
 		Valida.setLayout(null);
@@ -1832,6 +1707,131 @@ public class Formulario extends JFrame {
 			tablaValida.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 			tablaValida.setBounds(0, 0, 1, 1);
 			pnlTablaValida.add(tablaValida);
+		
+//-->> INICIO DEL PANEL DE PARTICIPANTE RESERVA
+		JPanel ParticipaRes = new JPanel();
+		tabbedPane.addTab("Participa_Res", null, ParticipaRes, null);
+		ParticipaRes.setLayout(null);
+
+		JTextPane txtpnMatriculares = new JTextPane();
+		txtpnMatriculares.setEditable(false);
+		txtpnMatriculares.setBackground(SystemColor.menu);
+		txtpnMatriculares.setText("MATRICULA RES");
+		txtpnMatriculares.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		txtpnMatriculares.setBounds(107, 69, 105, 20);
+		ParticipaRes.add(txtpnMatriculares);
+
+		JTextPane txtpnEdsorteo = new JTextPane();
+		txtpnEdsorteo.setEditable(false);
+		txtpnEdsorteo.setText("ED SORTEO");
+		txtpnEdsorteo.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		txtpnEdsorteo.setBackground(SystemColor.menu);
+		txtpnEdsorteo.setBounds(337, 69, 77, 20);
+		ParticipaRes.add(txtpnEdsorteo);
+
+		JTextPane txtpnResultado = new JTextPane();
+		txtpnResultado.setEditable(false);
+		txtpnResultado.setText("RESULTADO");
+		txtpnResultado.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		txtpnResultado.setBackground(SystemColor.menu);
+		txtpnResultado.setBounds(551, 69, 77, 20);
+		ParticipaRes.add(txtpnResultado);
+
+		etMatriculaPRes = new JTextField();
+		etMatriculaPRes.setBounds(104, 100, 110, 20);
+		ParticipaRes.add(etMatriculaPRes);
+		etMatriculaPRes.setColumns(10);
+
+		etEdSorteoP = new JTextField();
+		etEdSorteoP.setColumns(10);
+		etEdSorteoP.setBounds(320, 100, 110, 20);
+		ParticipaRes.add(etEdSorteoP);
+
+		etResultadoP = new JTextField();
+		etResultadoP.setColumns(10);
+		etResultadoP.setBounds(534, 100, 110, 20);
+		ParticipaRes.add(etResultadoP);
+
+		JButton btnAgregarPRes = new JButton("AGREGAR");
+		btnAgregarPRes.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+		
+				objParR.ingresar_ParR(etMatriculaPRes.getText(), etEdSorteoP.getText(), etResultadoP.getText());
+		
+				DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT("SELECT * FROM participa_res");
+				tablaPRes.setModel(modeloParR);
+				
+			}
+		});
+		btnAgregarPRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnAgregarPRes.setBounds(33, 212, 110, 23);
+		ParticipaRes.add(btnAgregarPRes);
+		
+			JButton btnEliminarPRes = new JButton("ELIMINAR");
+			btnEliminarPRes.addActionListener((ActionListener) new ActionListener() {
+				public void actionPerformed(ActionEvent Arg0) {
+	
+					objParR.eliminar_ParR(etMatriculaPRes.getText());
+	
+					DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT("SELECT * FROM participa_res");
+					tablaPRes.setModel(modeloParR);
+					
+				}
+			});
+			btnEliminarPRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+			btnEliminarPRes.setBounds(176, 212, 110, 23);
+			ParticipaRes.add(btnEliminarPRes);
+			
+		JButton btnModificarPRes = new JButton("MODIFICAR");
+		btnModificarPRes.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objParR.modificar_ParR(etMatriculaPRes.getText(), etEdSorteoP.getText(), etResultadoP.getText());
+
+				DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT("SELECT * FROM participa_res");
+				tablaPRes.setModel(modeloParR);
+				
+			}
+		});
+		btnModificarPRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnModificarPRes.setBounds(319, 212, 110, 23);
+		ParticipaRes.add(btnModificarPRes);
+		
+		JButton btnConsultarPRes = new JButton("CONSULTAR");
+		btnConsultarPRes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT("SELECT * FROM participa_res");
+				tablaPRes.setModel(modeloParR);
+				
+			}
+		});
+		btnConsultarPRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnConsultarPRes.setBounds(462, 212, 110, 23);
+		ParticipaRes.add(btnConsultarPRes);
+		
+		JButton btnLimpiarPRes = new JButton("LIMPIAR");
+		btnLimpiarPRes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpiarEntradas();
+			}
+		});
+		btnLimpiarPRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnLimpiarPRes.setBounds(605, 212, 110, 23);
+		ParticipaRes.add(btnLimpiarPRes);
+		
+		//-->> INICIO DEL PANEL CONTENEDOR DE LA TABLA
+		JPanel pnlTablaPRes = new JPanel();
+		pnlTablaPRes.setBounds(230, 278, 289, 197);
+		ParticipaRes.add(pnlTablaPRes);
+		pnlTablaPRes.setLayout(null);
+		
+			JScrollPane spTablaPRes = new JScrollPane();
+			spTablaPRes.setBounds(0, 0, 289, 197);
+			pnlTablaPRes.add(spTablaPRes);
+			
+					tablaPRes = new JTable();
+					spTablaPRes.setViewportView(tablaPRes);
 
 //-->> INICIA EL PANEL DE ENCUADRADO
 		JPanel Encuadrado = new JPanel();
@@ -2347,6 +2347,12 @@ public class Formulario extends JFrame {
 		JButton btnAgregarRes = new JButton("AGREGAR");
 		btnAgregarRes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				objRQ.ingresar_reserva(etMatriculaRes.getText(), etNombreRes.getText(), etAPaternoRes.getText(), etAMaternoRes.getText(), etCurpRes.getText(), etEdadRes.getText(), etProfesionRes.getText(), etNumExtRes.getText(), etNumIntRes.getText(), etCalleRes.getText(), etColoniaRes.getText(), etCiudadRes.getText(), etSexoRes.getText(), etECivilRes.getText(), etDiscapacidadRes.getText(), etClaseRes.getText(), etTelefonoRes.getText());
+				
+				DefaultTableModel modelo = objRQ.mostrarRegistrosRes("SELECT * FROM reserva");
+				tablaCartilla.setModel(modelo);
+				
 			}
 		});
 		btnAgregarRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -2356,6 +2362,12 @@ public class Formulario extends JFrame {
 		JButton btnEliminarRes = new JButton("ELIMINAR");
 		btnEliminarRes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				objRQ.eliminar_reserva(etMatriculaRes.getText());
+							
+				DefaultTableModel modelo = objRQ.mostrarRegistrosRes("SELECT * FROM reserva");
+				tablaCartilla.setModel(modelo);
+				
 			}
 		});
 		btnEliminarRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -2365,6 +2377,12 @@ public class Formulario extends JFrame {
 		JButton btnModificarRes = new JButton("MODIFICAR");
 		btnModificarRes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				objRQ.modificar_reserva(etMatriculaRes.getText(), etNombreRes.getText(), etAPaternoRes.getText(), etAMaternoRes.getText(), etCurpRes.getText(), etEdadRes.getText(), etProfesionRes.getText(), etNumExtRes.getText(), etNumIntRes.getText(), etCalleRes.getText(), etColoniaRes.getText(), etCiudadRes.getText(), etSexoRes.getText(), etECivilRes.getText(), etDiscapacidadRes.getText(), etClaseRes.getText(), etTelefonoRes.getText());
+				
+				DefaultTableModel modelo = objRQ.mostrarRegistrosRes("SELECT * FROM reserva");
+				tablaCartilla.setModel(modelo);
+				
 			}
 		});
 		btnModificarRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -2374,6 +2392,10 @@ public class Formulario extends JFrame {
 		JButton btnConsultarRes = new JButton("CONSULTAR");
 		btnConsultarRes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				DefaultTableModel modelo = objRQ.mostrarRegistrosRes("SELECT * FROM reserva");
+				tablaReserva.setModel(modelo);
+				
 			}
 		});
 		btnConsultarRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -2389,18 +2411,18 @@ public class Formulario extends JFrame {
 		btnLimpiarRes.setBounds(605, 254, 105, 23);
 		Reserva.add(btnLimpiarRes);
 		
+		//-->> INICIO DEL PANEL CONTENEDOR DE LA TABLA RESERVA
 		JPanel pnlTablaReserva = new JPanel();
 		pnlTablaReserva.setBounds(10, 298, 730, 177);
 		Reserva.add(pnlTablaReserva);
 		pnlTablaReserva.setLayout(null);
 		
-		JScrollPane spTablaReserva = new JScrollPane();
-		spTablaReserva.setBounds(0, 0, 730, 177);
-		pnlTablaReserva.add(spTablaReserva);
-		
-		tablaReserva = new JTable();
-		spTablaReserva.setViewportView(tablaReserva);
-		
+			JScrollPane spTablaReserva = new JScrollPane();
+			spTablaReserva.setBounds(0, 0, 730, 177);
+			pnlTablaReserva.add(spTablaReserva);
+			
+			tablaReserva = new JTable();
+			spTablaReserva.setViewportView(tablaReserva);
 		
 //-->> INICIO DE PANEL PARTICIPA_ENC
 		JPanel ParticipaEnc = new JPanel();
@@ -2443,6 +2465,9 @@ public class Formulario extends JFrame {
 		JButton btnAgregarPEnc = new JButton("AGREGAR");
 		btnAgregarPEnc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				objPEQ.ingreso_reg(etEdSorteoPartEnc.getText(), etMatriculaEncPart.getText(), etResPartEnc.getText());
+				
 			}
 		});
 		btnAgregarPEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -2452,6 +2477,9 @@ public class Formulario extends JFrame {
 		JButton btnEliminarPEnc = new JButton("ELIMINAR");
 		btnEliminarPEnc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				objPEQ.eliminar_reg(etMatriculaEncPart.getText());
+				
 			}
 		});
 		btnEliminarPEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -2461,6 +2489,9 @@ public class Formulario extends JFrame {
 		JButton btnModificarPEnc = new JButton("MODIFICAR");
 		btnModificarPEnc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				objPEQ.modificar_reg(etEdSorteoPartEnc.getText(), etMatriculaEncPart.getText(), etResPartEnc.getText());
+				
 			}
 		});
 		btnModificarPEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -2470,6 +2501,10 @@ public class Formulario extends JFrame {
 		JButton btnConsultarPEnc = new JButton("CONSULTAR");
 		btnConsultarPEnc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				DefaultTableModel modelo = objPEQ.mostrarRegistrosPartEnc("SELECT * FROM participa_enc");
+				tablaPartEnc.setModel(modelo);
+				
 			}
 		});
 		btnConsultarPEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -2490,14 +2525,13 @@ public class Formulario extends JFrame {
 		ParticipaEnc.add(pnlTablaPartEnc);
 		pnlTablaPartEnc.setLayout(null);
 		
-		JScrollPane spTablaPartEnc = new JScrollPane();
-		spTablaPartEnc.setBounds(0, 0, 282, 222);
-		pnlTablaPartEnc.add(spTablaPartEnc);
-		
-		tablaPartEnc = new JTable();
-		spTablaPartEnc.setViewportView(tablaPartEnc);
-		
-		
+			JScrollPane spTablaPartEnc = new JScrollPane();
+			spTablaPartEnc.setBounds(0, 0, 282, 222);
+			pnlTablaPartEnc.add(spTablaPartEnc);
+			
+			tablaPartEnc = new JTable();
+			spTablaPartEnc.setViewportView(tablaPartEnc);
 						
 	}
+	
 }

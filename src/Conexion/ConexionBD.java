@@ -6,7 +6,7 @@ import javax.swing.*;
 public class ConexionBD {
 	
 	private static String url="jdbc:mysql://localhost:3306/proyecto_smn?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=flase&serverTimezone=UTC";
-	public static String user="", pass="";
+	public static String user="root", pass="pass";
 	public int flag1;
 	
 	static {
