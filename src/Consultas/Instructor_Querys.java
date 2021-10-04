@@ -12,6 +12,7 @@ public class Instructor_Querys {
 	Connection cn = null;
 	Statement stm = null;
 	ResultSet rs = null;
+	String[] datos = new String[6];
 	
 	public void ingresar_instructor(String Placa, String Nombre, String ApellidoP, String ApellidoM, String Rango, String Sueldo) {
 		
@@ -111,7 +112,6 @@ public class Instructor_Querys {
 	public DefaultTableModel mostrarRegistrosIns(String query) {
 		
 		String[] cabecera = {"Placa", "Nombre", "Apellido Paterno", "Apellido Materno", "Rango", "Sueldo"};
-		String[] datos = new String[6];
 		
 		DefaultTableModel modelo = new DefaultTableModel(null, cabecera);
 
@@ -124,6 +124,7 @@ public class Instructor_Querys {
 			if(rs.next()) {
 
 				do {
+					
 					datos[0] = rs.getString(1);
 					datos[1] = rs.getString(2);	
 					datos[2] = rs.getString(3);
@@ -131,8 +132,9 @@ public class Instructor_Querys {
 					datos[4] = rs.getString(5);
 					datos[5] = rs.getString(6);
 					modelo.addRow(datos);
+										
 				} while(rs.next());
-
+				
 			}
 
 		}catch (SQLException e)	{
@@ -145,5 +147,5 @@ public class Instructor_Querys {
 		return modelo;
 
 	}
-
+	
 }

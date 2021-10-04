@@ -16,7 +16,9 @@ public class NumTel_Institucion_Querys {
 
 		try {
 			
-			// cn = conexion.conectar(1);
+			cn = conexion.conectar();
+			stm = cn.createStatement();
+			
 			String Q_Id, Q_Numero;
 			
 			if (Id.equals("")) {
@@ -95,16 +97,18 @@ public class NumTel_Institucion_Querys {
 			rs = stm.executeQuery(query);
 
 			if (rs.next()) {
+				
 				do {
 					datos[0] = rs.getString(1);
 					datos[1] = rs.getString(2);
 					modelo.addRow(datos);
 				} while (rs.next());
+				
 			}
 
-		} catch (SQLException e) {
+		}catch (SQLException e)	{
 			
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getErrorCode()+": "+e.getMessage());
 			e.printStackTrace();
 			
 		}

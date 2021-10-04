@@ -26,7 +26,6 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-//@SuppressWarnings({ "unused", "serial" })
 public class Formulario extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -371,7 +370,14 @@ public class Formulario extends JFrame {
 		btnBuscarIns.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent Arg0) {
 				
-				DefaultTableModel modelo = objIns.mostrarRegistrosIns("SELECT * FROM instructor");
+				String query="";
+				
+				if ((etNumPlaca.getText()).equals(""))
+					query = "SELECT * FROM instructor";
+				else
+					query = "SELECT * FROM instructor WHERE Num_Placa = '" + etNumPlaca.getText() + "'";
+				
+				DefaultTableModel modelo = objIns.mostrarRegistrosIns(query);
 				tablaInstructor.setModel(modelo);
 				
 			}
@@ -496,7 +502,14 @@ public class Formulario extends JFrame {
 		btnConsultarNumTel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				DefaultTableModel modeloNumT = objNumT.mostrarRegistrosNumT("SELECT * FROM NumTel_Institucion");
+				String query="";
+
+				if ((etIdInstitucion1.getText()).equals(""))
+					query = "SELECT * FROM NumTel_Institucion";
+				else
+					query = "SELECT * FROM NumTel_Institucion WHERE Id_Inst = '"+etIdInstitucion1.getText()+"'";
+				
+				DefaultTableModel modeloNumT = objNumT.mostrarRegistrosNumT(query);
 				tablaNumTel.setModel(modeloNumT);
 
 			}
@@ -689,7 +702,14 @@ public class Formulario extends JFrame {
 		btnConsultarInstitucion.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent Arg0) {
 				
-				DefaultTableModel modeloInsti = objInst.mostrarRegistrosIns("SELECT * FROM institucion");
+				String query="";
+
+				if ((etIdInstitucion.getText()).equals(""))
+					query = "SELECT * FROM institucion";
+				else
+					query = "SELECT * FROM institucion WHERE Id_Inst = '"+etIdInstitucion.getText()+"'";
+				
+				DefaultTableModel modeloInsti = objInst.mostrarRegistrosIns(query);
 				tablaInstitucion.setModel(modeloInsti);
 				
 			}
@@ -778,7 +798,7 @@ public class Formulario extends JFrame {
 		btnAgregarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		Cartilla.add(btnAgregarCar);
 		
-		JButton btnModificarCar = new JButton("MODIFICAR\r\n");
+		JButton btnModificarCar = new JButton("MODIFICAR");
 		btnModificarCar.setBounds(314, 192, 118, 23);
 		btnModificarCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -799,7 +819,14 @@ public class Formulario extends JFrame {
 		btnConsultarCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				DefaultTableModel modeloCar = objCar.mostrarRegistrosCar("SELECT * FROM cartilla");
+				String query="";
+
+				if ((etNum_LiberacionCartilla.getText()).equals(""))
+					query = "SELECT * FROM cartilla";
+				else
+					query = "SELECT * FROM cartilla  WHERE Num_liberación = '"+etNum_LiberacionCartilla.getText()+"'";
+				
+				DefaultTableModel modeloCar = objCar.mostrarRegistrosCar(query);
 				tablaCartilla.setModel(modeloCar);
 				
 			}
@@ -1003,7 +1030,16 @@ public class Formulario extends JFrame {
 		btnConsultarActividad.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent Arg0) {
 				
-				DefaultTableModel modeloAct = objAct.mostrarRegistrosAct("SELECT * FROM actividad");
+				String query="";
+
+				if ((etNumPlacaIns.getText()).equals("") && (etMatricula.getText()).equals(""))
+					query = "SELECT * FROM actividad";
+				else if (!((etNumPlacaIns.getText()).equals("")))
+					query = "SELECT * FROM actividad  WHERE Num_Placa = '"+etNumPlacaIns.getText()+"'";
+				else if (!((etMatricula.getText()).equals("")))
+					query = "SELECT * FROM actividad  WHERE Matricula_Enc = '"+etMatricula.getText()+"'";
+				
+				DefaultTableModel modeloAct = objAct.mostrarRegistrosAct(query);
 				tablaActividad.setModel(modeloAct);
 				
 			}
@@ -1051,12 +1087,12 @@ public class Formulario extends JFrame {
 		
 		JLabel lblPrecioCart = new JLabel("PRECIO DE CARTILLA");
 		lblPrecioCart.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblPrecioCart.setBounds(171, 110, 123, 14);
+		lblPrecioCart.setBounds(165, 110, 123, 14);
 		Obtiene.add(lblPrecioCart);
 		
 		JLabel lblRecepcion = new JLabel("MES DE RECEPCI\u00D3N");
 		lblRecepcion.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblRecepcion.setBounds(464, 110, 116, 14);
+		lblRecepcion.setBounds(468, 110, 116, 14);
 		Obtiene.add(lblRecepcion);
 
 		etMatReserva = new JTextField();
@@ -1070,12 +1106,12 @@ public class Formulario extends JFrame {
 		etNumLiberacion.setColumns(10);
 		
 		etPrecioCart = new JTextField();
-		etPrecioCart.setBounds(189, 139, 86, 20);
+		etPrecioCart.setBounds(183, 139, 86, 20);
 		Obtiene.add(etPrecioCart);
 		etPrecioCart.setColumns(10);
 
 		etMesRecepcion = new JTextField();
-		etMesRecepcion.setBounds(479, 139, 86, 20);
+		etMesRecepcion.setBounds(483, 139, 86, 20);
 		Obtiene.add(etMesRecepcion);
 		etMesRecepcion.setColumns(10);
 										
@@ -1147,7 +1183,14 @@ public class Formulario extends JFrame {
 		btnConsultarObtiene.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				DefaultTableModel modelo = objObt.mostrarRegistrosObtiene("SELECT * FROM obtiene");
+				String query="";
+
+				if ((etMatReserva.getText()).equals(""))
+					query = "SELECT * FROM obtiene";
+				else
+					query = "SELECT * FROM obtiene  WHERE Matricula_Res = '"+etMatReserva.getText()+"'";
+				
+				DefaultTableModel modelo = objObt.mostrarRegistrosObtiene(query);
 				tablaObtiene.setModel(modelo);
 		
 			}
@@ -1242,8 +1285,17 @@ public class Formulario extends JFrame {
 		JButton btnConsultarLidera = new JButton("CONSULTAR");
 		btnConsultarLidera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				String query="";
 
-				DefaultTableModel modelo = objTC.mostrarRegistros("SELECT * FROM lidera");
+				if ((etSargento.getText()).equals("") && (etCabo.getText()).equals(""))
+					query = "SELECT * FROM lidera";
+				else if (!((etSargento.getText()).equals("")))
+					query = "SELECT * FROM lidera WHERE Num_PlacaSargento = '"+etSargento.getText()+"'";
+				else if (!((etCabo.getText()).equals("")))
+					query = "SELECT * FROM lidera WHERE Num_PlacaCabo = '"+etCabo.getText()+"'";
+				
+				DefaultTableModel modelo = objTC.mostrarRegistros(query);
 				tablaLidera.setModel(modelo);
 									
 			}
@@ -1252,7 +1304,6 @@ public class Formulario extends JFrame {
 		btnConsultarLidera.setBounds(469, 197, 113, 23);
 		Lidera.add(btnConsultarLidera);
 		
-		//BOTON PARA LIMPIAR
 		JButton btnLimpiarLidera = new JButton("LIMPIAR");
 		btnLimpiarLidera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1358,7 +1409,14 @@ public class Formulario extends JFrame {
 		btnConsultarEscuadron.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				DefaultTableModel modeloEsc = objEsc.mostrarRegistrosEscuadron("SELECT * FROM escuadron");
+				String query="";
+
+				if ((etNumeroSeccion.getText()).equals(""))
+					query = "SELECT * FROM escuadron";
+				else
+					query = "SELECT * FROM escuadron WHERE N_Sección = '"+etNumeroSeccion.getText()+"'";
+				
+				DefaultTableModel modeloEsc = objEsc.mostrarRegistrosEscuadron(query);
 				tablaEscuadron.setModel(modeloEsc);
 				
 			}
@@ -1467,7 +1525,14 @@ public class Formulario extends JFrame {
 		btnConsultarSorteo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				DefaultTableModel modelos = objsor.mostrarRegistrosSorteo("SELECT * FROM sorteo");
+				String query="";
+
+				if ((etsorteo.getText()).equals(""))
+					query = "SELECT * FROM sorteo";
+				else
+					query = "SELECT * FROM sorteo WHERE Ed_Sorteo = '"+etsorteo.getText()+"'";
+				
+				DefaultTableModel modelos = objsor.mostrarRegistrosSorteo(query);
 				tablaSorteo.setModel(modelos);
 
 			}
@@ -1628,7 +1693,16 @@ public class Formulario extends JFrame {
 		btnConsultar_V.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				DefaultTableModel modelo = objVal.mostrarRegistrosValida("SELECT * FROM valida");
+				String query="";
+
+				if ((etNumplaca.getText()).equals("") && (etMatenc.getText()).equals(""))
+					query = "SELECT * FROM valida";
+				else if (!(etNumplaca.getText()).equals(""))
+					query = "SELECT * FROM valida WHERE Num_Placa = '"+etNumplaca.getText()+"'";
+				else if (!(etMatenc.getText()).equals(""))
+					query = "SELECT * FROM valida WHERE Matricula_Enc = '"+etMatenc.getText()+"'";
+				
+				DefaultTableModel modelo = objVal.mostrarRegistrosValida(query);
 				tablaValida.setModel(modelo);
 
 			}
@@ -1743,7 +1817,14 @@ public class Formulario extends JFrame {
 		btnConsultarPRes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT("SELECT * FROM participa_res");
+				String query="";
+
+				if ((etMatriculaPRes.getText()).equals(""))
+					query = "SELECT * FROM participa_res";
+				else
+					query = "SELECT * FROM participa_res WHERE Matricula_Res = '"+etMatriculaPRes.getText()+"'";
+				
+				DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT(query);
 				tablaPRes.setModel(modeloParR);
 				
 			}
@@ -2060,7 +2141,14 @@ public class Formulario extends JFrame {
 		btnConsultarEnc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				DefaultTableModel modeloEnc = objEnc.mostrarRegistrosEnc("SELECT * FROM encuadrado");
+				String query="";
+
+				if ((txtMatriculaEnc.getText()).equals(""))
+					query = "SELECT * FROM encuadrado";
+				else
+					query = "SELECT * FROM encuadrado WHERE Matricula_Enc = '"+txtMatriculaEnc.getText()+"'";
+				
+				DefaultTableModel modeloEnc = objEnc.mostrarRegistrosEnc(query);
 				tablaEncuadrado.setModel(modeloEnc);
 				
 			}
@@ -2333,7 +2421,14 @@ public class Formulario extends JFrame {
 		btnConsultarRes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				DefaultTableModel modelo = objRQ.mostrarRegistrosRes("SELECT * FROM reserva");
+				String query="";
+
+				if ((etMatriculaRes.getText()).equals(""))
+					query = "SELECT * FROM reserva";
+				else
+					query = "SELECT * FROM reserva WHERE Matricula_Res = '"+etMatriculaRes.getText()+"'";
+				
+				DefaultTableModel modelo = objRQ.mostrarRegistrosRes(query);
 				tablaReserva.setModel(modelo);
 				
 			}
@@ -2451,7 +2546,14 @@ public class Formulario extends JFrame {
 		btnConsultarPEnc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				DefaultTableModel modelo = objPEQ.mostrarRegistrosPartEnc("SELECT * FROM participa_enc");
+				String query="";
+
+				if ((etMatriculaEncPart.getText()).equals(""))
+					query = "SELECT * FROM participa_enc";
+				else
+					query = "SELECT * FROM participa_enc WHERE Matricula_Enc = '"+etMatriculaEncPart.getText()+"'";
+				
+				DefaultTableModel modelo = objPEQ.mostrarRegistrosPartEnc(query);
 				tablaPartEnc.setModel(modelo);
 				
 			}
