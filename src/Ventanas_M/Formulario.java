@@ -58,7 +58,6 @@ public class Formulario extends JFrame {
 	private JTextField etApellidoPatIns;
 	private JTextField etApellidoMatIns;
 	private JTextField etSueldo;
-	private JTable tablaInstructor;
 	private JTextField etRango;
 	private JTextField etIdInstitucion;
 	private JTextField etNombreInstitucion;
@@ -67,7 +66,6 @@ public class Formulario extends JFrame {
 	private JTextField etNumInteriorInstitucion;
 	private JTextField etNombreCalleInstitucion;
 	private JTextField etMunicipioInstitucion;
-	private JTable tablaInstitucion;
 	private JTextField etNumPlacaIns;
 	private JTextField etMatricula;
 	private JTextField etNumSec;
@@ -77,23 +75,18 @@ public class Formulario extends JFrame {
 	private JTextField etFecha;
 	private JTextField etActividad;
 	private JTextField etCosteAct;
-	private JTable tablaActividad;
 	private JTextField etIdInstitucion1;
 	private JTextField etNumTelInst;
-	private JTable tablaNumTel;
 	private JTextField etNumTelNuevo;
 	private JTextField etNumeroSeccion;
 	private JTextField etNumIntegrantes;
-	private JTable tablaEscuadron;
 	private JTextField etMatriculaPRes;
 	private JTextField etEdSorteoP;
 	private JTextField etResultadoP;
-	private JTable tablaPRes;
 	private JTextField etMatReserva;
 	private JTextField etNumLiberacion;
 	private JTextField etPrecioCart;
 	private JTextField etMesRecepcion;
-	private JTable tablaObtiene;
 	private JTextField etsorteo;
 	private JTextField etfechas;
 	private JTextField etNumplaca;
@@ -101,11 +94,9 @@ public class Formulario extends JFrame {
 	private JTextField etNumlib;
 	private JTextField etHoras;
 	private JTextField etPreciocart;
-	private JTable tablaValida;
 	private JTextField etNum_LiberacionCartilla;
 	private JTextField etZona_Militar;
 	private JTextField etRegimiento;
-	private JTextField TxtDiscapacidad;
 	private JTextField txtNombreEnc;
 	private JTextField txtApellidoPaternoEnc;
 	private JTextField txtApellidoMaternoEnc;
@@ -116,7 +107,7 @@ public class Formulario extends JFrame {
 	private JTextField txtNumInteriorEnc;
 	private JTextField txtNumExtEnc;
 	private JTextField txtCiudadEnc;
-	private JTextField txtEstadoCivilEnc;
+	private JTextField txtDiscapacidad;
 	private JTextField txtClaseEnc;
 	private JTextField txtHabilidadEnc;
 	private JTextField txtPesoEnc;
@@ -127,8 +118,6 @@ public class Formulario extends JFrame {
 	private JTextField txtMatriculaEnc;
 	private JTextField txtEstadoCivil;
 	private JTextField txtTipoSangreEnc;
-	private JTable tablaCartilla;
-	private JTable tablaEncuadrado;
 	private JTextField etMatriculaRes;
 	private JTextField etNombreRes;
 	private JTextField etAPaternoRes;
@@ -146,13 +135,25 @@ public class Formulario extends JFrame {
 	private JTextField etDiscapacidadRes;
 	private JTextField etClaseRes;
 	private JTextField etTelefonoRes;
-	private JTable tablaReserva;
+	private JTextField etSargento;
+	private JTextField etCabo;
 	private JTextField etMatriculaEncPart;
 	private JTextField etEdSorteoPartEnc;
 	private JTextField etResPartEnc;
 	private JTable tablaPartEnc;
 	private JTable tablaSorteo;
+	private JTable tablaReserva;
 	private JTable tablaLidera;
+	private JTable tablaCartilla;
+	private JTable tablaEncuadrado;
+	private JTable tablaValida;
+	private JTable tablaActividad;
+	private JTable tablaNumTel;
+	private JTable tablaEscuadron;
+	private JTable tablaPRes;
+	private JTable tablaObtiene;
+	private JTable tablaInstructor;
+	private JTable tablaInstitucion;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -169,44 +170,95 @@ public class Formulario extends JFrame {
 
 	public void limpiarEntradas() {
 		
-		etNumPlaca.setText(null);
-		etNombreIns.setText(null);
-		etApellidoPatIns.setText(null);
-		etApellidoMatIns.setText(null);
-		etRango.setText(null);
-		etSueldo.setText(null);
-
-		etIdInstitucion.setText(null);
-		etNombreInstitucion.setText(null);
-		etColoniaInstitucion.setText(null);
-		etNumExtInstitucion.setText(null);
-		etNumInteriorInstitucion.setText(null);
-		etNombreCalleInstitucion.setText(null);
-		etMunicipioInstitucion.setText(null);
-
-		etNumPlacaIns.setText(null);
-		etMatricula.setText(null);
-		etNumSec.setText(null);
-		etIdInst.setText(null);
-		etHoraInicio.setText(null);
-		etHoraFin.setText(null);
-		etFecha.setText(null);
-		etActividad.setText(null);
-		etCosteAct.setText(null);
-
-		etIdInstitucion1.setText(null);
-		etNumTelInst.setText(null);
-
-		etNumeroSeccion.setText(null);
-		etNumIntegrantes.setText(null);
-
-		etMatriculaPRes.setText(null);
-		etEdSorteoP.setText(null);
-		etResultadoP.setText(null);
-
-		etNum_LiberacionCartilla.setText(null);
-		etZona_Militar.setText(null);
-		etRegimiento.setText(null);
+		etNumPlaca.setText("");
+		etNombreIns.setText("");
+		etApellidoPatIns.setText("");
+		etApellidoMatIns.setText("");
+		etSueldo.setText("");
+		etRango.setText("");
+		etIdInstitucion.setText("");
+		etNombreInstitucion.setText("");
+		etColoniaInstitucion.setText("");
+		etNumExtInstitucion.setText("");
+		etNumInteriorInstitucion.setText("");
+		etNombreCalleInstitucion.setText("");
+		etMunicipioInstitucion.setText("");
+		etNumPlacaIns.setText("");
+		etMatricula.setText("");
+		etNumSec.setText("");
+		etIdInst.setText("");
+		etHoraInicio.setText("");
+		etHoraFin.setText("");
+		etFecha.setText("");
+		etActividad.setText("");
+		etCosteAct.setText("");
+		etIdInstitucion1.setText("");
+		etNumTelInst.setText("");
+		etNumTelNuevo.setText("");
+		etNumeroSeccion.setText("");
+		etNumIntegrantes.setText("");
+		etMatriculaPRes.setText("");
+		etEdSorteoP.setText("");
+		etResultadoP.setText("");
+		etMatReserva.setText("");
+		etNumLiberacion.setText("");
+		etPrecioCart.setText("");
+		etMesRecepcion.setText("");
+		etsorteo.setText("");
+		etfechas.setText("");
+		etNumplaca.setText("");
+		etMatenc.setText("");
+		etNumlib.setText("");
+		etHoras.setText("");
+		etPreciocart.setText("");
+		etNum_LiberacionCartilla.setText("");
+		etZona_Militar.setText("");
+		etRegimiento.setText("");
+		txtDiscapacidad.setText("");
+		txtNombreEnc.setText("");
+		txtApellidoPaternoEnc.setText("");
+		txtApellidoMaternoEnc.setText("");
+		txtCurpEnc.setText("");
+		txtProfesionEnc.setText("");
+		txtCalleEnc.setText("");
+		txtColoniaEnc.setText("");
+		txtNumInteriorEnc.setText("");
+		txtNumExtEnc.setText("");
+		txtCiudadEnc.setText("");
+		txtDiscapacidad.setText("");
+		txtClaseEnc.setText("");
+		txtHabilidadEnc.setText("");
+		txtPesoEnc.setText("");
+		txtAlturaEnc.setText("");
+		txtSexoEnc.setText("");
+		txtEdadEnc.setText("");
+		txtNumCelularEnc.setText("");
+		txtMatriculaEnc.setText("");
+		txtEstadoCivil.setText("");
+		txtTipoSangreEnc.setText("");
+		etMatriculaRes.setText("");
+		etNombreRes.setText("");
+		etAPaternoRes.setText("");
+		etAMaternoRes.setText("");
+		etCurpRes.setText("");
+		etEdadRes.setText("");
+		etProfesionRes.setText("");
+		etCiudadRes.setText("");
+		etColoniaRes.setText("");
+		etCalleRes.setText("");
+		etNumIntRes.setText("");
+		etNumExtRes.setText("");
+		etSexoRes.setText("");
+		etECivilRes.setText("");
+		etDiscapacidadRes.setText("");
+		etClaseRes.setText("");
+		etTelefonoRes.setText("");
+		etMatriculaEncPart.setText("");
+		etEdSorteoPartEnc.setText("");
+		etResPartEnc.setText("");
+		etSargento.setText("");
+		etCabo.setText("");
+		etNumTelNuevo.setText("");
 		
 	}
 
@@ -389,7 +441,12 @@ public class Formulario extends JFrame {
 		btnLimpiarIns.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnLimpiarIns.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				DefaultTableModel modelo = objIns.mostrarRegistrosIns("SELECT * FROM instructor");
+				tablaInstructor.setModel(modelo);
+				
 				limpiarEntradas();
+				
 			}
 		});
 		btnLimpiarIns.setBounds(604, 235, 111, 23);
@@ -521,7 +578,12 @@ public class Formulario extends JFrame {
 		JButton btnLimpiarNumTel = new JButton("LIMPIAR");
 		btnLimpiarNumTel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				DefaultTableModel modeloNumT = objNumT.mostrarRegistrosNumT("SELECT * FROM NumTel_Institucion");
+				tablaNumTel.setModel(modeloNumT);
+				
 				limpiarEntradas();
+				
 			}
 		});
 		btnLimpiarNumTel.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -691,7 +753,12 @@ public class Formulario extends JFrame {
 		btnLimpiarInstitucion.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnLimpiarInstitucion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				DefaultTableModel modeloInsti = objInst.mostrarRegistrosIns("SELECT * FROM institucion");
+				tablaInstitucion.setModel(modeloInsti);
+				
 				limpiarEntradas();
+				
 			}
 		});
 		btnLimpiarInstitucion.setBounds(604, 223, 111, 23);
@@ -838,7 +905,12 @@ public class Formulario extends JFrame {
 		btnLimpiarCar.setBounds(602, 192, 118, 23);
 		btnLimpiarCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				DefaultTableModel modeloCar = objCar.mostrarRegistrosCar("SELECT * FROM cartilla");
+				tablaCartilla.setModel(modeloCar);
+				
 				limpiarEntradas();
+				
 			}
 		});
 		btnLimpiarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -1051,7 +1123,12 @@ public class Formulario extends JFrame {
 		btnLimpiarActividad.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnLimpiarActividad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				DefaultTableModel modeloAct = objAct.mostrarRegistrosAct("SELECT * FROM actividad");
+				tablaActividad.setModel(modeloAct);
+				
 				limpiarEntradas();
+				
 			}
 		});
 		btnLimpiarActividad.setBounds(604, 228, 111, 23);
@@ -1165,13 +1242,10 @@ public class Formulario extends JFrame {
 		btnLimpiarObtiene.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				etMatReserva.setText("");
-				etNumLiberacion.setText("");
-				etPrecioCart.setText("");
-				etMesRecepcion.setText("");
-
 				DefaultTableModel modelo = objObt.mostrarRegistrosObtiene("SELECT * FROM obtiene");
 				tablaObtiene.setModel(modelo);
+				
+				limpiarEntradas();
 
 			}
 		});
@@ -1227,12 +1301,12 @@ public class Formulario extends JFrame {
 		lblCabo.setBounds(462, 47, 103, 16);
 		Lidera.add(lblCabo);
 	
-		JTextField etSargento = new JTextField();
+		etSargento = new JTextField();
 		etSargento.setBounds(194, 74, 86, 20);
 		Lidera.add(etSargento);
 		etSargento.setColumns(10);
 		
-		JTextField etCabo = new JTextField();
+		etCabo = new JTextField();
 		etCabo.setBounds(470, 74, 86, 20);
 		Lidera.add(etCabo);
 		etCabo.setColumns(10);
@@ -1307,8 +1381,12 @@ public class Formulario extends JFrame {
 		JButton btnLimpiarLidera = new JButton("LIMPIAR");
 		btnLimpiarLidera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				etCabo.setText("");
-				etSargento.setText("");
+
+				DefaultTableModel modelo = objTC.mostrarRegistros("SELECT * FROM lidera");
+				tablaLidera.setModel(modelo);
+				
+				limpiarEntradas();
+				
 			}
 		});
 		btnLimpiarLidera.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -1428,7 +1506,12 @@ public class Formulario extends JFrame {
 		JButton btnLimpiarEscuadron = new JButton("LIMPIAR");
 		btnLimpiarEscuadron.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				DefaultTableModel modeloEsc = objEsc.mostrarRegistrosEscuadron("SELECT * FROM escuadron");
+				tablaEscuadron.setModel(modeloEsc);
+				
 				limpiarEntradas();
+				
 			}
 		});
 		btnLimpiarEscuadron.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -1508,12 +1591,11 @@ public class Formulario extends JFrame {
 		JButton btnLimpiarSorteo = new JButton("LIMPIAR");
 		btnLimpiarSorteo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				etsorteo.setText("");
-				etfechas.setText("");
-
+				
 				DefaultTableModel modelos = objsor.mostrarRegistrosSorteo("SELECT * FROM sorteo");
 				tablaSorteo.setModel(modelos);
+				
+				limpiarEntradas();
 
 			}
 		});
@@ -1674,15 +1756,11 @@ public class Formulario extends JFrame {
 		btnLimpiar_V.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				etNumplaca.setText("");
-				etMatReserva.setText("");
-				etNumLiberacion.setText("");
-				etPrecioCart.setText("");
-				etMesRecepcion.setText("");
-
 				DefaultTableModel modelo = objVal.mostrarRegistrosValida("SELECT * FROM valida");
 				tablaValida.setModel(modelo);
 
+				limpiarEntradas();
+				
 			}
 		});
 		btnLimpiar_V.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -1836,7 +1914,12 @@ public class Formulario extends JFrame {
 		JButton btnLimpiarPRes = new JButton("LIMPIAR");
 		btnLimpiarPRes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT("SELECT * FROM participa_res");
+				tablaPRes.setModel(modeloParR);
+				
 				limpiarEntradas();
+				
 			}
 		});
 		btnLimpiarPRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -2037,10 +2120,10 @@ public class Formulario extends JFrame {
 		txtCiudadEnc.setBounds(146, 182, 86, 20);
 		Encuadrado.add(txtCiudadEnc);
 
-		txtEstadoCivilEnc = new JTextField();
-		txtEstadoCivilEnc.setColumns(10);
-		txtEstadoCivilEnc.setBounds(398, 183, 86, 20);
-		Encuadrado.add(txtEstadoCivilEnc);
+		txtDiscapacidad = new JTextField();
+		txtDiscapacidad.setColumns(10);
+		txtDiscapacidad.setBounds(398, 183, 86, 20);
+		Encuadrado.add(txtDiscapacidad);
 
 		txtClaseEnc = new JTextField();
 		txtClaseEnc.setColumns(10);
@@ -2096,7 +2179,7 @@ public class Formulario extends JFrame {
 		btnAgregarEnc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				objEnc.ingresar_Enc(txtMatriculaEnc.getText(), txtNombreEnc.getText(), txtApellidoPaternoEnc.getText(), txtApellidoMaternoEnc.getText(), txtCurpEnc.getText(), txtEdadEnc.getText(), txtProfesionEnc.getText(), txtNumExtEnc.getText(),	txtNumInteriorEnc.getText(), txtCalleEnc.getText(), txtColoniaEnc.getText(), txtCiudadEnc.getText(), txtSexoEnc.getText(), txtEstadoCivil.getText(), TxtDiscapacidad.getText(), txtClaseEnc.getText(), txtHabilidadEnc.getText(), txtTipoSangreEnc.getText(), txtPesoEnc.getText(), txtAlturaEnc.getText());
+				objEnc.ingresar_Enc(txtMatriculaEnc.getText(), txtNombreEnc.getText(), txtApellidoPaternoEnc.getText(), txtApellidoMaternoEnc.getText(), txtCurpEnc.getText(), txtEdadEnc.getText(), txtProfesionEnc.getText(), txtNumExtEnc.getText(),	txtNumInteriorEnc.getText(), txtCalleEnc.getText(), txtColoniaEnc.getText(), txtCiudadEnc.getText(), txtSexoEnc.getText(), txtEstadoCivil.getText(), txtDiscapacidad.getText(), txtClaseEnc.getText(), txtHabilidadEnc.getText(), txtTipoSangreEnc.getText(), txtPesoEnc.getText(), txtAlturaEnc.getText());
 
 				DefaultTableModel modeloEnc = objEnc.mostrarRegistrosEnc("SELECT * FROM encuadrado");
 				tablaEncuadrado.setModel(modeloEnc);
@@ -2126,7 +2209,7 @@ public class Formulario extends JFrame {
 		btnModificarEnc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				objEnc.modificar_Enc(txtMatriculaEnc.getText(), txtNombreEnc.getText(),	txtApellidoPaternoEnc.getText(), txtApellidoMaternoEnc.getText(), txtCurpEnc.getText(),	txtEdadEnc.getText(), txtProfesionEnc.getText(), txtNumExtEnc.getText(), txtNumInteriorEnc.getText(), txtCalleEnc.getText(), txtColoniaEnc.getText(), txtCiudadEnc.getText(), txtSexoEnc.getText(), txtEstadoCivil.getText(), TxtDiscapacidad.getText(), txtClaseEnc.getText(), txtHabilidadEnc.getText(), txtTipoSangreEnc.getText(), txtPesoEnc.getText(), txtAlturaEnc.getText());
+				objEnc.modificar_Enc(txtMatriculaEnc.getText(), txtNombreEnc.getText(),	txtApellidoPaternoEnc.getText(), txtApellidoMaternoEnc.getText(), txtCurpEnc.getText(),	txtEdadEnc.getText(), txtProfesionEnc.getText(), txtNumExtEnc.getText(), txtNumInteriorEnc.getText(), txtCalleEnc.getText(), txtColoniaEnc.getText(), txtCiudadEnc.getText(), txtSexoEnc.getText(), txtEstadoCivil.getText(), txtDiscapacidad.getText(), txtClaseEnc.getText(), txtHabilidadEnc.getText(), txtTipoSangreEnc.getText(), txtPesoEnc.getText(), txtAlturaEnc.getText());
 
 				DefaultTableModel modeloEnc = objEnc.mostrarRegistrosEnc("SELECT * FROM encuadrado");
 				tablaEncuadrado.setModel(modeloEnc);
@@ -2160,7 +2243,12 @@ public class Formulario extends JFrame {
 		JButton btnLimpiarEnc = new JButton("LIMPIAR");
 		btnLimpiarEnc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				DefaultTableModel modeloEnc = objEnc.mostrarRegistrosEnc("SELECT * FROM encuadrado");
+				tablaEncuadrado.setModel(modeloEnc);
+				
 				limpiarEntradas();
+				
 			}
 		});
 		btnLimpiarEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -2440,6 +2528,12 @@ public class Formulario extends JFrame {
 		JButton btnLimpiarRes = new JButton("LIMPIAR");
 		btnLimpiarRes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				DefaultTableModel modelo = objRQ.mostrarRegistrosRes("SELECT * FROM reserva");
+				tablaReserva.setModel(modelo);
+				
+				limpiarEntradas();
+				
 			}
 		});
 		btnLimpiarRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -2565,6 +2659,12 @@ public class Formulario extends JFrame {
 		JButton btnLimpiarPEnc = new JButton("LIMPIAR");
 		btnLimpiarPEnc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				DefaultTableModel modelo = objPEQ.mostrarRegistrosPartEnc("SELECT * FROM participa_enc");
+				tablaPartEnc.setModel(modelo);
+				
+				limpiarEntradas();
+				
 			}
 		});
 		btnLimpiarPEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
