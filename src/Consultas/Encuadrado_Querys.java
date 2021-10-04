@@ -194,10 +194,10 @@ public class Encuadrado_Querys {
 
 	}
 
-	public DefaultTableModel mostrarRegistrosNumT(String query) {
+	public DefaultTableModel mostrarRegistrosEnc(String query) {
 		
 		String[] cabecera = { "Matricula_Enc", "Nombres_Enc", "ApellidoPat_Enc", "ApellidoMat_Enc", "CURP_Enc", "Edad_Enc", "Profesión_Enc", "Num_Exterior", "Num_Interior", "Nom_Calle", "Colonia", "Ciudad", "Sexo_Enc", "EstadoCivil_Enc", "Discapacidad_Enc", "Clase", "Habilidad", "TipoSangre", "Peso", "Altura" };
-		String[] datos = new String[21];
+		String[] datos = new String[22];
 
 		DefaultTableModel modelo = new DefaultTableModel(null, cabecera);
 
@@ -206,32 +206,35 @@ public class Encuadrado_Querys {
 			stm = cn.createStatement();
 			rs = stm.executeQuery(query);
 
-			do {
-				datos[0] = rs.getString(1);
-				datos[1] = rs.getString(2);
-				datos[2] = rs.getString(3);
-				datos[3] = rs.getString(4);
-				datos[4] = rs.getString(5);
-				datos[5] = rs.getString(6);
-				datos[6] = rs.getString(7);
-				datos[7] = rs.getString(8);
-				datos[8] = rs.getString(9);
-				datos[9] = rs.getString(10);
-				datos[10] = rs.getString(11);
-				datos[11] = rs.getString(12);
-				datos[12] = rs.getString(13);
-				datos[13] = rs.getString(14);
-				datos[14] = rs.getString(15);
-				datos[15] = rs.getString(16);
-				datos[16] = rs.getString(17);
-				datos[17] = rs.getString(18);
-				datos[18] = rs.getString(19);
-				datos[19] = rs.getString(20);
-				datos[20] = rs.getString(21);
-				datos[21] = rs.getString(22);
-				modelo.addRow(datos);
-
-			} while (rs.next());
+			if(rs.next()) {
+			
+				do {
+					datos[0] = rs.getString(1);
+					datos[1] = rs.getString(2);
+					datos[2] = rs.getString(3);
+					datos[3] = rs.getString(4);
+					datos[4] = rs.getString(5);
+					datos[5] = rs.getString(6);
+					datos[6] = rs.getString(7);
+					datos[7] = rs.getString(8);
+					datos[8] = rs.getString(9);
+					datos[9] = rs.getString(10);
+					datos[10] = rs.getString(11);
+					datos[11] = rs.getString(12);
+					datos[12] = rs.getString(13);
+					datos[13] = rs.getString(14);
+					datos[14] = rs.getString(15);
+					datos[15] = rs.getString(16);
+					datos[16] = rs.getString(17);
+					datos[17] = rs.getString(18);
+					datos[18] = rs.getString(19);
+					datos[19] = rs.getString(20);
+					datos[20] = rs.getString(21);
+					datos[21] = rs.getString(22);
+					modelo.addRow(datos);
+				} while (rs.next());
+				
+			}
 
 		} catch (SQLException e) {
 			

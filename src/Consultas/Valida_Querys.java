@@ -134,7 +134,7 @@ public class Valida_Querys {
 	
 	public DefaultTableModel mostrarRegistrosValida(String query) {
 		
-		String[] cabecera = {"Num_Placa","Matricula_Enc", "Num_Liberacion","Horas_Trabajadas", "Precio_Cart"};
+		String[] cabecera = {"Num Placa","Matricula Enc", "Num Liberacion","Horas Trabajadas", "Precio Cart"};
 		
 		DefaultTableModel modelo = new DefaultTableModel(null, cabecera);
 
@@ -157,9 +157,7 @@ public class Valida_Querys {
 					
 				} while(rs.next());
 				
-			}else
-				for(int i=0; i<datos.length; i++) datos[i]="";
-			
+			}			
 
 		} catch (SQLException e) {
 
@@ -172,14 +170,4 @@ public class Valida_Querys {
 		
 	}
 	
-	public String[] vector_edits(String[] datos_salida) {
-		
-		for(int i=0; i<datos.length; i++) {
-			datos_salida[i]=datos[i];
-		}
-		
-		return datos_salida;
-		
-	}
-
 }

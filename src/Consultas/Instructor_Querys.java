@@ -17,7 +17,9 @@ public class Instructor_Querys {
 		
 		try {
 			
-			//cn = conexion.conectar();
+			cn = conexion.conectar();
+			stm = cn.createStatement();
+			
 			String Q_Placa, Q_Nombre, Q_ApellidoP, Q_ApellidoM, Q_Rango, Q_Sueldo;
 			
 			if (Placa.equals("")) {
@@ -56,13 +58,12 @@ public class Instructor_Querys {
 			} else
 				Q_Sueldo = "" + Sueldo + "";
 			
-			String query = "insert into instructor(Num_Placa, Nombre_Ins, ApellidoPat_Ins, ApellidoMat_Ins, Rango, Sueldo_Ins) VALUES("+Q_Placa+Q_Nombre+Q_ApellidoP+Q_ApellidoM+Q_Rango+Q_Sueldo+")";
+			String query = "INSERT INTO instructor(Num_Placa, Nombre_Ins, ApellidoPat_Ins, ApellidoMat_Ins, Rango, Sueldo_Ins) VALUES("+Q_Placa+Q_Nombre+Q_ApellidoP+Q_ApellidoM+Q_Rango+Q_Sueldo+")";
 			stm.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, "Instructor agregado correctamente");
 			
 		}catch (SQLException e) {
 			
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getErrorCode()+": "+e.getMessage());
 			e.printStackTrace();
 			
 		}
@@ -78,11 +79,10 @@ public class Instructor_Querys {
 
 			String query = "UPDATE instructor SET Nombre_Ins = '"+Nombre+"', ApellidoPat_Ins = '"+ApellidoP+"', ApellidoMat_Ins = '"+ApellidoM+"', Rango = '"+Rango+"', Sueldo_Ins = "+Sueldo+" WHERE Num_Placa = '"+Placa+"'";
 			stm.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, "Registro modificado correctamente");
 		
 		}catch (SQLException e)	{
 
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getErrorCode()+": "+e.getMessage());
 			e.printStackTrace();
 			
 		}
@@ -98,11 +98,10 @@ public class Instructor_Querys {
 
 			String query = "DELETE FROM instructor WHERE Num_Placa = '"+Placa+"'";
 			stm.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, "Registro eliminado correctamente");
 			
 		}catch (SQLException e)	{		
 			
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getErrorCode()+": "+e.getMessage());
 			e.printStackTrace();
 			
 		}
@@ -122,19 +121,23 @@ public class Instructor_Querys {
 			stm = cn.createStatement();
 			rs = stm.executeQuery(query);
 
-			do {
-				datos[0] = rs.getString(1);
-				datos[1] = rs.getString(2);	
-				datos[2] = rs.getString(3);
-				datos[3] = rs.getString(4);
-				datos[4] = rs.getString(5);
-				datos[5] = rs.getString(6);
-				modelo.addRow(datos);
-			} while(rs.next());
+			if(rs.next()) {
+
+				do {
+					datos[0] = rs.getString(1);
+					datos[1] = rs.getString(2);	
+					datos[2] = rs.getString(3);
+					datos[3] = rs.getString(4);
+					datos[4] = rs.getString(5);
+					datos[5] = rs.getString(6);
+					modelo.addRow(datos);
+				} while(rs.next());
+
+			}
 
 		}catch (SQLException e)	{
 			
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getErrorCode()+": "+e.getMessage());
 			e.printStackTrace();
 			
 		}

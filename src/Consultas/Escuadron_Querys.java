@@ -16,7 +16,9 @@ public class Escuadron_Querys {
 		
 		try	{
 			
-			//cn = conexion.conectar(1);
+			cn = conexion.conectar();
+			stm = cn.createStatement();
+			
 			String Q_NumEsc, Q_NumInt;
 			
 			if (NumEsc.equals("")) {
@@ -33,7 +35,6 @@ public class Escuadron_Querys {
 			
 			String query = "INSERT INTO escuadron(N_Sección, Num_Integrantes) VALUES("+Q_NumEsc+Q_NumInt+")";
 			stm.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, "Escuadron agregado correctamente");
 		
 		}catch (SQLException e)	{
 			
@@ -53,7 +54,6 @@ public class Escuadron_Querys {
 
 			String query = "UPDATE escuadron SET Num_Integrantes = '"+NumInt+"' WHERE N_Sección = '"+NumEsc+"'";
 			stm.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, "Escuadron modificado correctamente");
 			
 		}catch (SQLException e)	{
 			
@@ -73,7 +73,6 @@ public class Escuadron_Querys {
 
 			String query = "DELETE FROM escuadron WHERE N_Sección = '"+NumEsc+"'";
 			stm.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, "Numero de telefono eliminado correctamente");
 			
 		}catch (SQLException e)	{		
 			
@@ -84,7 +83,7 @@ public class Escuadron_Querys {
 
 	}
 	
-	public DefaultTableModel mostrarRegistrosNumT(String query) {
+	public DefaultTableModel mostrarRegistrosEscuadron(String query) {
 		
 		String[] cabecera = {"N_Sección", "Num_Integrantes"};
 		String[] datos = new String[2];
@@ -97,11 +96,15 @@ public class Escuadron_Querys {
 			stm = cn.createStatement();
 			rs = stm.executeQuery(query);
 
-			do {
-				datos[0] = rs.getString(1);
-				datos[1] = rs.getString(2);	
-				modelo.addRow(datos);
-			} while(rs.next());
+			if(rs.next()) {
+			
+				do {
+					datos[0] = rs.getString(1);
+					datos[1] = rs.getString(2);	
+					modelo.addRow(datos);
+				} while(rs.next());
+				
+			}
 
 		}catch (SQLException e)	{
 			

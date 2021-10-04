@@ -19,7 +19,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import Conexion.*;
 import Consultas.*;
@@ -129,7 +128,6 @@ public class Formulario extends JFrame {
 	private JTextField txtMatriculaEnc;
 	private JTextField txtEstadoCivil;
 	private JTextField txtTipoSangreEnc;
-	private JTable tablasorteo;
 	private JTable tablaCartilla;
 	private JTable tablaEncuadrado;
 	private JTextField etMatriculaRes;
@@ -154,6 +152,8 @@ public class Formulario extends JFrame {
 	private JTextField etEdSorteoPartEnc;
 	private JTextField etResPartEnc;
 	private JTable tablaPartEnc;
+	private JTable tablaSorteo;
+	private JTable tablaLidera;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -217,7 +217,7 @@ public class Formulario extends JFrame {
 		cn = conexion.conectar();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 781, 581);
+		setBounds(100, 100, 908, 581);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setTitle(conexion.user);
@@ -226,7 +226,7 @@ public class Formulario extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.LEFT);
 		tabbedPane.setFont(new Font("Trebuchet MS", Font.PLAIN, 12));
 		tabbedPane.setBounds(0, 0, 598, 392);
 		getContentPane().add(tabbedPane, BorderLayout.CENTER);
@@ -326,8 +326,8 @@ public class Formulario extends JFrame {
 				objIns.ingresar_instructor(etNumPlaca.getText(), etNombreIns.getText(), etApellidoPatIns.getText(), etApellidoMatIns.getText(), etRango.getText(), etSueldo.getText());
 				limpiarEntradas();
 
-				DefaultTableModel modeloIns = objIns.mostrarRegistrosIns("SELECT * FROM instructor");
-				tablaInstructor.setModel(modeloIns);
+				DefaultTableModel modelo = objIns.mostrarRegistrosIns("SELECT * FROM instructor");
+				tablaInstructor.setModel(modelo);
 				
 			}
 		});
@@ -342,8 +342,8 @@ public class Formulario extends JFrame {
 				objIns.modificar_instructor(etNumPlaca.getText(), etNombreIns.getText(), etApellidoPatIns.getText(), etApellidoMatIns.getText(), etRango.getText(), etSueldo.getText());
 				limpiarEntradas();
 
-				DefaultTableModel modeloIns = objIns.mostrarRegistrosIns("SELECT * FROM instructor");
-				tablaInstructor.setModel(modeloIns);
+				DefaultTableModel modelo = objIns.mostrarRegistrosIns("SELECT * FROM instructor");
+				tablaInstructor.setModel(modelo);
 				
 			}
 		});
@@ -358,8 +358,8 @@ public class Formulario extends JFrame {
 				objIns.eliminar_instructor(etNumPlaca.getText());
 				limpiarEntradas();
 
-				DefaultTableModel modeloIns = objIns.mostrarRegistrosIns("SELECT * FROM instructor");
-				tablaInstructor.setModel(modeloIns);
+				DefaultTableModel modelo = objIns.mostrarRegistrosIns("SELECT * FROM instructor");
+				tablaInstructor.setModel(modelo);
 				
 			}
 		});
@@ -371,8 +371,8 @@ public class Formulario extends JFrame {
 		btnBuscarIns.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent Arg0) {
 				
-				DefaultTableModel modeloIns = objIns.mostrarRegistrosIns("SELECT * FROM instructor");
-				tablaInstructor.setModel(modeloIns);
+				DefaultTableModel modelo = objIns.mostrarRegistrosIns("SELECT * FROM instructor");
+				tablaInstructor.setModel(modelo);
 				
 			}
 		});
@@ -400,7 +400,6 @@ public class Formulario extends JFrame {
 			pnlTablaInstructor.add(spTablaInstructor);
 	
 			tablaInstructor = new JTable();
-			tablaInstructor.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
 			spTablaInstructor.setViewportView(tablaInstructor);
 		
 //-->> INICIO DEL PANEL DEL NUMERO DEL TELEFONO DE INSTITUCION
@@ -675,6 +674,16 @@ public class Formulario extends JFrame {
 		btnModificarInstitucion.setBounds(318, 223, 111, 23);
 		Institucion.add(btnModificarInstitucion);
 
+		JButton btnLimpiarInstitucion = new JButton("LIMPIAR");
+		btnLimpiarInstitucion.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnLimpiarInstitucion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpiarEntradas();
+			}
+		});
+		btnLimpiarInstitucion.setBounds(604, 223, 111, 23);
+		Institucion.add(btnLimpiarInstitucion);
+		
 		JButton btnConsultarInstitucion = new JButton("CONSULTAR");
 		btnConsultarInstitucion.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnConsultarInstitucion.addActionListener((ActionListener) new ActionListener() {
@@ -687,16 +696,6 @@ public class Formulario extends JFrame {
 		});
 		btnConsultarInstitucion.setBounds(461, 223, 111, 23);
 		Institucion.add(btnConsultarInstitucion);
-		
-		JButton btnLimpiarInstitucion = new JButton("LIMPAR");
-		btnLimpiarInstitucion.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnLimpiarInstitucion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				limpiarEntradas();
-			}
-		});
-		btnLimpiarInstitucion.setBounds(604, 223, 111, 23);
-		Institucion.add(btnLimpiarInstitucion);
 
 		//-->> INICIO DEL PANEL DE LA TABLA
 		JPanel pnlTablaInstitucion = new JPanel();
@@ -800,7 +799,7 @@ public class Formulario extends JFrame {
 		btnConsultarCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				DefaultTableModel modeloCar = objParR.mostrarRegistrosNumT("SELECT * FROM cartilla");
+				DefaultTableModel modeloCar = objCar.mostrarRegistrosCar("SELECT * FROM cartilla");
 				tablaCartilla.setModel(modeloCar);
 				
 			}
@@ -1035,9 +1034,7 @@ public class Formulario extends JFrame {
 			tablaActividad = new JTable();
 			spTablaActividad.setViewportView(tablaActividad);		
 		
-//-->> INICIA PANEL DE OBTIENE
-		//DefaultTableModel modeloIns = null;
-		
+//-->> INICIA PANEL DE OBTIENE		
 		JPanel Obtiene = new JPanel();
 		tabbedPane.addTab("Obtiene", null, Obtiene, null);
 		Obtiene.setLayout(null);
@@ -1089,8 +1086,8 @@ public class Formulario extends JFrame {
 		
 				objObt.ingresar_obtiene(etMatReserva.getText(), etNumLiberacion.getText(), etPrecioCart.getText(), etMesRecepcion.getText());
 		
-				DefaultTableModel modeloIns = objObt.mostrarRegistrosObtiene("SELECT * FROM obtiene");
-				tablaObtiene.setModel(modeloIns);
+				DefaultTableModel modelo = objObt.mostrarRegistrosObtiene("SELECT * FROM obtiene");
+				tablaObtiene.setModel(modelo);
 		
 			}
 		});
@@ -1104,8 +1101,8 @@ public class Formulario extends JFrame {
 		
 				objObt.eliminar_obtiene(etMatReserva.getText());
 		
-				DefaultTableModel modeloIns = objObt.mostrarRegistrosObtiene("SELECT * FROM obtiene");
-				tablaObtiene.setModel(modeloIns);
+				DefaultTableModel modelo = objObt.mostrarRegistrosObtiene("SELECT * FROM obtiene");
+				tablaObtiene.setModel(modelo);
 		
 			}
 		});
@@ -1119,8 +1116,8 @@ public class Formulario extends JFrame {
 		
 				objObt.modificar_obtiene(etMatReserva.getText(), etNumLiberacion.getText(), etPrecioCart.getText(), etMesRecepcion.getText());
 		
-				DefaultTableModel modeloIns = objObt.mostrarRegistrosObtiene("SELECT * FROM obtiene WHERE Matricula_Res = '"+ etMatReserva.getText() +"'");
-				tablaObtiene.setModel(modeloIns);
+				DefaultTableModel modelo = objObt.mostrarRegistrosObtiene("SELECT * FROM obtiene");
+				tablaObtiene.setModel(modelo);
 		
 			}
 		});
@@ -1150,23 +1147,8 @@ public class Formulario extends JFrame {
 		btnConsultarObtiene.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				String[] datos=new String[4];
-				String Matricula = etMatReserva.getText();
-
-				DefaultTableModel modelo = objObt.mostrarRegistrosObtiene("SELECT * FROM obtiene WHERE Matricula_Res = '"+Matricula+"'");
+				DefaultTableModel modelo = objObt.mostrarRegistrosObtiene("SELECT * FROM obtiene");
 				tablaObtiene.setModel(modelo);
-
-				datos=objObt.vector_edits(datos);
-
-				etNumLiberacion.setText(datos[1]);
-				etPrecioCart.setText(datos[2]);
-				etMesRecepcion.setText(datos[3]);
-		
-				for(int i=0; i<datos.length; i++) {
-					datos[i]=null;
-				}
-		
-				objObt.vector_edits(datos);
 		
 			}
 		});
@@ -1185,13 +1167,7 @@ public class Formulario extends JFrame {
 			pnlTablaObtiene.add(spTablaObtiene);
 	
 			tablaObtiene = new JTable();
-			tablaObtiene.setShowVerticalLines(false);
 			spTablaObtiene.setViewportView(tablaObtiene);
-	
-			tablaObtiene.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-			tablaObtiene.setFont(new Font("Tahoma", Font.BOLD, 12));
-			tablaObtiene.setForeground(Color.BLACK);
-			tablaObtiene.setCellSelectionEnabled(true);
 		
 //-->> INICIO DE PANEL LIDERA
 		JPanel Lidera = new JPanel();
@@ -1207,84 +1183,67 @@ public class Formulario extends JFrame {
 		lblCabo.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		lblCabo.setBounds(462, 47, 103, 16);
 		Lidera.add(lblCabo);
-		
-		//CAPTURA DE LA PLACA DE SARGENTO
+	
 		JTextField etSargento = new JTextField();
 		etSargento.setBounds(194, 74, 86, 20);
 		Lidera.add(etSargento);
 		etSargento.setColumns(10);
 		
-		//CAPTURA DE LA PLACA DE CABO
 		JTextField etCabo = new JTextField();
 		etCabo.setBounds(470, 74, 86, 20);
 		Lidera.add(etCabo);
 		etCabo.setColumns(10);
-		
-		//BOTON PARA REGISTRAR
+
 		JButton btnRegistroLidera = new JButton("AGREGAR");
 		btnRegistroLidera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				objTC.ingreso_reg(etSargento.getText(), etCabo.getText());
 
+				DefaultTableModel modelo = objTC.mostrarRegistros("SELECT * FROM lidera");
+				tablaLidera.setModel(modelo);
+				
 			}
 		});
 		btnRegistroLidera.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnRegistroLidera.setBounds(10, 197, 113, 23);
 		Lidera.add(btnRegistroLidera);
-		
-		//BOTON PARA ELIMINAR
+
 		JButton btnEliminarLidera = new JButton("ELIMINAR");
 		btnEliminarLidera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				objTC.eliminar_reg(etSargento.getText(), etCabo.getText());
 
+				DefaultTableModel modelo = objTC.mostrarRegistros("SELECT * FROM lidera");
+				tablaLidera.setModel(modelo);
+				
 			}
 		});
 		btnEliminarLidera.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnEliminarLidera.setBounds(163, 197, 113, 23);
 		Lidera.add(btnEliminarLidera);
 
-		//BOTON PARA MODIFICAR
 		JButton btnModificarLidera = new JButton("MODIFICAR");
 		btnModificarLidera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				objTC.modificar_reg(etSargento.getText(), etCabo.getText());
 
+				DefaultTableModel modelo = objTC.mostrarRegistros("SELECT * FROM lidera");
+				tablaLidera.setModel(modelo);
+				
 			}
 		});
 		btnModificarLidera.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnModificarLidera.setBounds(316, 197, 113, 23);
 		Lidera.add(btnModificarLidera);
 
-		//--> INICIA EL PANEL CONTENEDOR DE LA TABLA	
-		JPanel pnlTablaLidera = new JPanel();
-		pnlTablaLidera.setBounds(280, 252, 207, 223);
-		Lidera.add(pnlTablaLidera);
-		pnlTablaLidera.setLayout(null);
-
-			JScrollPane spTablaLidera = new JScrollPane();
-			spTablaLidera.setBounds(0, 0, 207, 223);
-			pnlTablaLidera.add(spTablaLidera);
-	
-			JTable tablaLidera = new JTable();
-			tablaLidera.setShowVerticalLines(false);
-			spTablaLidera.setViewportView(tablaLidera);
-	
-			tablaLidera.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-			tablaLidera.setFont(new Font("Tahoma", Font.BOLD, 12));
-			tablaLidera.setForeground(Color.BLACK);
-			tablaLidera.setCellSelectionEnabled(true);
-				
-		//--> BOTON PARA CONSULTAR
 		JButton btnConsultarLidera = new JButton("CONSULTAR");
 		btnConsultarLidera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				String pSargento = etSargento.getText();
-				DefaultTableModel modelo = objTC.mostrarRegistros("SELECT * FROM lidera WHERE Num_PlacaSargento = '"+pSargento+"'");
+
+				DefaultTableModel modelo = objTC.mostrarRegistros("SELECT * FROM lidera");
 				tablaLidera.setModel(modelo);
 									
 			}
@@ -1304,6 +1263,19 @@ public class Formulario extends JFrame {
 		btnLimpiarLidera.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnLimpiarLidera.setBounds(622, 197, 113, 23);
 		Lidera.add(btnLimpiarLidera);
+		
+		//--> INICIA EL PANEL CONTENEDOR DE LA TABLA	
+		JPanel pnlTablaLidera = new JPanel();
+		pnlTablaLidera.setBounds(280, 252, 207, 223);
+		Lidera.add(pnlTablaLidera);
+		pnlTablaLidera.setLayout(null);
+
+			JScrollPane spTablaLidera = new JScrollPane();
+			spTablaLidera.setBounds(0, 0, 207, 223);
+			pnlTablaLidera.add(spTablaLidera);
+	
+			tablaLidera = new JTable();
+			spTablaLidera.setViewportView(tablaLidera);
 
 //-->> INICIO DEL PANEL DE ESCUADRON
 		JPanel Escuadron = new JPanel();
@@ -1343,7 +1315,7 @@ public class Formulario extends JFrame {
 				
 				objEsc.ingresar_Esc(etNumeroSeccion.getText(), etNumIntegrantes.getText());
 
-				DefaultTableModel modeloEsc = objEsc.mostrarRegistrosNumT("SELECT * FROM escuadron");
+				DefaultTableModel modeloEsc = objEsc.mostrarRegistrosEscuadron("SELECT * FROM escuadron");
 				tablaEscuadron.setModel(modeloEsc);
 				
 			}
@@ -1358,7 +1330,7 @@ public class Formulario extends JFrame {
 
 				objEsc.eliminar_Esc(etNumeroSeccion.getText());
 
-				DefaultTableModel modeloEsc = objEsc.mostrarRegistrosNumT("SELECT * FROM escuadron");
+				DefaultTableModel modeloEsc = objEsc.mostrarRegistrosEscuadron("SELECT * FROM escuadron");
 				tablaEscuadron.setModel(modeloEsc);
 				
 			}
@@ -1373,7 +1345,7 @@ public class Formulario extends JFrame {
 
 				objEsc.modificar_Esc(etNumeroSeccion.getText(), etNumIntegrantes.getText());
 
-				DefaultTableModel modeloEsc = objEsc.mostrarRegistrosNumT("SELECT * FROM escuadron");
+				DefaultTableModel modeloEsc = objEsc.mostrarRegistrosEscuadron("SELECT * FROM escuadron");
 				tablaEscuadron.setModel(modeloEsc);
 				
 			}
@@ -1386,7 +1358,7 @@ public class Formulario extends JFrame {
 		btnConsultarEscuadron.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				DefaultTableModel modeloEsc = objEsc.mostrarRegistrosNumT("SELECT * FROM escuadron");
+				DefaultTableModel modeloEsc = objEsc.mostrarRegistrosEscuadron("SELECT * FROM escuadron");
 				tablaEscuadron.setModel(modeloEsc);
 				
 			}
@@ -1452,7 +1424,7 @@ public class Formulario extends JFrame {
 				objsor.ingresar_sorteo(etsorteo.getText(), etfechas.getText());
 
 				DefaultTableModel modelos = objsor.mostrarRegistrosSorteo("SELECT * FROM sorteo");
-				tablasorteo.setModel(modelos);
+				tablaSorteo.setModel(modelos);
 
 			}
 		});
@@ -1466,8 +1438,8 @@ public class Formulario extends JFrame {
 
 				objsor.ingresar_sorteo(etsorteo.getText(), etfechas.getText());
 
-				DefaultTableModel modelos = objsor.mostrarRegistrosSorteo("SELECT * FROM sorteo WHERE Ed_Sorteo = '"+etsorteo.getText()+"'");
-				tablaValida.setModel(modelos);
+				DefaultTableModel modelos = objsor.mostrarRegistrosSorteo("SELECT * FROM sorteo");
+				tablaSorteo.setModel(modelos);
 
 			}
 		});
@@ -1483,7 +1455,7 @@ public class Formulario extends JFrame {
 				etfechas.setText("");
 
 				DefaultTableModel modelos = objsor.mostrarRegistrosSorteo("SELECT * FROM sorteo");
-				tablasorteo.setModel(modelos);
+				tablaSorteo.setModel(modelos);
 
 			}
 		});
@@ -1495,27 +1467,29 @@ public class Formulario extends JFrame {
 		btnConsultarSorteo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				String[] datos=new String[2];
-
-				DefaultTableModel modelos = objsor.mostrarRegistrosSorteo("SELECT * FROM sorteo WHERE Ed_Sorteo = '"+etsorteo.getText()+"'");
-				tablaValida.setModel(modelos);
-
-				datos=objsor.vector_edits(datos);
-
-				etsorteo.setText(datos[1]);
-				etfechas.setText(datos[2]);
-
-				for(int i=0; i<datos.length; i++) {
-					datos[i]=null;
-				}
-
-				objVal.vector_edits(datos);
+				DefaultTableModel modelos = objsor.mostrarRegistrosSorteo("SELECT * FROM sorteo");
+				tablaSorteo.setModel(modelos);
 
 			}
 		});
 		btnConsultarSorteo.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnConsultarSorteo.setBounds(464, 181, 108, 23);
 		Sorteo.add(btnConsultarSorteo);
+		
+		JButton btnEliminarSorteo = new JButton("ELIMINAR");
+		btnEliminarSorteo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//METODO DE ELIMINACION
+				
+				DefaultTableModel modelos = objsor.mostrarRegistrosSorteo("SELECT * FROM sorteo");
+				tablaSorteo.setModel(modelos);
+				
+			}
+		});
+		btnEliminarSorteo.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnEliminarSorteo.setBounds(178, 181, 108, 23);
+		Sorteo.add(btnEliminarSorteo);
 		
 		//-->> INICIA EL PANEL CONTENEDOR DE LA TABLA
 		JPanel pnlTablaSorteo = new JPanel();
@@ -1526,19 +1500,11 @@ public class Formulario extends JFrame {
 			JScrollPane spTablaSorteo = new JScrollPane();
 			spTablaSorteo.setBounds(0, 0, 205, 228);
 			pnlTablaSorteo.add(spTablaSorteo);
-	
-			tablasorteo = new JTable();
-			tablasorteo.setBounds(0, 0, 1, 1);
-			pnlTablaSorteo.add(tablasorteo);
 			
-			JButton btnEliminarSorteo = new JButton("ELIMINAR");
-			btnEliminarSorteo.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-			btnEliminarSorteo.setBounds(178, 181, 108, 23);
-			Sorteo.add(btnEliminarSorteo);
-
+			tablaSorteo = new JTable();
+			spTablaSorteo.setViewportView(tablaSorteo);
 		
 //-->> INICIA EL PANEL CONTENEDOR DE VALIDA
-		
 		JPanel Valida = new JPanel();
 		Valida.setLayout(null);
 		tabbedPane.addTab("Valida", null, Valida, null);
@@ -1600,8 +1566,8 @@ public class Formulario extends JFrame {
 
 				objVal.ingresar_valida(etNumplaca.getText(), etMatenc.getText(), etNumlib.getText(), etHoras.getText(), etPreciocart.getText());
 
-				DefaultTableModel modelos = objVal.mostrarRegistrosValida("SELECT * FROM valida");
-				tablaValida.setModel(modelos);
+				DefaultTableModel modelo = objVal.mostrarRegistrosValida("SELECT * FROM valida");
+				tablaValida.setModel(modelo);
 
 			}
 		});
@@ -1615,8 +1581,8 @@ public class Formulario extends JFrame {
 
 				objVal.eliminar_valida(etMatenc.getText());
 
-				DefaultTableModel modelos = objVal.mostrarRegistrosValida("SELECT * FROM valida");
-				tablaValida.setModel(modelos);
+				DefaultTableModel modelo = objVal.mostrarRegistrosValida("SELECT * FROM valida");
+				tablaValida.setModel(modelo);
 
 			}
 		});
@@ -1630,8 +1596,8 @@ public class Formulario extends JFrame {
 
 				objVal.modificar_val(etNumplaca.getText(), etMatenc.getText(), etNumlib.getText(), etHoras.getText(), etPreciocart.getText());
 
-				DefaultTableModel modelos = objVal.mostrarRegistrosValida("SELECT * FROM valida WHERE Num_Placa = '"+etNumplaca.getText()+"'");
-				tablaValida.setModel(modelos);
+				DefaultTableModel modelo = objVal.mostrarRegistrosValida("SELECT * FROM valida");
+				tablaValida.setModel(modelo);
 
 			}
 		});
@@ -1662,26 +1628,8 @@ public class Formulario extends JFrame {
 		btnConsultar_V.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				String[] datos=new String[5];
-				String Placa=etNumplaca.getText();
-
-				DefaultTableModel modelo = objVal.mostrarRegistrosValida("SELECT * FROM valida WHERE Num_Placa = '"+Placa+"'");
+				DefaultTableModel modelo = objVal.mostrarRegistrosValida("SELECT * FROM valida");
 				tablaValida.setModel(modelo);
-
-
-				datos=objVal.vector_edits(datos);
-
-				etNumplaca.setText(datos[1]);
-				etMatReserva.setText(datos[2]);
-				etNumLiberacion.setText(datos[3]);
-				etPrecioCart.setText(datos[4]);
-				etMesRecepcion.setText(datos[5]);
-
-				for(int i=0; i<datos.length; i++) {
-					datos[i]=null;
-				}
-
-				objVal.vector_edits(datos);
 
 			}
 		});
@@ -1700,13 +1648,7 @@ public class Formulario extends JFrame {
 			pnlTablaValida.add(spTablaValida);
 
 			tablaValida = new JTable();
-			tablaValida.setShowVerticalLines(false);
-			tablaValida.setForeground(Color.BLACK);
-			tablaValida.setFont(new Font("Tahoma", Font.BOLD, 12));
-			tablaValida.setCellSelectionEnabled(true);
-			tablaValida.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-			tablaValida.setBounds(0, 0, 1, 1);
-			pnlTablaValida.add(tablaValida);
+			spTablaValida.setViewportView(tablaValida);
 		
 //-->> INICIO DEL PANEL DE PARTICIPANTE RESERVA
 		JPanel ParticipaRes = new JPanel();
@@ -1766,22 +1708,22 @@ public class Formulario extends JFrame {
 		btnAgregarPRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnAgregarPRes.setBounds(33, 212, 110, 23);
 		ParticipaRes.add(btnAgregarPRes);
-		
-			JButton btnEliminarPRes = new JButton("ELIMINAR");
-			btnEliminarPRes.addActionListener((ActionListener) new ActionListener() {
-				public void actionPerformed(ActionEvent Arg0) {
-	
-					objParR.eliminar_ParR(etMatriculaPRes.getText());
-	
-					DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT("SELECT * FROM participa_res");
-					tablaPRes.setModel(modeloParR);
-					
-				}
-			});
-			btnEliminarPRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-			btnEliminarPRes.setBounds(176, 212, 110, 23);
-			ParticipaRes.add(btnEliminarPRes);
-			
+
+		JButton btnEliminarPRes = new JButton("ELIMINAR");
+		btnEliminarPRes.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objParR.eliminar_ParR(etMatriculaPRes.getText());
+
+				DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT("SELECT * FROM participa_res");
+				tablaPRes.setModel(modeloParR);
+
+			}
+		});
+		btnEliminarPRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnEliminarPRes.setBounds(176, 212, 110, 23);
+		ParticipaRes.add(btnEliminarPRes);
+
 		JButton btnModificarPRes = new JButton("MODIFICAR");
 		btnModificarPRes.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent Arg0) {
@@ -1830,8 +1772,8 @@ public class Formulario extends JFrame {
 			spTablaPRes.setBounds(0, 0, 289, 197);
 			pnlTablaPRes.add(spTablaPRes);
 			
-					tablaPRes = new JTable();
-					spTablaPRes.setViewportView(tablaPRes);
+			tablaPRes = new JTable();
+			spTablaPRes.setViewportView(tablaPRes);
 
 //-->> INICIA EL PANEL DE ENCUADRADO
 		JPanel Encuadrado = new JPanel();
@@ -2075,7 +2017,7 @@ public class Formulario extends JFrame {
 
 				objEnc.ingresar_Enc(txtMatriculaEnc.getText(), txtNombreEnc.getText(), txtApellidoPaternoEnc.getText(), txtApellidoMaternoEnc.getText(), txtCurpEnc.getText(), txtEdadEnc.getText(), txtProfesionEnc.getText(), txtNumExtEnc.getText(),	txtNumInteriorEnc.getText(), txtCalleEnc.getText(), txtColoniaEnc.getText(), txtCiudadEnc.getText(), txtSexoEnc.getText(), txtEstadoCivil.getText(), TxtDiscapacidad.getText(), txtClaseEnc.getText(), txtHabilidadEnc.getText(), txtTipoSangreEnc.getText(), txtPesoEnc.getText(), txtAlturaEnc.getText());
 
-				DefaultTableModel modeloEnc = objParR.mostrarRegistrosNumT("SELECT * FROM encuadrado");
+				DefaultTableModel modeloEnc = objEnc.mostrarRegistrosEnc("SELECT * FROM encuadrado");
 				tablaEncuadrado.setModel(modeloEnc);
 
 			}
@@ -2090,7 +2032,7 @@ public class Formulario extends JFrame {
 
 				objEnc.eliminar_Enc(txtMatriculaEnc.getText());
 
-				DefaultTableModel modeloEnc = objParR.mostrarRegistrosNumT("SELECT * FROM encuadrado");
+				DefaultTableModel modeloEnc = objEnc.mostrarRegistrosEnc("SELECT * FROM encuadrado");
 				tablaEncuadrado.setModel(modeloEnc);
 
 			}
@@ -2105,7 +2047,7 @@ public class Formulario extends JFrame {
 				
 				objEnc.modificar_Enc(txtMatriculaEnc.getText(), txtNombreEnc.getText(),	txtApellidoPaternoEnc.getText(), txtApellidoMaternoEnc.getText(), txtCurpEnc.getText(),	txtEdadEnc.getText(), txtProfesionEnc.getText(), txtNumExtEnc.getText(), txtNumInteriorEnc.getText(), txtCalleEnc.getText(), txtColoniaEnc.getText(), txtCiudadEnc.getText(), txtSexoEnc.getText(), txtEstadoCivil.getText(), TxtDiscapacidad.getText(), txtClaseEnc.getText(), txtHabilidadEnc.getText(), txtTipoSangreEnc.getText(), txtPesoEnc.getText(), txtAlturaEnc.getText());
 
-				DefaultTableModel modeloEnc = objParR.mostrarRegistrosNumT("SELECT * FROM encuadrado");
+				DefaultTableModel modeloEnc = objEnc.mostrarRegistrosEnc("SELECT * FROM encuadrado");
 				tablaEncuadrado.setModel(modeloEnc);
 
 			}
@@ -2118,7 +2060,7 @@ public class Formulario extends JFrame {
 		btnConsultarEnc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				DefaultTableModel modeloEnc = objParR.mostrarRegistrosNumT("SELECT * FROM encuadrado");
+				DefaultTableModel modeloEnc = objEnc.mostrarRegistrosEnc("SELECT * FROM encuadrado");
 				tablaEncuadrado.setModel(modeloEnc);
 				
 			}
@@ -2148,9 +2090,7 @@ public class Formulario extends JFrame {
 			pnlTablaEncuadrado.add(spTablaEncuadrado);
 	
 			tablaEncuadrado = new JTable();
-			spTablaEncuadrado.add(tablaEncuadrado);
-			@SuppressWarnings("unused")
-			DefaultTableModel modelo = null;
+			spTablaEncuadrado.setViewportView(tablaEncuadrado);
 			
 //-->> INICIO DE PANEL RESERVA
 		JPanel Reserva = new JPanel();
@@ -2351,7 +2291,7 @@ public class Formulario extends JFrame {
 				objRQ.ingresar_reserva(etMatriculaRes.getText(), etNombreRes.getText(), etAPaternoRes.getText(), etAMaternoRes.getText(), etCurpRes.getText(), etEdadRes.getText(), etProfesionRes.getText(), etNumExtRes.getText(), etNumIntRes.getText(), etCalleRes.getText(), etColoniaRes.getText(), etCiudadRes.getText(), etSexoRes.getText(), etECivilRes.getText(), etDiscapacidadRes.getText(), etClaseRes.getText(), etTelefonoRes.getText());
 				
 				DefaultTableModel modelo = objRQ.mostrarRegistrosRes("SELECT * FROM reserva");
-				tablaCartilla.setModel(modelo);
+				tablaReserva.setModel(modelo);
 				
 			}
 		});
@@ -2366,7 +2306,7 @@ public class Formulario extends JFrame {
 				objRQ.eliminar_reserva(etMatriculaRes.getText());
 							
 				DefaultTableModel modelo = objRQ.mostrarRegistrosRes("SELECT * FROM reserva");
-				tablaCartilla.setModel(modelo);
+				tablaReserva.setModel(modelo);
 				
 			}
 		});
@@ -2381,7 +2321,7 @@ public class Formulario extends JFrame {
 				objRQ.modificar_reserva(etMatriculaRes.getText(), etNombreRes.getText(), etAPaternoRes.getText(), etAMaternoRes.getText(), etCurpRes.getText(), etEdadRes.getText(), etProfesionRes.getText(), etNumExtRes.getText(), etNumIntRes.getText(), etCalleRes.getText(), etColoniaRes.getText(), etCiudadRes.getText(), etSexoRes.getText(), etECivilRes.getText(), etDiscapacidadRes.getText(), etClaseRes.getText(), etTelefonoRes.getText());
 				
 				DefaultTableModel modelo = objRQ.mostrarRegistrosRes("SELECT * FROM reserva");
-				tablaCartilla.setModel(modelo);
+				tablaReserva.setModel(modelo);
 				
 			}
 		});
@@ -2468,6 +2408,9 @@ public class Formulario extends JFrame {
 				
 				objPEQ.ingreso_reg(etEdSorteoPartEnc.getText(), etMatriculaEncPart.getText(), etResPartEnc.getText());
 				
+				DefaultTableModel modelo = objPEQ.mostrarRegistrosPartEnc("SELECT * FROM participa_enc");
+				tablaPartEnc.setModel(modelo);
+				
 			}
 		});
 		btnAgregarPEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -2480,6 +2423,9 @@ public class Formulario extends JFrame {
 				
 				objPEQ.eliminar_reg(etMatriculaEncPart.getText());
 				
+				DefaultTableModel modelo = objPEQ.mostrarRegistrosPartEnc("SELECT * FROM participa_enc");
+				tablaPartEnc.setModel(modelo);
+				
 			}
 		});
 		btnEliminarPEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -2491,6 +2437,9 @@ public class Formulario extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				objPEQ.modificar_reg(etEdSorteoPartEnc.getText(), etMatriculaEncPart.getText(), etResPartEnc.getText());
+				
+				DefaultTableModel modelo = objPEQ.mostrarRegistrosPartEnc("SELECT * FROM participa_enc");
+				tablaPartEnc.setModel(modelo);
 				
 			}
 		});
@@ -2520,6 +2469,7 @@ public class Formulario extends JFrame {
 		btnLimpiarPEnc.setBounds(605, 194, 105, 23);
 		ParticipaEnc.add(btnLimpiarPEnc);
 		
+		//-->> PANEL DE LA TABLA PARTICIPA_ENC
 		JPanel pnlTablaPartEnc = new JPanel();
 		pnlTablaPartEnc.setBounds(234, 253, 282, 222);
 		ParticipaEnc.add(pnlTablaPartEnc);
@@ -2531,7 +2481,6 @@ public class Formulario extends JFrame {
 			
 			tablaPartEnc = new JTable();
 			spTablaPartEnc.setViewportView(tablaPartEnc);
-						
+		
 	}
-	
 }

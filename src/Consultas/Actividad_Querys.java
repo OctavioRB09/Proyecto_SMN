@@ -16,6 +16,9 @@ public class Actividad_Querys {
 		
 		try {
 			
+			cn = conexion.conectar();
+			stm = cn.createStatement();
+			
 			String Q_NPA, Q_MEA, Q_NSA, Q_IIA, Q_HIA, Q_HFA, Q_FA, Q_TAA, Q_CAA;
 			
 			if (NPA.equals("")) {
@@ -74,7 +77,6 @@ public class Actividad_Querys {
 
 			String query = "INSERT INTO actividad(Num_Placa, Matricula_Enc, N_Sección, Id_Inst, HoraInicio, HoraFin, Fecha, T_Actividad, Coste_Act) VALUES(" + Q_NPA + Q_MEA + Q_NSA + Q_IIA + Q_HIA + Q_HFA + Q_FA + Q_TAA + Q_CAA + ")";
 			stm.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, "Actividad agregada correctamente");
 			
 		} catch (SQLException e) {
 			
@@ -94,7 +96,6 @@ public class Actividad_Querys {
 
 			String query = "Update actividad SET HoraInicio = '" + HIA + "', HoraFin = '" + HFA + "', Fecha = '" + FA + "', T_Actividad = '" + TAA + "', Coste_Act = '" + CAA + "' WHERE Num_Placa = '" + NPA + "' AND Matricula_Enc = '" + MEA + "' AND N_Sección = '" + NSA + "' AND Id_Inst = '" + IIA + "'";
 			stm.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, "Registro modificado correctamente");
 			
 		} catch (SQLException e) {
 			
@@ -114,7 +115,6 @@ public class Actividad_Querys {
 
 			String query = "DELETE FROM actividad WHERE Num_Placa = '" + NPA + "' AND Matricula_Enc = '" + MEA+ "' AND N_Sección = '" + NSA + "' AND Id_Inst = '" + IIA + "'";
 			stm.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, "Registro eliminado correctamente");
 
 		} catch (SQLException e) {
 			
@@ -138,18 +138,22 @@ public class Actividad_Querys {
 			stm = cn.createStatement();
 			rs = stm.executeQuery(query);
 
-			do {
-				datos[0] = rs.getString(1);
-				datos[1] = rs.getString(2);
-				datos[2] = rs.getString(3);
-				datos[3] = rs.getString(4);
-				datos[4] = rs.getString(5);
-				datos[5] = rs.getString(6);
-				datos[6] = rs.getString(7);
-				datos[7] = rs.getString(8);
-				datos[8] = rs.getString(9);
-				modelo.addRow(datos);
-			} while (rs.next());
+			if(rs.next()) {
+			
+				do {
+					datos[0] = rs.getString(1);
+					datos[1] = rs.getString(2);
+					datos[2] = rs.getString(3);
+					datos[3] = rs.getString(4);
+					datos[4] = rs.getString(5);
+					datos[5] = rs.getString(6);
+					datos[6] = rs.getString(7);
+					datos[7] = rs.getString(8);
+					datos[8] = rs.getString(9);
+					modelo.addRow(datos);
+				} while (rs.next());
+				
+			}
 
 		} catch (SQLException e) {
 			

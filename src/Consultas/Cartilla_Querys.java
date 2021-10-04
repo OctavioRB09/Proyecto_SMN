@@ -104,12 +104,16 @@ public class Cartilla_Querys {
 			stm = cn.createStatement();
 			rs = stm.executeQuery(query);
 
-			do {
-				datos[0] = rs.getString(1);
-				datos[1] = rs.getString(2);
-				datos[2] = rs.getString(3);
-				modelo.addRow(datos);
-			} while (rs.next());
+			if(rs.next()) {
+			
+				do {
+					datos[0] = rs.getString(1);
+					datos[1] = rs.getString(2);
+					datos[2] = rs.getString(3);
+					modelo.addRow(datos);
+				} while (rs.next());
+				
+			}
 
 		} catch (SQLException e) {
 			
