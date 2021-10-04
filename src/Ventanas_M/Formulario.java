@@ -1431,7 +1431,7 @@ public class Formulario extends JFrame {
 //-->> INICIO DEL PANEL DE ESCUADRON
 		JPanel Escuadron = new JPanel();
 		tabbedPane.addTab("Escuadron", null, Escuadron, null);
-		tabbedPane.setEnabledAt(106, true);
+		tabbedPane.setEnabledAt(111, true);
 		Escuadron.setLayout(null);
 
 		JTextPane txtpnNseccin = new JTextPane();
@@ -2345,26 +2345,46 @@ public class Formulario extends JFrame {
 		etTelefonoRes.setColumns(10);
 		
 		JButton btnAgregarRes = new JButton("AGREGAR");
+		btnAgregarRes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnAgregarRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnAgregarRes.setBounds(37, 254, 105, 23);
 		Reserva.add(btnAgregarRes);
 		
 		JButton btnEliminarRes = new JButton("ELIMINAR");
+		btnEliminarRes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnEliminarRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnEliminarRes.setBounds(179, 254, 105, 23);
 		Reserva.add(btnEliminarRes);
 		
 		JButton btnModificarRes = new JButton("MODIFICAR");
+		btnModificarRes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnModificarRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnModificarRes.setBounds(321, 254, 105, 23);
 		Reserva.add(btnModificarRes);
 		
 		JButton btnConsultarRes = new JButton("CONSULTAR");
+		btnConsultarRes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnConsultarRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnConsultarRes.setBounds(463, 254, 105, 23);
 		Reserva.add(btnConsultarRes);
 		
 		JButton btnLimpiarRes = new JButton("LIMPIAR");
+		btnLimpiarRes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnLimpiarRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnLimpiarRes.setBounds(605, 254, 105, 23);
 		Reserva.add(btnLimpiarRes);
@@ -2421,26 +2441,46 @@ public class Formulario extends JFrame {
 		etResPartEnc.setColumns(10);
 		
 		JButton btnAgregarPEnc = new JButton("AGREGAR");
+		btnAgregarPEnc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnAgregarPEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnAgregarPEnc.setBounds(37, 194, 105, 23);
 		ParticipaEnc.add(btnAgregarPEnc);
 		
 		JButton btnEliminarPEnc = new JButton("ELIMINAR");
+		btnEliminarPEnc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnEliminarPEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnEliminarPEnc.setBounds(179, 194, 105, 23);
 		ParticipaEnc.add(btnEliminarPEnc);
 		
 		JButton btnModificarPEnc = new JButton("MODIFICAR");
+		btnModificarPEnc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnModificarPEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnModificarPEnc.setBounds(321, 194, 105, 23);
 		ParticipaEnc.add(btnModificarPEnc);
 		
 		JButton btnConsultarPEnc = new JButton("CONSULTAR");
+		btnConsultarPEnc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnConsultarPEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnConsultarPEnc.setBounds(463, 194, 105, 23);
 		ParticipaEnc.add(btnConsultarPEnc);
 		
 		JButton btnLimpiarPEnc = new JButton("LIMPIAR");
+		btnLimpiarPEnc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnLimpiarPEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		btnLimpiarPEnc.setBounds(605, 194, 105, 23);
 		ParticipaEnc.add(btnLimpiarPEnc);
