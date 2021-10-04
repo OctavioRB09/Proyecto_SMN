@@ -6,17 +6,12 @@ import java.awt.EventQueue;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Random;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -26,15 +21,16 @@ import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
-
 import Conexion.*;
 import Consultas.*;
-
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
-@SuppressWarnings({ "unused", "serial" })
+//@SuppressWarnings({ "unused", "serial" })
 public class Formulario extends JFrame {
+
+	private static final long serialVersionUID = 1L;
 
 	private JPanel contentPane;
 
@@ -49,61 +45,50 @@ public class Formulario extends JFrame {
 	Sorteo_Querys objsor=new Sorteo_Querys();
 	Cartilla_Querys objCar=new Cartilla_Querys();
 	Encuadrado_Querys objEnc=new Encuadrado_Querys();
-	ConexionBD conexion = new ConexionBD();
+	Lidera_Querys objTC=new Lidera_Querys();
 	
+	ConexionBD conexion = new ConexionBD();
 	PreparedStatement ps = null;
 	ResultSet rs = null;
 	Connection cn = null;
 	Statement stm = null; 
 
-	//Instructor
-	private JTextField txtNum;
-	private JTextField txtNumP;
-	private JTextField txtNomI;
-	private JTextField txtAP;
-	private JTextField txtAM;
-	private JTextField txtSueldo;
-	private JTable table;
-	private JTextField txtR;
-
-	//Institución
-	private JTextField txtIdI;
-	private JTextField txtNI;
-	private JTextField txtCI;
-	private JTextField txtNEI;
-	private JTextField txtNII;
-	private JTextField txtNCI;
-	private JTextField txtMI;
-	private JTable table_1;
-
-	//Actividad
-	private JTextField txtNPA;
-	private JTextField txtMEA;
-	private JTextField txtNSA;
-	private JTextField txtIIA;
-	private JTextField txtHIA;
-	private JTextField txtHFA;
-	private JTextField txtFA;
-	private JTextField txtTAA;
-	private JTextField txtCAA;
-	private JTable table_2;
-
-	//NumTel_Institucion
-	private JTextField txtIINT;
-	private JTextField txtNTNT;
-	private JTable table_3;
-	private JTextField txtNTMNT;
-
-	//Escuadron
-	private JTextField txtNSE;
-	private JTextField txtNIE;
-	private JTable table_4;
-
-	//Participa_Res
-	private JTextField txtMRPR;
-	private JTextField txtEDPR;
-	private JTextField txtRPR;
-	private JTable table_5;
+	private JTextField etNumPlaca;
+	private JTextField etNombreIns;
+	private JTextField etApellidoPatIns;
+	private JTextField etApellidoMatIns;
+	private JTextField etSueldo;
+	private JTable tablaInstructor;
+	private JTextField etRango;
+	private JTextField etIdInstitucion;
+	private JTextField etNombreInstitucion;
+	private JTextField etColoniaInstitucion;
+	private JTextField etNumExtInstitucion;
+	private JTextField etNumInteriorInstitucion;
+	private JTextField etNombreCalleInstitucion;
+	private JTextField etMunicipioInstitucion;
+	private JTable tablaInstitucion;
+	private JTextField etNumPlacaIns;
+	private JTextField etMatricula;
+	private JTextField etNumSec;
+	private JTextField etIdInst;
+	private JTextField etHoraInicio;
+	private JTextField etHoraFin;
+	private JTextField etFecha;
+	private JTextField etActividad;
+	private JTextField etCosteAct;
+	private JTable tablaActividad;
+	private JTextField etIdInstitucion1;
+	private JTextField etNumTelInst;
+	private JTable tablaNumTel;
+	private JTextField etNumTelNuevo;
+	private JTextField etNumeroSeccion;
+	private JTextField etNumIntegrantes;
+	private JTable tablaEscuadron;
+	private JTextField etMatriculaPRes;
+	private JTextField etEdSorteoP;
+	private JTextField etResultadoP;
+	private JTable tablaPRes;
 	private JTextField etMatReserva;
 	private JTextField etNumLiberacion;
 	private JTextField etPrecioCart;
@@ -117,28 +102,10 @@ public class Formulario extends JFrame {
 	private JTextField etHoras;
 	private JTextField etPreciocart;
 	private JTable tablaValida;
-
-	//cartilla
-	private JTextField txtNum_LiberacionCartilla;
-	private JTextField txtZona_Militar;
-	private JTextField txtRegimiento;
-
-	//Encuadrado
-	private JTextField Txtnombre;
-	private JTextField TxtApaterno;
-	private JTextField TxtAmaterno;
-	private JTextField TxtCurp;
-	private JTextField TxtProfesion;
-	private JTextField TxtCalle;
-	private JTextField TxtColonia;
-	private JTextField TxtNumInterior;
-	private JTextField TxtNumExterior;
-	private JTextField TxtCiudad;
+	private JTextField etNum_LiberacionCartilla;
+	private JTextField etZona_Militar;
+	private JTextField etRegimiento;
 	private JTextField TxtDiscapacidad;
-	private JTextField TxtClase;
-	private JTextField TxtHabilidad;
-	private JTextField TxtPeso;
-	private JTextField TxtAltura;
 	private JTextField txtNombreEnc;
 	private JTextField txtApellidoPaternoEnc;
 	private JTextField txtApellidoMaternoEnc;
@@ -161,9 +128,8 @@ public class Formulario extends JFrame {
 	private JTextField txtEstadoCivil;
 	private JTextField txtTipoSangreEnc;
 	private JTable tablasorteo;
-	private JTable table_6;
-	private JTable table_7;
-
+	private JTable tablaCartilla;
+	private JTable tablaEncuadrado;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -180,44 +146,44 @@ public class Formulario extends JFrame {
 
 	public void limpiarEntradas() {
 		
-		txtNumP.setText(null);
-		txtNomI.setText(null);
-		txtAP.setText(null);
-		txtAM.setText(null);
-		txtR.setText(null);
-		txtSueldo.setText(null);
+		etNumPlaca.setText(null);
+		etNombreIns.setText(null);
+		etApellidoPatIns.setText(null);
+		etApellidoMatIns.setText(null);
+		etRango.setText(null);
+		etSueldo.setText(null);
 
-		txtIdI.setText(null);
-		txtNI.setText(null);
-		txtCI.setText(null);
-		txtNEI.setText(null);
-		txtNII.setText(null);
-		txtNCI.setText(null);
-		txtMI.setText(null);
+		etIdInstitucion.setText(null);
+		etNombreInstitucion.setText(null);
+		etColoniaInstitucion.setText(null);
+		etNumExtInstitucion.setText(null);
+		etNumInteriorInstitucion.setText(null);
+		etNombreCalleInstitucion.setText(null);
+		etMunicipioInstitucion.setText(null);
 
-		txtNPA.setText(null);
-		txtMEA.setText(null);
-		txtNSA.setText(null);
-		txtIIA.setText(null);
-		txtHIA.setText(null);
-		txtHFA.setText(null);
-		txtFA.setText(null);
-		txtTAA.setText(null);
-		txtCAA.setText(null);
+		etNumPlacaIns.setText(null);
+		etMatricula.setText(null);
+		etNumSec.setText(null);
+		etIdInst.setText(null);
+		etHoraInicio.setText(null);
+		etHoraFin.setText(null);
+		etFecha.setText(null);
+		etActividad.setText(null);
+		etCosteAct.setText(null);
 
-		txtIINT.setText(null);
-		txtNTNT.setText(null);
+		etIdInstitucion1.setText(null);
+		etNumTelInst.setText(null);
 
-		txtNSE.setText(null);
-		txtNIE.setText(null);
+		etNumeroSeccion.setText(null);
+		etNumIntegrantes.setText(null);
 
-		txtMRPR.setText(null);
-		txtEDPR.setText(null);
-		txtRPR.setText(null);
+		etMatriculaPRes.setText(null);
+		etEdSorteoP.setText(null);
+		etResultadoP.setText(null);
 
-		txtNum_LiberacionCartilla.setText(null);
-		txtZona_Militar.setText(null);
-		txtRegimiento.setText(null);
+		etNum_LiberacionCartilla.setText(null);
+		etZona_Militar.setText(null);
+		etRegimiento.setText(null);
 		
 	}
 
@@ -227,7 +193,7 @@ public class Formulario extends JFrame {
 		cn = conexion.conectar();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 678, 467);
+		setBounds(100, 100, 781, 581);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setTitle(conexion.user);
@@ -237,8 +203,9 @@ public class Formulario extends JFrame {
 		setContentPane(contentPane);
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setFont(new Font("Trebuchet MS", Font.PLAIN, 12));
 		tabbedPane.setBounds(0, 0, 598, 392);
-		getContentPane().add(tabbedPane);
+		getContentPane().add(tabbedPane, BorderLayout.CENTER);
 
 //-->> INICIO DEL PANEL DE INSTRUCTOR		
 		JPanel Instructor = new JPanel();
@@ -249,168 +216,168 @@ public class Formulario extends JFrame {
 
 		JTextPane txtpnMatricula = new JTextPane();
 		txtpnMatricula.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnMatricula.setText("NUMERO DE PLACA:");
+		txtpnMatricula.setText("NUMERO DE PLACA");
 		txtpnMatricula.setForeground(Color.BLACK);
 		txtpnMatricula.setEditable(false);
 		txtpnMatricula.setBackground(SystemColor.menu);
-		txtpnMatricula.setBounds(10, 11, 123, 20);
+		txtpnMatricula.setBounds(106, 28, 118, 20);
 		Instructor.add(txtpnMatricula);
-
-		txtNumP = new JTextField();
-		txtNumP.setColumns(10);
-		txtNumP.setBounds(167, 11, 86, 20);
-		Instructor.add(txtNumP);
 
 		JTextPane txtpnNombre = new JTextPane();
 		txtpnNombre.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnNombre.setText("NOMBRE INSTRUCTOR:");
+		txtpnNombre.setText("NOMBRE INSTRUCTOR");
 		txtpnNombre.setEditable(false);
 		txtpnNombre.setBackground(SystemColor.menu);
-		txtpnNombre.setBounds(10, 42, 144, 20);
+		txtpnNombre.setBounds(306, 28, 139, 20);
 		Instructor.add(txtpnNombre);
-
-		txtNomI = new JTextField();
-		txtNomI.setColumns(10);
-		txtNomI.setBounds(167, 42, 86, 20);
-		Instructor.add(txtNomI);
 
 		JTextPane txtpnNombre_1 = new JTextPane();
 		txtpnNombre_1.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnNombre_1.setText("APELLIDO PATERNO:");
+		txtpnNombre_1.setText("APELLIDO PATERNO");
 		txtpnNombre_1.setEditable(false);
 		txtpnNombre_1.setBackground(SystemColor.menu);
-		txtpnNombre_1.setBounds(10, 73, 127, 20);
+		txtpnNombre_1.setBounds(524, 28, 122, 20);
 		Instructor.add(txtpnNombre_1);
 
 		JTextPane txtpnNombre_2 = new JTextPane();
 		txtpnNombre_2.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnNombre_2.setText("APELLIDO MATERNO:");
+		txtpnNombre_2.setText("APELLIDO MATERNO");
 		txtpnNombre_2.setEditable(false);
 		txtpnNombre_2.setBackground(SystemColor.menu);
-		txtpnNombre_2.setBounds(10, 104, 132, 20);
+		txtpnNombre_2.setBounds(106, 104, 127, 20);
 		Instructor.add(txtpnNombre_2);
 
 		JTextPane txtpnNombre_3 = new JTextPane();
 		txtpnNombre_3.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnNombre_3.setText("RANGO:");
+		txtpnNombre_3.setText("RANGO");
 		txtpnNombre_3.setEditable(false);
 		txtpnNombre_3.setBackground(SystemColor.menu);
-		txtpnNombre_3.setBounds(10, 135, 95, 20);
+		txtpnNombre_3.setBounds(350, 104, 47, 20);
 		Instructor.add(txtpnNombre_3);
-
-		txtAP = new JTextField();
-		txtAP.setColumns(10);
-		txtAP.setBounds(167, 73, 86, 20);
-		Instructor.add(txtAP);
-
-		txtAM = new JTextField();
-		txtAM.setColumns(10);
-		txtAM.setBounds(167, 104, 86, 20);
-		Instructor.add(txtAM);
-
-		txtSueldo = new JTextField();
-		txtSueldo.setColumns(10);
-		txtSueldo.setBounds(167, 166, 86, 20);
-		Instructor.add(txtSueldo);
-
+		
 		JTextPane txtpnNombre_3_1 = new JTextPane();
 		txtpnNombre_3_1.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnNombre_3_1.setText("SUELDO:");
+		txtpnNombre_3_1.setText("SUELDO");
 		txtpnNombre_3_1.setEditable(false);
 		txtpnNombre_3_1.setBackground(SystemColor.menu);
-		txtpnNombre_3_1.setBounds(10, 166, 95, 20);
+		txtpnNombre_3_1.setBounds(557, 104, 53, 20);
 		Instructor.add(txtpnNombre_3_1);
 
+		etNumPlaca = new JTextField();
+		etNumPlaca.setColumns(10);
+		etNumPlaca.setBounds(123, 59, 86, 20);
+		Instructor.add(etNumPlaca);
+		
+		etNombreIns = new JTextField();
+		etNombreIns.setColumns(10);
+		etNombreIns.setBounds(332, 59, 86, 20);
+		Instructor.add(etNombreIns);
+		
+		etApellidoPatIns = new JTextField();
+		etApellidoPatIns.setColumns(10);
+		etApellidoPatIns.setBounds(541, 59, 86, 20);
+		Instructor.add(etApellidoPatIns);
+
+		etApellidoMatIns = new JTextField();
+		etApellidoMatIns.setColumns(10);
+		etApellidoMatIns.setBounds(123, 135, 86, 20);
+		Instructor.add(etApellidoMatIns);
+
+		etRango = new JTextField();
+		etRango.setBounds(332, 135, 86, 20);
+		Instructor.add(etRango);
+		etRango.setColumns(10);
+		
+		etSueldo = new JTextField();
+		etSueldo.setColumns(10);
+		etSueldo.setBounds(541, 131, 86, 20);
+		Instructor.add(etSueldo);
+
 		//-->> INICIO DE LOS BOTONES
-		JButton bAgregar = new JButton("AGREGAR");
-		bAgregar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bAgregar.addActionListener((ActionListener) new ActionListener() {
+		JButton btnAgregarIns = new JButton("AGREGAR");
+		btnAgregarIns.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnAgregarIns.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent Arg0) {
 
-				objIns.ingresar_instructor(txtNumP.getText(), txtNomI.getText(), txtAP.getText(), txtAM.getText(), txtR.getText(), txtSueldo.getText());
+				objIns.ingresar_instructor(etNumPlaca.getText(), etNombreIns.getText(), etApellidoPatIns.getText(), etApellidoMatIns.getText(), etRango.getText(), etSueldo.getText());
 				limpiarEntradas();
 
 				DefaultTableModel modeloIns = objIns.mostrarRegistrosIns("SELECT * FROM instructor");
-				table.setModel(modeloIns);
+				tablaInstructor.setModel(modeloIns);
 				
 			}
 		});
-		bAgregar.setBounds(462, 11, 111, 23);
-		Instructor.add(bAgregar);
+		btnAgregarIns.setBounds(32, 235, 111, 23);
+		Instructor.add(btnAgregarIns);
 
-		JButton bModificar = new JButton("MODIFICAR");
-		bModificar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bModificar.addActionListener((ActionListener) new ActionListener() {
+		JButton btnModificarIns = new JButton("MODIFICAR");
+		btnModificarIns.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnModificarIns.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent Arg0) {
 
-				objIns.modificar_instructor(txtNumP.getText(), txtNomI.getText(), txtAP.getText(), txtAM.getText(), txtR.getText(), txtSueldo.getText());
+				objIns.modificar_instructor(etNumPlaca.getText(), etNombreIns.getText(), etApellidoPatIns.getText(), etApellidoMatIns.getText(), etRango.getText(), etSueldo.getText());
 				limpiarEntradas();
 
 				DefaultTableModel modeloIns = objIns.mostrarRegistrosIns("SELECT * FROM instructor");
-				table.setModel(modeloIns);
+				tablaInstructor.setModel(modeloIns);
 				
 			}
 		});
-		bModificar.setBounds(462, 73, 111, 23);
-		Instructor.add(bModificar);
+		btnModificarIns.setBounds(318, 235, 111, 23);
+		Instructor.add(btnModificarIns);
 
-		JButton bEliminar = new JButton("ELIMINAR");
-		bEliminar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bEliminar.addActionListener((ActionListener) new ActionListener() {
+		JButton btnEliminarIns = new JButton("ELIMINAR");
+		btnEliminarIns.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnEliminarIns.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent Arg0) {
 
-				objIns.eliminar_instructor(txtNumP.getText());
+				objIns.eliminar_instructor(etNumPlaca.getText());
 				limpiarEntradas();
 
 				DefaultTableModel modeloIns = objIns.mostrarRegistrosIns("SELECT * FROM instructor");
-				table.setModel(modeloIns);
+				tablaInstructor.setModel(modeloIns);
 				
 			}
 		});
-		bEliminar.setBounds(462, 42, 111, 23);
-		Instructor.add(bEliminar);
+		btnEliminarIns.setBounds(175, 235, 111, 23);
+		Instructor.add(btnEliminarIns);
 
-		JButton bBuscar = new JButton("CONSULTAR");
-		bBuscar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bBuscar.addActionListener((ActionListener) new ActionListener() {
+		JButton btnBuscarIns = new JButton("CONSULTAR");
+		btnBuscarIns.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnBuscarIns.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent Arg0) {
 				
 				DefaultTableModel modeloIns = objIns.mostrarRegistrosIns("SELECT * FROM instructor");
-				table.setModel(modeloIns);
+				tablaInstructor.setModel(modeloIns);
 				
 			}
 		});
-		bBuscar.setBounds(462, 104, 111, 23);
-		Instructor.add(bBuscar);
-
-		//-->> INICIO DEL PANEL DE LA TABLA
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 231, 573, 142);
-		Instructor.add(panel);
-		panel.setLayout(null);
-
-			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setBounds(0, 0, 573, 142);
-			panel.add(scrollPane);
-	
-			table = new JTable();
-			table.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
-			scrollPane.setViewportView(table);
-
-		JButton bMostrarDatos = new JButton("LIMPIAR");
-		bMostrarDatos.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bMostrarDatos.addActionListener(new ActionListener() {
+		btnBuscarIns.setBounds(461, 235, 111, 23);
+		Instructor.add(btnBuscarIns);
+		
+		JButton btnLimpiarIns = new JButton("LIMPIAR");
+		btnLimpiarIns.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnLimpiarIns.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limpiarEntradas();
 			}
 		});
-		bMostrarDatos.setBounds(462, 164, 111, 23);
-		Instructor.add(bMostrarDatos);
+		btnLimpiarIns.setBounds(604, 235, 111, 23);
+		Instructor.add(btnLimpiarIns);
 
-		txtR = new JTextField();
-		txtR.setBounds(167, 135, 86, 20);
-		Instructor.add(txtR);
-		txtR.setColumns(10);
+		//-->> INICIO DEL PANEL DE LA TABLA
+		JPanel pnlTablaInstructor = new JPanel();
+		pnlTablaInstructor.setBounds(22, 275, 704, 200);
+		Instructor.add(pnlTablaInstructor);
+		pnlTablaInstructor.setLayout(null);
+
+			JScrollPane spTablaInstructor = new JScrollPane();
+			spTablaInstructor.setBounds(0, 0, 704, 200);
+			pnlTablaInstructor.add(spTablaInstructor);
+	
+			tablaInstructor = new JTable();
+			tablaInstructor.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
+			spTablaInstructor.setViewportView(tablaInstructor);
 
 //-->> INICIO DEL PANEL DE INSTITUCION
 		JPanel Institucion = new JPanel();
@@ -419,179 +386,299 @@ public class Formulario extends JFrame {
 
 		JTextPane txtpnIdintsi = new JTextPane();
 		txtpnIdintsi.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnIdintsi.setText("ID INSTITUCION:");
+		txtpnIdintsi.setText("ID INSTITUCION");
 		txtpnIdintsi.setEditable(false);
 		txtpnIdintsi.setBackground(SystemColor.menu);
-		txtpnIdintsi.setBounds(10, 11, 125, 20);
+		txtpnIdintsi.setBounds(123, 25, 111, 20);
 		Institucion.add(txtpnIdintsi);
-
-		txtIdI = new JTextField();
-		txtIdI.setBounds(140, 11, 86, 20);
-		Institucion.add(txtIdI);
-		txtIdI.setColumns(10);
 
 		JTextPane txtpnNombreInsti = new JTextPane();
 		txtpnNombreInsti.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnNombreInsti.setText("NOMBRE:");
+		txtpnNombreInsti.setText("NOMBRE");
 		txtpnNombreInsti.setEditable(false);
 		txtpnNombreInsti.setBackground(SystemColor.menu);
-		txtpnNombreInsti.setBounds(10, 40, 77, 20);
+		txtpnNombreInsti.setBounds(353, 25, 57, 20);
 		Institucion.add(txtpnNombreInsti);
-
-		txtNI = new JTextField();
-		txtNI.setColumns(10);
-		txtNI.setBounds(140, 40, 86, 20);
-		Institucion.add(txtNI);
 
 		JTextPane txtpnNumExte = new JTextPane();
 		txtpnNumExte.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnNumExte.setText("NUM EXTERIOR:");
+		txtpnNumExte.setText("NUM EXTERIOR");
 		txtpnNumExte.setEditable(false);
 		txtpnNumExte.setBackground(SystemColor.menu);
-		txtpnNumExte.setBounds(10, 130, 104, 20);
+		txtpnNumExte.setBounds(240, 99, 99, 20);
 		Institucion.add(txtpnNumExte);
 
 		JTextPane txtpnNumInt = new JTextPane();
 		txtpnNumInt.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnNumInt.setText("NUM INTERIOR:");
+		txtpnNumInt.setText("NUM INTERIOR");
 		txtpnNumInt.setEditable(false);
 		txtpnNumInt.setBackground(SystemColor.menu);
-		txtpnNumInt.setBounds(10, 159, 104, 20);
+		txtpnNumInt.setBounds(410, 99, 99, 20);
 		Institucion.add(txtpnNumInt);
 
 		JTextPane txtpnNomCalle = new JTextPane();
 		txtpnNomCalle.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnNomCalle.setText("NOMBRE CALLE:");
+		txtpnNomCalle.setText("NOMBRE CALLE");
 		txtpnNomCalle.setEditable(false);
 		txtpnNomCalle.setBackground(SystemColor.menu);
-		txtpnNomCalle.setBounds(10, 185, 104, 20);
+		txtpnNomCalle.setBounds(584, 99, 96, 20);
 		Institucion.add(txtpnNomCalle);
 
 		JTextPane txtpnColonia = new JTextPane();
 		txtpnColonia.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnColonia.setText("COLONIA:");
+		txtpnColonia.setText("COLONIA");
 		txtpnColonia.setEditable(false);
 		txtpnColonia.setBackground(SystemColor.menu);
-		txtpnColonia.setBounds(10, 68, 77, 20);
+		txtpnColonia.setBounds(561, 25, 61, 20);
 		Institucion.add(txtpnColonia);
-
-		txtCI = new JTextField();
-		txtCI.setColumns(10);
-		txtCI.setBounds(140, 68, 86, 20);
-		Institucion.add(txtCI);
-
-		txtNEI = new JTextField();
-		txtNEI.setColumns(10);
-		txtNEI.setBounds(140, 130, 86, 20);
-		Institucion.add(txtNEI);
-
-		txtNII = new JTextField();
-		txtNII.setColumns(10);
-		txtNII.setBounds(140, 159, 86, 20);
-		Institucion.add(txtNII);
-
-		txtNCI = new JTextField();
-		txtNCI.setColumns(10);
-		txtNCI.setBounds(140, 188, 86, 20);
-		Institucion.add(txtNCI);
-
+		
 		JTextPane txtpnMunicipio = new JTextPane();
 		txtpnMunicipio.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnMunicipio.setText("MUNICIPIO:");
+		txtpnMunicipio.setText("MUNICIPIO");
 		txtpnMunicipio.setEditable(false);
 		txtpnMunicipio.setBackground(SystemColor.menu);
-		txtpnMunicipio.setBounds(10, 99, 77, 20);
+		txtpnMunicipio.setBounds(84, 99, 71, 20);
 		Institucion.add(txtpnMunicipio);
 
-		txtMI = new JTextField();
-		txtMI.setColumns(10);
-		txtMI.setBounds(140, 99, 86, 20);
-		Institucion.add(txtMI);
+		etIdInstitucion = new JTextField();
+		etIdInstitucion.setBounds(128, 56, 100, 20);
+		Institucion.add(etIdInstitucion);
+		etIdInstitucion.setColumns(10);
+		
+		etNombreInstitucion = new JTextField();
+		etNombreInstitucion.setColumns(10);
+		etNombreInstitucion.setBounds(332, 56, 100, 20);
+		Institucion.add(etNombreInstitucion);
+		
+		etColoniaInstitucion = new JTextField();
+		etColoniaInstitucion.setColumns(10);
+		etColoniaInstitucion.setBounds(541, 56, 100, 20);
+		Institucion.add(etColoniaInstitucion);
+
+		etNumExtInstitucion = new JTextField();
+		etNumExtInstitucion.setColumns(10);
+		etNumExtInstitucion.setBounds(239, 130, 100, 20);
+		Institucion.add(etNumExtInstitucion);
+
+		etNumInteriorInstitucion = new JTextField();
+		etNumInteriorInstitucion.setColumns(10);
+		etNumInteriorInstitucion.setBounds(409, 130, 100, 20);
+		Institucion.add(etNumInteriorInstitucion);
+
+		etNombreCalleInstitucion = new JTextField();
+		etNombreCalleInstitucion.setColumns(10);
+		etNombreCalleInstitucion.setBounds(582, 130, 100, 20);
+		Institucion.add(etNombreCalleInstitucion);
+
+		etMunicipioInstitucion = new JTextField();
+		etMunicipioInstitucion.setColumns(10);
+		etMunicipioInstitucion.setBounds(69, 130, 100, 20);
+		Institucion.add(etMunicipioInstitucion);
 
 		//-->> INICIO DE LOS BOTONES
-		JButton bAgregarI = new JButton("AGREGAR");
-		bAgregarI.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bAgregarI.addActionListener((ActionListener) new ActionListener() {
+		JButton btnAgregarInstitucion = new JButton("AGREGAR");
+		btnAgregarInstitucion.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnAgregarInstitucion.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent Arg0) {
 				
-				objInst.ingresarInst(txtIdI.getText(), txtNI.getText(), txtNEI.getText(), txtNII.getText(),	txtNCI.getText(), txtCI.getText(), txtMI.getText());
+				objInst.ingresarInst(etIdInstitucion.getText(), etNombreInstitucion.getText(), etNumExtInstitucion.getText(), etNumInteriorInstitucion.getText(),	etNombreCalleInstitucion.getText(), etColoniaInstitucion.getText(), etMunicipioInstitucion.getText());
 				limpiarEntradas();
 
 				DefaultTableModel modeloInsti = objInst.mostrarRegistrosIns("SELECT * FROM institucion");
-				table_1.setModel(modeloInsti);
+				tablaInstitucion.setModel(modeloInsti);
 				
 			}
 		});
-		bAgregarI.setBounds(462, 8, 111, 23);
-		Institucion.add(bAgregarI);
+		btnAgregarInstitucion.setBounds(32, 223, 111, 23);
+		Institucion.add(btnAgregarInstitucion);
 
-		JButton bEliminarI = new JButton("ELIMINAR");
-		bEliminarI.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bEliminarI.addActionListener((ActionListener) new ActionListener() {
+		JButton btnEliminarInstitucion = new JButton("ELIMINAR");
+		btnEliminarInstitucion.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnEliminarInstitucion.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent Arg0) {
 				
-				objInst.eliminarInst(txtIdI.getText());
+				objInst.eliminarInst(etIdInstitucion.getText());
 				limpiarEntradas();
 
 				DefaultTableModel modeloInsti = objInst.mostrarRegistrosIns("SELECT * FROM institucion");
-				table_1.setModel(modeloInsti);
+				tablaInstitucion.setModel(modeloInsti);
 				
 			}
 		});
-		bEliminarI.setBounds(462, 37, 111, 23);
-		Institucion.add(bEliminarI);
+		btnEliminarInstitucion.setBounds(175, 223, 111, 23);
+		Institucion.add(btnEliminarInstitucion);
 
-		JButton bModificarI = new JButton("MODIFICAR");
-		bModificarI.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bModificarI.addActionListener((ActionListener) new ActionListener() {
+		JButton btnModificarInstitucion = new JButton("MODIFICAR");
+		btnModificarInstitucion.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnModificarInstitucion.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent Arg0) {
 
-				objInst.modificarInst(txtIdI.getText(), txtNI.getText(), txtNEI.getText(), txtNII.getText(), txtNCI.getText(), txtCI.getText(), txtMI.getText());
+				objInst.modificarInst(etIdInstitucion.getText(), etNombreInstitucion.getText(), etNumExtInstitucion.getText(), etNumInteriorInstitucion.getText(), etNombreCalleInstitucion.getText(), etColoniaInstitucion.getText(), etMunicipioInstitucion.getText());
 				limpiarEntradas();
 
 				DefaultTableModel modeloInsti = objInst.mostrarRegistrosIns("SELECT * FROM institucion");
-				table_1.setModel(modeloInsti);
+				tablaInstitucion.setModel(modeloInsti);
 				
 			}
 		});
-		bModificarI.setBounds(462, 68, 111, 23);
-		Institucion.add(bModificarI);
+		btnModificarInstitucion.setBounds(318, 223, 111, 23);
+		Institucion.add(btnModificarInstitucion);
 
-		JButton bBuscarI = new JButton("CONSULTAR");
-		bBuscarI.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bBuscarI.addActionListener((ActionListener) new ActionListener() {
+		JButton btnConsultarInstitucion = new JButton("CONSULTAR");
+		btnConsultarInstitucion.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnConsultarInstitucion.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent Arg0) {
 				
 				DefaultTableModel modeloInsti = objInst.mostrarRegistrosIns("SELECT * FROM institucion");
-				table_1.setModel(modeloInsti);
+				tablaInstitucion.setModel(modeloInsti);
 				
 			}
 		});
-		bBuscarI.setBounds(462, 96, 111, 23);
-		Institucion.add(bBuscarI);
-
-		//-->> INICIO DEL PANEL DE LA TABLA
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 219, 573, 160);
-		Institucion.add(panel_1);
-		panel_1.setLayout(null);
-
-			JScrollPane scrollPane_1 = new JScrollPane();
-			scrollPane_1.setBounds(0, 0, 573, 159);
-			panel_1.add(scrollPane_1);
-	
-			table_1 = new JTable();
-			scrollPane_1.setViewportView(table_1);
-
-		JButton bMostrarDatosI = new JButton("LIMPAR");
-		bMostrarDatosI.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bMostrarDatosI.addActionListener(new ActionListener() {
+		btnConsultarInstitucion.setBounds(461, 223, 111, 23);
+		Institucion.add(btnConsultarInstitucion);
+		
+		JButton btnLimpiarInstitucion = new JButton("LIMPAR");
+		btnLimpiarInstitucion.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnLimpiarInstitucion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limpiarEntradas();
 			}
 		});
-		bMostrarDatosI.setBounds(462, 127, 111, 23);
-		Institucion.add(bMostrarDatosI);
+		btnLimpiarInstitucion.setBounds(604, 223, 111, 23);
+		Institucion.add(btnLimpiarInstitucion);
+
+		//-->> INICIO DEL PANEL DE LA TABLA
+		JPanel pnlTablaInstitucion = new JPanel();
+		pnlTablaInstitucion.setBounds(20, 265, 707, 210);
+		Institucion.add(pnlTablaInstitucion);
+		pnlTablaInstitucion.setLayout(null);
+
+			JScrollPane spTablaInstitucion = new JScrollPane();
+			spTablaInstitucion.setBounds(0, 0, 707, 210);
+			pnlTablaInstitucion.add(spTablaInstitucion);
+	
+			tablaInstitucion = new JTable();
+			spTablaInstitucion.setViewportView(tablaInstitucion);	
+		
+//-->> INICIO DEL PANEL DE CARTILLA
+		JPanel Cartilla = new JPanel();
+		tabbedPane.addTab("Cartilla", null, Cartilla, null);
+		Cartilla.setLayout(null);
+		
+				JLabel lblNum_Liberación = new JLabel("NUM_LIBERACI\u00D3N");
+		lblNum_Liberación.setBounds(118, 70, 107, 14);
+		lblNum_Liberación.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		Cartilla.add(lblNum_Liberación);
+		
+				JLabel lblZona_Militar = new JLabel("ZONA_MILITAR");
+		lblZona_Militar.setBounds(343, 70, 93, 14);
+		lblZona_Militar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		Cartilla.add(lblZona_Militar);	
+		
+				JLabel lblRegimiento = new JLabel("REGIMIENTO");
+		lblRegimiento.setBounds(554, 70, 77, 14);
+		lblRegimiento.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		Cartilla.add(lblRegimiento);
+
+		etNum_LiberacionCartilla = new JTextField();
+		etNum_LiberacionCartilla.setBounds(112, 95, 118, 20);
+		Cartilla.add(etNum_LiberacionCartilla);
+		etNum_LiberacionCartilla.setColumns(10);
+		
+		etZona_Militar = new JTextField();
+		etZona_Militar.setBounds(330, 95, 118, 20);
+		etZona_Militar.setColumns(10);
+		Cartilla.add(etZona_Militar);
+		
+		etRegimiento = new JTextField();
+		etRegimiento.setBounds(533, 95, 118, 20);
+		etRegimiento.setColumns(10);
+		Cartilla.add(etRegimiento);
+				
+						//-->>INICIO DE LOS BOTONES
+		JButton btnEliminarCar = new JButton("ELIMINAR");
+		btnEliminarCar.setBounds(170, 192, 118, 23);
+		btnEliminarCar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				objCar.eliminar_Car(etNum_LiberacionCartilla.getText());
+				limpiarEntradas();
+		
+				DefaultTableModel modeloCar = objCar.mostrarRegistrosCar("SELECT * FROM cartilla");
+				tablaCartilla.setModel(modeloCar);
+		
+			}
+		});
+		btnEliminarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		Cartilla.add(btnEliminarCar);
+		
+				JButton btnAgregarCar = new JButton("AGREGAR");
+		btnAgregarCar.setBounds(26, 192, 118, 23);
+		btnAgregarCar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		
+				objCar.ingresar_Car(etNum_LiberacionCartilla.getText(), etZona_Militar.getText(),	etRegimiento.getText());
+				limpiarEntradas();
+		
+				DefaultTableModel modeloCar = objCar.mostrarRegistrosCar("SELECT * FROM cartilla");
+				tablaCartilla.setModel(modeloCar);
+		
+			}
+		});
+		btnAgregarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		Cartilla.add(btnAgregarCar);
+		
+		JButton btnModificarCar = new JButton("MODIFICAR\r\n");
+		btnModificarCar.setBounds(314, 192, 118, 23);
+		btnModificarCar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		
+				objCar.modificar_Car(etNum_LiberacionCartilla.getText(), etZona_Militar.getText(), etRegimiento.getText());
+				limpiarEntradas();
+		
+				DefaultTableModel modeloCar = objCar.mostrarRegistrosCar("SELECT * FROM cartilla");
+				tablaCartilla.setModel(modeloCar);
+				
+			}
+		});
+		btnModificarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		Cartilla.add(btnModificarCar);
+		
+		JButton btnConsultarCar = new JButton("CONSULTAR");
+		btnConsultarCar.setBounds(458, 192, 118, 23);
+		btnConsultarCar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				DefaultTableModel modeloCar = objParR.mostrarRegistrosNumT("SELECT * FROM cartilla");
+				tablaCartilla.setModel(modeloCar);
+				
+			}
+		});
+		btnConsultarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		Cartilla.add(btnConsultarCar);
+		
+		JButton btnLimpiarCar = new JButton("LIMPIAR");
+		btnLimpiarCar.setBounds(602, 192, 118, 23);
+		btnLimpiarCar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpiarEntradas();
+			}
+		});
+		btnLimpiarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		Cartilla.add(btnLimpiarCar);
+		
+		//-->> INICIO DEL PANEL CONTENEDOR DE LA TABLA
+		JPanel pnlTablaCartilla = new JPanel();
+		pnlTablaCartilla.setBounds(173, 266, 404, 209);
+		Cartilla.add(pnlTablaCartilla);
+		pnlTablaCartilla.setLayout(null);
+		
+			JScrollPane spTablaCartilla = new JScrollPane();
+			spTablaCartilla.setBounds(0, 0, 404, 209);
+			pnlTablaCartilla.add(spTablaCartilla);
+			
+			tablaCartilla = new JTable();
+			spTablaCartilla.setViewportView(tablaCartilla);
 
 //-->> INICIO DEL PANEL DE ACTIVIDAD
 		JPanel Actividad = new JPanel();
@@ -600,785 +687,298 @@ public class Formulario extends JFrame {
 
 		JTextPane txtpnNumplaca = new JTextPane();
 		txtpnNumplaca.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnNumplaca.setText("NUMERO PLACA:");
+		txtpnNumplaca.setText("NUMERO PLACA");
 		txtpnNumplaca.setBackground(SystemColor.menu);
 		txtpnNumplaca.setEditable(false);
-		txtpnNumplaca.setBounds(0, 11, 112, 20);
+		txtpnNumplaca.setBounds(67, 11, 98, 20);
 		Actividad.add(txtpnNumplaca);
-
-		txtNPA = new JTextField();
-		txtNPA.setBounds(122, 11, 86, 20);
-		Actividad.add(txtNPA);
-		txtNPA.setColumns(10);
 
 		JTextPane txtpnMatriculaenc = new JTextPane();
 		txtpnMatriculaenc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnMatriculaenc.setText("MATRICULA ENC:");
+		txtpnMatriculaenc.setText("MATRICULA ENC");
 		txtpnMatriculaenc.setEditable(false);
 		txtpnMatriculaenc.setBackground(SystemColor.menu);
-		txtpnMatriculaenc.setBounds(0, 40, 112, 20);
+		txtpnMatriculaenc.setBounds(232, 11, 104, 20);
 		Actividad.add(txtpnMatriculaenc);
 
 		JTextPane txtpnNs = new JTextPane();
 		txtpnNs.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnNs.setText("NUM SECCI\u00D3N:");
+		txtpnNs.setText("NUM SECCI\u00D3N");
 		txtpnNs.setEditable(false);
 		txtpnNs.setBackground(SystemColor.menu);
-		txtpnNs.setBounds(0, 71, 112, 20);
+		txtpnNs.setBounds(403, 11, 98, 20);
 		Actividad.add(txtpnNs);
 
 		JTextPane txtpnIdinst = new JTextPane();
 		txtpnIdinst.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnIdinst.setText("ID INSTITUCION:");
+		txtpnIdinst.setText("ID INSTITUCION");
 		txtpnIdinst.setEditable(false);
 		txtpnIdinst.setBackground(SystemColor.menu);
-		txtpnIdinst.setBounds(0, 102, 122, 20);
+		txtpnIdinst.setBounds(568, 11, 112, 20);
 		Actividad.add(txtpnIdinst);
 
 		JTextPane txtpnHora = new JTextPane();
 		txtpnHora.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnHora.setText("HORA INICIO:");
+		txtpnHora.setText("HORA INI");
 		txtpnHora.setEditable(false);
 		txtpnHora.setBackground(SystemColor.menu);
-		txtpnHora.setBounds(0, 133, 92, 20);
+		txtpnHora.setBounds(63, 100, 70, 20);
 		Actividad.add(txtpnHora);
-
-		txtMEA = new JTextField();
-		txtMEA.setColumns(10);
-		txtMEA.setBounds(122, 40, 86, 20);
-		Actividad.add(txtMEA);
-
-		txtNSA = new JTextField();
-		txtNSA.setColumns(10);
-		txtNSA.setBounds(122, 71, 86, 20);
-		Actividad.add(txtNSA);
-
-		txtIIA = new JTextField();
-		txtIIA.setColumns(10);
-		txtIIA.setBounds(122, 102, 86, 20);
-		Actividad.add(txtIIA);
-
-		txtHIA = new JTextField();
-		txtHIA.setColumns(10);
-		txtHIA.setBounds(122, 133, 86, 20);
-		Actividad.add(txtHIA);
-
+		
 		JTextPane txtpnHorafin = new JTextPane();
 		txtpnHorafin.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnHorafin.setText("HORA FIN:");
+		txtpnHorafin.setText("HORA FIN");
 		txtpnHorafin.setEditable(false);
 		txtpnHorafin.setBackground(SystemColor.menu);
-		txtpnHorafin.setBounds(0, 164, 86, 20);
+		txtpnHorafin.setBounds(196, 100, 68, 20);
 		Actividad.add(txtpnHorafin);
 
 		JTextPane txtpnFecha = new JTextPane();
 		txtpnFecha.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnFecha.setText("FECHA:");
+		txtpnFecha.setText("FECHA");
 		txtpnFecha.setEditable(false);
 		txtpnFecha.setBackground(SystemColor.menu);
-		txtpnFecha.setBounds(224, 11, 70, 20);
+		txtpnFecha.setBounds(329, 100, 44, 20);
 		Actividad.add(txtpnFecha);
-
-		txtHFA = new JTextField();
-		txtHFA.setColumns(10);
-		txtHFA.setBounds(122, 164, 86, 20);
-		Actividad.add(txtHFA);
-
-		txtFA = new JTextField();
-		txtFA.setColumns(10);
-		txtFA.setBounds(346, 11, 86, 20);
-		Actividad.add(txtFA);
-
+		
 		JTextPane txtpnTactividad = new JTextPane();
 		txtpnTactividad.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnTactividad.setText("TIPO ACTIVIDAD:");
+		txtpnTactividad.setText("TIPO ACTIVIDAD");
 		txtpnTactividad.setEditable(false);
 		txtpnTactividad.setBackground(SystemColor.menu);
-		txtpnTactividad.setBounds(224, 40, 112, 20);
+		txtpnTactividad.setBounds(436, 100, 107, 20);
 		Actividad.add(txtpnTactividad);
 
 		JTextPane txtpnCosteact = new JTextPane();
 		txtpnCosteact.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnCosteact.setText("COSTE ACT:");
+		txtpnCosteact.setText("COSTE ACT");
 		txtpnCosteact.setEditable(false);
 		txtpnCosteact.setBackground(SystemColor.menu);
-		txtpnCosteact.setBounds(224, 71, 89, 20);
+		txtpnCosteact.setBounds(611, 100, 74, 20);
 		Actividad.add(txtpnCosteact);
+		
+		etNumPlacaIns = new JTextField();
+		etNumPlacaIns.setBounds(73, 42, 86, 20);
+		Actividad.add(etNumPlacaIns);
+		etNumPlacaIns.setColumns(10);
+		
+		etMatricula = new JTextField();
+		etMatricula.setColumns(10);
+		etMatricula.setBounds(241, 42, 86, 20);
+		Actividad.add(etMatricula);
 
-		txtTAA = new JTextField();
-		txtTAA.setColumns(10);
-		txtTAA.setBounds(346, 40, 86, 20);
-		Actividad.add(txtTAA);
+		etNumSec = new JTextField();
+		etNumSec.setColumns(10);
+		etNumSec.setBounds(409, 42, 86, 20);
+		Actividad.add(etNumSec);
 
-		txtCAA = new JTextField();
-		txtCAA.setColumns(10);
-		txtCAA.setBounds(346, 71, 86, 20);
-		Actividad.add(txtCAA);
+		etIdInst = new JTextField();
+		etIdInst.setColumns(10);
+		etIdInst.setBounds(581, 42, 86, 20);
+		Actividad.add(etIdInst);
+
+		etHoraInicio = new JTextField();
+		etHoraInicio.setColumns(10);
+		etHoraInicio.setBounds(55, 133, 86, 20);
+		Actividad.add(etHoraInicio);
+
+		etHoraFin = new JTextField();
+		etHoraFin.setColumns(10);
+		etHoraFin.setBounds(188, 133, 86, 20);
+		Actividad.add(etHoraFin);
+
+		etFecha = new JTextField();
+		etFecha.setColumns(10);
+		etFecha.setBounds(308, 133, 86, 20);
+		Actividad.add(etFecha);
+
+		etActividad = new JTextField();
+		etActividad.setColumns(10);
+		etActividad.setBounds(449, 133, 86, 20);
+		Actividad.add(etActividad);
+
+		etCosteAct = new JTextField();
+		etCosteAct.setColumns(10);
+		etCosteAct.setBounds(605, 133, 86, 20);
+		Actividad.add(etCosteAct);
 
 		//-->> INICIO DE LOS BOTONES
-		JButton bAA = new JButton("AGREGAR");
-		bAA.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bAA.addActionListener((ActionListener) new ActionListener() {
+		JButton btnAgregarActividad = new JButton("AGREGAR");
+		btnAgregarActividad.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnAgregarActividad.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent Arg0) {
 
-				objAct.ingresar_actividad(txtNPA.getText(), txtMEA.getText(), txtNSA.getText(), txtIIA.getText(), txtHIA.getText(), txtHFA.getText(), txtFA.getText(), txtTAA.getText(), txtCAA.getText());
+				objAct.ingresar_actividad(etNumPlacaIns.getText(), etMatricula.getText(), etNumSec.getText(), etIdInst.getText(), etHoraInicio.getText(), etHoraFin.getText(), etFecha.getText(), etActividad.getText(), etCosteAct.getText());
 
 				DefaultTableModel modeloAct = objAct.mostrarRegistrosAct("SELECT * FROM actividad");
-				table_2.setModel(modeloAct);
+				tablaActividad.setModel(modeloAct);
 				
 			}
 		});
-		bAA.setBounds(462, 8, 111, 23);
-		Actividad.add(bAA);
+		btnAgregarActividad.setBounds(32, 228, 111, 23);
+		Actividad.add(btnAgregarActividad);
 
-		JButton bEA = new JButton("ELIMINAR");
-		bEA.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bEA.addActionListener((ActionListener) new ActionListener() {
+		JButton btnEliminarActividad = new JButton("ELIMINAR");
+		btnEliminarActividad.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnEliminarActividad.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent Arg0) {
 
-				objAct.eliminar_actividad(txtNPA.getText(), txtMEA.getText(), txtNSA.getText(), txtIIA.getText());
+				objAct.eliminar_actividad(etNumPlacaIns.getText(), etMatricula.getText(), etNumSec.getText(), etIdInst.getText());
 
 				DefaultTableModel modeloAct = objAct.mostrarRegistrosAct("SELECT * FROM actividad");
-				table_2.setModel(modeloAct);
+				tablaActividad.setModel(modeloAct);
 
 			}
 		});
-		bEA.setBounds(462, 40, 111, 23);
-		Actividad.add(bEA);
+		btnEliminarActividad.setBounds(175, 228, 111, 23);
+		Actividad.add(btnEliminarActividad);
 
-		JButton bMA = new JButton("MODIFICAR");
-		bMA.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bMA.addActionListener((ActionListener) new ActionListener() {
+		JButton btnModificarActividad = new JButton("MODIFICAR");
+		btnModificarActividad.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnModificarActividad.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent Arg0) {
 
-				objAct.modificar_actividad(txtNPA.getText(), txtMEA.getText(), txtNSA.getText(), txtIIA.getText(), txtHIA.getText(), txtHFA.getText(), txtFA.getText(), txtTAA.getText(), txtCAA.getText());
+				objAct.modificar_actividad(etNumPlacaIns.getText(), etMatricula.getText(), etNumSec.getText(), etIdInst.getText(), etHoraInicio.getText(), etHoraFin.getText(), etFecha.getText(), etActividad.getText(), etCosteAct.getText());
 
 				DefaultTableModel modeloAct = objAct.mostrarRegistrosAct("SELECT * FROM actividad");
-				table_2.setModel(modeloAct);
+				tablaActividad.setModel(modeloAct);
 				
 			}
 		});
-		bMA.setBounds(462, 71, 111, 23);
-		Actividad.add(bMA);
+		btnModificarActividad.setBounds(318, 228, 111, 23);
+		Actividad.add(btnModificarActividad);
 
-		JButton bCA = new JButton("CONSULTAR");
-		bCA.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bCA.addActionListener((ActionListener) new ActionListener() {
+		JButton btnConsultarActividad = new JButton("CONSULTAR");
+		btnConsultarActividad.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnConsultarActividad.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent Arg0) {
 				
 				DefaultTableModel modeloAct = objAct.mostrarRegistrosAct("SELECT * FROM actividad");
-				table_2.setModel(modeloAct);
+				tablaActividad.setModel(modeloAct);
 				
 			}
 		});
-		bCA.setBounds(462, 102, 111, 23);
-		Actividad.add(bCA);
+		btnConsultarActividad.setBounds(461, 228, 111, 23);
+		Actividad.add(btnConsultarActividad);
 
+		JButton btnLimpiarActividad = new JButton("LIMPIAR");
+		btnLimpiarActividad.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnLimpiarActividad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpiarEntradas();
+			}
+		});
+		btnLimpiarActividad.setBounds(604, 228, 111, 23);
+		Actividad.add(btnLimpiarActividad);
+		
 		//-->> INICIO DEL PANEL DE LA TABLA
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(10, 218, 573, 158);
-		Actividad.add(panel_2);
-		panel_2.setLayout(null);
+		JPanel pnlTablaActividad = new JPanel();
+		pnlTablaActividad.setBounds(20, 280, 707, 195);
+		Actividad.add(pnlTablaActividad);
+		pnlTablaActividad.setLayout(null);
 
-			JScrollPane scrollPane_2 = new JScrollPane();
-			scrollPane_2.setBounds(0, 0, 573, 158);
-			panel_2.add(scrollPane_2);
+			JScrollPane spTablaActividad = new JScrollPane();
+			spTablaActividad.setBounds(0, 0, 707, 195);
+			pnlTablaActividad.add(spTablaActividad);
 	
-			table_2 = new JTable();
-			scrollPane_2.setViewportView(table_2);
-
-		JButton bLA = new JButton("LIMPIAR");
-		bLA.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bLA.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				limpiarEntradas();
-			}
-		});
-		bLA.setBounds(462, 161, 111, 23);
-		Actividad.add(bLA);
-
-//-->> INICIO DEL PANEL DEL NUMERO DEL TELEFONO DE INSTITUCION
-		JPanel NumTel = new JPanel();
-		tabbedPane.addTab("numtel_institucion", null, NumTel, null);
-		NumTel.setLayout(null);
-
-		JTextPane txtpnIdinstitucin = new JTextPane();
-		txtpnIdinstitucin.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnIdinstitucin.setBackground(SystemColor.menu);
-		txtpnIdinstitucin.setText("ID INSTITUCI\u00D3N:");
-		txtpnIdinstitucin.setEditable(false);
-		txtpnIdinstitucin.setBounds(10, 11, 123, 20);
-		NumTel.add(txtpnIdinstitucin);
-
-		txtIINT = new JTextField();
-		txtIINT.setBounds(161, 11, 123, 20);
-		NumTel.add(txtIINT);
-		txtIINT.setColumns(10);
-
-		JTextPane txtpnN = new JTextPane();
-		txtpnN.setText("NUMERO TELEFONO:");
-		txtpnN.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnN.setEditable(false);
-		txtpnN.setBackground(SystemColor.menu);
-		txtpnN.setBounds(10, 42, 141, 20);
-		NumTel.add(txtpnN);
-
-		txtNTNT = new JTextField();
-		txtNTNT.setColumns(10);
-		txtNTNT.setBounds(161, 42, 123, 20);
-		NumTel.add(txtNTNT);
-
-		txtNTMNT = new JTextField();
-		txtNTMNT.setColumns(10);
-		txtNTMNT.setBounds(161, 81, 123, 20);
-		NumTel.add(txtNTMNT);
-
-		//-->> INICIO DE LOS BOTONES
-		JButton bANT = new JButton("AGREGAR");
-		bANT.addActionListener((ActionListener) new ActionListener() {
-			public void actionPerformed(ActionEvent Arg0) {
-
-				objNumT.ingresar_NumTel(txtIINT.getText(), txtNTNT.getText());
-
-				DefaultTableModel modeloNumT = objNumT.mostrarRegistrosNumT("SELECT * FROM NumTel_Institucion");
-				table_3.setModel(modeloNumT);
-				
-			}
-		});
-		bANT.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bANT.setBounds(469, 11, 114, 23);
-		NumTel.add(bANT);
-
-		JButton bENT = new JButton("ELIMINAR");
-		bENT.addActionListener((ActionListener) new ActionListener() {
-			public void actionPerformed(ActionEvent Arg0) {
-
-				objNumT.eliminar_NumTel(txtNTNT.getText());
-
-				DefaultTableModel modeloNumT = objNumT.mostrarRegistrosNumT("SELECT * FROM NumTel_Institucion");
-				table_3.setModel(modeloNumT);
-
-			}
-		});
-		bENT.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bENT.setBounds(469, 45, 114, 23);
-		NumTel.add(bENT);
-
-		JButton bMNT = new JButton("MODIFICAR");
-		bMNT.addActionListener((ActionListener) new ActionListener() {
-			public void actionPerformed(ActionEvent Arg0) {
-
-				objNumT.modificar_NumTel(txtIINT.getText(), txtNTNT.getText(), txtNTMNT.getText());
-
-				DefaultTableModel modeloNumT = objNumT.mostrarRegistrosNumT("SELECT * FROM NumTel_Institucion");
-				table_3.setModel(modeloNumT);
-				
-			}
-		});
-		bMNT.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bMNT.setBounds(469, 79, 114, 23);
-		NumTel.add(bMNT);
-
-		JButton bCNT = new JButton("CONSULTAR");
-		bCNT.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				DefaultTableModel modeloNumT = objNumT.mostrarRegistrosNumT("SELECT * FROM NumTel_Institucion");
-				table_3.setModel(modeloNumT);
-				
-			}
-		});
-		bCNT.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bCNT.setBounds(469, 113, 114, 23);
-		NumTel.add(bCNT);
-
-		JButton bLNT = new JButton("LIMPIAR");
-		bLNT.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				limpiarEntradas();
-			}
-		});
-		bLNT.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bLNT.setBounds(10, 137, 114, 23);
-		NumTel.add(bLNT);
-
-		//-->> INICIO DEL PANEL CONTENEDOR DE LA TABLA
-		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(10, 171, 573, 208);
-		NumTel.add(panel_3);
-		panel_3.setLayout(null);
-
-			JScrollPane scrollPane_3 = new JScrollPane();
-			scrollPane_3.setBounds(0, 0, 574, 208);
-			panel_3.add(scrollPane_3);
-	
-			table_3 = new JTable();
-			table_3.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
-			scrollPane_3.setViewportView(table_3);
-
-		JTextPane txtpnNumtelefonomod = new JTextPane();
-		txtpnNumtelefonomod.setText("NUMTELEFONO (MOD):");
-		txtpnNumtelefonomod.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnNumtelefonomod.setEditable(false);
-		txtpnNumtelefonomod.setBackground(SystemColor.menu);
-		txtpnNumtelefonomod.setBounds(10, 81, 152, 20);
-		NumTel.add(txtpnNumtelefonomod);
-
-//-->> INICIO DEL PANEL DE CARTILLA
-		JPanel Cartilla = new JPanel();
-		tabbedPane.addTab("Cartilla", null, Cartilla, null);
-		Cartilla.setLayout(null);
-
-		JLabel lblNum_Liberación = new JLabel("NUM_LIBERACI\u00D3N");
-		lblNum_Liberación.setBounds(21, 106, 118, 14);
-		lblNum_Liberación.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		Cartilla.add(lblNum_Liberación);
-
-		txtNum_LiberacionCartilla = new JTextField();
-		txtNum_LiberacionCartilla.setBounds(21, 131, 118, 20);
-		Cartilla.add(txtNum_LiberacionCartilla);
-		txtNum_LiberacionCartilla.setColumns(10);
-
-		JLabel lblZona_Militar = new JLabel("ZONA_MILITAR");
-		lblZona_Militar.setBounds(176, 106, 118, 14);
-		lblZona_Militar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		Cartilla.add(lblZona_Militar);
-
-		txtZona_Militar = new JTextField();
-		txtZona_Militar.setBounds(176, 131, 118, 20);
-		txtZona_Militar.setColumns(10);
-		Cartilla.add(txtZona_Militar);
-
-		JLabel lblRegimiento = new JLabel("REGIMIENTO");
-		lblRegimiento.setBounds(331, 106, 118, 14);
-		lblRegimiento.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		Cartilla.add(lblRegimiento);
-
-		txtRegimiento = new JTextField();
-		txtRegimiento.setBounds(331, 131, 118, 20);
-		txtRegimiento.setColumns(10);
-		Cartilla.add(txtRegimiento);
-
-		//-->>INICIO DE LOS BOTONES
-		JButton btnEliminarCar = new JButton("ELIMINAR");
-		btnEliminarCar.setBounds(476, 57, 118, 23);
-		btnEliminarCar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				objCar.eliminar_Car(txtNum_LiberacionCartilla.getText());
-				limpiarEntradas();
-
-				DefaultTableModel modeloCar = objCar.mostrarRegistrosCar("SELECT * FROM cartilla");
-				table_6.setModel(modeloCar);
-
-			}
-		});
-		btnEliminarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		Cartilla.add(btnEliminarCar);
-
-		JButton btnAgregarCar = new JButton("AGREGAR");
-		btnAgregarCar.setBounds(476, 23, 118, 23);
-		btnAgregarCar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				objCar.ingresar_Car(txtNum_LiberacionCartilla.getText(), txtZona_Militar.getText(),	txtRegimiento.getText());
-				limpiarEntradas();
-
-				DefaultTableModel modeloCar = objCar.mostrarRegistrosCar("SELECT * FROM cartilla");
-				table_6.setModel(modeloCar);
-
-			}
-		});
-		btnAgregarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		Cartilla.add(btnAgregarCar);
-
-		JButton btnModificarCar = new JButton("MODIFICAR\r\n");
-		btnModificarCar.setBounds(476, 91, 118, 23);
-		btnModificarCar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				objCar.modificar_Car(txtNum_LiberacionCartilla.getText(), txtZona_Militar.getText(), txtRegimiento.getText());
-				limpiarEntradas();
-
-				DefaultTableModel modeloCar = objCar.mostrarRegistrosCar("SELECT * FROM cartilla");
-				table_6.setModel(modeloCar);
-				
-			}
-		});
-		btnModificarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		Cartilla.add(btnModificarCar);
-
-		JButton btnConsultarCar = new JButton("CONSULTAR");
-		btnConsultarCar.setBounds(476, 125, 118, 23);
-		btnConsultarCar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				DefaultTableModel modeloCar = objParR.mostrarRegistrosNumT("SELECT * FROM cartilla");
-				table_6.setModel(modeloCar);
-				
-			}
-		});
-		btnConsultarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		Cartilla.add(btnConsultarCar);
-
-		JButton btnLimpiarCar = new JButton("LIMPIAR");
-		btnLimpiarCar.setBounds(476, 159, 118, 23);
-		btnLimpiarCar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				limpiarEntradas();
-			}
-		});
-		btnLimpiarCar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		Cartilla.add(btnLimpiarCar);
-
-		//-->> INICIO DEL PANEL CONTENEDOR DE LA TABLA
-		JPanel panel_6 = new JPanel();
-		panel_6.setBounds(10, 182, 577, 197);
-		Cartilla.add(panel_6);
-		panel_6.setLayout(null);
-
-			JScrollPane scrollPane_6 = new JScrollPane();
-			scrollPane_6.setBounds(0, 0, 577, 197);
-			panel_6.add(scrollPane_6);
-	
-			table_6 = new JTable();
-			scrollPane_6.setViewportView(table_6);
-
-//-->> INICIO DEL PANEL DE ESCUADRON
-		JPanel Escuadron = new JPanel();
-		tabbedPane.addTab("Escuadron", null, Escuadron, null);
-		tabbedPane.setEnabledAt(5, false);
-		Escuadron.setLayout(null);
-
-		JTextPane txtpnNseccin = new JTextPane();
-		txtpnNseccin.setText("NUMERO SECCI\u00D3N:");
-		txtpnNseccin.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnNseccin.setEditable(false);
-		txtpnNseccin.setBackground(SystemColor.menu);
-		txtpnNseccin.setBounds(10, 11, 137, 20);
-		Escuadron.add(txtpnNseccin);
-
-		txtNSE = new JTextField();
-		txtNSE.setBounds(157, 11, 123, 20);
-		Escuadron.add(txtNSE);
-		txtNSE.setColumns(10);
-
-		JTextPane txtpnNum = new JTextPane();
-		txtpnNum.setText("NUM INTEGRANTES:");
-		txtpnNum.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnNum.setEditable(false);
-		txtpnNum.setBackground(SystemColor.menu);
-		txtpnNum.setBounds(10, 42, 137, 20);
-		Escuadron.add(txtpnNum);
-
-		txtNIE = new JTextField();
-		txtNIE.setColumns(10);
-		txtNIE.setBounds(157, 42, 123, 20);
-		Escuadron.add(txtNIE);
-
-		//-->> INICIO DE LOS BOTONES
-		JButton bAE = new JButton("AGREGAR");
-		bAE.addActionListener((ActionListener) new ActionListener() {
-			public void actionPerformed(ActionEvent Arg0) {
-				
-				objEsc.ingresar_Esc(txtNSE.getText(), txtNIE.getText());
-
-				DefaultTableModel modeloEsc = objEsc.mostrarRegistrosNumT("SELECT * FROM escuadron");
-				table_4.setModel(modeloEsc);
-				
-			}
-		});
-		bAE.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bAE.setBounds(459, 10, 114, 23);
-		Escuadron.add(bAE);
-
-		JButton bEE = new JButton("ELIMINAR");
-		bEE.addActionListener((ActionListener) new ActionListener() {
-			public void actionPerformed(ActionEvent Arg0) {
-
-				objEsc.eliminar_Esc(txtNSE.getText());
-
-				DefaultTableModel modeloEsc = objEsc.mostrarRegistrosNumT("SELECT * FROM escuadron");
-				table_4.setModel(modeloEsc);
-				
-			}
-		});
-		bEE.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bEE.setBounds(459, 42, 114, 23);
-		Escuadron.add(bEE);
-
-		JButton bME = new JButton("MODIFICAR");
-		bME.addActionListener((ActionListener) new ActionListener() {
-			public void actionPerformed(ActionEvent Arg0) {
-
-				objEsc.modificar_Esc(txtNSE.getText(), txtNIE.getText());
-
-				DefaultTableModel modeloEsc = objEsc.mostrarRegistrosNumT("SELECT * FROM escuadron");
-				table_4.setModel(modeloEsc);
-				
-			}
-		});
-		bME.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bME.setBounds(459, 76, 114, 23);
-		Escuadron.add(bME);
-
-		JButton bCE = new JButton("CONSULTAR");
-		bCE.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				DefaultTableModel modeloEsc = objEsc.mostrarRegistrosNumT("SELECT * FROM escuadron");
-				table_4.setModel(modeloEsc);
-				
-			}
-		});
-		bCE.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bCE.setBounds(459, 110, 114, 23);
-		Escuadron.add(bCE);
-
-		JButton bLE = new JButton("LIMPIAR");
-		bLE.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				limpiarEntradas();
-			}
-		});
-		bLE.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bLE.setBounds(10, 110, 114, 23);
-		Escuadron.add(bLE);
-
-		//-->> INICIO DEL PANEL CONTENEDOR DE LA TABLA
-		JPanel panel_4 = new JPanel();
-		panel_4.setBounds(10, 155, 563, 188);
-		Escuadron.add(panel_4);
-		panel_4.setLayout(null);
-
-			JScrollPane scrollPane_4 = new JScrollPane();
-			scrollPane_4.setBounds(0, 0, 563, 188);
-			panel_4.add(scrollPane_4);
-	
-			table_4 = new JTable();
-			table_4.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
-			scrollPane_4.setViewportView(table_4);
-
-//-->> INICIO DEL PANEL DE PARTICIPANTE RESERVA
-		JPanel ParticipaRes = new JPanel();
-		tabbedPane.addTab("Participa_Res", null, ParticipaRes, null);
-		ParticipaRes.setLayout(null);
-
-		JTextPane txtpnMatriculares = new JTextPane();
-		txtpnMatriculares.setEditable(false);
-		txtpnMatriculares.setBackground(SystemColor.menu);
-		txtpnMatriculares.setText("MATRICULA_RES:");
-		txtpnMatriculares.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnMatriculares.setBounds(10, 11, 120, 20);
-		ParticipaRes.add(txtpnMatriculares);
-
-		JTextPane txtpnEdsorteo = new JTextPane();
-		txtpnEdsorteo.setEditable(false);
-		txtpnEdsorteo.setText("ED_SORTEO:");
-		txtpnEdsorteo.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnEdsorteo.setBackground(SystemColor.menu);
-		txtpnEdsorteo.setBounds(10, 42, 120, 20);
-		ParticipaRes.add(txtpnEdsorteo);
-
-		JTextPane txtpnResultado = new JTextPane();
-		txtpnResultado.setEditable(false);
-		txtpnResultado.setText("RESULTADO:");
-		txtpnResultado.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		txtpnResultado.setBackground(SystemColor.menu);
-		txtpnResultado.setBounds(10, 73, 120, 20);
-		ParticipaRes.add(txtpnResultado);
-
-		txtMRPR = new JTextField();
-		txtMRPR.setBounds(140, 11, 110, 20);
-		ParticipaRes.add(txtMRPR);
-		txtMRPR.setColumns(10);
-
-		txtEDPR = new JTextField();
-		txtEDPR.setColumns(10);
-		txtEDPR.setBounds(140, 42, 110, 20);
-		ParticipaRes.add(txtEDPR);
-
-		txtRPR = new JTextField();
-		txtRPR.setColumns(10);
-		txtRPR.setBounds(140, 73, 110, 20);
-		ParticipaRes.add(txtRPR);
-
-		JButton bAPR = new JButton("AGREGAR");
-		bAPR.addActionListener((ActionListener) new ActionListener() {
-			public void actionPerformed(ActionEvent Arg0) {
-
-				objParR.ingresar_ParR(txtMRPR.getText(), txtEDPR.getText(), txtRPR.getText());
-
-				DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT("SELECT * FROM participa_res");
-				table_5.setModel(modeloParR);
-				
-			}
-		});
-		bAPR.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bAPR.setBounds(463, 11, 110, 23);
-		ParticipaRes.add(bAPR);
-
-		JButton bEPR = new JButton("ELIMINAR");
-		bEPR.addActionListener((ActionListener) new ActionListener() {
-			public void actionPerformed(ActionEvent Arg0) {
-
-				objParR.eliminar_ParR(txtMRPR.getText());
-
-				DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT("SELECT * FROM participa_res");
-				table_5.setModel(modeloParR);
-				
-			}
-		});
-		bEPR.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bEPR.setBounds(463, 42, 110, 23);
-		ParticipaRes.add(bEPR);
-
-		JButton bMPR = new JButton("MODIFICAR");
-		bMPR.addActionListener((ActionListener) new ActionListener() {
-			public void actionPerformed(ActionEvent Arg0) {
-
-				objParR.modificar_ParR(txtMRPR.getText(), txtEDPR.getText(), txtRPR.getText());
-
-				DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT("SELECT * FROM participa_res");
-				table_5.setModel(modeloParR);
-				
-			}
-		});
-		bMPR.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bMPR.setBounds(463, 73, 110, 23);
-		ParticipaRes.add(bMPR);
-
-		JButton bCPR = new JButton("CONSULTAR");
-		bCPR.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT("SELECT * FROM participa_res");
-				table_5.setModel(modeloParR);
-				
-			}
-		});
-		bCPR.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bCPR.setBounds(463, 104, 110, 23);
-		ParticipaRes.add(bCPR);
-
-		JButton bLPR = new JButton("LIMPIAR");
-		bLPR.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				limpiarEntradas();
-			}
-		});
-		bLPR.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bLPR.setBounds(463, 136, 110, 23);
-		ParticipaRes.add(bLPR);
-
-		//-->> INICIO DEL PANEL CONTENEDOR DE LA TABLA
-		JPanel panel_5 = new JPanel();
-		panel_5.setBounds(10, 182, 577, 197);
-		ParticipaRes.add(panel_5);
-		panel_5.setLayout(null);
-
-			JScrollPane scrollPane_5 = new JScrollPane();
-			scrollPane_5.setBounds(0, 0, 577, 197);
-			panel_5.add(scrollPane_5);
-	
-			table_5 = new JTable();
-			scrollPane_5.setViewportView(table_5);
-
+			tablaActividad = new JTable();
+			spTablaActividad.setViewportView(tablaActividad);		
+		
 //-->> INICIA PANEL DE OBTIENE
-		DefaultTableModel modeloIns = null;
-
+		//DefaultTableModel modeloIns = null;
+		
 		JPanel Obtiene = new JPanel();
 		tabbedPane.addTab("Obtiene", null, Obtiene, null);
 		Obtiene.setLayout(null);
-
+		
 		JLabel lblMatReserva = new JLabel("MATRICULA DEL RESERVA");
 		lblMatReserva.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblMatReserva.setBounds(34, 31, 151, 14);
+		lblMatReserva.setBounds(151, 44, 151, 14);
 		Obtiene.add(lblMatReserva);
-
+		
 		JLabel lblNumLiberacion = new JLabel("N\u00DAMERO DE LIBERACI\u00D3N");
 		lblNumLiberacion.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblNumLiberacion.setBounds(34, 62, 148, 14);
+		lblNumLiberacion.setBounds(452, 44, 148, 14);
 		Obtiene.add(lblNumLiberacion);
-
+		
 		JLabel lblPrecioCart = new JLabel("PRECIO DE CARTILLA");
 		lblPrecioCart.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblPrecioCart.setBounds(34, 93, 123, 14);
+		lblPrecioCart.setBounds(171, 110, 123, 14);
 		Obtiene.add(lblPrecioCart);
-
+		
 		JLabel lblRecepcion = new JLabel("MES DE RECEPCI\u00D3N");
 		lblRecepcion.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblRecepcion.setBounds(34, 124, 116, 14);
+		lblRecepcion.setBounds(464, 110, 116, 14);
 		Obtiene.add(lblRecepcion);
 
 		etMatReserva = new JTextField();
-		etMatReserva.setBounds(197, 29, 86, 20);
+		etMatReserva.setBounds(183, 68, 86, 20);
 		Obtiene.add(etMatReserva);
 		etMatReserva.setColumns(10);
-
+		
 		etNumLiberacion = new JTextField();
-		etNumLiberacion.setBounds(197, 60, 86, 20);
+		etNumLiberacion.setBounds(483, 68, 86, 20);
 		Obtiene.add(etNumLiberacion);
 		etNumLiberacion.setColumns(10);
-
+		
 		etPrecioCart = new JTextField();
-		etPrecioCart.setBounds(197, 91, 86, 20);
+		etPrecioCart.setBounds(189, 139, 86, 20);
 		Obtiene.add(etPrecioCart);
 		etPrecioCart.setColumns(10);
 
 		etMesRecepcion = new JTextField();
-		etMesRecepcion.setBounds(197, 122, 86, 20);
+		etMesRecepcion.setBounds(479, 139, 86, 20);
 		Obtiene.add(etMesRecepcion);
 		etMesRecepcion.setColumns(10);
-
+										
 		//-->> INICIO DE LOS BOTONES
-		JButton btnAgregar = new JButton("AGREGAR");
-		btnAgregar.addActionListener(new ActionListener() {
+		JButton btnAgregarObtiene = new JButton("AGREGAR");
+		btnAgregarObtiene.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+		
 				objObt.ingresar_obtiene(etMatReserva.getText(), etNumLiberacion.getText(), etPrecioCart.getText(), etMesRecepcion.getText());
-
+		
 				DefaultTableModel modeloIns = objObt.mostrarRegistrosObtiene("SELECT * FROM obtiene");
 				tablaObtiene.setModel(modeloIns);
-
+		
 			}
 		});
-		btnAgregar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnAgregar.setBounds(470, 28, 108, 23);
-		Obtiene.add(btnAgregar);
-
-		JButton btnEliminar = new JButton("ELIMINAR");
-		btnEliminar.addActionListener(new ActionListener() {
+		btnAgregarObtiene.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnAgregarObtiene.setBounds(35, 219, 108, 23);
+		Obtiene.add(btnAgregarObtiene);
+		
+		JButton btnEliminarObtiene = new JButton("ELIMINAR");
+		btnEliminarObtiene.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+		
 				objObt.eliminar_obtiene(etMatReserva.getText());
-
+		
 				DefaultTableModel modeloIns = objObt.mostrarRegistrosObtiene("SELECT * FROM obtiene");
 				tablaObtiene.setModel(modeloIns);
-
+		
 			}
 		});
-		btnEliminar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnEliminar.setBounds(470, 59, 108, 23);
-		Obtiene.add(btnEliminar);
-
-		JButton btnModificar = new JButton("MODIFICAR");
-		btnModificar.addActionListener(new ActionListener() {
+		btnEliminarObtiene.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnEliminarObtiene.setBounds(178, 219, 108, 23);
+		Obtiene.add(btnEliminarObtiene);
+		
+		JButton btnModificarObtiene = new JButton("MODIFICAR");
+		btnModificarObtiene.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+		
 				objObt.modificar_obtiene(etMatReserva.getText(), etNumLiberacion.getText(), etPrecioCart.getText(), etMesRecepcion.getText());
-
+		
 				DefaultTableModel modeloIns = objObt.mostrarRegistrosObtiene("SELECT * FROM obtiene WHERE Matricula_Res = '"+ etMatReserva.getText() +"'");
 				tablaObtiene.setModel(modeloIns);
-
+		
 			}
 		});
-		btnModificar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnModificar.setBounds(470, 90, 108, 23);
-		Obtiene.add(btnModificar);
-
-		JButton btnLimpiar = new JButton("LIMPIAR");
-		btnLimpiar.addActionListener(new ActionListener() {
+		btnModificarObtiene.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnModificarObtiene.setBounds(321, 219, 108, 23);
+		Obtiene.add(btnModificarObtiene);
+		
+		JButton btnLimpiarObtiene = new JButton("LIMPIAR");
+		btnLimpiarObtiene.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				etMatReserva.setText("");
@@ -1391,31 +991,12 @@ public class Formulario extends JFrame {
 
 			}
 		});
-		btnLimpiar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnLimpiar.setBounds(470, 155, 108, 23);
-		Obtiene.add(btnLimpiar);
-
-		//-->> INICIA EL PANEL CONTENEDOR DE LA TABLA
-		JPanel pnlTabla = new JPanel();
-		pnlTabla.setBounds(34, 205, 544, 172);
-		Obtiene.add(pnlTabla);
-		pnlTabla.setLayout(null);
-
-		JScrollPane spTabla = new JScrollPane();
-		spTabla.setBounds(0, 0, 544, 172);
-		pnlTabla.add(spTabla);
-
-			tablaObtiene = new JTable();
-			tablaObtiene.setShowVerticalLines(false);
-			spTabla.setViewportView(tablaObtiene);
-	
-			tablaObtiene.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-			tablaObtiene.setFont(new Font("Tahoma", Font.BOLD, 12));
-			tablaObtiene.setForeground(Color.BLACK);
-			tablaObtiene.setCellSelectionEnabled(true);
-
-		JButton btnConsultar = new JButton("CONSULTAR");
-		btnConsultar.addActionListener(new ActionListener() {
+		btnLimpiarObtiene.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnLimpiarObtiene.setBounds(607, 219, 108, 23);
+		Obtiene.add(btnLimpiarObtiene);
+		
+		JButton btnConsultarObtiene = new JButton("CONSULTAR");
+		btnConsultarObtiene.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				String[] datos=new String[4];
@@ -1429,37 +1010,555 @@ public class Formulario extends JFrame {
 				etNumLiberacion.setText(datos[1]);
 				etPrecioCart.setText(datos[2]);
 				etMesRecepcion.setText(datos[3]);
-
+		
 				for(int i=0; i<datos.length; i++) {
 					datos[i]=null;
 				}
-
+		
 				objObt.vector_edits(datos);
+		
+			}
+		});
+		btnConsultarObtiene.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnConsultarObtiene.setBounds(464, 219, 108, 23);
+		Obtiene.add(btnConsultarObtiene);
+		
+		//-->> INICIA EL PANEL CONTENEDOR DE LA TABLA
+		JPanel pnlTablaObtiene = new JPanel();
+		pnlTablaObtiene.setBounds(172, 282, 405, 193);
+		Obtiene.add(pnlTablaObtiene);
+		pnlTablaObtiene.setLayout(null);
+
+			JScrollPane spTablaObtiene = new JScrollPane();
+			spTablaObtiene.setBounds(0, 0, 405, 193);
+			pnlTablaObtiene.add(spTablaObtiene);
+	
+			tablaObtiene = new JTable();
+			tablaObtiene.setShowVerticalLines(false);
+			spTablaObtiene.setViewportView(tablaObtiene);
+	
+			tablaObtiene.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+			tablaObtiene.setFont(new Font("Tahoma", Font.BOLD, 12));
+			tablaObtiene.setForeground(Color.BLACK);
+			tablaObtiene.setCellSelectionEnabled(true);
+		
+//-->> INICIO DE PANEL RESERVA
+		JPanel Reserva = new JPanel();
+		tabbedPane.addTab("Reserva", null, Reserva, null);
+		
+//-->> INICIO DE PANEL LIDERA
+		JPanel Lidera = new JPanel();
+		tabbedPane.addTab("Lidera", null, Lidera, null);
+		Lidera.setLayout(null);
+		
+		JLabel lblSargento = new JLabel("PLACA DEL SARGENTO");
+		lblSargento.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblSargento.setBounds(170, 47, 135, 16);
+		Lidera.add(lblSargento);
+		
+		JLabel lblCabo = new JLabel("PLACA DEL CABO");
+		lblCabo.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblCabo.setBounds(462, 47, 103, 16);
+		Lidera.add(lblCabo);
+		
+		//CAPTURA DE LA PLACA DE SARGENTO
+		JTextField etSargento = new JTextField();
+		etSargento.setBounds(194, 74, 86, 20);
+		Lidera.add(etSargento);
+		etSargento.setColumns(10);
+		
+		//CAPTURA DE LA PLACA DE CABO
+		JTextField etCabo = new JTextField();
+		etCabo.setBounds(470, 74, 86, 20);
+		Lidera.add(etCabo);
+		etCabo.setColumns(10);
+		
+		//BOTON PARA REGISTRAR
+		JButton btnRegistroLidera = new JButton("AGREGAR");
+		btnRegistroLidera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				objTC.ingreso_reg(etSargento.getText(), etCabo.getText());
 
 			}
 		});
-		btnConsultar.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnConsultar.setBounds(470, 121, 108, 23);
-		Obtiene.add(btnConsultar);
+		btnRegistroLidera.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnRegistroLidera.setBounds(10, 197, 113, 23);
+		Lidera.add(btnRegistroLidera);
+		
+		//BOTON PARA ELIMINAR
+		JButton btnEliminarLidera = new JButton("ELIMINAR");
+		btnEliminarLidera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				objTC.eliminar_reg(etSargento.getText(), etCabo.getText());
+
+			}
+		});
+		btnEliminarLidera.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnEliminarLidera.setBounds(163, 197, 113, 23);
+		Lidera.add(btnEliminarLidera);
+
+		//BOTON PARA MODIFICAR
+		JButton btnModificarLidera = new JButton("MODIFICAR");
+		btnModificarLidera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				objTC.modificar_reg(etSargento.getText(), etCabo.getText());
+
+			}
+		});
+		btnModificarLidera.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnModificarLidera.setBounds(316, 197, 113, 23);
+		Lidera.add(btnModificarLidera);
+
+		//--> INICIA EL PANEL CONTENEDOR DE LA TABLA	
+		JPanel pnlTablaLidera = new JPanel();
+		pnlTablaLidera.setBounds(280, 252, 207, 223);
+		Lidera.add(pnlTablaLidera);
+		pnlTablaLidera.setLayout(null);
+
+			JScrollPane spTablaLidera = new JScrollPane();
+			spTablaLidera.setBounds(0, 0, 207, 223);
+			pnlTablaLidera.add(spTablaLidera);
+	
+			JTable tablaLidera = new JTable();
+			tablaLidera.setShowVerticalLines(false);
+			spTablaLidera.setViewportView(tablaLidera);
+	
+			tablaLidera.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+			tablaLidera.setFont(new Font("Tahoma", Font.BOLD, 12));
+			tablaLidera.setForeground(Color.BLACK);
+			tablaLidera.setCellSelectionEnabled(true);
+				
+		//--> BOTON PARA CONSULTAR
+		JButton btnConsultarLidera = new JButton("CONSULTAR");
+		btnConsultarLidera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String pSargento = etSargento.getText();
+				DefaultTableModel modelo = objTC.mostrarRegistros("SELECT * FROM lidera WHERE Num_PlacaSargento = '"+pSargento+"'");
+				tablaLidera.setModel(modelo);
+									
+			}
+		});
+		btnConsultarLidera.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnConsultarLidera.setBounds(469, 197, 113, 23);
+		Lidera.add(btnConsultarLidera);
+		
+		//BOTON PARA LIMPIAR
+		JButton btnLimpiarLidera = new JButton("LIMPIAR");
+		btnLimpiarLidera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				etCabo.setText("");
+				etSargento.setText("");
+			}
+		});
+		btnLimpiarLidera.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnLimpiarLidera.setBounds(622, 197, 113, 23);
+		Lidera.add(btnLimpiarLidera);
+		
+//-->> INICIO DEL PANEL DE PARTICIPANTE RESERVA
+		JPanel ParticipaRes = new JPanel();
+		tabbedPane.addTab("Participa_Res", null, ParticipaRes, null);
+		ParticipaRes.setLayout(null);
+
+		JTextPane txtpnMatriculares = new JTextPane();
+		txtpnMatriculares.setEditable(false);
+		txtpnMatriculares.setBackground(SystemColor.menu);
+		txtpnMatriculares.setText("MATRICULA_RES");
+		txtpnMatriculares.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		txtpnMatriculares.setBounds(107, 69, 105, 20);
+		ParticipaRes.add(txtpnMatriculares);
+
+		JTextPane txtpnEdsorteo = new JTextPane();
+		txtpnEdsorteo.setEditable(false);
+		txtpnEdsorteo.setText("ED_SORTEO");
+		txtpnEdsorteo.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		txtpnEdsorteo.setBackground(SystemColor.menu);
+		txtpnEdsorteo.setBounds(337, 69, 77, 20);
+		ParticipaRes.add(txtpnEdsorteo);
+
+		JTextPane txtpnResultado = new JTextPane();
+		txtpnResultado.setEditable(false);
+		txtpnResultado.setText("RESULTADO");
+		txtpnResultado.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		txtpnResultado.setBackground(SystemColor.menu);
+		txtpnResultado.setBounds(551, 69, 77, 20);
+		ParticipaRes.add(txtpnResultado);
+
+		etMatriculaPRes = new JTextField();
+		etMatriculaPRes.setBounds(104, 100, 110, 20);
+		ParticipaRes.add(etMatriculaPRes);
+		etMatriculaPRes.setColumns(10);
+		
+		etEdSorteoP = new JTextField();
+		etEdSorteoP.setColumns(10);
+		etEdSorteoP.setBounds(320, 100, 110, 20);
+		ParticipaRes.add(etEdSorteoP);
+		
+		etResultadoP = new JTextField();
+		etResultadoP.setColumns(10);
+		etResultadoP.setBounds(534, 100, 110, 20);
+		ParticipaRes.add(etResultadoP);
+						
+		JButton btnAgregarPRes = new JButton("AGREGAR");
+		btnAgregarPRes.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+		
+				objParR.ingresar_ParR(etMatriculaPRes.getText(), etEdSorteoP.getText(), etResultadoP.getText());
+		
+				DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT("SELECT * FROM participa_res");
+				tablaPRes.setModel(modeloParR);
+				
+			}
+		});
+		btnAgregarPRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnAgregarPRes.setBounds(33, 212, 110, 23);
+		ParticipaRes.add(btnAgregarPRes);
+	
+		JButton btnEliminarPRes = new JButton("ELIMINAR");
+		btnEliminarPRes.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+	
+				objParR.eliminar_ParR(etMatriculaPRes.getText());
+	
+				DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT("SELECT * FROM participa_res");
+				tablaPRes.setModel(modeloParR);
+				
+			}
+		});
+		btnEliminarPRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnEliminarPRes.setBounds(176, 212, 110, 23);
+		ParticipaRes.add(btnEliminarPRes);
+			
+		JButton btnModificarPRes = new JButton("MODIFICAR");
+		btnModificarPRes.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objParR.modificar_ParR(etMatriculaPRes.getText(), etEdSorteoP.getText(), etResultadoP.getText());
+
+				DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT("SELECT * FROM participa_res");
+				tablaPRes.setModel(modeloParR);
+				
+			}
+		});
+		btnModificarPRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnModificarPRes.setBounds(319, 212, 110, 23);
+		ParticipaRes.add(btnModificarPRes);
+					
+		JButton btnConsultarPRes = new JButton("CONSULTAR");
+		btnConsultarPRes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				DefaultTableModel modeloParR = objParR.mostrarRegistrosNumT("SELECT * FROM participa_res");
+				tablaPRes.setModel(modeloParR);
+				
+			}
+		});
+		btnConsultarPRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnConsultarPRes.setBounds(462, 212, 110, 23);
+		ParticipaRes.add(btnConsultarPRes);
+							
+		JButton btnLimpiarPRes = new JButton("LIMPIAR");
+		btnLimpiarPRes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpiarEntradas();
+			}
+		});
+		btnLimpiarPRes.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnLimpiarPRes.setBounds(605, 212, 110, 23);
+		ParticipaRes.add(btnLimpiarPRes);
+									
+		//-->> INICIO DEL PANEL CONTENEDOR DE LA TABLA
+		JPanel pnlTablaPRes = new JPanel();
+		pnlTablaPRes.setBounds(230, 278, 289, 197);
+		ParticipaRes.add(pnlTablaPRes);
+		pnlTablaPRes.setLayout(null);
+		
+			JScrollPane spTablaPRes = new JScrollPane();
+			spTablaPRes.setBounds(0, 0, 289, 197);
+			pnlTablaPRes.add(spTablaPRes);
+	
+			tablaPRes = new JTable();
+			spTablaPRes.setViewportView(tablaPRes);
+		
+		
+		
+//-->> INICIO DE PANEL PARTICIPA_ENC
+		JPanel ParticipaEnc = new JPanel();
+		tabbedPane.addTab("Participa_Enc", null, ParticipaEnc, null);
+
+//-->> INICIO DEL PANEL DEL NUMERO DEL TELEFONO DE INSTITUCION
+		JPanel NumTel = new JPanel();
+		tabbedPane.addTab("NumTel_Institucion", null, NumTel, null);
+		NumTel.setLayout(null);
+
+		JTextPane txtpnIdinstitucin = new JTextPane();
+		txtpnIdinstitucin.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		txtpnIdinstitucin.setBackground(SystemColor.menu);
+		txtpnIdinstitucin.setText("ID INSTITUCI\u00D3N");
+		txtpnIdinstitucin.setEditable(false);
+		txtpnIdinstitucin.setBounds(101, 70, 110, 20);
+		NumTel.add(txtpnIdinstitucin);
+
+		JTextPane txtpnN = new JTextPane();
+		txtpnN.setText("NUMERO TELEFONO");
+		txtpnN.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		txtpnN.setEditable(false);
+		txtpnN.setBackground(SystemColor.menu);
+		txtpnN.setBounds(312, 70, 125, 20);
+		NumTel.add(txtpnN);
+		
+		JTextPane txtpnNumtelefonomod = new JTextPane();
+		txtpnNumtelefonomod.setText("NUMTELEFONO (MOD)");
+		txtpnNumtelefonomod.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		txtpnNumtelefonomod.setEditable(false);
+		txtpnNumtelefonomod.setBackground(SystemColor.menu);
+		txtpnNumtelefonomod.setBounds(523, 70, 138, 20);
+		NumTel.add(txtpnNumtelefonomod);
+
+		etIdInstitucion1 = new JTextField();
+		etIdInstitucion1.setBounds(95, 101, 123, 20);
+		NumTel.add(etIdInstitucion1);
+		etIdInstitucion1.setColumns(10);
+		
+		etNumTelInst = new JTextField();
+		etNumTelInst.setColumns(10);
+		etNumTelInst.setBounds(313, 101, 123, 20);
+		NumTel.add(etNumTelInst);
+
+		etNumTelNuevo = new JTextField();
+		etNumTelNuevo.setColumns(10);
+		etNumTelNuevo.setBounds(531, 101, 123, 20);
+		NumTel.add(etNumTelNuevo);
+
+		//-->> INICIO DE LOS BOTONES
+		JButton btnAgregarNumTel = new JButton("AGREGAR");
+		btnAgregarNumTel.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objNumT.ingresar_NumTel(etIdInstitucion1.getText(), etNumTelInst.getText());
+
+				DefaultTableModel modeloNumT = objNumT.mostrarRegistrosNumT("SELECT * FROM NumTel_Institucion");
+				tablaNumTel.setModel(modeloNumT);
+				
+			}
+		});
+		btnAgregarNumTel.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnAgregarNumTel.setBounds(30, 193, 114, 23);
+		NumTel.add(btnAgregarNumTel);
+
+		JButton btnEliminarNumTel = new JButton("ELIMINAR");
+		btnEliminarNumTel.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objNumT.eliminar_NumTel(etNumTelInst.getText());
+
+				DefaultTableModel modeloNumT = objNumT.mostrarRegistrosNumT("SELECT * FROM NumTel_Institucion");
+				tablaNumTel.setModel(modeloNumT);
+
+			}
+		});
+		btnEliminarNumTel.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnEliminarNumTel.setBounds(174, 193, 114, 23);
+		NumTel.add(btnEliminarNumTel);
+
+		JButton btnModificarNumTel = new JButton("MODIFICAR");
+		btnModificarNumTel.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objNumT.modificar_NumTel(etIdInstitucion1.getText(), etNumTelInst.getText(), etNumTelNuevo.getText());
+
+				DefaultTableModel modeloNumT = objNumT.mostrarRegistrosNumT("SELECT * FROM NumTel_Institucion");
+				tablaNumTel.setModel(modeloNumT);
+				
+			}
+		});
+		btnModificarNumTel.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnModificarNumTel.setBounds(318, 193, 114, 23);
+		NumTel.add(btnModificarNumTel);
+
+		JButton btnConsultarNumTel = new JButton("CONSULTAR");
+		btnConsultarNumTel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				DefaultTableModel modeloNumT = objNumT.mostrarRegistrosNumT("SELECT * FROM NumTel_Institucion");
+				tablaNumTel.setModel(modeloNumT);
+				
+			}
+		});
+		btnConsultarNumTel.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnConsultarNumTel.setBounds(462, 193, 114, 23);
+		NumTel.add(btnConsultarNumTel);
+
+		JButton btnLimpiarNumTel = new JButton("LIMPIAR");
+		btnLimpiarNumTel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpiarEntradas();
+			}
+		});
+		btnLimpiarNumTel.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnLimpiarNumTel.setBounds(606, 193, 114, 23);
+		NumTel.add(btnLimpiarNumTel);
+
+		//-->> INICIO DEL PANEL CONTENEDOR DE LA TABLA
+		JPanel pnlTablaNumTel = new JPanel();
+		pnlTablaNumTel.setBounds(179, 267, 392, 208);
+		NumTel.add(pnlTablaNumTel);
+		pnlTablaNumTel.setLayout(null);
+
+			JScrollPane spTablaNumTel = new JScrollPane();
+			spTablaNumTel.setBounds(0, 0, 392, 208);
+			pnlTablaNumTel.add(spTablaNumTel);
+	
+			tablaNumTel = new JTable();
+			tablaNumTel.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
+			spTablaNumTel.setViewportView(tablaNumTel);
+
+//-->> INICIO DEL PANEL DE ESCUADRON
+		JPanel Escuadron = new JPanel();
+		tabbedPane.addTab("Escuadron", null, Escuadron, null);
+		tabbedPane.setEnabledAt(81, true);
+		Escuadron.setLayout(null);
+
+		JTextPane txtpnNseccin = new JTextPane();
+		txtpnNseccin.setText("NUMERO SECCI\u00D3N");
+		txtpnNseccin.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		txtpnNseccin.setEditable(false);
+		txtpnNseccin.setBackground(SystemColor.menu);
+		txtpnNseccin.setBounds(170, 48, 118, 20);
+		Escuadron.add(txtpnNseccin);
+
+		JTextPane txtpnNum = new JTextPane();
+		txtpnNum.setText("NUM INTEGRANTES");
+		txtpnNum.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		txtpnNum.setEditable(false);
+		txtpnNum.setBackground(SystemColor.menu);
+		txtpnNum.setBounds(458, 48, 125, 20);
+		Escuadron.add(txtpnNum);
+
+		etNumeroSeccion = new JTextField();
+		etNumeroSeccion.setBounds(168, 85, 123, 20);
+		Escuadron.add(etNumeroSeccion);
+		etNumeroSeccion.setColumns(10);
+		
+		etNumIntegrantes = new JTextField();
+		etNumIntegrantes.setColumns(10);
+		etNumIntegrantes.setBounds(459, 85, 123, 20);
+		Escuadron.add(etNumIntegrantes);
+
+		//-->> INICIO DE LOS BOTONES
+		JButton btnAgregarEscuadron = new JButton("AGREGAR");
+		btnAgregarEscuadron.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+				
+				objEsc.ingresar_Esc(etNumeroSeccion.getText(), etNumIntegrantes.getText());
+
+				DefaultTableModel modeloEsc = objEsc.mostrarRegistrosNumT("SELECT * FROM escuadron");
+				tablaEscuadron.setModel(modeloEsc);
+				
+			}
+		});
+		btnAgregarEscuadron.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnAgregarEscuadron.setBounds(30, 161, 114, 23);
+		Escuadron.add(btnAgregarEscuadron);
+
+		JButton btnEliminarEscuadron = new JButton("ELIMINAR");
+		btnEliminarEscuadron.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objEsc.eliminar_Esc(etNumeroSeccion.getText());
+
+				DefaultTableModel modeloEsc = objEsc.mostrarRegistrosNumT("SELECT * FROM escuadron");
+				tablaEscuadron.setModel(modeloEsc);
+				
+			}
+		});
+		btnEliminarEscuadron.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnEliminarEscuadron.setBounds(174, 161, 114, 23);
+		Escuadron.add(btnEliminarEscuadron);
+
+		JButton btnModificarEscuadron = new JButton("MODIFICAR");
+		btnModificarEscuadron.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent Arg0) {
+
+				objEsc.modificar_Esc(etNumeroSeccion.getText(), etNumIntegrantes.getText());
+
+				DefaultTableModel modeloEsc = objEsc.mostrarRegistrosNumT("SELECT * FROM escuadron");
+				tablaEscuadron.setModel(modeloEsc);
+				
+			}
+		});
+		btnModificarEscuadron.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnModificarEscuadron.setBounds(318, 161, 114, 23);
+		Escuadron.add(btnModificarEscuadron);
+
+		JButton btnConsultarEscuadron = new JButton("CONSULTAR");
+		btnConsultarEscuadron.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				DefaultTableModel modeloEsc = objEsc.mostrarRegistrosNumT("SELECT * FROM escuadron");
+				tablaEscuadron.setModel(modeloEsc);
+				
+			}
+		});
+		btnConsultarEscuadron.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnConsultarEscuadron.setBounds(462, 161, 114, 23);
+		Escuadron.add(btnConsultarEscuadron);
+
+		JButton btnLimpiarEscuadron = new JButton("LIMPIAR");
+		btnLimpiarEscuadron.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpiarEntradas();
+			}
+		});
+		btnLimpiarEscuadron.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnLimpiarEscuadron.setBounds(606, 161, 114, 23);
+		Escuadron.add(btnLimpiarEscuadron);
+
+		//-->> INICIO DEL PANEL CONTENEDOR DE LA TABLA
+		JPanel pnlTablaEscuadron = new JPanel();
+		pnlTablaEscuadron.setBounds(252, 251, 246, 224);
+		Escuadron.add(pnlTablaEscuadron);
+		pnlTablaEscuadron.setLayout(null);
+
+			JScrollPane spTablaEscuadron = new JScrollPane();
+			spTablaEscuadron.setBounds(0, 0, 246, 224);
+			pnlTablaEscuadron.add(spTablaEscuadron);
+	
+			tablaEscuadron = new JTable();
+			tablaEscuadron.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
+			spTablaEscuadron.setViewportView(tablaEscuadron);
 
 //-->> INICIA PANEL DE SORTEO
 		JPanel Sorteo = new JPanel();
 		tabbedPane.addTab("Sorteo", null, Sorteo, null);
 		Sorteo.setLayout(null);
 
+		JLabel lblEdicionDelSorteo = new JLabel("EDICION DEL SORTEO");
+		lblEdicionDelSorteo.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblEdicionDelSorteo.setBounds(167, 62, 136, 14);
+		Sorteo.add(lblEdicionDelSorteo);
+
+		JLabel lblFecha = new JLabel("FECHA");
+		lblFecha.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblFecha.setBounds(491, 62, 45, 14);
+		Sorteo.add(lblFecha);
+		
 		etsorteo = new JTextField();
 		etsorteo.setColumns(10);
-		etsorteo.setBounds(223, 31, 86, 20);
+		etsorteo.setBounds(192, 84, 86, 20);
 		Sorteo.add(etsorteo);
 
 		etfechas = new JTextField();
 		etfechas.setColumns(10);
-		etfechas.setBounds(223, 62, 86, 20);
+		etfechas.setBounds(470, 84, 86, 20);
 		Sorteo.add(etfechas);
 
 		//-->> INICIO DE LOS BOTONES
-		JButton btnAgregar_S = new JButton("AGREGAR");
-		btnAgregar_S.addActionListener(new ActionListener() {
+		JButton btnAgregarSorteo = new JButton("AGREGAR");
+		btnAgregarSorteo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				objsor.ingresar_sorteo(etsorteo.getText(), etfechas.getText());
@@ -1469,12 +1568,12 @@ public class Formulario extends JFrame {
 
 			}
 		});
-		btnAgregar_S.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnAgregar_S.setBounds(496, 30, 108, 23);
-		Sorteo.add(btnAgregar_S);
+		btnAgregarSorteo.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnAgregarSorteo.setBounds(35, 181, 108, 23);
+		Sorteo.add(btnAgregarSorteo);
 
-		JButton btnModificar_S = new JButton("MODIFICAR");
-		btnModificar_S.addActionListener(new ActionListener() {
+		JButton btnModificarSorteo = new JButton("MODIFICAR");
+		btnModificarSorteo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				objsor.ingresar_sorteo(etsorteo.getText(), etfechas.getText());
@@ -1484,12 +1583,12 @@ public class Formulario extends JFrame {
 
 			}
 		});
-		btnModificar_S.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnModificar_S.setBounds(496, 60, 108, 23);
-		Sorteo.add(btnModificar_S);
+		btnModificarSorteo.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnModificarSorteo.setBounds(321, 181, 108, 23);
+		Sorteo.add(btnModificarSorteo);
 
-		JButton btnLimpiar_S = new JButton("LIMPIAR");
-		btnLimpiar_S.addActionListener(new ActionListener() {
+		JButton btnLimpiarSorteo = new JButton("LIMPIAR");
+		btnLimpiarSorteo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				etsorteo.setText("");
@@ -1500,26 +1599,12 @@ public class Formulario extends JFrame {
 
 			}
 		});
-		btnLimpiar_S.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnLimpiar_S.setBounds(496, 128, 108, 23);
-		Sorteo.add(btnLimpiar_S);
+		btnLimpiarSorteo.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnLimpiarSorteo.setBounds(607, 181, 108, 23);
+		Sorteo.add(btnLimpiarSorteo);
 		
-		//-->> INICIA EL PANEL CONTENEDOR DE LA TABLA
-		JPanel pnlTabla_1 = new JPanel();
-		pnlTabla_1.setLayout(null);
-		pnlTabla_1.setBounds(60, 207, 544, 172);
-		Sorteo.add(pnlTabla_1);
-
-			JScrollPane spTabla_1 = new JScrollPane();
-			spTabla_1.setBounds(0, 0, 544, 172);
-			pnlTabla_1.add(spTabla_1);
-	
-			tablasorteo = new JTable();
-			tablasorteo.setBounds(0, 0, 1, 1);
-			pnlTabla_1.add(tablasorteo);
-
-		JButton btnConsultar_S = new JButton("CONSULTAR");
-		btnConsultar_S.addActionListener(new ActionListener() {
+		JButton btnConsultarSorteo = new JButton("CONSULTAR");
+		btnConsultarSorteo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				String[] datos=new String[2];
@@ -1540,35 +1625,86 @@ public class Formulario extends JFrame {
 
 			}
 		});
-		btnConsultar_S.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnConsultar_S.setBounds(496, 94, 108, 23);
-		Sorteo.add(btnConsultar_S);
+		btnConsultarSorteo.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnConsultarSorteo.setBounds(464, 181, 108, 23);
+		Sorteo.add(btnConsultarSorteo);
+		
+		//-->> INICIA EL PANEL CONTENEDOR DE LA TABLA
+		JPanel pnlTablaSorteo = new JPanel();
+		pnlTablaSorteo.setLayout(null);
+		pnlTablaSorteo.setBounds(272, 247, 205, 228);
+		Sorteo.add(pnlTablaSorteo);
 
-		JLabel lblEdicionDelSorteo = new JLabel("EDICION DEL SORTEO");
-		lblEdicionDelSorteo.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblEdicionDelSorteo.setBounds(23, 31, 151, 14);
-		Sorteo.add(lblEdicionDelSorteo);
+			JScrollPane spTablaSorteo = new JScrollPane();
+			spTablaSorteo.setBounds(0, 0, 205, 228);
+			pnlTablaSorteo.add(spTablaSorteo);
+	
+			tablasorteo = new JTable();
+			tablasorteo.setBounds(0, 0, 1, 1);
+			pnlTablaSorteo.add(tablasorteo);
+			
+			JButton btnEliminarSorteo = new JButton("ELIMINAR");
+			btnEliminarSorteo.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+			btnEliminarSorteo.setBounds(178, 181, 108, 23);
+			Sorteo.add(btnEliminarSorteo);
 
-		JLabel lblFecha = new JLabel("FECHA");
-		lblFecha.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblFecha.setBounds(23, 62, 148, 14);
-		Sorteo.add(lblFecha);
 		
 //-->> INICIA EL PANEL CONTENEDOR DE VALIDA
-		DefaultTableModel modelos = null;
+		//DefaultTableModel modelos = null;
+		
 		JPanel Valida = new JPanel();
 		Valida.setLayout(null);
 		tabbedPane.addTab("Valida", null, Valida, null);
+		
+		JLabel lblNumeroliberacion = new JLabel("NUMERO DE LIBERACI\u00D3N");
+		lblNumeroliberacion.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblNumeroliberacion.setBounds(92, 97, 148, 14);
+		Valida.add(lblNumeroliberacion);
+
+		JLabel lblHorastrabajadas = new JLabel("HORAS TRABAJADAS");
+		lblHorastrabajadas.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblHorastrabajadas.setBounds(312, 97, 127, 14);
+		Valida.add(lblHorastrabajadas);
+
+		JLabel lblPreciocartilla = new JLabel("PRECIO CARTILLA");
+		lblPreciocartilla.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblPreciocartilla.setBounds(530, 97, 108, 14);
+		Valida.add(lblPreciocartilla);
+		
+		JLabel lblNumeroDePlaca = new JLabel("NUMERO DE PLACA");
+		lblNumeroDePlaca.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblNumeroDePlaca.setBounds(177, 31, 117, 14);
+		Valida.add(lblNumeroDePlaca);
+
+		JLabel lblMatriculaEncuadrado = new JLabel("MATRICULA DEL  ENCUADRADO");
+		lblMatriculaEncuadrado.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblMatriculaEncuadrado.setBounds(418, 31, 190, 14);
+		Valida.add(lblMatriculaEncuadrado);
 
 		etNumplaca = new JTextField();
 		etNumplaca.setColumns(10);
-		etNumplaca.setBounds(223, 31, 86, 20);
+		etNumplaca.setBounds(192, 56, 86, 20);
 		Valida.add(etNumplaca);
 
 		etMatenc = new JTextField();
 		etMatenc.setColumns(10);
-		etMatenc.setBounds(223, 62, 86, 20);
+		etMatenc.setBounds(470, 56, 86, 20);
 		Valida.add(etMatenc);
+		
+		etNumlib = new JTextField();
+		etNumlib.setColumns(10);
+		etNumlib.setBounds(123, 123, 86, 20);
+		Valida.add(etNumlib);
+
+		etHoras = new JTextField();
+		etHoras.setColumns(10);
+		etHoras.setBounds(332, 123, 86, 20);
+		Valida.add(etHoras);
+
+		etPreciocart = new JTextField();
+		etPreciocart.setColumns(10);
+		etPreciocart.setBounds(541, 123, 86, 20);
+		Valida.add(etPreciocart); 
 
 		//-->> INICIAN LOS BOTONES
 		JButton btnAgregar_V = new JButton("AGREGAR");
@@ -1583,7 +1719,7 @@ public class Formulario extends JFrame {
 			}
 		});
 		btnAgregar_V.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnAgregar_V.setBounds(496, 30, 108, 23);
+		btnAgregar_V.setBounds(35, 218, 108, 23);
 		Valida.add(btnAgregar_V);
 
 		JButton btnEliminar_V = new JButton("ELIMINAR");
@@ -1598,7 +1734,7 @@ public class Formulario extends JFrame {
 			}
 		});
 		btnEliminar_V.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnEliminar_V.setBounds(496, 61, 108, 23);
+		btnEliminar_V.setBounds(178, 218, 108, 23);
 		Valida.add(btnEliminar_V);
 
 		JButton btnModificar_V = new JButton("MODIFICAR");
@@ -1613,7 +1749,7 @@ public class Formulario extends JFrame {
 			}
 		});
 		btnModificar_V.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnModificar_V.setBounds(496, 92, 108, 23);
+		btnModificar_V.setBounds(321, 218, 108, 23);
 		Valida.add(btnModificar_V);
 
 		JButton btnLimpiar_V = new JButton("LIMPIAR");
@@ -1632,35 +1768,8 @@ public class Formulario extends JFrame {
 			}
 		});
 		btnLimpiar_V.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnLimpiar_V.setBounds(496, 157, 108, 23);
+		btnLimpiar_V.setBounds(607, 218, 108, 23);
 		Valida.add(btnLimpiar_V);
-
-		JPanel pnlTabla_V = new JPanel();
-		pnlTabla_V.setLayout(null);
-		pnlTabla_V.setBounds(60, 207, 544, 172);
-		Valida.add(pnlTabla_V);
-
-		JScrollPane sptablav = new JScrollPane();
-		sptablav.setBounds(0, 0, 544, 172);
-		pnlTabla_V.add(sptablav);
-
-			tablaValida = new JTable();
-			tablaValida.setShowVerticalLines(false);
-			tablaValida.setForeground(Color.BLACK);
-			tablaValida.setFont(new Font("Tahoma", Font.BOLD, 12));
-			tablaValida.setCellSelectionEnabled(true);
-			tablaValida.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-			tablaValida.setBounds(0, 0, 1, 1);
-			pnlTabla_V.add(tablaValida);
-	
-			tablaValida = new JTable();
-			tablaValida.setShowVerticalLines(false);
-			spTabla.setViewportView(tablaValida);
-
-		tablaValida.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		tablaValida.setFont(new Font("Tahoma", Font.BOLD, 12));
-		tablaValida.setForeground(Color.BLACK);
-		tablaValida.setCellSelectionEnabled(true);
 
 		JButton btnConsultar_V = new JButton("CONSULTAR");
 		btnConsultar_V.addActionListener(new ActionListener() {
@@ -1690,48 +1799,27 @@ public class Formulario extends JFrame {
 			}
 		});
 		btnConsultar_V.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnConsultar_V.setBounds(496, 123, 108, 23);
+		btnConsultar_V.setBounds(464, 218, 108, 23);
 		Valida.add(btnConsultar_V);
+		
+		//-->> INICIA EL PANEL CONTENEDOR DE LA TABLA
+		JPanel pnlTablaValida = new JPanel();
+		pnlTablaValida.setLayout(null);
+		pnlTablaValida.setBounds(23, 285, 700, 190);
+		Valida.add(pnlTablaValida);
 
-		JLabel lblNumeroDePlaca = new JLabel("NUMERO DE PLACA");
-		lblNumeroDePlaca.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblNumeroDePlaca.setBounds(23, 31, 151, 14);
-		Valida.add(lblNumeroDePlaca);
+			JScrollPane spTablaValida = new JScrollPane();
+			spTablaValida.setBounds(0, 0, 700, 190);
+			pnlTablaValida.add(spTablaValida);
 
-		JLabel lblMatriculaEncuadrado = new JLabel("MATRICULA DEL  ENCUADRADO");
-		lblMatriculaEncuadrado.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblMatriculaEncuadrado.setBounds(23, 62, 190, 14);
-		Valida.add(lblMatriculaEncuadrado);
-
-		etNumlib = new JTextField();
-		etNumlib.setColumns(10);
-		etNumlib.setBounds(223, 95, 86, 20);
-		Valida.add(etNumlib);
-
-		etHoras = new JTextField();
-		etHoras.setColumns(10);
-		etHoras.setBounds(223, 126, 86, 20);
-		Valida.add(etHoras);
-
-		etPreciocart = new JTextField();
-		etPreciocart.setColumns(10);
-		etPreciocart.setBounds(223, 159, 86, 20);
-		Valida.add(etPreciocart); 
-
-		JLabel lblNumeroliberacion = new JLabel("NUMERO DE LIBERACI\u00D3N");
-		lblNumeroliberacion.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblNumeroliberacion.setBounds(23, 97, 148, 14);
-		Valida.add(lblNumeroliberacion);
-
-		JLabel lblHorastrabajadas = new JLabel("HORAS TRABAJADAS");
-		lblHorastrabajadas.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblHorastrabajadas.setBounds(23, 128, 148, 14);
-		Valida.add(lblHorastrabajadas);
-
-		JLabel lblPreciocartilla = new JLabel("PRECIO CARTILLA");
-		lblPreciocartilla.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblPreciocartilla.setBounds(26, 162, 148, 14);
-		Valida.add(lblPreciocartilla);
+			tablaValida = new JTable();
+			tablaValida.setShowVerticalLines(false);
+			tablaValida.setForeground(Color.BLACK);
+			tablaValida.setFont(new Font("Tahoma", Font.BOLD, 12));
+			tablaValida.setCellSelectionEnabled(true);
+			tablaValida.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+			tablaValida.setBounds(0, 0, 1, 1);
+			pnlTablaValida.add(tablaValida);
 
 //-->> INICIA EL PANEL DE ENCUADRADO
 		JPanel Encuadrado = new JPanel();
@@ -1739,213 +1827,234 @@ public class Formulario extends JFrame {
 		tabbedPane.addTab("Encuadrado", null, Encuadrado, null);
 
 		JLabel lblNombreEnc = new JLabel("NOMBRE");
+		lblNombreEnc.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNombreEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblNombreEnc.setBounds(126, 26, 86, 14);
+		lblNombreEnc.setBounds(175, 26, 56, 14);
 		Encuadrado.add(lblNombreEnc);
 
-		txtNombreEnc = new JTextField();
-		txtNombreEnc.setColumns(10);
-		txtNombreEnc.setBounds(126, 51, 86, 20);
-		Encuadrado.add(txtNombreEnc);
-
 		JLabel lblApellidoPat = new JLabel("A. PATERNO");
+		lblApellidoPat.setHorizontalAlignment(SwingConstants.CENTER);
 		lblApellidoPat.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblApellidoPat.setBounds(222, 26, 93, 14);
+		lblApellidoPat.setBounds(280, 26, 72, 14);
 		Encuadrado.add(lblApellidoPat);
 
 		JLabel lblApellidoMaternoEnc = new JLabel("A. MATERNO");
+		lblApellidoMaternoEnc.setHorizontalAlignment(SwingConstants.CENTER);
 		lblApellidoMaternoEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblApellidoMaternoEnc.setBounds(318, 26, 93, 14);
+		lblApellidoMaternoEnc.setBounds(391, 26, 77, 14);
 		Encuadrado.add(lblApellidoMaternoEnc);
 
+		JLabel lblCurpEnc = new JLabel("CURP\r\n");
+		lblCurpEnc.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCurpEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblCurpEnc.setBounds(538, 26, 28, 14);
+		Encuadrado.add(lblCurpEnc);
+		
+		JLabel lblEdadEnc = new JLabel("EDAD");
+		lblEdadEnc.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEdadEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblEdadEnc.setBounds(660, 26, 31, 14);
+		Encuadrado.add(lblEdadEnc);
+
+		JLabel lblProfesionEnc = new JLabel("PROFESI\u00D3N");
+		lblProfesionEnc.setHorizontalAlignment(SwingConstants.CENTER);
+		lblProfesionEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblProfesionEnc.setBounds(153, 94, 72, 14);
+		Encuadrado.add(lblProfesionEnc);
+		
+		JLabel lblSexoEnc = new JLabel("SEXO");
+		lblSexoEnc.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSexoEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblSexoEnc.setBounds(657, 94, 32, 14);
+		Encuadrado.add(lblSexoEnc);
+
+		JLabel lblCalleEnc = new JLabel("CALLE");
+		lblCalleEnc.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCalleEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblCalleEnc.setBounds(538, 94, 39, 14);
+		Encuadrado.add(lblCalleEnc);
+		
+		JLabel lblColoniaEnc = new JLabel("COLONIA");
+		lblColoniaEnc.setHorizontalAlignment(SwingConstants.CENTER);
+		lblColoniaEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblColoniaEnc.setBounds(403, 94, 56, 14);
+		Encuadrado.add(lblColoniaEnc);
+		
+		JLabel lblNumInteriorEnc = new JLabel("NUM INTER");
+		lblNumInteriorEnc.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNumInteriorEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblNumInteriorEnc.setBounds(269, 94, 72, 14);
+		Encuadrado.add(lblNumInteriorEnc);
+		
+		JLabel lblNumExteriorEnc = new JLabel("NUM EXT");
+		lblNumExteriorEnc.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNumExteriorEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblNumExteriorEnc.setBounds(45, 157, 56, 14);
+		Encuadrado.add(lblNumExteriorEnc);
+		
+		JLabel lblCiudadEnc = new JLabel("CIUDAD");
+		lblCiudadEnc.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCiudadEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblCiudadEnc.setBounds(166, 157, 46, 14);
+		Encuadrado.add(lblCiudadEnc);
+		
+		JLabel lblEstadoCivilEnc = new JLabel("ESTADO CIVIL");
+		lblEstadoCivilEnc.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEstadoCivilEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblEstadoCivilEnc.setBounds(272, 157, 86, 14);
+		Encuadrado.add(lblEstadoCivilEnc);
+
+		JLabel lblDiscapacidad = new JLabel("DISCAPACIDAD");
+		lblDiscapacidad.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDiscapacidad.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblDiscapacidad.setBounds(396, 157, 90, 14);
+		Encuadrado.add(lblDiscapacidad);
+		
+		JLabel lblClaseEnc = new JLabel("CLASE");
+		lblClaseEnc.setHorizontalAlignment(SwingConstants.CENTER);
+		lblClaseEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblClaseEnc.setBounds(538, 157, 39, 14);
+		Encuadrado.add(lblClaseEnc);
+		
+		JLabel lblHablilidadEnc = new JLabel("HABILIDAD\r\n");
+		lblHablilidadEnc.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHablilidadEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblHablilidadEnc.setBounds(641, 157, 65, 14);
+		Encuadrado.add(lblHablilidadEnc);
+		
+		JLabel lblTipoSangreEnc = new JLabel("TIPO SANGRE");
+		lblTipoSangreEnc.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTipoSangreEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblTipoSangreEnc.setBounds(118, 213, 86, 14);
+		Encuadrado.add(lblTipoSangreEnc);
+
+		JLabel lblPesoEnc = new JLabel("PESO (KG)");
+		lblPesoEnc.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPesoEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblPesoEnc.setBounds(343, 214, 65, 14);
+		Encuadrado.add(lblPesoEnc);
+		
+		JLabel lblAlturaEnc = new JLabel("ALTURA (MTS)");
+		lblAlturaEnc.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAlturaEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblAlturaEnc.setBounds(546, 214, 86, 14);
+		Encuadrado.add(lblAlturaEnc);
+		
+		JLabel lblNumCelularEnc = new JLabel("NUM CELULAR");
+		lblNumCelularEnc.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNumCelularEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblNumCelularEnc.setBounds(30, 94, 86, 14);
+		Encuadrado.add(lblNumCelularEnc);
+
+		JLabel lblMatriculaEnc = new JLabel("MATRICULA ENC");
+		lblMatriculaEnc.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMatriculaEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblMatriculaEnc.setBounds(31, 26, 98, 14);
+		Encuadrado.add(lblMatriculaEnc);
+		
+		txtNombreEnc = new JTextField();
+		txtNombreEnc.setColumns(10);
+		txtNombreEnc.setBounds(160, 51, 86, 20);
+		Encuadrado.add(txtNombreEnc);
+		
 		txtApellidoPaternoEnc = new JTextField();
 		txtApellidoPaternoEnc.setColumns(10);
-		txtApellidoPaternoEnc.setBounds(222, 51, 86, 20);
+		txtApellidoPaternoEnc.setBounds(273, 51, 86, 20);
 		Encuadrado.add(txtApellidoPaternoEnc);
 
 		txtApellidoMaternoEnc = new JTextField();
 		txtApellidoMaternoEnc.setColumns(10);
-		txtApellidoMaternoEnc.setBounds(318, 51, 86, 20);
+		txtApellidoMaternoEnc.setBounds(386, 51, 86, 20);
 		Encuadrado.add(txtApellidoMaternoEnc);
-
-		JLabel lblCurpEnc = new JLabel("CURP\r\n");
-		lblCurpEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblCurpEnc.setBounds(10, 89, 93, 14);
-		Encuadrado.add(lblCurpEnc);
 
 		txtCurpEnc = new JTextField();
 		txtCurpEnc.setColumns(10);
-		txtCurpEnc.setBounds(10, 107, 106, 20);
+		txtCurpEnc.setBounds(499, 51, 106, 20);
 		Encuadrado.add(txtCurpEnc);
-
-		JLabel lblEdadEnc = new JLabel("EDAD");
-		lblEdadEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblEdadEnc.setBounds(126, 89, 46, 14);
-		Encuadrado.add(lblEdadEnc);
-
-		JLabel lblProfesionEnc = new JLabel("PROFESI\u00D3N");
-		lblProfesionEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblProfesionEnc.setBounds(318, 89, 86, 14);
-		Encuadrado.add(lblProfesionEnc);
 
 		txtProfesionEnc = new JTextField();
 		txtProfesionEnc.setColumns(10);
-		txtProfesionEnc.setBounds(318, 107, 86, 20);
+		txtProfesionEnc.setBounds(146, 120, 86, 20);
 		Encuadrado.add(txtProfesionEnc);
-
-		JLabel lblSexoEnc = new JLabel("SEXO");
-		lblSexoEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblSexoEnc.setBounds(414, 89, 46, 14);
-		Encuadrado.add(lblSexoEnc);
-
-		JLabel lblCalleEnc = new JLabel("CALLE");
-		lblCalleEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblCalleEnc.setBounds(10, 145, 46, 14);
-		Encuadrado.add(lblCalleEnc);
 
 		txtCalleEnc = new JTextField();
 		txtCalleEnc.setColumns(10);
-		txtCalleEnc.setBounds(10, 170, 106, 20);
+		txtCalleEnc.setBounds(378, 120, 106, 20);
 		Encuadrado.add(txtCalleEnc);
-
-		JLabel lblColoniaEnc = new JLabel("COLONIA");
-		lblColoniaEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblColoniaEnc.setBounds(126, 145, 86, 14);
-		Encuadrado.add(lblColoniaEnc);
 
 		txtColoniaEnc = new JTextField();
 		txtColoniaEnc.setColumns(10);
-		txtColoniaEnc.setBounds(126, 170, 86, 20);
+		txtColoniaEnc.setBounds(514, 120, 86, 20);
 		Encuadrado.add(txtColoniaEnc);
-
-		JLabel lblNumInteriorEnc = new JLabel("NUM INTER");
-		lblNumInteriorEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblNumInteriorEnc.setBounds(222, 145, 86, 14);
-		Encuadrado.add(lblNumInteriorEnc);
 
 		txtNumInteriorEnc = new JTextField();
 		txtNumInteriorEnc.setColumns(10);
-		txtNumInteriorEnc.setBounds(222, 170, 86, 20);
+		txtNumInteriorEnc.setBounds(630, 120, 86, 20);
 		Encuadrado.add(txtNumInteriorEnc);
-
-		JLabel lblNumExteriorEnc = new JLabel("NUM EXT");
-		lblNumExteriorEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblNumExteriorEnc.setBounds(318, 145, 83, 14);
-		Encuadrado.add(lblNumExteriorEnc);
 
 		txtNumExtEnc = new JTextField();
 		txtNumExtEnc.setColumns(10);
-		txtNumExtEnc.setBounds(318, 170, 86, 20);
+		txtNumExtEnc.setBounds(30, 182, 86, 20);
 		Encuadrado.add(txtNumExtEnc);
-
-		JLabel lblCiudadEnc = new JLabel("CIUDAD");
-		lblCiudadEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblCiudadEnc.setBounds(415, 145, 56, 14);
-		Encuadrado.add(lblCiudadEnc);
 
 		txtCiudadEnc = new JTextField();
 		txtCiudadEnc.setColumns(10);
-		txtCiudadEnc.setBounds(414, 170, 86, 20);
+		txtCiudadEnc.setBounds(146, 182, 86, 20);
 		Encuadrado.add(txtCiudadEnc);
-
-		JLabel lblEstadoCivilEnc = new JLabel("ESTADO CIVIL");
-		lblEstadoCivilEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblEstadoCivilEnc.setBounds(10, 213, 106, 14);
-		Encuadrado.add(lblEstadoCivilEnc);
-
-		JLabel lblDiscapacidad = new JLabel("DISCAPACIDAD");
-		lblDiscapacidad.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblDiscapacidad.setBounds(118, 213, 106, 14);
-		Encuadrado.add(lblDiscapacidad);
 
 		txtEstadoCivilEnc = new JTextField();
 		txtEstadoCivilEnc.setColumns(10);
-		txtEstadoCivilEnc.setBounds(126, 239, 86, 20);
+		txtEstadoCivilEnc.setBounds(398, 183, 86, 20);
 		Encuadrado.add(txtEstadoCivilEnc);
-
-		JLabel lblClaseEnc = new JLabel("CLASE");
-		lblClaseEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblClaseEnc.setBounds(222, 213, 46, 14);
-		Encuadrado.add(lblClaseEnc);
 
 		txtClaseEnc = new JTextField();
 		txtClaseEnc.setColumns(10);
-		txtClaseEnc.setBounds(222, 239, 86, 20);
+		txtClaseEnc.setBounds(514, 183, 86, 20);
 		Encuadrado.add(txtClaseEnc);
-
-		JLabel lblHablilidadEnc = new JLabel("HABILIDAD\r\n");
-		lblHablilidadEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblHablilidadEnc.setBounds(318, 213, 86, 14);
-		Encuadrado.add(lblHablilidadEnc);
 
 		txtHabilidadEnc = new JTextField();
 		txtHabilidadEnc.setColumns(10);
-		txtHabilidadEnc.setBounds(318, 239, 86, 20);
+		txtHabilidadEnc.setBounds(630, 183, 86, 20);
 		Encuadrado.add(txtHabilidadEnc);
-
-		JLabel lblTipoSangreEnc = new JLabel("TIPO SANGRE");
-		lblTipoSangreEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblTipoSangreEnc.setBounds(414, 213, 93, 14);
-		Encuadrado.add(lblTipoSangreEnc);
-
-		JLabel lblPesoEnc = new JLabel("PESO (KG)");
-		lblPesoEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblPesoEnc.setBounds(10, 270, 83, 14);
-		Encuadrado.add(lblPesoEnc);
 
 		txtPesoEnc = new JTextField();
 		txtPesoEnc.setColumns(10);
-		txtPesoEnc.setBounds(10, 295, 106, 20);
-		Encuadrado.add(txtPesoEnc);
-
-		JLabel lblAlturaEnc = new JLabel("ALTURA (MTS)");
-		lblAlturaEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblAlturaEnc.setBounds(126, 270, 86, 14);
-		Encuadrado.add(lblAlturaEnc);
+		txtPesoEnc.setBounds(322, 239, 106, 20);
+		Encuadrado.add(txtPesoEnc);	
 
 		txtAlturaEnc = new JTextField();
 		txtAlturaEnc.setColumns(10);
-		txtAlturaEnc.setBounds(126, 295, 86, 20);
+		txtAlturaEnc.setBounds(546, 239, 86, 20);
 		Encuadrado.add(txtAlturaEnc);
 
 		txtSexoEnc = new JTextField();
 		txtSexoEnc.setColumns(10);
-		txtSexoEnc.setBounds(414, 107, 86, 20);
+		txtSexoEnc.setBounds(262, 120, 86, 20);
 		Encuadrado.add(txtSexoEnc);
 
 		txtEdadEnc = new JTextField();
 		txtEdadEnc.setColumns(10);
-		txtEdadEnc.setBounds(126, 107, 86, 20);
+		txtEdadEnc.setBounds(632, 51, 86, 20);
 		Encuadrado.add(txtEdadEnc);
 
 		txtNumCelularEnc = new JTextField();
 		txtNumCelularEnc.setColumns(10);
-		txtNumCelularEnc.setBounds(222, 107, 86, 20);
+		txtNumCelularEnc.setBounds(30, 120, 86, 20);
 		Encuadrado.add(txtNumCelularEnc);
-
-		JLabel lblNumCelularEnc = new JLabel("NUM CELULAR");
-		lblNumCelularEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblNumCelularEnc.setBounds(222, 89, 98, 14);
-		Encuadrado.add(lblNumCelularEnc);
-
-		JLabel lblMatriculaEnc = new JLabel("MATRICULA ENC");
-		lblMatriculaEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblMatriculaEnc.setBounds(10, 26, 116, 14);
-		Encuadrado.add(lblMatriculaEnc);
 
 		txtMatriculaEnc = new JTextField();
 		txtMatriculaEnc.setColumns(10);
-		txtMatriculaEnc.setBounds(10, 51, 106, 20);
+		txtMatriculaEnc.setBounds(27, 51, 106, 20);
 		Encuadrado.add(txtMatriculaEnc);
 
 		txtEstadoCivil = new JTextField();
 		txtEstadoCivil.setColumns(10);
-		txtEstadoCivil.setBounds(10, 238, 106, 20);
+		txtEstadoCivil.setBounds(262, 182, 106, 20);
 		Encuadrado.add(txtEstadoCivil);
 
 		txtTipoSangreEnc = new JTextField();
 		txtTipoSangreEnc.setColumns(10);
-		txtTipoSangreEnc.setBounds(414, 239, 86, 20);
+		txtTipoSangreEnc.setBounds(118, 239, 86, 20);
 		Encuadrado.add(txtTipoSangreEnc);
 
 		JButton btnAgregarEnc = new JButton("AGREGAR");
@@ -1955,12 +2064,12 @@ public class Formulario extends JFrame {
 				objEnc.ingresar_Enc(txtMatriculaEnc.getText(), txtNombreEnc.getText(), txtApellidoPaternoEnc.getText(), txtApellidoMaternoEnc.getText(), txtCurpEnc.getText(), txtEdadEnc.getText(), txtProfesionEnc.getText(), txtNumExtEnc.getText(),	txtNumInteriorEnc.getText(), txtCalleEnc.getText(), txtColoniaEnc.getText(), txtCiudadEnc.getText(), txtSexoEnc.getText(), txtEstadoCivil.getText(), TxtDiscapacidad.getText(), txtClaseEnc.getText(), txtHabilidadEnc.getText(), txtTipoSangreEnc.getText(), txtPesoEnc.getText(), txtAlturaEnc.getText());
 
 				DefaultTableModel modeloEnc = objParR.mostrarRegistrosNumT("SELECT * FROM encuadrado");
-				table_7.setModel(modeloEnc);
+				tablaEncuadrado.setModel(modeloEnc);
 
 			}
 		});
 		btnAgregarEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnAgregarEnc.setBounds(519, 26, 118, 23);
+		btnAgregarEnc.setBounds(26, 276, 118, 23);
 		Encuadrado.add(btnAgregarEnc);
 
 		JButton btnEliminarEnc = new JButton("ELIMINAR");
@@ -1970,27 +2079,27 @@ public class Formulario extends JFrame {
 				objEnc.eliminar_Enc(txtMatriculaEnc.getText());
 
 				DefaultTableModel modeloEnc = objParR.mostrarRegistrosNumT("SELECT * FROM encuadrado");
-				table_7.setModel(modeloEnc);
+				tablaEncuadrado.setModel(modeloEnc);
 
 			}
 		});
 		btnEliminarEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnEliminarEnc.setBounds(519, 60, 118, 23);
+		btnEliminarEnc.setBounds(170, 276, 118, 23);
 		Encuadrado.add(btnEliminarEnc);
 
-		JButton btnModificarEnc = new JButton("MODIFICAR\r\n");
+		JButton btnModificarEnc = new JButton("MODIFICAR");
 		btnModificarEnc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				objEnc.modificar_Enc(txtMatriculaEnc.getText(), txtNombreEnc.getText(),	txtApellidoPaternoEnc.getText(), txtApellidoMaternoEnc.getText(), txtCurpEnc.getText(),	txtEdadEnc.getText(), txtProfesionEnc.getText(), txtNumExtEnc.getText(), txtNumInteriorEnc.getText(), txtCalleEnc.getText(), txtColoniaEnc.getText(), txtCiudadEnc.getText(), txtSexoEnc.getText(), txtEstadoCivil.getText(), TxtDiscapacidad.getText(), txtClaseEnc.getText(), txtHabilidadEnc.getText(), txtTipoSangreEnc.getText(), txtPesoEnc.getText(), txtAlturaEnc.getText());
 
 				DefaultTableModel modeloEnc = objParR.mostrarRegistrosNumT("SELECT * FROM encuadrado");
-				table_7.setModel(modeloEnc);
+				tablaEncuadrado.setModel(modeloEnc);
 
 			}
 		});
 		btnModificarEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnModificarEnc.setBounds(519, 94, 118, 23);
+		btnModificarEnc.setBounds(314, 276, 118, 23);
 		Encuadrado.add(btnModificarEnc);
 
 		JButton btnConsultarEnc = new JButton("CONSULTAR");
@@ -1998,12 +2107,12 @@ public class Formulario extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				DefaultTableModel modeloEnc = objParR.mostrarRegistrosNumT("SELECT * FROM encuadrado");
-				table_7.setModel(modeloEnc);
+				tablaEncuadrado.setModel(modeloEnc);
 				
 			}
 		});
 		btnConsultarEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnConsultarEnc.setBounds(519, 128, 118, 23);
+		btnConsultarEnc.setBounds(458, 276, 118, 23);
 		Encuadrado.add(btnConsultarEnc);
 
 		JButton btnLimpiarEnc = new JButton("LIMPIAR");
@@ -2013,21 +2122,24 @@ public class Formulario extends JFrame {
 			}
 		});
 		btnLimpiarEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		btnLimpiarEnc.setBounds(519, 237, 118, 23);
+		btnLimpiarEnc.setBounds(602, 276, 118, 23);
 		Encuadrado.add(btnLimpiarEnc);
 
-		JPanel panel_7 = new JPanel();
-		panel_7.setBounds(222, 270, 415, 109);
-		Encuadrado.add(panel_7);
-		panel_7.setLayout(null);
+		//-->> PANEL DE LA TABLA ENCUADRADO
+		JPanel pnlTablaEncuadrado = new JPanel();
+		pnlTablaEncuadrado.setBounds(10, 326, 730, 149);
+		Encuadrado.add(pnlTablaEncuadrado);
+		pnlTablaEncuadrado.setLayout(null);
 
-		JScrollPane scrollPane_7 = new JScrollPane();
-		scrollPane_7.setBounds(0, 11, 417, 112);
-		panel_7.add(scrollPane_7);
-
-		table_7 = new JTable();
-		scrollPane_7.add(table_7);
-
-	}
+			JScrollPane spTablaEncuadrado = new JScrollPane();
+			spTablaEncuadrado.setBounds(0, 0, 730, 149);
+			pnlTablaEncuadrado.add(spTablaEncuadrado);
 	
+			tablaEncuadrado = new JTable();
+			spTablaEncuadrado.add(tablaEncuadrado);
+			@SuppressWarnings("unused")
+			DefaultTableModel modelo = null;
+
+						
+	}
 }
