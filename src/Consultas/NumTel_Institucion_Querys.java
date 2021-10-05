@@ -35,7 +35,6 @@ public class NumTel_Institucion_Querys {
 
 			String query = "INSERT INTO NumTel_Institucion(Id_Inst, NumTel) VALUES(" + Q_Id + Q_Numero + ")";
 			stm.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, "Numero de telefono de la institución agregado correctamente");
 			
 		} catch (SQLException e) {
 			
@@ -55,7 +54,6 @@ public class NumTel_Institucion_Querys {
 
 			String query = "UPDATE NumTel_Institucion SET NumTel = '" + NumeroM + "' WHERE Id_Inst = '" + Id + "' AND NumTel = '" + Numero + "'";
 			stm.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, "Numero de telefono modificado correctamente");
 			
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
@@ -73,7 +71,6 @@ public class NumTel_Institucion_Querys {
 
 			String query = "DELETE FROM NumTel_Institucion WHERE NumTel = '" + Numero + "'";
 			stm.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, "Numero de telefono eliminado correctamente");
 
 		} catch (SQLException e) {
 			

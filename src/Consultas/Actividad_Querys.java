@@ -94,7 +94,7 @@ public class Actividad_Querys {
 			cn = conexion.conectar();
 			stm = cn.createStatement();
 
-			String query = "Update actividad SET HoraInicio = '" + HIA + "', HoraFin = '" + HFA + "', Fecha = '" + FA + "', T_Actividad = '" + TAA + "', Coste_Act = '" + CAA + "' WHERE Num_Placa = '" + NPA + "' AND Matricula_Enc = '" + MEA + "' AND N_Sección = '" + NSA + "' AND Id_Inst = '" + IIA + "'";
+			String query = "Update actividad SET HoraInicio = '" + HIA + "', HoraFin = '" + HFA + "', Fecha = '" + FA + "', T_Actividad = '" + TAA + "', Coste_Act = '" + CAA + "', N_Sección = '" + NSA + "', Id_Inst = '" + IIA + "' WHERE Num_Placa = '" + NPA + "' AND Matricula_Enc = '" + MEA + "'";
 			stm.executeUpdate(query);
 			
 		} catch (SQLException e) {

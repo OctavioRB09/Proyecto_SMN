@@ -82,15 +82,15 @@ public class Participa_enc_Querys {
 			
 			if (EdSorteo.equals("")) {
 				EdSorteo = null;
-				Q_EdSorteo = "" + EdSorteo + ", ";
+				Q_EdSorteo = "" + EdSorteo + "";
 			} else
-				Q_EdSorteo = "'" + EdSorteo + "', ";
+				Q_EdSorteo = "'" + EdSorteo + "'";
 
 			if (MatEnc.equals("")) {
 				MatEnc = null;
-				Q_MatEnc = "" + MatEnc + ", ";
+				Q_MatEnc = "" + MatEnc + "";
 			} else
-				Q_MatEnc = "'" + MatEnc + "', ";
+				Q_MatEnc = "'" + MatEnc + "'";
 
 			if (Res.equals("")) {
 				Res = null;

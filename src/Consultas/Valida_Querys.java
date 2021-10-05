@@ -52,7 +52,7 @@ public class Valida_Querys {
 			} else
 				Q_Precio = "'" + Precio_Cart + "'";
 							
-			query="INSERT INTO valida (Num_Placa,Matricula_Enc, Num_Liberacion,Horas_Trabajadas, Precio_Cart) VALUES ("+Q_Numplaca+Q_Matricula+Q_NumLiberacion+Q_Htrabajadas+Q_Precio+")";
+			query="INSERT INTO valida (Num_Placa,Matricula_Enc, Num_Liberacion, Horas_Trabajadas, Precio_Car) VALUES ("+Q_Numplaca+Q_Matricula+Q_NumLiberacion+Q_Htrabajadas+Q_Precio+")";
 			stm.executeUpdate(query);
 
 		} catch (SQLException e) {
@@ -98,29 +98,29 @@ public class Valida_Querys {
 
 			if (Matricula.equals("")) {
 				Matricula = null;
-				Q_Matricula = "" + Matricula + ", ";
+				Q_Matricula = "" + Matricula + "";
 			} else
-				Q_Matricula = "'" + Matricula + "', ";
+				Q_Matricula = "'" + Matricula + "'";
 
 			if (horas.equals("")) {
 				horas = null;
-				Q_Htrabajadas = "" + horas + ", ";
+				Q_Htrabajadas = "" + horas + "";
 			} else
-				Q_Htrabajadas = "'" + horas + "', ";
+				Q_Htrabajadas = "'" + horas + "'";
 
 			if (Num_Liberacion.equals("")) {
 				Num_Liberacion = null;
-				Q_NumLiberacion = "" + Num_Liberacion + ", ";
+				Q_NumLiberacion = "" + Num_Liberacion + "";
 			} else
-				Q_NumLiberacion = "'" + Num_Liberacion + "', ";
+				Q_NumLiberacion = "'" + Num_Liberacion + "'";
 
 			if (Precio_Cart.equals("")) {
 				Precio_Cart = null;
-				Q_Precio = "" + Precio_Cart + ", ";
+				Q_Precio = "" + Precio_Cart + "";
 			} else
-				Q_Precio = "'" + Precio_Cart + "', ";
+				Q_Precio = "'" + Precio_Cart + "'";
 			
-			query = "UPDATE valida SET Matricula_Enc = " + Q_Matricula + ", Num_Liberacion = " + Q_NumLiberacion + ", Horas_Trabajadas = " + Q_Htrabajadas + ", Precio_Cart = " + Q_Precio + " WHERE Num_Placa = "	+ Q_Numplaca;
+			query = "UPDATE valida SET Matricula_Enc = " + Q_Matricula + ", Num_Liberacion = " + Q_NumLiberacion + ", Horas_Trabajadas = " + Q_Htrabajadas + ", Precio_Car = " + Q_Precio + " WHERE Num_Placa = "	+ Q_Numplaca;
 			stm.executeUpdate(query);
 
 		} catch (SQLException e) {
