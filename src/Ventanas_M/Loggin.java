@@ -10,11 +10,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Conexion.*;
+import Ventanas_M.Formulario;
 
 import javax.swing.JTextPane;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -24,11 +27,12 @@ import java.awt.Font;
 public class Loggin extends JFrame {
 
 	ConexionBD objConect=new ConexionBD();
-	Formulario form = new Formulario();
+	//Formulario form = new Formulario();
 	static int flag=0;
 	private JPanel contentPane;
 	private JTextField txtU;
 	private JTextField txtC;
+	public Connection cn = null;
 
 	public static void main(String[] args) {
 
@@ -82,12 +86,23 @@ public class Loggin extends JFrame {
 		
 		JButton bE = new JButton("ENTRAR");
 		bE.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bE.addActionListener(new ActionListener() {
+		bE.addActionListener(new ActionListener() 
+		{
 			
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) 
+			{
 				
 				ConexionBD conexion = new ConexionBD(txtU.getText(), txtC.getText());
-				Formulario form = new Formulario();
+				cn = conexion.conectar();
+				try
+				{
+					System.out.println(conexion.conexion.getAutoCommit());
+				}
+				catch(SQLException r)
+				{
+					r.printStackTrace();
+				}
+				Formulario form = new Formulario(cn);
 				form.setVisible(true);
 				cerrar();
 				

@@ -8,6 +8,7 @@ public class ConexionBD {
 	private static String url="jdbc:mysql://localhost:3306/proyecto_smn?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=flase&serverTimezone=UTC";
 	public static String user="root", pass="pass";
 	public int flag1;
+	public Connection conexion = null;
 	
 	static {
 
@@ -35,7 +36,7 @@ public class ConexionBD {
 
 		try {
 
-			Connection conexion = DriverManager.getConnection(url, user, pass);
+			conexion = DriverManager.getConnection(url, user, pass);
 			return conexion;
 
 		} catch (SQLException e) {

@@ -22,6 +22,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import Conexion.*;
 import Consultas.*;
+import Ventanas_M.Loggin;
+
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -46,6 +48,7 @@ public class Formulario extends JFrame {
 	Lidera_Querys objTC=new Lidera_Querys();
 	Reserva_Querys objRQ=new Reserva_Querys();
 	Participa_enc_Querys objPEQ=new Participa_enc_Querys();
+	static Loggin objLog = new Loggin();
 	
 	ConexionBD conexion = new ConexionBD();
 	PreparedStatement ps = null;
@@ -158,7 +161,7 @@ public class Formulario extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Formulario window = new Formulario();
+					Formulario window = new Formulario(objLog.cn);
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -261,9 +264,9 @@ public class Formulario extends JFrame {
 	}
 
 	@SuppressWarnings("static-access")
-	public Formulario() {
+	public Formulario(Connection cn) {
 		
-		cn = conexion.conectar();
+		//cn = conexion.conectar();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 908, 581);
