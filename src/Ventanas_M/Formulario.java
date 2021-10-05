@@ -2279,6 +2279,7 @@ public class Formulario extends JFrame {
 			pnlTablaEncuadrado.add(spTablaEncuadrado);
 	
 			tablaEncuadrado = new JTable();
+			tablaEncuadrado.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 			spTablaEncuadrado.setViewportView(tablaEncuadrado);
 			
 //-->> INICIO DE PANEL RESERVA
@@ -2564,6 +2565,7 @@ public class Formulario extends JFrame {
 			pnlTablaReserva.add(spTablaReserva);
 			
 			tablaReserva = new JTable();
+			tablaReserva.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 			spTablaReserva.setViewportView(tablaReserva);
 		
 //-->> INICIO DE PANEL PARTICIPA_ENC
