@@ -174,8 +174,8 @@ public class Formulario extends JFrame {
 		});
 	}
 	
-	public <WindowEvent> void cerrar(WindowEvent e) {
-		System.exit(0);
+	public void cerrar() {
+		this.dispose();
 	}
 
 	public void limpiarEntradas() {
@@ -2684,16 +2684,23 @@ public class Formulario extends JFrame {
 			
 			JButton btnCerrarSesion = new JButton("CERRAR SESION");
 			btnCerrarSesion.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-				//	window.cerrar(null);
-					window.setVisible(false);
-					conexion.cerrarSesion();
-					
-					//System.exit(0);
+				public void actionPerformed(ActionEvent e) 
+				{
+					try
+					{
+						cn.close();
+					}
+					catch(SQLException j)
+					{
+						j.printStackTrace();
+					}
+					Loggin log = new Loggin();
+					log.setVisible(true);
+					cerrar();
 				}
 			});
 			btnCerrarSesion.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-			btnCerrarSesion.setBounds(382, 504, 127, 23);
+			btnCerrarSesion.setBounds(382, 504, 149, 23);
 			contentPane.add(btnCerrarSesion);
 		
 	}
