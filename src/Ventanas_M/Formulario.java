@@ -1,6 +1,5 @@
 package Ventanas_M;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.SystemColor;
@@ -23,11 +22,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import Conexion.*;
 import Consultas.*;
-import Ventanas_M.Loggin;
-
 import java.awt.Font;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 public class Formulario extends JFrame {
@@ -273,8 +269,6 @@ public class Formulario extends JFrame {
 
 	@SuppressWarnings("static-access")
 	public Formulario(Connection cn) {
-		
-		//cn = conexion.conectar();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 908, 581);
@@ -290,6 +284,27 @@ public class Formulario extends JFrame {
 		tabbedPane.setFont(new Font("Trebuchet MS", Font.PLAIN, 12));
 		tabbedPane.setBounds(5, 5, 882, 488);
 		getContentPane().add(tabbedPane);
+		
+		//-->> BOTON PARA CERRAR SESION
+		JButton btnCerrarSesion = new JButton("CERRAR SESION");
+		btnCerrarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				try {
+					cn.close();
+				} catch (SQLException j) {
+					j.printStackTrace();
+				}
+
+				Loggin log = new Loggin();
+				log.setVisible(true);
+				cerrar();
+
+			}
+		});
+		btnCerrarSesion.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnCerrarSesion.setBounds(382, 504, 149, 23);
+		contentPane.add(btnCerrarSesion);
 
 //-->> INICIO DEL PANEL DE INSTRUCTOR		
 		JPanel Instructor = new JPanel();
@@ -2681,27 +2696,6 @@ public class Formulario extends JFrame {
 			
 			tablaPartEnc = new JTable();
 			spTablaPartEnc.setViewportView(tablaPartEnc);
-			
-			JButton btnCerrarSesion = new JButton("CERRAR SESION");
-			btnCerrarSesion.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) 
-				{
-					try
-					{
-						cn.close();
-					}
-					catch(SQLException j)
-					{
-						j.printStackTrace();
-					}
-					Loggin log = new Loggin();
-					log.setVisible(true);
-					cerrar();
-				}
-			});
-			btnCerrarSesion.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-			btnCerrarSesion.setBounds(382, 504, 149, 23);
-			contentPane.add(btnCerrarSesion);
 		
 	}
 	

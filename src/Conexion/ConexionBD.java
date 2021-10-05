@@ -3,8 +3,6 @@ package Conexion;
 import java.sql.*; 
 import javax.swing.*;
 
-import Ventanas_M.*;
-
 public class ConexionBD {
 	
 	private static String url="jdbc:mysql://localhost:3306/proyecto_smn?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=flase&serverTimezone=UTC";
@@ -55,23 +53,10 @@ public class ConexionBD {
 
 	}
 	
+	//METODO DE APOYO AL LOGIN (RETORNA UN INT QUE SERA PARA USARSE COMO BOOL EN UN IF)
 	public int error(int flag) {
 		return flag1;
 	}
 
-	public void cerrarSesion() {
-			
-		        try {
-					conexion.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		
-		Loggin form = new Loggin();
-		form.setVisible(true);
-		
-		
-	}
 	
 }

@@ -27,7 +27,6 @@ import java.awt.Font;
 public class Loggin extends JFrame {
 
 	ConexionBD objConect=new ConexionBD();
-	//Formulario form = new Formulario();
 	static int flag=0;
 	private JPanel contentPane;
 	private JTextField txtU;
@@ -84,30 +83,25 @@ public class Loggin extends JFrame {
 		txtC.setBounds(198, 68, 86, 20);
 		contentPane.add(txtC);
 		
+		//-->> BOTON DE INICIO DE SESION
 		JButton bE = new JButton("ENTRAR");
 		bE.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		bE.addActionListener(new ActionListener() 
-		{
-			
-			public void actionPerformed(ActionEvent e) 
-			{
-				
+		bE.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
 				ConexionBD conexion = new ConexionBD(txtU.getText(), txtC.getText());
 				cn = conexion.conectar();
-				try
-				{
+				try {
 					System.out.println(conexion.conexion.getAutoCommit());
-				}
-				catch(SQLException r)
-				{
+				} catch (SQLException r) {
 					r.printStackTrace();
 				}
 				Formulario form = new Formulario(cn);
 				form.setVisible(true);
 				cerrar();
-				
+
 			}
-			
+
 		});
 		
 		bE.setBounds(155, 137, 89, 23);
@@ -115,6 +109,7 @@ public class Loggin extends JFrame {
 		
 	}
 	
+	//METODO PARA CERRAR SESIONES
 	public void cerrar() {
 		this.dispose();
 	}
