@@ -121,11 +121,11 @@ public class Reserva_Querys {
 			
 			if (Telefono.equals("")) {
 				Telefono = null;
-				Q_Telefono = "" + Telefono + ", ";
+				Q_Telefono = "" + Telefono + "";
 			} else
-				Q_Telefono = "'" + Telefono + "', ";
+				Q_Telefono = "'" + Telefono + "'";
 			
-			query="INSERT INTO reserva (Matricula_Res,Nombres_Res,ApellidoPat_Res,ApellidoMat_Res,CURP_Res,Edad_Res,Profesión_Res,Num_Exterior,Num_Interior,Nom_Calle,Colonia,Ciudad,Sexo_Res,EstadoCivil_Res,Discapacidad_Res,Clase,Num_Tel,Tipo_Aspirante) VALUES ("+Q_MatRes+Q_Nombre+Q_ApellidoP+Q_ApellidoM+Q_Curp+Q_Edad+Q_Profesion+Q_NumExt+Q_NumInt+Q_Calle+Q_Colonia+Q_Ciudad+Q_Sexo+Q_ECivil+Q_Discapacidad+Q_Clase+Q_Telefono+"Reserva);";
+			query="INSERT INTO reserva (Matricula_Res,Nombres_Res,ApellidoPat_Res,ApellidoMat_Res,CURP_Res,Edad_Res,Profesión_Res,Num_Exterior,Num_Interior,Nom_Calle,Colonia,Ciudad,Sexo_Res,EstadoCivil_Res,Discapacidad_Res,Clase,Num_Tel) VALUES(" + Q_MatRes + Q_Nombre + Q_ApellidoP + Q_ApellidoM + Q_Curp + Q_Edad + Q_Profesion + Q_NumExt + Q_NumInt + Q_Calle + Q_Colonia + Q_Ciudad + Q_Sexo + Q_ECivil	+ Q_Discapacidad + Q_Clase + Q_Telefono + ")";
 			stm.executeUpdate(query);
 			
 		}catch(SQLException e) {

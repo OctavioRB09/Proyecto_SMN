@@ -114,7 +114,6 @@ public class Formulario extends JFrame {
 	private JTextField txtAlturaEnc;
 	private JTextField txtSexoEnc;
 	private JTextField txtEdadEnc;
-	private JTextField txtNumCelularEnc;
 	private JTextField txtMatriculaEnc;
 	private JTextField txtEstadoCivil;
 	private JTextField txtTipoSangreEnc;
@@ -232,7 +231,6 @@ public class Formulario extends JFrame {
 		txtAlturaEnc.setText("");
 		txtSexoEnc.setText("");
 		txtEdadEnc.setText("");
-		txtNumCelularEnc.setText("");
 		txtMatriculaEnc.setText("");
 		txtEstadoCivil.setText("");
 		txtTipoSangreEnc.setText("");
@@ -1577,7 +1575,7 @@ public class Formulario extends JFrame {
 		btnModificarSorteo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				objsor.ingresar_sorteo(etsorteo.getText(), etfechas.getText());
+				objsor.modificar_sor(etsorteo.getText(), etfechas.getText());
 
 				DefaultTableModel modelos = objsor.mostrarRegistrosSorteo("SELECT * FROM sorteo");
 				tablaSorteo.setModel(modelos);
@@ -1627,7 +1625,7 @@ public class Formulario extends JFrame {
 		btnEliminarSorteo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//METODO DE ELIMINACION
+				objsor.eliminar_sor(etsorteo.getText());
 				
 				DefaultTableModel modelos = objsor.mostrarRegistrosSorteo("SELECT * FROM sorteo");
 				tablaSorteo.setModel(modelos);
@@ -1977,92 +1975,86 @@ public class Formulario extends JFrame {
 		JLabel lblProfesionEnc = new JLabel("PROFESI\u00D3N");
 		lblProfesionEnc.setHorizontalAlignment(SwingConstants.CENTER);
 		lblProfesionEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblProfesionEnc.setBounds(153, 94, 72, 14);
+		lblProfesionEnc.setBounds(38, 94, 72, 14);
 		Encuadrado.add(lblProfesionEnc);
 		
 		JLabel lblSexoEnc = new JLabel("SEXO");
 		lblSexoEnc.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSexoEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblSexoEnc.setBounds(657, 94, 32, 14);
+		lblSexoEnc.setBounds(58, 156, 32, 14);
 		Encuadrado.add(lblSexoEnc);
 
 		JLabel lblCalleEnc = new JLabel("CALLE");
 		lblCalleEnc.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCalleEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblCalleEnc.setBounds(538, 94, 39, 14);
+		lblCalleEnc.setBounds(416, 94, 39, 14);
 		Encuadrado.add(lblCalleEnc);
 		
 		JLabel lblColoniaEnc = new JLabel("COLONIA");
 		lblColoniaEnc.setHorizontalAlignment(SwingConstants.CENTER);
 		lblColoniaEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblColoniaEnc.setBounds(403, 94, 56, 14);
+		lblColoniaEnc.setBounds(534, 94, 56, 14);
 		Encuadrado.add(lblColoniaEnc);
 		
 		JLabel lblNumInteriorEnc = new JLabel("NUM INTER");
 		lblNumInteriorEnc.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNumInteriorEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblNumInteriorEnc.setBounds(269, 94, 72, 14);
+		lblNumInteriorEnc.setBounds(272, 94, 72, 14);
 		Encuadrado.add(lblNumInteriorEnc);
 		
 		JLabel lblNumExteriorEnc = new JLabel("NUM EXT");
 		lblNumExteriorEnc.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNumExteriorEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblNumExteriorEnc.setBounds(45, 157, 56, 14);
+		lblNumExteriorEnc.setBounds(163, 94, 56, 14);
 		Encuadrado.add(lblNumExteriorEnc);
 		
 		JLabel lblCiudadEnc = new JLabel("CIUDAD");
 		lblCiudadEnc.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCiudadEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblCiudadEnc.setBounds(166, 157, 46, 14);
+		lblCiudadEnc.setBounds(656, 94, 46, 14);
 		Encuadrado.add(lblCiudadEnc);
 		
 		JLabel lblEstadoCivilEnc = new JLabel("ESTADO CIVIL");
 		lblEstadoCivilEnc.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEstadoCivilEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblEstadoCivilEnc.setBounds(272, 157, 86, 14);
+		lblEstadoCivilEnc.setBounds(158, 156, 86, 14);
 		Encuadrado.add(lblEstadoCivilEnc);
 
 		JLabel lblDiscapacidad = new JLabel("DISCAPACIDAD");
 		lblDiscapacidad.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDiscapacidad.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblDiscapacidad.setBounds(396, 157, 90, 14);
+		lblDiscapacidad.setBounds(283, 156, 90, 14);
 		Encuadrado.add(lblDiscapacidad);
 		
 		JLabel lblClaseEnc = new JLabel("CLASE");
 		lblClaseEnc.setHorizontalAlignment(SwingConstants.CENTER);
 		lblClaseEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblClaseEnc.setBounds(538, 157, 39, 14);
+		lblClaseEnc.setBounds(426, 156, 39, 14);
 		Encuadrado.add(lblClaseEnc);
 		
 		JLabel lblHablilidadEnc = new JLabel("HABILIDAD\r\n");
 		lblHablilidadEnc.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHablilidadEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblHablilidadEnc.setBounds(641, 157, 65, 14);
+		lblHablilidadEnc.setBounds(530, 156, 65, 14);
 		Encuadrado.add(lblHablilidadEnc);
 		
 		JLabel lblTipoSangreEnc = new JLabel("TIPO SANGRE");
 		lblTipoSangreEnc.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTipoSangreEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblTipoSangreEnc.setBounds(118, 213, 86, 14);
+		lblTipoSangreEnc.setBounds(636, 156, 86, 14);
 		Encuadrado.add(lblTipoSangreEnc);
 
 		JLabel lblPesoEnc = new JLabel("PESO (KG)");
 		lblPesoEnc.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPesoEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblPesoEnc.setBounds(343, 214, 65, 14);
+		lblPesoEnc.setBounds(208, 214, 65, 14);
 		Encuadrado.add(lblPesoEnc);
 		
 		JLabel lblAlturaEnc = new JLabel("ALTURA (MTS)");
 		lblAlturaEnc.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlturaEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblAlturaEnc.setBounds(546, 214, 86, 14);
+		lblAlturaEnc.setBounds(480, 214, 86, 14);
 		Encuadrado.add(lblAlturaEnc);
-		
-		JLabel lblNumCelularEnc = new JLabel("NUM CELULAR");
-		lblNumCelularEnc.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNumCelularEnc.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblNumCelularEnc.setBounds(30, 94, 86, 14);
-		Encuadrado.add(lblNumCelularEnc);
 
 		JLabel lblMatriculaEnc = new JLabel("MATRICULA ENC");
 		lblMatriculaEnc.setHorizontalAlignment(SwingConstants.CENTER);
@@ -2072,107 +2064,102 @@ public class Formulario extends JFrame {
 		
 		txtNombreEnc = new JTextField();
 		txtNombreEnc.setColumns(10);
-		txtNombreEnc.setBounds(160, 51, 86, 20);
+		txtNombreEnc.setBounds(162, 51, 86, 20);
 		Encuadrado.add(txtNombreEnc);
 		
 		txtApellidoPaternoEnc = new JTextField();
 		txtApellidoPaternoEnc.setColumns(10);
-		txtApellidoPaternoEnc.setBounds(273, 51, 86, 20);
+		txtApellidoPaternoEnc.setBounds(276, 51, 86, 20);
 		Encuadrado.add(txtApellidoPaternoEnc);
 
 		txtApellidoMaternoEnc = new JTextField();
 		txtApellidoMaternoEnc.setColumns(10);
-		txtApellidoMaternoEnc.setBounds(386, 51, 86, 20);
+		txtApellidoMaternoEnc.setBounds(390, 51, 86, 20);
 		Encuadrado.add(txtApellidoMaternoEnc);
 
 		txtCurpEnc = new JTextField();
 		txtCurpEnc.setColumns(10);
-		txtCurpEnc.setBounds(499, 51, 106, 20);
+		txtCurpEnc.setBounds(504, 51, 106, 20);
 		Encuadrado.add(txtCurpEnc);
 
 		txtProfesionEnc = new JTextField();
 		txtProfesionEnc.setColumns(10);
-		txtProfesionEnc.setBounds(146, 120, 86, 20);
+		txtProfesionEnc.setBounds(31, 120, 86, 20);
 		Encuadrado.add(txtProfesionEnc);
 
 		txtCalleEnc = new JTextField();
 		txtCalleEnc.setColumns(10);
-		txtCalleEnc.setBounds(378, 120, 106, 20);
+		txtCalleEnc.setBounds(382, 120, 106, 20);
 		Encuadrado.add(txtCalleEnc);
 
 		txtColoniaEnc = new JTextField();
 		txtColoniaEnc.setColumns(10);
-		txtColoniaEnc.setBounds(514, 120, 86, 20);
+		txtColoniaEnc.setBounds(519, 120, 86, 20);
 		Encuadrado.add(txtColoniaEnc);
 
 		txtNumInteriorEnc = new JTextField();
 		txtNumInteriorEnc.setColumns(10);
-		txtNumInteriorEnc.setBounds(630, 120, 86, 20);
+		txtNumInteriorEnc.setBounds(265, 120, 86, 20);
 		Encuadrado.add(txtNumInteriorEnc);
 
 		txtNumExtEnc = new JTextField();
 		txtNumExtEnc.setColumns(10);
-		txtNumExtEnc.setBounds(30, 182, 86, 20);
+		txtNumExtEnc.setBounds(148, 120, 86, 20);
 		Encuadrado.add(txtNumExtEnc);
 
 		txtCiudadEnc = new JTextField();
 		txtCiudadEnc.setColumns(10);
-		txtCiudadEnc.setBounds(146, 182, 86, 20);
+		txtCiudadEnc.setBounds(636, 120, 86, 20);
 		Encuadrado.add(txtCiudadEnc);
 
 		txtDiscapacidad = new JTextField();
 		txtDiscapacidad.setColumns(10);
-		txtDiscapacidad.setBounds(398, 183, 86, 20);
+		txtDiscapacidad.setBounds(285, 182, 86, 20);
 		Encuadrado.add(txtDiscapacidad);
 
 		txtClaseEnc = new JTextField();
 		txtClaseEnc.setColumns(10);
-		txtClaseEnc.setBounds(514, 183, 86, 20);
+		txtClaseEnc.setBounds(402, 182, 86, 20);
 		Encuadrado.add(txtClaseEnc);
 
 		txtHabilidadEnc = new JTextField();
 		txtHabilidadEnc.setColumns(10);
-		txtHabilidadEnc.setBounds(630, 183, 86, 20);
+		txtHabilidadEnc.setBounds(519, 182, 86, 20);
 		Encuadrado.add(txtHabilidadEnc);
 
 		txtPesoEnc = new JTextField();
 		txtPesoEnc.setColumns(10);
-		txtPesoEnc.setBounds(322, 239, 106, 20);
+		txtPesoEnc.setBounds(187, 239, 106, 20);
 		Encuadrado.add(txtPesoEnc);	
 
 		txtAlturaEnc = new JTextField();
 		txtAlturaEnc.setColumns(10);
-		txtAlturaEnc.setBounds(546, 239, 86, 20);
+		txtAlturaEnc.setBounds(480, 239, 86, 20);
 		Encuadrado.add(txtAlturaEnc);
 
 		txtSexoEnc = new JTextField();
 		txtSexoEnc.setColumns(10);
-		txtSexoEnc.setBounds(262, 120, 86, 20);
+		txtSexoEnc.setBounds(31, 182, 86, 20);
 		Encuadrado.add(txtSexoEnc);
 
 		txtEdadEnc = new JTextField();
 		txtEdadEnc.setColumns(10);
-		txtEdadEnc.setBounds(632, 51, 86, 20);
+		txtEdadEnc.setBounds(638, 51, 86, 20);
 		Encuadrado.add(txtEdadEnc);
-
-		txtNumCelularEnc = new JTextField();
-		txtNumCelularEnc.setColumns(10);
-		txtNumCelularEnc.setBounds(30, 120, 86, 20);
-		Encuadrado.add(txtNumCelularEnc);
 
 		txtMatriculaEnc = new JTextField();
 		txtMatriculaEnc.setColumns(10);
-		txtMatriculaEnc.setBounds(27, 51, 106, 20);
+		txtMatriculaEnc.setBounds(28, 51, 106, 20);
 		Encuadrado.add(txtMatriculaEnc);
 
 		txtEstadoCivil = new JTextField();
 		txtEstadoCivil.setColumns(10);
-		txtEstadoCivil.setBounds(262, 182, 106, 20);
+		txtEstadoCivil.setBounds(148, 182, 106, 20);
 		Encuadrado.add(txtEstadoCivil);
 
 		txtTipoSangreEnc = new JTextField();
 		txtTipoSangreEnc.setColumns(10);
-		txtTipoSangreEnc.setBounds(118, 239, 86, 20);
+		txtTipoSangreEnc.setBounds(636, 182, 86, 20);
 		Encuadrado.add(txtTipoSangreEnc);
 
 		JButton btnAgregarEnc = new JButton("AGREGAR");
@@ -2209,7 +2196,7 @@ public class Formulario extends JFrame {
 		btnModificarEnc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				objEnc.modificar_Enc(txtMatriculaEnc.getText(), txtNombreEnc.getText(),	txtApellidoPaternoEnc.getText(), txtApellidoMaternoEnc.getText(), txtCurpEnc.getText(),	txtEdadEnc.getText(), txtProfesionEnc.getText(), txtNumExtEnc.getText(), txtNumInteriorEnc.getText(), txtCalleEnc.getText(), txtColoniaEnc.getText(), txtCiudadEnc.getText(), txtSexoEnc.getText(), txtEstadoCivil.getText(), txtDiscapacidad.getText(), txtClaseEnc.getText(), txtHabilidadEnc.getText(), txtTipoSangreEnc.getText(), txtPesoEnc.getText(), txtAlturaEnc.getText());
+				objEnc.modificar_Enc(txtMatriculaEnc.getText(), txtNombreEnc.getText(), txtApellidoPaternoEnc.getText(), txtApellidoMaternoEnc.getText(), txtCurpEnc.getText(), txtEdadEnc.getText(), txtProfesionEnc.getText(), txtNumExtEnc.getText(),	txtNumInteriorEnc.getText(), txtCalleEnc.getText(), txtColoniaEnc.getText(), txtCiudadEnc.getText(), txtSexoEnc.getText(), txtEstadoCivil.getText(), txtDiscapacidad.getText(), txtClaseEnc.getText(), txtHabilidadEnc.getText(), txtTipoSangreEnc.getText(), txtPesoEnc.getText(), txtAlturaEnc.getText());
 
 				DefaultTableModel modeloEnc = objEnc.mostrarRegistrosEnc("SELECT * FROM encuadrado");
 				tablaEncuadrado.setModel(modeloEnc);
@@ -2312,37 +2299,37 @@ public class Formulario extends JFrame {
 		JLabel lblProfesion = new JLabel("PROFESI\u00D3N");
 		lblProfesion.setHorizontalAlignment(SwingConstants.CENTER);
 		lblProfesion.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblProfesion.setBounds(42, 95, 69, 14);
+		lblProfesion.setBounds(43, 95, 69, 14);
 		Reserva.add(lblProfesion);
 		
 		JLabel lblCiudad = new JLabel("CIUDAD");
 		lblCiudad.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCiudad.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblCiudad.setBounds(173, 95, 45, 14);
+		lblCiudad.setBounds(415, 95, 45, 14);
 		Reserva.add(lblCiudad);
 		
 		JLabel lblColonia = new JLabel("COLONIA");
 		lblColonia.setHorizontalAlignment(SwingConstants.CENTER);
 		lblColonia.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblColonia.setBounds(287, 95, 55, 14);
+		lblColonia.setBounds(530, 95, 55, 14);
 		Reserva.add(lblColonia);
 		
 		JLabel lblCalle = new JLabel("CALLE");
 		lblCalle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCalle.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblCalle.setBounds(414, 95, 39, 14);
+		lblCalle.setBounds(658, 95, 39, 14);
 		Reserva.add(lblCalle);
 		
 		JLabel lblNumInterior = new JLabel("NUM INT");
 		lblNumInterior.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNumInterior.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblNumInterior.setBounds(524, 95, 56, 14);
+		lblNumInterior.setBounds(289, 95, 56, 14);
 		Reserva.add(lblNumInterior);
 		
 		JLabel lblNumExterior = new JLabel("NUM EXT");
 		lblNumExterior.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNumExterior.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblNumExterior.setBounds(641, 95, 61, 14);
+		lblNumExterior.setBounds(167, 95, 61, 14);
 		Reserva.add(lblNumExterior);
 		
 		JLabel lblSexo = new JLabel("SEXO");
@@ -2406,32 +2393,32 @@ public class Formulario extends JFrame {
 		etEdadRes.setColumns(10);
 		
 		etProfesionRes = new JTextField();
-		etProfesionRes.setBounds(33, 120, 86, 20);
+		etProfesionRes.setBounds(34, 120, 86, 20);
 		Reserva.add(etProfesionRes);
 		etProfesionRes.setColumns(10);
 		
 		etCiudadRes = new JTextField();
-		etCiudadRes.setBounds(152, 120, 86, 20);
+		etCiudadRes.setBounds(394, 120, 86, 20);
 		Reserva.add(etCiudadRes);
 		etCiudadRes.setColumns(10);
 		
 		etColoniaRes = new JTextField();
-		etColoniaRes.setBounds(271, 120, 86, 20);
+		etColoniaRes.setBounds(514, 120, 86, 20);
 		Reserva.add(etColoniaRes);
 		etColoniaRes.setColumns(10);
 		
 		etCalleRes = new JTextField();
-		etCalleRes.setBounds(390, 120, 86, 20);
+		etCalleRes.setBounds(634, 120, 86, 20);
 		Reserva.add(etCalleRes);
 		etCalleRes.setColumns(10);
 		
 		etNumIntRes = new JTextField();
-		etNumIntRes.setBounds(509, 120, 86, 20);
+		etNumIntRes.setBounds(274, 120, 86, 20);
 		Reserva.add(etNumIntRes);
 		etNumIntRes.setColumns(10);
 		
 		etNumExtRes = new JTextField();
-		etNumExtRes.setBounds(628, 120, 86, 20);
+		etNumExtRes.setBounds(154, 120, 86, 20);
 		Reserva.add(etNumExtRes);
 		etNumExtRes.setColumns(10);
 		

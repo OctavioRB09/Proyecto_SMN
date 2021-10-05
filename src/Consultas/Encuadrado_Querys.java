@@ -141,9 +141,8 @@ public class Encuadrado_Querys {
 			} else
 				Q_Altura = "'" + Altura + "'";
 
-			String query = "INSERT INTO encuadrado(Matricula_Enc, Nombres_Enc, ApellidoPat_Enc, ApellidoMat_Enc, CURP_Enc, Edad_Enc, Profesión_Enc, Num_Exterior, Num_Interior, Nom_Calle, Colonia, Ciudad, Sexo_Enc, EstadoCivil_Enc, Discapacidad_Enc, Clase, Habilidad, TipoSangre, Peso, Altura) VALUES("+ Q_MatriculaEnc + Q_Nombres_Enc + Q_ApellidoPat_Enc + Q_ApellidoMat_Enc + Q_CURP_Enc + Q_Edad_Enc	+ Q_Profesion_Enc + Q_Num_Exterior + Q_Num_Interior + Q_Nom_Calle + Q_Colonia + Q_Ciudad + Q_Sexo_Enc + Q_EstadoCivil_Enc + Q_Discapacidad_Enc + Q_Clase + Q_Habilidad + Q_TipoSangre + Q_Peso + Q_Altura + ")";
+			String query = "INSERT INTO encuadrado(Matricula_Enc, Nombres_Enc, ApellidoPat_Enc, ApellidoMat_Enc, CURP_Enc, Edad_Enc, Profesión_Enc, Num_Exterior, Num_Interior, Nom_Calle, Colonia, Ciudad, Sexo_Enc, EstadoCivil_Enc, Discapacidad_Enc, Clase, Habilidad, TipoSangre, Peso, Altura) VALUES("+ Q_MatriculaEnc + Q_Nombres_Enc + Q_ApellidoPat_Enc + Q_ApellidoMat_Enc + Q_CURP_Enc + Q_Edad_Enc + Q_Profesion_Enc + Q_Num_Exterior + Q_Num_Interior + Q_Nom_Calle + Q_Colonia + Q_Ciudad + Q_Sexo_Enc + Q_EstadoCivil_Enc + Q_Discapacidad_Enc + Q_Clase + Q_Habilidad + Q_TipoSangre + Q_Peso + Q_Altura + ")";
 			stm.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, "Encuadrado agregado correctamente");
 			
 		} catch (SQLException e) {
 			
@@ -154,7 +153,7 @@ public class Encuadrado_Querys {
 
 	}
 
-	public void modificar_Enc(String MatriculaEnc, String Nombres_Enc, String ApellidoPat_Enc, String ApellidoMat_Enc, String CURP_Enc, String Edad_Enc, String Profesion_Enc, String Num_Exterior, String Num_Interior, String Nom_Calle, String Colonia, String Ciudad, String Sexo_Enc, String EstadoCivil_Enc, String Discapacidad_Enc, String Clase, String Habilidad, String TipoSangre, String Peso, String Altura) {	
+	public void modificar_Enc(String MatriculaEnc, String Nombres_Enc, String ApellidoPat_Enc, String ApellidoMat_Enc, String CURP_Enc, String Edad_Enc, String Profesion_Enc, String Num_Exterior, String Num_Interior,	String Nom_Calle, String Colonia, String Ciudad, String Sexo_Enc, String EstadoCivil_Enc, String Discapacidad_Enc, String Clase, String Habilidad, String TipoSangre, String Peso, String Altura) {	
 		
 		try {
 			
@@ -163,7 +162,6 @@ public class Encuadrado_Querys {
 
 			String query = "UPDATE encuadrado SET Nombres_Enc = '" + Nombres_Enc + "', ApellidoPat_Enc = '"	+ ApellidoPat_Enc + "', ApellidoMat_Enc = '" + ApellidoMat_Enc + "', CURP_Enc = '" + CURP_Enc + "', Edad_Enc = '" + Edad_Enc + "', Profesión_Enc = '" + Profesion_Enc + "', Num_Exterior = '" + Num_Exterior + "', Num_Interior = '" + Num_Interior + "', Nom_Calle = '" + Nom_Calle + "', Colonia = '" + Colonia + "', Ciudad = '" + Ciudad + "', Sexo_Enc = '" + Sexo_Enc	+ "', EstadoCivil_Enc = '" + EstadoCivil_Enc + "', Discapacidad_Enc = '" + Discapacidad_Enc	+ "', Clase = '" + Clase + "', habilidad = '" + Habilidad + "', TipoSangre = '" + TipoSangre + "', Peso = '" + Peso + "', Altura = '" + Altura + "' WHERE Matricula_Enc = '" + MatriculaEnc	+ "'";
 			stm.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, "Encuadrado modificado correctamente");
 			
 		} catch (SQLException e) {
 			
@@ -183,7 +181,6 @@ public class Encuadrado_Querys {
 
 			String query = "DELETE FROM encuadrado WHERE Matricula_Enc = '" + Matricula_Enc + "'";
 			stm.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, "Encuadrado eliminado correctamente");
 
 		} catch (SQLException e) {
 			

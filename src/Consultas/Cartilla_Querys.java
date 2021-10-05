@@ -40,7 +40,6 @@ public class Cartilla_Querys {
 
 			String query = "INSERT INTO cartilla(Num_liberación, Zona_Mil, Regimiento) VALUES(" + Q_Liberacion + Q_ZonaMilitar + Q_Regimiento + ")";
 			stm.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, "Cartilla agregada correctamente");
 			
 		} catch (SQLException e) {
 			
@@ -60,7 +59,6 @@ public class Cartilla_Querys {
 
 			String query = "UPDATE cartilla SET Zona_Mil = '" + ZonaMilitar + "',Regimiento = '" + Regimiento + "' WHERE Num_liberación = '" + Num_Liberacion + "'";
 			stm.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, "cartilla modificada correctamente");
 			
 		} catch (SQLException e) {
 			
@@ -80,7 +78,6 @@ public class Cartilla_Querys {
 
 			String query = "DELETE FROM cartilla WHERE Num_liberación = '" + Num_Liberación + "'";
 			stm.executeUpdate(query);
-			JOptionPane.showMessageDialog(null, "Cartilla eliminada correctamente");
 
 		} catch (SQLException e) {
 			

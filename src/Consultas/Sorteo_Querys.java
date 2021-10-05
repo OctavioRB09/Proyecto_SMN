@@ -29,11 +29,11 @@ public class Sorteo_Querys {
 
 			if (fecha.equals("")) {
 				fecha = null;
-				Q_fecha = "" + fecha + ", ";
+				Q_fecha = "" + fecha + "";
 			} else
-				Q_fecha = "'" + fecha + "', ";		
+				Q_fecha = "'" + fecha + "'";		
 			
-			query="INSERT INTO sorteo (Ed_sorteo,Fecha) VALUES ("+Q_Edsorteo+ Q_fecha+")";
+			query="INSERT INTO sorteo (Ed_sorteo, Fecha) VALUES ("+Q_Edsorteo+ Q_fecha+")";
 			stm.executeUpdate(query);
 
 		} catch (SQLException e) {
@@ -44,8 +44,25 @@ public class Sorteo_Querys {
 		}
 		
 	}
-	
+		
+	public void eliminar_sor(String edsorteo) {
+		
+		try {
 
+			cn = conexion.conectar();
+			stm = cn.createStatement();
+			
+			query = "DELETE FROM sorteo WHERE Ed_Sorteo = '"+edsorteo+"'";
+			stm.executeUpdate(query);
+
+		} catch (SQLException e) {
+
+			JOptionPane.showMessageDialog(null, e.getErrorCode()+": "+e.getMessage());
+			e.printStackTrace();
+			
+		}
+		
+	}
 	
 	public void modificar_sor(String edsorteo,String fecha) {
 		
@@ -56,11 +73,11 @@ public class Sorteo_Querys {
 			
 			if (fecha.equals("")) {
 				fecha = null;
-				Q_fecha = "" + fecha + ", ";
+				Q_fecha = "" + fecha + "";
 			} else
-				Q_fecha = "'" + fecha + "', ";
+				Q_fecha = "'" + fecha + "'";
 			
-			query = "UPDATE sorteo SET Fecha"+Q_fecha+" WHERE Ed_Sorteo = "+edsorteo;
+			query = "UPDATE sorteo SET Fecha = "+Q_fecha+" WHERE Ed_Sorteo = '"+edsorteo+"'";
 			stm.executeUpdate(query);
 
 		} catch (SQLException e) {
