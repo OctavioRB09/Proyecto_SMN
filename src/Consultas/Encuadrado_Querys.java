@@ -193,7 +193,7 @@ public class Encuadrado_Querys {
 
 	public DefaultTableModel mostrarRegistrosEnc(String query) {
 		
-		String[] cabecera = { "Matricula_Enc", "Nombres_Enc", "ApellidoPat_Enc", "ApellidoMat_Enc", "CURP_Enc", "Edad_Enc", "Profesión_Enc", "Num_Exterior", "Num_Interior", "Nom_Calle", "Colonia", "Ciudad", "Sexo_Enc", "EstadoCivil_Enc", "Discapacidad_Enc", "Clase", "Habilidad", "TipoSangre", "Peso", "Altura" };
+		String[] cabecera = { "Matricula_Enc", "Nombres_Enc", "ApellidoPat_Enc", "ApellidoMat_Enc", "CURP_Enc", "Edad_Enc", "Profesión_Enc", "Num_Exterior", "Num_Interior", "Nom_Calle", "Colonia", "Ciudad", "Sexo_Enc", "EstadoCivil_Enc", "Discapacidad_Enc", "Clase", "Habilidad", "TipoSangre", "Peso", "Altura", "Masa_Corp", "T. Aspirante"};
 		String[] datos = new String[22];
 
 		DefaultTableModel modelo = new DefaultTableModel(null, cabecera);

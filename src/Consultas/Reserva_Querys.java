@@ -280,7 +280,7 @@ public class Reserva_Querys {
 	public DefaultTableModel mostrarRegistrosRes (String query) {
 		
 		String[] cabecera = {"Matricula", "Nombre", "A. Paterno", "A. Materno", "CURP", "Edad", "Profesión", "NumExt", "NumInt", "Calle", "Colonia", "Ciudad", "Sexo", "E. Civil", "Discapacidad", "Clase", "NumTel", "Tipo A."};
-		String[] datos = new String[17];
+		String[] datos = new String[18];
 		
 		DefaultTableModel modelo = new DefaultTableModel(null, cabecera);
 
@@ -311,6 +311,7 @@ public class Reserva_Querys {
 					datos[14] = rs.getString(15);
 					datos[15] = rs.getString(16);
 					datos[16] = rs.getString(17);
+					datos[17] = rs.getString(18);
 					modelo.addRow(datos);
 					
 				} while(rs.next());
