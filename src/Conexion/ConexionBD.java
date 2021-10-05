@@ -1,7 +1,9 @@
 package Conexion;
 
-import java.sql.*;
+import java.sql.*; 
 import javax.swing.*;
+
+import Ventanas_M.*;
 
 public class ConexionBD {
 	
@@ -57,4 +59,19 @@ public class ConexionBD {
 		return flag1;
 	}
 
+	public void cerrarSesion() {
+			
+		        try {
+					conexion.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		
+		Loggin form = new Loggin();
+		form.setVisible(true);
+		
+		
+	}
+	
 }

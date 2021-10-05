@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,6 +27,7 @@ import Ventanas_M.Loggin;
 
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 public class Formulario extends JFrame {
@@ -157,17 +159,23 @@ public class Formulario extends JFrame {
 	private JTable tablaInstructor;
 	private JTable tablaInstitucion;
 
+	static Formulario window = null;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Formulario window = new Formulario(objLog.cn);
+					 window = new Formulario(objLog.cn);
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
+	}
+	
+	public <WindowEvent> void cerrar(WindowEvent e) {
+		System.exit(0);
 	}
 
 	public void limpiarEntradas() {
@@ -275,13 +283,13 @@ public class Formulario extends JFrame {
 		setTitle(conexion.user);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.LEFT);
 		tabbedPane.setFont(new Font("Trebuchet MS", Font.PLAIN, 12));
-		tabbedPane.setBounds(0, 0, 598, 392);
-		getContentPane().add(tabbedPane, BorderLayout.CENTER);
+		tabbedPane.setBounds(5, 5, 882, 488);
+		getContentPane().add(tabbedPane);
 
 //-->> INICIO DEL PANEL DE INSTRUCTOR		
 		JPanel Instructor = new JPanel();
@@ -2673,6 +2681,21 @@ public class Formulario extends JFrame {
 			
 			tablaPartEnc = new JTable();
 			spTablaPartEnc.setViewportView(tablaPartEnc);
+			
+			JButton btnCerrarSesion = new JButton("CERRAR SESION");
+			btnCerrarSesion.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				//	window.cerrar(null);
+					window.setVisible(false);
+					conexion.cerrarSesion();
+					
+					//System.exit(0);
+				}
+			});
+			btnCerrarSesion.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+			btnCerrarSesion.setBounds(382, 504, 127, 23);
+			contentPane.add(btnCerrarSesion);
 		
 	}
+	
 }
