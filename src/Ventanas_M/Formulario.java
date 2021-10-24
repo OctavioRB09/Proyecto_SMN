@@ -172,7 +172,7 @@ public class Formulario extends JFrame {
 	private JTextField txtEstadoCivilAspirante;
 	private JTextField txtProfesionAspirante;
 	private JTextField txtSexoAspirante;
-	private JTextField textField;
+	private JTextField txtDiscapacidadAspirante;
 	private JTable tablaAspirantes;
 	
 	public static void main(String[] args) {
@@ -2868,10 +2868,10 @@ public class Formulario extends JFrame {
 			lblDiscapacidadAspirante.setBounds(227, 172, 106, 14);
 			Aspirante.add(lblDiscapacidadAspirante);
 			
-			textField = new JTextField();
-			textField.setColumns(10);
-			textField.setBounds(227, 197, 86, 20);
-			Aspirante.add(textField);
+			txtDiscapacidadAspirante = new JTextField();
+			txtDiscapacidadAspirante.setColumns(10);
+			txtDiscapacidadAspirante.setBounds(227, 197, 86, 20);
+			Aspirante.add(txtDiscapacidadAspirante);
 			
 			JButton btnAgregarAspirante = new JButton("AGREGAR");
 			btnAgregarAspirante.addActionListener(new ActionListener() {
@@ -2879,12 +2879,11 @@ public class Formulario extends JFrame {
 					
 					String query="";
 					
-					objAsp.RegistraAspirante(TxtNombreAspirante.getText(), txtApellidoPatAspirante.getText(), txtApellidoMatAspirante.getText(), txtCurpAspirante.getText(), txtEdadAspirante.getText(), txtCalleAspirante.getText(), txtNumExteriorAspirante.getText(),txtNumInteriorAspirante.getText(),txtColoniaAspirante.getText(), txtCiudadAspirante.getText(), txtClaseAspirante.getText(), txtEstadoCivilAspirante.getText(), txtProfesionAspirante.getText(),txtSexoAspirante.getText(),txtDiscapacidad.getText());
-					
+					objAsp.RegistraAspirante(TxtNombreAspirante.getText(), txtApellidoPatAspirante.getText(), txtApellidoMatAspirante.getText(), txtCurpAspirante.getText(), txtEdadAspirante.getText(), txtCalleAspirante.getText(), txtNumExteriorAspirante.getText(),txtNumInteriorAspirante.getText(),txtColoniaAspirante.getText(), txtCiudadAspirante.getText(), txtClaseAspirante.getText(), txtEstadoCivilAspirante.getText(), txtProfesionAspirante.getText(),txtSexoAspirante.getText(),txtDiscapacidadAspirante.getText());					
 					query = "SELECT @matricula AS Matricula_Aspirante, CONCAT(@nombre_a,' ',@apellidop_a,' ',@apellidom_a) AS Nombre_Aspirante, @resultado_sorteo AS Resultado_Sorteo, @tipo_aspirante AS Tipo, @num_liberacion AS Número_Liberación_Cartilla;";
 					
 					DefaultTableModel modeloAsp = objAsp.mostrarRegistrosAsp(query);
-					tablaEncuadrado.setModel(modeloAsp);
+					tablaAspirantes.setModel(modeloAsp);
 				}
 			});
 			btnAgregarAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
