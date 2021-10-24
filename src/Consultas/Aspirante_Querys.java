@@ -24,15 +24,12 @@ public void inv(String Matricula, String Nombres, String ApellidoPat, String Ape
 
 			cn = conexion.conectar();
 			stm = cn.createStatement();
+			CallableStatement cstmt;			
 			
-			String  Q_Nombres, Q_ApellidoPat, Q_ApellidoMat, Q_CURP, Q_Edad,Q_Profesion, Q_Num_Exterior, Q_Num_Interior, Q_Nom_Calle, Q_Colonia, Q_Ciudad, Q_Sexo,	Q_EstadoCivil, Q_Discapacidad, Q_Clase;
-
-			/*if (Matricula.equals("")) {
-				Matricula = null;
-				Q_Matricula = "" + Matricula + ", ";
-			} else
-				Q_Matricula = "'" + Matricula + "', ";*/
-
+			cstmt = cn.prepareCall("CALL sorteo(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			
+			String  Q_Matricula="",Q_Nombres, Q_ApellidoPat, Q_ApellidoMat, Q_CURP, Q_Edad,Q_Profesion, Q_Num_Exterior, Q_Num_Interior, Q_Nom_Calle, Q_Colonia, Q_Ciudad, Q_Sexo,	Q_EstadoCivil, Q_Discapacidad, Q_Clase;
+			
 			if (Nombres.equals("")) {
 				Nombres = null;
 				Q_Nombres = "" + Nombres + ", ";
@@ -124,8 +121,34 @@ public void inv(String Matricula, String Nombres, String ApellidoPat, String Ape
 				Q_Clase = "'" + Clase + "', ";
 
 
-			String query = "Call sorteo (nombre,apellidop,apellidom,curp,edad,num_ext,num_int,calle,colonia,ciudad,clase,estado_civ,profesion,sexo,discapacidad) VALUES("+ Q_Nombres + Q_ApellidoPat + Q_ApellidoMat + Q_CURP + Q_Edad +  Q_Num_Exterior + Q_Num_Interior + Q_Nom_Calle + Q_Colonia + Q_Ciudad + Q_Clase + Q_EstadoCivil +Q_Profesion +Q_Sexo +  Q_Discapacidad   +''+ ")";
-			stm.executeUpdate(query);
+			cstmt.setString(1,Q_Nombres);
+			cstmt.setString(2,Q_ApellidoPat);
+			cstmt.setString(3,Q_ApellidoMat);
+			cstmt.setString(4,Q_CURP);
+			cstmt.setString(5,Q_Edad);
+			cstmt.setString(6,Q_Num_Exterior);
+			cstmt.setString(7, Q_Num_Interior);
+			cstmt.setString(8,Q_Nom_Calle);
+			cstmt.setString(9,Q_Colonia);
+			cstmt.setString(10, Q_Ciudad);
+			cstmt.setString(11,Q_Clase);
+			cstmt.setString(12,Q_EstadoCivil);
+			cstmt.setString(13,Q_Profesion);
+			cstmt.setString(14,Q_Sexo);
+			cstmt.setString(15,Q_Discapacidad);
+			
+			cstmt.registerOutParameter(16, java.sql.Types.VARCHAR);
+			cstmt.registerOutParameter(17, java.sql.Types.VARCHAR);
+			cstmt.registerOutParameter(18, java.sql.Types.VARCHAR);
+			cstmt.registerOutParameter(19, java.sql.Types.VARCHAR);
+			cstmt.registerOutParameter(20, java.sql.Types.VARCHAR);
+			cstmt.registerOutParameter(21, java.sql.Types.VARCHAR);
+			cstmt.registerOutParameter(22, java.sql.Types.VARCHAR);
+			
+			cstmt.executeUpdate();
+			
+			//String query = "CALL sorteo("+Q_Nombres+ Q_ApellidoPat+ Q_ApellidoMat+ Q_CURP+ Q_Edad+ Q_Num_Exterior+ Q_Num_Interior+ Q_Nom_Calle+ Q_Colonia+ Q_Ciudad+ Q_Clase+ Q_EstadoCivil+ Q_Profesion+ Q_Sexo+ Q_Discapacidad+" @matricula, @nombre_a, @apellidop_a, @apellidom_a, @resultado_sorteo, @tipo_aspirante, @num_liberacion)";
+			//stm.executeUpdate(query);
 			
 		} catch (SQLException e) {
 			
@@ -145,10 +168,14 @@ public DefaultTableModel mostrarRegistrosEnc(String query) {
 
 	DefaultTableModel modelo = new DefaultTableModel(null, cabecera);
 
-	try {
+	
+	
+/*	try {
 		cn = conexion.conectar();
 		stm = cn.createStatement();
 		rs = stm.executeQuery(query);
+		CallableStatement cstmt;
+		cstmt = cn.prepareCall("CALL sorteo(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
 		if(rs.next()) {
 		
@@ -187,8 +214,8 @@ public DefaultTableModel mostrarRegistrosEnc(String query) {
 		
 	}
 
-	return modelo;
-
+*/
+return modelo;
 }
 	
 }

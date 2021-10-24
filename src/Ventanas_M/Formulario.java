@@ -2876,7 +2876,14 @@ public class Formulario extends JFrame {
 			btnAgregarAspirante.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
+					String query="";
+
 					
+						query = "CALL sorteo(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					
+					
+					DefaultTableModel modeloEnc = objEnc.mostrarRegistrosEnc(query);
+					tablaEncuadrado.setModel(modeloEnc);
 				}
 			});
 			btnAgregarAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 11));

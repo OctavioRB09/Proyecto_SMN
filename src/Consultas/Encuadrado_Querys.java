@@ -18,6 +18,7 @@ public class Encuadrado_Querys {
 
 			cn = conexion.conectar();
 			stm = cn.createStatement();
+
 			
 			String Q_MatriculaEnc, Q_Nombres_Enc, Q_ApellidoPat_Enc, Q_ApellidoMat_Enc, Q_CURP_Enc, Q_Edad_Enc,	Q_Profesion_Enc, Q_Num_Exterior, Q_Num_Interior, Q_Nom_Calle, Q_Colonia, Q_Ciudad, Q_Sexo_Enc,	Q_EstadoCivil_Enc, Q_Discapacidad_Enc, Q_Clase, Q_Habilidad, Q_TipoSangre, Q_Peso, Q_Altura;
 
