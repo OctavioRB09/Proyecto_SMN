@@ -2879,16 +2879,21 @@ public class Formulario extends JFrame {
 					
 					String query="";
 					
-					objAsp.RegistraAspirante(TxtNombreAspirante.getText(), txtApellidoPatAspirante.getText(), txtApellidoMatAspirante.getText(), txtCurpAspirante.getText(), txtEdadAspirante.getText(), txtCalleAspirante.getText(), txtNumExteriorAspirante.getText(),txtNumInteriorAspirante.getText(),txtColoniaAspirante.getText(), txtCiudadAspirante.getText(), txtClaseAspirante.getText(), txtEstadoCivilAspirante.getText(), txtProfesionAspirante.getText(),txtSexoAspirante.getText(),txtDiscapacidadAspirante.getText());					
+					//objAsp.RegistraAspirante(TxtNombreAspirante.getText(), txtApellidoPatAspirante.getText(), txtApellidoMatAspirante.getText(), txtCurpAspirante.getText(), txtEdadAspirante.getText(), txtCalleAspirante.getText(), txtNumExteriorAspirante.getText(),txtNumInteriorAspirante.getText(),txtColoniaAspirante.getText(), txtCiudadAspirante.getText(), txtClaseAspirante.getText(), txtEstadoCivilAspirante.getText(), txtProfesionAspirante.getText(),txtSexoAspirante.getText(),txtDiscapacidadAspirante.getText());					
 					query = "SELECT @matricula AS Matricula_Aspirante, CONCAT(@nombre_a,' ',@apellidop_a,' ',@apellidom_a) AS Nombre_Aspirante, @resultado_sorteo AS Resultado_Sorteo, @tipo_aspirante AS Tipo, @num_liberacion AS Número_Liberación_Cartilla;";
 					
-					DefaultTableModel modeloAsp = objAsp.mostrarRegistrosAsp(query);
-					tablaAspirantes.setModel(modeloAsp);
+					DefaultTableModel modeloAsp = objAsp.mostrarRegistrosAsp(TxtNombreAspirante.getText(), txtApellidoPatAspirante.getText(), txtApellidoMatAspirante.getText(), txtCurpAspirante.getText(), txtEdadAspirante.getText(), txtCalleAspirante.getText(), txtNumExteriorAspirante.getText(),txtNumInteriorAspirante.getText(),txtColoniaAspirante.getText(), txtCiudadAspirante.getText(), txtClaseAspirante.getText(), txtEstadoCivilAspirante.getText(), txtProfesionAspirante.getText(),txtSexoAspirante.getText(),txtDiscapacidadAspirante.getText(),query);
+					tablaAspirante.setModel(modeloAsp);
 				}
 			});
 			btnAgregarAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-			btnAgregarAspirante.setBounds(326, 257, 105, 23);
+			btnAgregarAspirante.setBounds(314, 226, 105, 23);
 			Aspirante.add(btnAgregarAspirante);
+			
+			/*
+			 * //-->> PANEL DE LA TABLA PARTICIPA_ENC
+		
+			
 			
 			JPanel pnlTablaAspirante = new JPanel();
 			pnlTablaAspirante.setBounds(35, 283, 687, 173);
@@ -2901,6 +2906,19 @@ public class Formulario extends JFrame {
 			
 			tablaAspirantes = new JTable();
 			spTablaAspirante.add(tablaAspirantes);
+			 * */
+			
+			JPanel pnlTablaAspirante = new JPanel();
+			pnlTablaAspirante.setBounds(48, 253, 585, 222);
+			Aspirante.add(pnlTablaAspirante);
+			pnlTablaAspirante.setLayout(null);
+				
+					JScrollPane spTablaAspirante = new JScrollPane();
+					spTablaAspirante.setBounds(48, 253, 537, 222);
+					Aspirante.add(spTablaAspirante);
+					
+					tablaAspirante = new JTable();
+					spTablaAspirante.setViewportView(tablaAspirante);
 			
 	}
 }
