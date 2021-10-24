@@ -154,8 +154,25 @@ public class Formulario extends JFrame {
 	private JTable tablaObtiene;
 	private JTable tablaInstructor;
 	private JTable tablaInstitucion;
+	private JTable tablaAspirante;
 
 	static Formulario window = null;
+	private JTextField TxtNombreAspirante;
+	private JTextField txtApellidoPatAspirante;
+	private JTextField txtApellidoMatAspirante;
+	private JTextField txtCurpAspirante;
+	private JTextField txtEdadAspirante;
+	private JTextField txtCalleAspirante;
+	private JTextField txtNumExteriorAspirante;
+	private JTextField txtNumInteriorAspirante;
+	private JTextField txtColoniaAspirante;
+	private JTextField txtCiudadAspirante;
+	private JTextField txtClaseAspirante;
+	private JTextField txtEstadoCivilAspirante;
+	private JTextField txtProfesionAspirante;
+	private JTextField txtSexoAspirante;
+	private JTextField textField;
+	private JTable tablaAspirantes;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -2698,7 +2715,201 @@ public class Formulario extends JFrame {
 			
 			tablaPartEnc = new JTable();
 			spTablaPartEnc.setViewportView(tablaPartEnc);
+			//-------------------------ASPIRANTE------------------------//
+			JPanel Aspirante = new JPanel();
+			tabbedPane.addTab("Aspirante", null, Aspirante, null);
+			Aspirante.setLayout(null);
+			
+			TxtNombreAspirante = new JTextField();
+			TxtNombreAspirante.setBounds(10, 47, 86, 20);
+			Aspirante.add(TxtNombreAspirante);
+			TxtNombreAspirante.setColumns(10);
+			
+			JLabel lblNombreAspirante = new JLabel("NOMBRE");
+			lblNombreAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+			lblNombreAspirante.setBounds(10, 22, 86, 14);
+			Aspirante.add(lblNombreAspirante);
+			
+			JLabel lblApellidoPatAspirante = new JLabel("APELLIDO PAT");
+			lblApellidoPatAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+			lblApellidoPatAspirante.setBounds(119, 22, 106, 14);
+			Aspirante.add(lblApellidoPatAspirante);
+			
+			txtApellidoPatAspirante = new JTextField();
+			txtApellidoPatAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+			txtApellidoPatAspirante.setBounds(119, 46, 86, 20);
+			Aspirante.add(txtApellidoPatAspirante);
+			txtApellidoPatAspirante.setColumns(10);
+			
+			JLabel lblApellidoMatAspirante = new JLabel("APELLIDO MAT");
+			lblApellidoMatAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+			lblApellidoMatAspirante.setBounds(227, 22, 106, 14);
+			Aspirante.add(lblApellidoMatAspirante);
+			
+			txtApellidoMatAspirante = new JTextField();
+			txtApellidoMatAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+			txtApellidoMatAspirante.setColumns(10);
+			txtApellidoMatAspirante.setBounds(227, 46, 86, 20);
+			Aspirante.add(txtApellidoMatAspirante);
+			
+			JLabel lblCurpAspirante = new JLabel("CURP\r\n");
+			lblCurpAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+			lblCurpAspirante.setBounds(334, 22, 46, 14);
+			Aspirante.add(lblCurpAspirante);
+			
+			txtCurpAspirante = new JTextField();
+			txtCurpAspirante.setBounds(334, 46, 86, 20);
+			Aspirante.add(txtCurpAspirante);
+			txtCurpAspirante.setColumns(10);
+			
+			JLabel lblEdadAspirante = new JLabel("EDAD");
+			lblEdadAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+			lblEdadAspirante.setBounds(438, 23, 46, 14);
+			Aspirante.add(lblEdadAspirante);
+			
+			txtEdadAspirante = new JTextField();
+			txtEdadAspirante.setBounds(438, 47, 86, 20);
+			Aspirante.add(txtEdadAspirante);
+			txtEdadAspirante.setColumns(10);
+			
+			JLabel lblCalleAspirante = new JLabel("CALLE");
+			lblCalleAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+			lblCalleAspirante.setBounds(542, 22, 46, 14);
+			Aspirante.add(lblCalleAspirante);
+			
+			txtCalleAspirante = new JTextField();
+			txtCalleAspirante.setColumns(10);
+			txtCalleAspirante.setBounds(542, 46, 86, 20);
+			Aspirante.add(txtCalleAspirante);
+			
+			JLabel lblNumExteriorAspirante = new JLabel("NUM EXT");
+			lblNumExteriorAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+			lblNumExteriorAspirante.setBounds(10, 104, 86, 14);
+			Aspirante.add(lblNumExteriorAspirante);
+			
+			txtNumExteriorAspirante = new JTextField();
+			txtNumExteriorAspirante.setColumns(10);
+			txtNumExteriorAspirante.setBounds(10, 124, 86, 20);
+			Aspirante.add(txtNumExteriorAspirante);
+			
+			JLabel lblNumInteriorAspirante = new JLabel("NUM INT");
+			lblNumInteriorAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+			lblNumInteriorAspirante.setBounds(119, 104, 61, 14);
+			Aspirante.add(lblNumInteriorAspirante);
+			
+			txtNumInteriorAspirante = new JTextField();
+			txtNumInteriorAspirante.setColumns(10);
+			txtNumInteriorAspirante.setBounds(119, 124, 86, 20);
+			Aspirante.add(txtNumInteriorAspirante);
+			
+			JLabel lblColoniaAspirante = new JLabel("COLONIA\r\n");
+			lblColoniaAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+			lblColoniaAspirante.setBounds(227, 104, 61, 14);
+			Aspirante.add(lblColoniaAspirante);
+			
+			txtColoniaAspirante = new JTextField();
+			txtColoniaAspirante.setColumns(10);
+			txtColoniaAspirante.setBounds(227, 124, 86, 20);
+			Aspirante.add(txtColoniaAspirante);
+			
+			JLabel lblCiudadAspirante = new JLabel("CIUDAD\r\n");
+			lblCiudadAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+			lblCiudadAspirante.setBounds(334, 104, 46, 14);
+			Aspirante.add(lblCiudadAspirante);
+			
+			txtCiudadAspirante = new JTextField();
+			txtCiudadAspirante.setColumns(10);
+			txtCiudadAspirante.setBounds(334, 124, 86, 20);
+			Aspirante.add(txtCiudadAspirante);
+			
+			JLabel lblClaseAspirante = new JLabel("CLASE");
+			lblClaseAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+			lblClaseAspirante.setBounds(438, 104, 61, 14);
+			Aspirante.add(lblClaseAspirante);
+			
+			txtClaseAspirante = new JTextField();
+			txtClaseAspirante.setColumns(10);
+			txtClaseAspirante.setBounds(438, 124, 86, 20);
+			Aspirante.add(txtClaseAspirante);
+			
+			JLabel lblEstadoCivilAspirante = new JLabel("ESTADO CIVIL");
+			lblEstadoCivilAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+			lblEstadoCivilAspirante.setBounds(542, 104, 86, 14);
+			Aspirante.add(lblEstadoCivilAspirante);
+			
+			txtEstadoCivilAspirante = new JTextField();
+			txtEstadoCivilAspirante.setColumns(10);
+			txtEstadoCivilAspirante.setBounds(542, 124, 86, 20);
+			Aspirante.add(txtEstadoCivilAspirante);
+			
+			JLabel lblProfesionAspirante = new JLabel("PROFESION");
+			lblProfesionAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+			lblProfesionAspirante.setBounds(10, 172, 86, 14);
+			Aspirante.add(lblProfesionAspirante);
+			
+			txtProfesionAspirante = new JTextField();
+			txtProfesionAspirante.setColumns(10);
+			txtProfesionAspirante.setBounds(10, 197, 86, 20);
+			Aspirante.add(txtProfesionAspirante);
+			
+			JLabel lblSexoAspirante = new JLabel("SEXO");
+			lblSexoAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+			lblSexoAspirante.setBounds(119, 172, 46, 14);
+			Aspirante.add(lblSexoAspirante);
+			
+			txtSexoAspirante = new JTextField();
+			txtSexoAspirante.setColumns(10);
+			txtSexoAspirante.setBounds(119, 197, 86, 20);
+			Aspirante.add(txtSexoAspirante);
+			
+			JLabel lblDiscapacidadAspirante = new JLabel("DISCAPACIDAD");
+			lblDiscapacidadAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+			lblDiscapacidadAspirante.setBounds(227, 172, 106, 14);
+			Aspirante.add(lblDiscapacidadAspirante);
+			
+			textField = new JTextField();
+			textField.setColumns(10);
+			textField.setBounds(227, 197, 86, 20);
+			Aspirante.add(textField);
+			
+			JButton btnAgregarAspirante = new JButton("AGREGAR");
+			btnAgregarAspirante.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					
+				}
+			});
+			btnAgregarAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+			btnAgregarAspirante.setBounds(326, 257, 105, 23);
+			Aspirante.add(btnAgregarAspirante);
+			
+			JPanel pnlTablaAspirante = new JPanel();
+			pnlTablaAspirante.setBounds(35, 283, 687, 173);
+			Aspirante.add(pnlTablaAspirante);
+			pnlTablaAspirante.setLayout(null);
+			
+			JScrollPane spTablaAspirante = new JScrollPane();
+			spTablaAspirante.setBounds(10, 11, 667, 151);
+			pnlTablaAspirante.add(spTablaAspirante);
+			
+			tablaAspirantes = new JTable();
+			spTablaAspirante.add(tablaAspirantes);
 		
+		/*		
+				
+				JPanel pnlTablaPartEnc = new JPanel();
+		pnlTablaPartEnc.setBounds(234, 253, 282, 222);
+		ParticipaEnc.add(pnlTablaPartEnc);
+		pnlTablaPartEnc.setLayout(null);
+		
+			JScrollPane spTablaPartEnc = new JScrollPane();
+			spTablaPartEnc.setBounds(0, 0, 282, 222);
+			pnlTablaPartEnc.add(spTablaPartEnc);
+			
+			tablaPartEnc = new JTable();
+			spTablaPartEnc.setViewportView(tablaPartEnc);
+				*/
+			
+			
 	}
-	
 }
