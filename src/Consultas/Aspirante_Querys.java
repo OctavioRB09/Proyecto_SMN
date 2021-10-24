@@ -18,7 +18,7 @@ public class Aspirante_Querys {
 	//CallableStatement x = cn.prepareCall("{call sorteo (nombre,apellidop,apellidom,curp,edad,num_ext,num_int,calle,colonia,ciudad,clase,estado_civ,profesion,sexo,discapacidad)}"); 
 	
 	
-public void inv(String Matricula, String Nombres, String ApellidoPat, String ApellidoMat, String CURP, String Edad, String Profesion, String Num_Exterior, String Num_Interior,	String Nom_Calle, String Colonia, String Ciudad, String Sexo, String EstadoCivil, String Discapacidad, String Clase) {
+public void RegistraAspirante(String Nombres, String ApellidoPat, String ApellidoMat, String CURP, String Edad, String Calle, String Num_Exterior, String Num_Interior,	String Colonia, String Ciudad,String Clase,  String EstadoCivil,String Profesion,String Sexo, String Discapacidad) {
 		
 		try {
 
@@ -78,11 +78,11 @@ public void inv(String Matricula, String Nombres, String ApellidoPat, String Ape
 			} else
 				Q_Num_Interior = "'" + Num_Interior + "', ";
 
-			if (Nom_Calle.equals("")) {
-				Nom_Calle = null;
-				Q_Nom_Calle = "" + Nom_Calle + ", ";
+			if (Calle.equals("")) {
+				Calle = null;
+				Q_Nom_Calle = "" + Calle + ", ";
 			} else
-				Q_Nom_Calle = "'" + Nom_Calle + "', ";
+				Q_Nom_Calle = "'" + Calle + "', ";
 
 			if (Colonia.equals("")) {
 				Colonia = null;
@@ -121,21 +121,28 @@ public void inv(String Matricula, String Nombres, String ApellidoPat, String Ape
 				Q_Clase = "'" + Clase + "', ";
 
 
-			cstmt.setString(1,Q_Nombres);
-			cstmt.setString(2,Q_ApellidoPat);
-			cstmt.setString(3,Q_ApellidoMat);
-			cstmt.setString(4,Q_CURP);
-			cstmt.setString(5,Q_Edad);
-			cstmt.setString(6,Q_Num_Exterior);
-			cstmt.setString(7, Q_Num_Interior);
-			cstmt.setString(8,Q_Nom_Calle);
-			cstmt.setString(9,Q_Colonia);
-			cstmt.setString(10, Q_Ciudad);
-			cstmt.setString(11,Q_Clase);
-			cstmt.setString(12,Q_EstadoCivil);
-			cstmt.setString(13,Q_Profesion);
-			cstmt.setString(14,Q_Sexo);
-			cstmt.setString(15,Q_Discapacidad);
+			int edad=0,num_ext,num_int,clase;
+			
+			edad = Integer.valueOf(Edad);
+			num_ext =Integer.valueOf(Num_Exterior);
+			num_int = Integer.valueOf(Num_Interior);
+			clase = Integer.valueOf(Clase);
+			
+			cstmt.setString(1,Nombres);
+			cstmt.setString(2,ApellidoPat);
+			cstmt.setString(3,ApellidoMat);
+			cstmt.setString(4,CURP);
+			cstmt.setInt(5,edad);
+			cstmt.setString(6,Calle);
+			cstmt.setInt(7,num_ext);
+			cstmt.setInt(8,num_int);
+			cstmt.setString(9,Colonia);
+			cstmt.setString(10,Ciudad);
+			cstmt.setInt(11,clase);
+			cstmt.setString(12,EstadoCivil);
+			cstmt.setString(13,Profesion);
+			cstmt.setString(14,Sexo);
+			cstmt.setString(15,Discapacidad);
 			
 			cstmt.registerOutParameter(16, java.sql.Types.VARCHAR);
 			cstmt.registerOutParameter(17, java.sql.Types.VARCHAR);
@@ -161,21 +168,19 @@ public void inv(String Matricula, String Nombres, String ApellidoPat, String Ape
 
 
 
-public DefaultTableModel mostrarRegistrosEnc(String query) {
+public DefaultTableModel mostrarRegistrosAsp(String query) {
 	
-	String[] cabecera = {  "Nombres", "ApellidoPat", "ApellidoMat", "CURP", "Edad", "Profesión", "Num_Exterior", "Num_Interior", "Nom_Calle", "Colonia", "Ciudad", "Sexo", "EstadoCivil", "Discapacidad", "Clase"};
-	String[] datos = new String[22];
+	String[] cabecera = { "Matricula", "Nombre_Aspirante", "Resultado sorteo", "Tipo", "NumLiberacion_Cartilla"};
+	String[] datos = new String[5];
 
 	DefaultTableModel modelo = new DefaultTableModel(null, cabecera);
 
 	
 	
-/*	try {
+	try {
 		cn = conexion.conectar();
 		stm = cn.createStatement();
 		rs = stm.executeQuery(query);
-		CallableStatement cstmt;
-		cstmt = cn.prepareCall("CALL sorteo(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
 		if(rs.next()) {
 		
@@ -185,24 +190,7 @@ public DefaultTableModel mostrarRegistrosEnc(String query) {
 				datos[2] = rs.getString(3);
 				datos[3] = rs.getString(4);
 				datos[4] = rs.getString(5);
-				datos[5] = rs.getString(6);
-				datos[6] = rs.getString(7);
-				datos[7] = rs.getString(8);
-				datos[8] = rs.getString(9);
-				datos[9] = rs.getString(10);
-				datos[10] = rs.getString(11);
-				datos[11] = rs.getString(12);
-				datos[12] = rs.getString(13);
-				datos[13] = rs.getString(14);
-				datos[14] = rs.getString(15);
-				datos[15] = rs.getString(16);
-				datos[16] = rs.getString(17);
-				datos[17] = rs.getString(18);
-				datos[18] = rs.getString(19);
-				datos[19] = rs.getString(20);
-				datos[20] = rs.getString(21);
-				datos[21] = rs.getString(22);
-				modelo.addRow(datos);
+								modelo.addRow(datos);
 			} while (rs.next());
 			
 		}
@@ -214,7 +202,7 @@ public DefaultTableModel mostrarRegistrosEnc(String query) {
 		
 	}
 
-*/
+
 return modelo;
 }
 	

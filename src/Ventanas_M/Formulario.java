@@ -46,6 +46,7 @@ public class Formulario extends JFrame {
 	Lidera_Querys objTC=new Lidera_Querys();
 	Reserva_Querys objRQ=new Reserva_Querys();
 	Participa_enc_Querys objPEQ=new Participa_enc_Querys();
+	Aspirante_Querys objAsp = new Aspirante_Querys();
 	static Loggin objLog = new Loggin();
 	
 	ConexionBD conexion = new ConexionBD();
@@ -2877,13 +2878,13 @@ public class Formulario extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					
 					String query="";
-
 					
-						query = "CALL sorteo(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					objAsp.RegistraAspirante(TxtNombreAspirante.getText(), txtApellidoPatAspirante.getText(), txtApellidoMatAspirante.getText(), txtCurpAspirante.getText(), txtEdadAspirante.getText(), txtCalleAspirante.getText(), txtNumExteriorAspirante.getText(),txtNumInteriorAspirante.getText(),txtColoniaAspirante.getText(), txtCiudadAspirante.getText(), txtClaseAspirante.getText(), txtEstadoCivilAspirante.getText(), txtProfesionAspirante.getText(),txtSexoAspirante.getText(),txtDiscapacidad.getText());
 					
+					query = "SELECT @matricula AS Matricula_Aspirante, CONCAT(@nombre_a,' ',@apellidop_a,' ',@apellidom_a) AS Nombre_Aspirante, @resultado_sorteo AS Resultado_Sorteo, @tipo_aspirante AS Tipo, @num_liberacion AS Número_Liberación_Cartilla;";
 					
-					DefaultTableModel modeloEnc = objEnc.mostrarRegistrosEnc(query);
-					tablaEncuadrado.setModel(modeloEnc);
+					DefaultTableModel modeloAsp = objAsp.mostrarRegistrosAsp(query);
+					tablaEncuadrado.setModel(modeloAsp);
 				}
 			});
 			btnAgregarAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -2901,22 +2902,6 @@ public class Formulario extends JFrame {
 			
 			tablaAspirantes = new JTable();
 			spTablaAspirante.add(tablaAspirantes);
-		
-		/*		
-				
-				JPanel pnlTablaPartEnc = new JPanel();
-		pnlTablaPartEnc.setBounds(234, 253, 282, 222);
-		ParticipaEnc.add(pnlTablaPartEnc);
-		pnlTablaPartEnc.setLayout(null);
-		
-			JScrollPane spTablaPartEnc = new JScrollPane();
-			spTablaPartEnc.setBounds(0, 0, 282, 222);
-			pnlTablaPartEnc.add(spTablaPartEnc);
-			
-			tablaPartEnc = new JTable();
-			spTablaPartEnc.setViewportView(tablaPartEnc);
-				*/
-			
 			
 	}
 }
