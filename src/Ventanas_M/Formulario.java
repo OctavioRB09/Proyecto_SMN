@@ -2907,8 +2907,14 @@ public class Formulario extends JFrame {
 				pnlTablaAspirante.add(spTablaAspirante);
 				
 				tablaAspirante = new JTable();
+				tablaAspirante.setModel(new DefaultTableModel(
+					new Object[][] {
+					},
+					new String[] {
+					}
+				));
 				tablaAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
-				tablaAspirante.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+				tablaAspirante.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 				spTablaAspirante.setViewportView(tablaAspirante);
 			
 	}
