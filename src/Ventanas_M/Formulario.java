@@ -174,7 +174,6 @@ public class Formulario extends JFrame {
 	private JTextField txtProfesionAspirante;
 	private JTextField txtSexoAspirante;
 	private JTextField txtDiscapacidadAspirante;
-	private JTextField txtEdSorteo;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -893,6 +892,7 @@ public class Formulario extends JFrame {
 		Cartilla.add(btnEliminarCar);
 
 		JButton btnAgregarCar = new JButton("AGREGAR");
+		btnAgregarCar.setEnabled(false);
 		btnAgregarCar.setBounds(26, 192, 118, 23);
 		btnAgregarCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -2344,6 +2344,7 @@ public class Formulario extends JFrame {
 		Encuadrado.add(txtTipoSangreEnc);
 
 		JButton btnAgregarEnc = new JButton("AGREGAR");
+		btnAgregarEnc.setEnabled(false);
 		btnAgregarEnc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -2440,8 +2441,6 @@ public class Formulario extends JFrame {
 //-->> INICIO DE PANEL RESERVA
 		JPanel Reserva = new JPanel();
 		tabbedPane.addTab("Reserva", null, Reserva, null);
-		tabbedPane.setEnabledAt(13, false);
-		tabbedPane.setEnabledAt(12, false);
 		Reserva.setLayout(null);
 		
 		JLabel lblMatriculaRes = new JLabel("MATRICULA");
@@ -2632,6 +2631,7 @@ public class Formulario extends JFrame {
 		etTelefonoRes.setColumns(10);
 		
 		JButton btnAgregarRes = new JButton("AGREGAR");
+		btnAgregarRes.setEnabled(false);
 		btnAgregarRes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -2885,24 +2885,12 @@ public class Formulario extends JFrame {
 		JButton btnAgregarAspirante = new JButton("AGREGAR");
 		btnAgregarAspirante.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				if(txtEdSorteo.getText().equals("")) {
-					
-					String query="";					
-					query = "SELECT @matricula AS Matricula_Aspirante, CONCAT(@nombre_a,' ',@apellidop_a,' ',@apellidom_a) AS Nombre_Aspirante, @resultado_sorteo AS Resultado_Sorteo, @tipo_aspirante AS Tipo, @num_liberacion AS Número_Liberación_Cartilla;";
-					DefaultTableModel modeloAsp = objAsp.mostrarRegistrosAsp("sorteo",TxtNombreAspirante.getText(), txtApellidoPatAspirante.getText(), txtApellidoMatAspirante.getText(), txtCurpAspirante.getText(), txtEdadAspirante.getText(), txtCalleAspirante.getText(), txtNumExteriorAspirante.getText(),txtNumInteriorAspirante.getText(),txtColoniaAspirante.getText(), txtCiudadAspirante.getText(), txtClaseAspirante.getText(), txtEstadoCivilAspirante.getText(), txtProfesionAspirante.getText(),txtSexoAspirante.getText(),txtDiscapacidadAspirante.getText(),query);
-					tablaAspirante.setModel(modeloAsp);
-					
-				}else {
-					
-					String query="";					
-					query = "SELECT @matricula AS Matricula_Aspirante, CONCAT(@nombre_a,' ',@apellidop_a,' ',@apellidom_a) AS Nombre_Aspirante, @resultado_sorteo AS Resultado_Sorteo, @tipo_aspirante AS Tipo, @num_liberacion AS Número_Liberación_Cartilla;";
-					DefaultTableModel modeloAsp = objAsp.mostrarRegistrosAsp("sorteo_transaccion",TxtNombreAspirante.getText(), txtApellidoPatAspirante.getText(), txtApellidoMatAspirante.getText(), txtCurpAspirante.getText(), txtEdadAspirante.getText(), txtCalleAspirante.getText(), txtNumExteriorAspirante.getText(),txtNumInteriorAspirante.getText(),txtColoniaAspirante.getText(), txtCiudadAspirante.getText(), txtClaseAspirante.getText(), txtEstadoCivilAspirante.getText(), txtProfesionAspirante.getText(),txtSexoAspirante.getText(),txtDiscapacidadAspirante.getText(),query);
-					tablaAspirante.setModel(modeloAsp);
-					
-				}
-				
-				
+
+				String query="";					
+				query = "SELECT @matricula AS Matricula_Aspirante, CONCAT(@nombre_a,' ',@apellidop_a,' ',@apellidom_a) AS Nombre_Aspirante, @resultado_sorteo AS Resultado_Sorteo, @tipo_aspirante AS Tipo, @num_liberacion AS Número_Liberación_Cartilla;";
+				DefaultTableModel modeloAsp = objAsp.mostrarRegistrosAsp(TxtNombreAspirante.getText(), txtApellidoPatAspirante.getText(), txtApellidoMatAspirante.getText(), txtCurpAspirante.getText(), txtEdadAspirante.getText(), txtCalleAspirante.getText(), txtNumExteriorAspirante.getText(),txtNumInteriorAspirante.getText(),txtColoniaAspirante.getText(), txtCiudadAspirante.getText(), txtClaseAspirante.getText(), txtEstadoCivilAspirante.getText(), txtProfesionAspirante.getText(),txtSexoAspirante.getText(),txtDiscapacidadAspirante.getText(),query);
+				tablaAspirante.setModel(modeloAsp);
+
 			}
 		});
 		btnAgregarAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
@@ -2911,34 +2899,19 @@ public class Formulario extends JFrame {
 		
 		JPanel pnlTablaAspirante = new JPanel();
 		pnlTablaAspirante.setBorder(new TitledBorder(null, "Resultados", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pnlTablaAspirante.setBounds(73, 308, 608, 116);
+		pnlTablaAspirante.setBounds(73, 308, 608, 73);
 		Aspirante.add(pnlTablaAspirante);
 		pnlTablaAspirante.setLayout(null);
 			
 				JScrollPane spTablaAspirante = new JScrollPane();
-				spTablaAspirante.setBounds(10, 21, 588, 84);
+				spTablaAspirante.setBounds(10, 21, 588, 39);
 				pnlTablaAspirante.add(spTablaAspirante);
 				
 				tablaAspirante = new JTable();
-				tablaAspirante.setModel(new DefaultTableModel(
-					new Object[][] {
-					},
-					new String[] {
-					}
-				));
+				tablaAspirante.setModel(new DefaultTableModel());
 				tablaAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 				tablaAspirante.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 				spTablaAspirante.setViewportView(tablaAspirante);
-				
-				JLabel lblEdSorteo = new JLabel("EDICI\u00D3N DE SORTEO");
-				lblEdSorteo.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-				lblEdSorteo.setBounds(36, 238, 147, 14);
-				Aspirante.add(lblEdSorteo);
-				
-				txtEdSorteo = new JTextField();
-				txtEdSorteo.setColumns(10);
-				txtEdSorteo.setBounds(54, 253, 86, 20);
-				Aspirante.add(txtEdSorteo);
 			
 	}
 }
