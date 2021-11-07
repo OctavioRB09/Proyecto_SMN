@@ -13,7 +13,7 @@ public class Aspirante_Querys {
 	ResultSet rs = null;
 	String[] datos=new String[5];
 
-	public DefaultTableModel mostrarRegistrosAsp(String Nombres, String ApellidoPat, String ApellidoMat, String CURP, String Edad, String Calle, String Num_Exterior, String Num_Interior, String Colonia, String Ciudad, String Clase, String EstadoCivil, String Profesion, String Sexo, String Discapacidad, String query) {
+	public DefaultTableModel mostrarRegistrosAsp(String TipoSorteo, String Nombres, String ApellidoPat, String ApellidoMat, String CURP, String Edad, String Calle, String Num_Exterior, String Num_Interior, String Colonia, String Ciudad, String Clase, String EstadoCivil, String Profesion, String Sexo, String Discapacidad, String query) {
 		
 		String[] cabecera = { "Matricula", "Nombre Aspirante", "Resultado sorteo", "Tipo", "Número Liberación C."};
 		String[] datos = new String[5];
@@ -26,8 +26,10 @@ public class Aspirante_Querys {
 			cn = conexion.conectar();
 			stm = cn.createStatement();
 			CallableStatement cstmt;			
-			cstmt = cn.prepareCall("CALL sorteo(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			cstmt = cn.prepareCall("CALL "+TipoSorteo+"(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
+			System.out.println("hola "+TipoSorteo);
+			
 			edad = Integer.valueOf(Edad);
 			clase = Integer.valueOf(Clase);
 

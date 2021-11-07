@@ -174,6 +174,7 @@ public class Formulario extends JFrame {
 	private JTextField txtProfesionAspirante;
 	private JTextField txtSexoAspirante;
 	private JTextField txtDiscapacidadAspirante;
+	private JTextField txtEdSorteo;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -2885,10 +2886,22 @@ public class Formulario extends JFrame {
 		btnAgregarAspirante.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String query="";					
-				query = "SELECT @matricula AS Matricula_Aspirante, CONCAT(@nombre_a,' ',@apellidop_a,' ',@apellidom_a) AS Nombre_Aspirante, @resultado_sorteo AS Resultado_Sorteo, @tipo_aspirante AS Tipo, @num_liberacion AS Número_Liberación_Cartilla;";
-				DefaultTableModel modeloAsp = objAsp.mostrarRegistrosAsp(TxtNombreAspirante.getText(), txtApellidoPatAspirante.getText(), txtApellidoMatAspirante.getText(), txtCurpAspirante.getText(), txtEdadAspirante.getText(), txtCalleAspirante.getText(), txtNumExteriorAspirante.getText(),txtNumInteriorAspirante.getText(),txtColoniaAspirante.getText(), txtCiudadAspirante.getText(), txtClaseAspirante.getText(), txtEstadoCivilAspirante.getText(), txtProfesionAspirante.getText(),txtSexoAspirante.getText(),txtDiscapacidadAspirante.getText(),query);
-				tablaAspirante.setModel(modeloAsp);
+				if(txtEdSorteo.getText().equals("")) {
+					
+					String query="";					
+					query = "SELECT @matricula AS Matricula_Aspirante, CONCAT(@nombre_a,' ',@apellidop_a,' ',@apellidom_a) AS Nombre_Aspirante, @resultado_sorteo AS Resultado_Sorteo, @tipo_aspirante AS Tipo, @num_liberacion AS Número_Liberación_Cartilla;";
+					DefaultTableModel modeloAsp = objAsp.mostrarRegistrosAsp("sorteo",TxtNombreAspirante.getText(), txtApellidoPatAspirante.getText(), txtApellidoMatAspirante.getText(), txtCurpAspirante.getText(), txtEdadAspirante.getText(), txtCalleAspirante.getText(), txtNumExteriorAspirante.getText(),txtNumInteriorAspirante.getText(),txtColoniaAspirante.getText(), txtCiudadAspirante.getText(), txtClaseAspirante.getText(), txtEstadoCivilAspirante.getText(), txtProfesionAspirante.getText(),txtSexoAspirante.getText(),txtDiscapacidadAspirante.getText(),query);
+					tablaAspirante.setModel(modeloAsp);
+					
+				}else {
+					
+					String query="";					
+					query = "SELECT @matricula AS Matricula_Aspirante, CONCAT(@nombre_a,' ',@apellidop_a,' ',@apellidom_a) AS Nombre_Aspirante, @resultado_sorteo AS Resultado_Sorteo, @tipo_aspirante AS Tipo, @num_liberacion AS Número_Liberación_Cartilla;";
+					DefaultTableModel modeloAsp = objAsp.mostrarRegistrosAsp("sorteo_transaccion",TxtNombreAspirante.getText(), txtApellidoPatAspirante.getText(), txtApellidoMatAspirante.getText(), txtCurpAspirante.getText(), txtEdadAspirante.getText(), txtCalleAspirante.getText(), txtNumExteriorAspirante.getText(),txtNumInteriorAspirante.getText(),txtColoniaAspirante.getText(), txtCiudadAspirante.getText(), txtClaseAspirante.getText(), txtEstadoCivilAspirante.getText(), txtProfesionAspirante.getText(),txtSexoAspirante.getText(),txtDiscapacidadAspirante.getText(),query);
+					tablaAspirante.setModel(modeloAsp);
+					
+				}
+				
 				
 			}
 		});
@@ -2916,6 +2929,16 @@ public class Formulario extends JFrame {
 				tablaAspirante.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 				tablaAspirante.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 				spTablaAspirante.setViewportView(tablaAspirante);
+				
+				JLabel lblEdSorteo = new JLabel("EDICI\u00D3N DE SORTEO");
+				lblEdSorteo.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+				lblEdSorteo.setBounds(36, 238, 147, 14);
+				Aspirante.add(lblEdSorteo);
+				
+				txtEdSorteo = new JTextField();
+				txtEdSorteo.setColumns(10);
+				txtEdSorteo.setBounds(54, 253, 86, 20);
+				Aspirante.add(txtEdSorteo);
 			
 	}
 }
