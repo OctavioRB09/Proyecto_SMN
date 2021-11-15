@@ -120,11 +120,12 @@ public class Aspirante_Querys {
 			cn.setAutoCommit(false); //--> DESACTIVAMOS EL AUTOCOMMIT PARA EMULAR EL "START TRANSACTION"
 			stm = cn.createStatement();
 			CallableStatement cstmt;			
-			cstmt = cn.prepareCall("");
+			//cstmt = cn.prepareCall("");
 			
 			//LLAMAR LA FUNCION SORTEO
-			cstmt = cn.prepareCall("CALL sorteoF(?)");
-			cstmt.registerOutParameter(1, java.sql.Types.VARCHAR);
+			cstmt = cn.prepareCall("{? = CALL sorteoF(?)}");
+			cstmt.registerOutParameter(1, Types.CHAR);
+			cstmt.setString(2, "4");
 			cstmt.execute();
 			resultado_sorteo = cstmt.getString(1);
 			
@@ -201,6 +202,18 @@ public class Aspirante_Querys {
 
 			JOptionPane.showMessageDialog(null, e.getErrorCode()+": "+e.getMessage());
 			e.printStackTrace();
+			
+			if(conexion!=null)
+			{
+				try
+				{
+					conexion.conectar().rollback();
+				}
+				catch(SQLException ex)
+				{
+					System.out.println(ex.toString());
+				}
+			}
 
 		}
 
