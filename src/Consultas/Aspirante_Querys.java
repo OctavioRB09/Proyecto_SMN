@@ -147,9 +147,46 @@ public class Aspirante_Querys {
 				
 				stm.executeUpdate("INSERT INTO obtiene(Matricula_Res, Num_Liberacion, Precio_Cart, Fecha_Recepcion) VALUES("+matricula + num_lib+" 75, STR_TO_DATE("+fecha_rec+", '%Y-%m-%d'));");
 				
-			}else { //SE INICIA LA TRANSACCION PARA EL ENCUADRADO
+			}else if(resultado_sorteo.equals("Blanca")){ //SE INICIA LA TRANSACCION PARA EL ENCUADRADO
+				
+				tipo_asp="Encuadrado";
+				stm.executeUpdate("INSERT INTO encuadrado(Matricula_Enc, Nombres_Enc, ApellidoPat_Enc, ApellidoMat_Enc, CURP_Enc, Edad_Enc, Profesión_Enc, Num_Exterior, Num_Interior, Nom_Calle, Colonia, Ciudad, Sexo_Enc, EstadoCivil_Enc, Discapacidad_Enc, Clase, Tipo_Aspirante) VALUES("+ matricula + Nombres + ApellidoPat + ApellidoMat + CURP + Edad + Profesion + Num_Exterior + Num_Interior + Calle + Colonia + Ciudad + Sexo + EstadoCivil + Discapacidad + Clase + tipo_asp+");");
+				stm.executeUpdate("INSERT INTO cartilla(Num_liberación, Zona_Mil, Regimiento) VALUES("+ num_lib +" 17, 7);");
+				stm.executeUpdate("INSERT INTO participa_enc(Matricula_Enc, Ed_Sorteo, Resultado) VALUES("+ matricula +" YEAR(NOW()), '"+ resultado_sorteo +"');");
+				
+				String Placa, Inst, Seccion;
+				String Act,PlacaS;
+				
+				ResultSet rs = null;
+				
+				rs = stm.executeQuery("SELECT Num_Placa FROM instructor ORDER BY RAND() LIMIT 1");
+				Placa = rs.getString(0);
+				rs = stm.executeQuery("SELECT Id_Inst FROM institucion ORDER BY RAND() LIMIT 1");
+				Inst = rs.getString(0);
+				rs = stm.executeQuery("SELECT N_Sección FROM escuadron ORDER BY RAND() LIMIT 1");
+				Seccion = rs.getString(0);
+				rs = stm.executeQuery("SELECT T_Actividad FROM actividad ORDER BY RAND() LIMIT 1");
+				Act = rs.getString(0);
+				
+				stm.executeUpdate("INSERT INTO actividad(Num_Placa, Matricula_Enc, N_Sección, Id_Inst, HoraInicio, HoraFin, Fecha, T_Actividad, Coste_Act)"
+				+ "VALUES("+Placa+","+ matricula+"," + Seccion +","+ Inst + ", (NOW()+INTERVAL 1 hour), (NOW()+INTERVAL 2 hour), (CURDATE()+INTERVAL 7 DAY)," +Act+", ROUND(RAND()*100));");
 				
 				
+				//REGISTRO DE PARTICIPACION
+				stm.executeUpdate("INSERT INTO participa_enc(Matricula_Enc, Ed_Sorteo, Resultado)"
+						+ "		VALUES("+matricula+", YEAR(NOW()), 'Blanca');");
+				
+				//ASIGNACION DE UN VALIDADOR DE CARTILLA
+				rs = stm.executeQuery("SELECT Num_Placa FROM instructor WHERE Rango = \"Sargento\" ORDER BY RAND() LIMIT 1");
+				PlacaS = rs.getString(0);
+				
+				cstmt = cn.prepareCall("CALL fechaF(?)");
+				cstmt.registerOutParameter(1, java.sql.Types.VARCHAR);
+				cstmt.execute();
+				fecha_rec = cstmt.getString(1);
+				
+				stm.executeUpdate("INSERT INTO valida(Num_Placa, Matricula_Enc, Num_liberacion, Horas_Trabajadas, Precio_Car) "
+						+ "		VALUES("+PlacaS+","+ matricula+","+ num_lib+", 0, 0);");
 				
 			}
 			
