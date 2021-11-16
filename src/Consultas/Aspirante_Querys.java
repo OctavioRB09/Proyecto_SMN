@@ -185,7 +185,7 @@ public class Aspirante_Querys {
 				
 			}
 			
-			//SE DEFINE SI SE HACE UN COMMIT
+			//MENSAJE DE CONFIRMACIÓN (PARA EL COMMIT Y EL ROLLBACK)
 			if (flag == 1) {
 				cn.commit();
 				//SE MUESTRAN LOS DATOS EN LA TABLA SI TRANSCURRIO CON EXITO LA TRANSACCIÓN
@@ -196,6 +196,30 @@ public class Aspirante_Querys {
 				datos[4] = num_lib;
 				modelo.addRow(datos);	
 			}
+			
+			/*Object[] options = {"Continuar (Commit)", "Cancelar (Rollback)"};
+			int n = JOptionPane.showOptionDialog(null,
+			                "¿Estas seguro de que quieres ir a vietnam?",
+			                "Confirmación de Registro",
+			                JOptionPane.YES_NO_OPTION,
+			                JOptionPane.QUESTION_MESSAGE,
+			                null,
+			                options,
+			                options[0]);
+			if (n == JOptionPane.YES_OPTION) {
+				if (flag == 1) {
+					cn.commit();
+					//SE MUESTRAN LOS DATOS EN LA TABLA SI TRANSCURRIO CON EXITO LA TRANSACCIÓN
+					datos[0] = matricula;
+					datos[1] = Nombres+" "+ApellidoPat+" "+ApellidoMat;
+					datos[2] = resultado_sorteo;
+					datos[3] = tipo_asp;
+					datos[4] = num_lib;
+					modelo.addRow(datos);	
+				}
+			} else if (n == JOptionPane.NO_OPTION) {
+				cn.rollback();
+			}*/
 			
 		} catch (SQLException e) {
 
